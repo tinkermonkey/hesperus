@@ -1,12 +1,54 @@
 {
-  "name": "hesperus-design-system",
+  "name": "@tinkermonkey/hesperus-theme",
   "version": "0.1.0",
-  "private": true,
+  "description": "A retro-inspired design system theme for Flowbite React with vintage CRT monitor aesthetics",
   "type": "module",
+  "main": "./dist/theme.js",
+  "types": "./dist/theme.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/theme.js",
+      "types": "./dist/theme.d.ts"
+    },
+    "./styles": "./dist/index.css"
+  },
+  "files": [
+    "dist",
+    "public/grid-background-light.svg",
+    "public/grid-background-dark.svg",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "build:package": "node scripts/build-package.js",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build:package"
+  },
+  "keywords": [
+    "flowbite",
+    "flowbite-react",
+    "theme",
+    "design-system",
+    "retro",
+    "crt",
+    "react",
+    "tailwindcss"
+  ],
+  "author": "tinkermonkey",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinkermonkey/hesperus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tinkermonkey/hesperus/issues"
+  },
+  "homepage": "https://github.com/tinkermonkey/hesperus#readme",
+  "peerDependencies": {
+    "flowbite-react": "^0.12.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
     "flowbite-react": "^0.12.17",

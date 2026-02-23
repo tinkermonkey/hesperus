@@ -1,0 +1,80 @@
+name: Publish to NPM
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      id-token: write  # Required for NPM provenance
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build package
+      run: npm run build:package
+    
+    - name: Verify package contents
+      run: |
+        test -f dist/theme.js || exit 1
+        test -f dist/theme.d.ts || exit 1
+        test -f dist/index.css || exit 1
+        test -f public/grid-background-light.svg || exit 1
+        test -f public/grid-background-dark.svg || exit 1
+        echo "✅ All package files present"
+    
+    - name: Extract version from tag
+      id: tag_version
+      run: |
+        TAG=${GITHUB_REF#refs/tags/v}
+        echo "VERSION=$TAG" >> $GITHUB_OUTPUT
+        echo "Publishing version: $TAG"
+    
+    - name: Verify package version matches tag
+      run: |
+        PACKAGE_VERSION=$(node -p "require('./package.json').version")
+        if [ "$PACKAGE_VERSION" != "${{ steps.tag_version.outputs.VERSION }}" ]; then
+          echo "❌ Error: Package version ($PACKAGE_VERSION) does not match tag (${{ steps.tag_version.outputs.VERSION }})"
+          exit 1
+        fi
+        echo "✅ Version verified: $PACKAGE_VERSION"
+    
+    - name: Publish to NPM
+      run: npm publish --provenance --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ steps.tag_version.outputs.VERSION }}
+        body: |
+          ## Hesperus Theme v${{ steps.tag_version.outputs.VERSION }}
+          
+          ### Installation
+          \`\`\`bash
+          npm install @tinkermonkey/hesperus-theme
+          \`\`\`
+          
+          ### Changes
+          See [CHANGELOG.md](https://github.com/tinkermonkey/hesperus/blob/main/CHANGELOG.md) for details.
+        draft: false
+        prerelease: false

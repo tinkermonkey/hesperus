@@ -46,14 +46,115 @@ The design system uses CSS custom properties for automatic light/dark mode switc
 - Warning: `#C4A232` (gold)
 - Info: `#5566AA` (blue-gray)
 
+## Installation
+
+Install the Hesperus theme package via npm:
+
+```bash
+npm install @tinkermonkey/hesperus-theme
+```
+
+### Peer Dependencies
+
+Make sure you have the required peer dependencies installed:
+
+```bash
+npm install flowbite-react react react-dom
+```
+
+## Quick Start
+
+1. **Import the theme and styles:**
+
+```jsx
+import { Flowbite } from "flowbite-react";
+import { hesperusTheme } from "@tinkermonkey/hesperus-theme";
+import "@tinkermonkey/hesperus-theme/styles";
+
+function App() {
+  return (
+    <Flowbite theme={{ theme: hesperusTheme }}>
+      {/* Your app components */}
+    </Flowbite>
+  );
+}
+```
+
+2. **Add dark mode toggle:**
+
+```jsx
+import { useState, useEffect } from 'react';
+
+function App() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [dark]);
+
+  return (
+    <Flowbite theme={{ theme: hesperusTheme }}>
+      <button onClick={() => setDark(!dark)}>
+        {dark ? "☀ Light" : "☾ Dark"}
+      </button>
+      {/* Your app */}
+    </Flowbite>
+  );
+}
+```
+
+## Component Examples
+
+All Flowbite React components are automatically themed:
+
+```jsx
+import { Button, Card, Table, TextInput } from "flowbite-react";
+
+// Buttons with custom colors
+<Button color="primary">Primary Action</Button>
+<Button color="outline">Secondary</Button>
+<Button color="destructive">Delete</Button>
+
+// Cards  
+<Card>
+  <h5>Card Title</h5>
+  <p>Card content with automatic retro styling</p>
+</Card>
+
+// Forms
+<TextInput
+  type="text"
+  placeholder="Enter text..."
+  color="gray"
+/>
+
+// Tables with hover and striped rows
+<Table hoverable striped>
+  <Table.Head>
+    <Table.HeadCell>Name</Table.HeadCell>
+  </Table.Head>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>Data</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+```
+
 ## Development Setup
+
+Want to contribute or run the component browser locally?
 
 ### Prerequisites
 
 - Node.js 18+ and npm
 - Git
 
-### Installation
+### Local Development
 
 ```bash
 # Clone the repository
@@ -67,89 +168,29 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173/`
+The component browser will be available at `http://localhost:5173/`
+
+### Building the Package
+
+```bash
+npm run build:package
+```
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details on development and release processes.
 
 ### Project Structure
 
 ```
 hesperus/
 ├── src/
-│   ├── App.jsx              # Component browser showcase
-│   ├── main.jsx             # Application entry point
-│   ├── index.css            # Global styles & CSS custom properties
-│   ├── theme.js             # Flowbite React theme customization
-│   └── components/
-│       ├── GraphNode.jsx    # Example component implementations
-│       └── ConnectionLabel.jsx
+│   ├── theme.js             # Main theme export (published to npm)
+│   ├── index.css            # CSS & custom properties (published)
+│   ├── App.jsx              # Component browser (dev only)
+│   └── components/          # Example components (dev only)
 ├── public/
-│   ├── grid-background-light.svg  # Light mode grid with noise
-│   └── grid-background-dark.svg   # Dark mode grid with noise
-├── inspiration/             # Design mockups and references
-├── package.json
-└── vite.config.js
-```
-
-## Using the Theme
-
-### In Your Own Project
-
-1. Install dependencies:
-```bash
-npm install flowbite-react react react-dom tailwindcss
-```
-
-2. Copy the theme file:
-```bash
-cp src/theme.js your-project/src/
-cp src/index.css your-project/src/
-```
-
-3. Import and apply the theme:
-```jsx
-import { Flowbite } from "flowbite-react";
-import { hesperusTheme } from "./theme";
-
-function App() {
-  return (
-    <Flowbite theme={{ theme: hesperusTheme }}>
-      {/* Your components */}
-    </Flowbite>
-  );
-}
-```
-
-### Component Examples
-
-```jsx
-// Buttons
-<Button color="primary" size="md">Primary Action</Button>
-<Button color="outline" size="md">Secondary</Button>
-<Button color="destructive" size="md">Delete</Button>
-
-// Cards
-<Card>
-  <h5>Card Title</h5>
-  <p>Card content with automatic styling</p>
-</Card>
-
-// Forms
-<TextInput
-  type="text"
-  placeholder="Enter text..."
-  color="gray"
-/>
-
-// Tables with hover and striped rows
-<Table hoverable striped>
-  <Table.Head>
-    <Table.HeadCell>Column 1</Table.HeadCell>
-  </Table.Head>
-  <Table.Body>
-    <Table.Row>
-      <Table.Cell>Data</Table.Cell>
-    </Table.Row>
-  </Table.Body>
-</Table>
+│   └── *.svg                # Grid backgrounds (published)
+├── dist/                    # Built package (generated)
+└── package.json
 ```
 
 ## Component Coverage
