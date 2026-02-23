@@ -2,17 +2,21 @@
 
 A retro-inspired design system built on top of [Flowbite React](https://flowbite-react.com/), featuring a distinctive monospace aesthetic with vintage CRT monitor effects including film grain and grid backgrounds.
 
-![Hesperus Light Mode](./inspiration/page-header.png)
+![Hesperus Light Mode](./inspiration/hesperus-light.png)
+*Light mode with retro CRT aesthetics*
+
+![Hesperus Dark Mode](./inspiration/hesperus-dark.png)
+*Dark mode with vintage terminal styling*
 
 ## Features
 
-- 🎨 **Complete Flowbite React Theme** - Custom styling for 60+ components
-- 🌓 **Dark Mode Support** - Seamless light/dark theme switching
-- 🖥️ **Retro CRT Aesthetic** - Grid backgrounds with noise filters and glow effects
-- 🔤 **Monospace Typography** - Space Mono font throughout
-- 📦 **Component Browser** - Interactive showcase of all themed components
-- ⚡ **Vite + React** - Fast development with hot module replacement
-- 🎯 **Tailwind CSS v4** - Latest Tailwind with custom retro color tokens
+- **Complete Flowbite React Theme** - Custom styling for 60+ components
+- **Dark Mode Support** - Seamless light/dark theme switching
+- **Retro CRT Aesthetic** - Grid backgrounds with noise filters and glow effects
+- **Monospace Typography** - Space Mono font throughout
+- **Component Browser** - Interactive showcase of all themed components
+- **Vite + React** - Fast development with hot module replacement
+- **Tailwind CSS v4** - Latest Tailwind with custom retro color tokens
 
 ## Design Philosophy
 
@@ -282,6 +286,18 @@ Optional noise overlay class available:
   {/* Content with subtle grain */}
 </div>
 ```
+
+## Inspiration
+
+- Vintage CRT monitors and terminal interfaces
+- Classic film photography with grain and texture
+- Retro video games and sci-fi aesthetics
+
+![Hesperus Component Library](./inspiration/component-libraray.png)
+![Hesperus Light Mode](./inspiration/graph-light-mode.png)
+![Hesperus Dark Mode](./inspiration/graph-dark-mode.png)
+![Hesperus Chat Interface](./inspiration/chat-ux.png)
+
 
 ## Built With
 
