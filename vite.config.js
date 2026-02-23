@@ -5,4 +5,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), flowbiteReact()],
+  build: {
+    outDir: "demo",
+  },
 });
