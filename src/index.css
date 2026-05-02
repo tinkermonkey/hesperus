@@ -24,11 +24,25 @@
   --color-retro-green:   #5C7A28;
   --color-retro-yellow:  #C4A232;
   --color-retro-blue:    #5566AA;
+
+  /* Text-safe accent aliases — use these for text on bg (contrast-verified) */
+  --color-retro-error-text:   var(--retro-error-text);
+  --color-retro-success-text: var(--retro-success-text);
+  --color-retro-warning-text: var(--retro-warning-text);
+  --color-retro-info-text:    var(--retro-info-text);
+
   --font-mono: "Space Mono", "Fira Code", "Roboto Mono", monospace;
   --radius-sm:      3px;
   --radius-DEFAULT: 4px;
   --radius-md:      4px;
   --radius-lg:      6px;
+
+  /* Hard-offset shadows — the only allowed shadow treatment */
+  --shadow-hard-1: 2px 2px 0 var(--retro-fg);
+  --shadow-hard-2: 3px 3px 0 var(--retro-fg);
+  --shadow-hard-3: 4px 4px 0 var(--retro-fg);
+  /* Tooltip double-shadow: bg outline + fg hard offset */
+  --shadow-tooltip: 2px 2px 0 var(--retro-bg), 2px 2px 0 2px var(--retro-fg);
 }
 
 /* Light mode */
@@ -41,6 +55,39 @@
   --retro-border: #b8a878;
   --retro-secondary: #f2ecda;
   --retro-secondary-fg: #2c2416;
+
+  /* Text-safe accent aliases — verified WCAG on #efeed0 bg */
+  --retro-error-text:   #AA3322;   /* 5.56 ✓ */
+  --retro-success-text: #5C7A28;   /* 4.17 ≈AA */
+  --retro-warning-text: #2c2416;   /* warning #C4A232 fails as text — use fg */
+  --retro-info-text:    #5566AA;   /* 4.61 ✓ */
+
+  /* Motion — quick, mechanical, no bounce */
+  --dur-fast:    100ms;
+  --dur-base:    150ms;
+  --dur-slow:    250ms;
+  --dur-slower:  400ms;
+  --ease-out:    cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-stepped: steps(4, end);
+
+  /* Interaction */
+  --disabled-opacity: 0.4;
+
+  /* Hard shadows */
+  --shadow-hard-1: 2px 2px 0 var(--retro-fg);
+  --shadow-hard-2: 3px 3px 0 var(--retro-fg);
+  --shadow-hard-3: 4px 4px 0 var(--retro-fg);
+  --shadow-tooltip: 2px 2px 0 var(--retro-bg), 2px 2px 0 2px var(--retro-fg);
+
+  /* Component size contract */
+  --navbar-h:      44px;
+  --button-h-sm:   26px;
+  --button-h-md:   36px;
+  --control-h-sm:  26px;
+  --control-h-md:  36px;
+  --row-h-compact: 32px;
+  --row-h-default: 40px;
 }
 
 /* Dark mode */
@@ -53,6 +100,12 @@
   --retro-border: #4a4030;
   --retro-secondary: #3a3428;
   --retro-secondary-fg: #d4ccaa;
+
+  /* Lightened text-safe accents for dark mode (audit findings) */
+  --retro-error-text:   #E0826F;   /* lightened brick — 4.5+ on #222627 */
+  --retro-info-text:    #8FA3D9;   /* lightened dusty blue */
+  --retro-success-text: #A4C870;   /* lightened olive */
+  --retro-warning-text: #C4A232;   /* gold passes ✓ on dark (6.23) */
 }
 
 /* Checkbox SVG checkmark */
@@ -65,6 +118,18 @@
 }
 .dark [type='checkbox']:checked {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23d4ccaa' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+}
+/* Indeterminate checkbox — dash glyph */
+[type='checkbox']:indeterminate {
+  background-origin: border-box;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%232c2416' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3' y='7' width='10' height='2' rx='1'/%3E%3C/svg%3E");
+  background-color: var(--retro-bg);
+}
+.dark [type='checkbox']:indeterminate {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23d4ccaa' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3' y='7' width='10' height='2' rx='1'/%3E%3C/svg%3E");
 }
 
 body { @apply bg-retro-bg text-retro-fg font-mono antialiased; }
@@ -79,12 +144,44 @@ h1, h2, h3, h4, h5, h6 { @apply uppercase tracking-wider font-bold; }
 .noise-overlay::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
   z-index: 1000;
   opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* Block spinner — steps(8) for that scanline terminal feel */
+@keyframes spin-block {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-block {
+  animation: spin-block 1s steps(8, end) infinite;
+  transform-origin: right center;
+}
+
+/* Dot spinner — steps(2) blink */
+@keyframes spin-dot {
+  0%, 40%  { opacity: 1; }
+  50%, 100% { opacity: 0.2; }
+}
+.animate-spin-dot {
+  animation: spin-dot 1s steps(2, end) infinite;
+}
+
+/* Indeterminate progress bar */
+@keyframes progress-slide {
+  0%   { left: -40%; }
+  100% { left: 100%; }
+}
+.progress-indeterminate {
+  position: relative;
+  overflow: hidden;
+}
+.progress-indeterminate-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  animation: progress-slide 1.2s var(--ease-in-out) infinite;
 }

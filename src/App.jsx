@@ -14,10 +14,13 @@ import {
   NavbarCollapse,
   NavbarLink,
   TextInput,
+  Textarea,
   Select,
   Checkbox,
   Radio,
   Label,
+  HelperText,
+  Datepicker,
   Table,
   TableHead,
   TableHeadCell,
@@ -36,11 +39,15 @@ import {
   AccordionTitle,
   AccordionContent,
   Avatar,
+  AvatarGroup,
+  AvatarGroupCounter,
   Dropdown,
   DropdownItem,
+  DropdownDivider,
   Sidebar,
   SidebarItem,
   SidebarItemGroup,
+  SidebarItems,
   Timeline,
   TimelineItem,
   TimelinePoint,
@@ -59,16 +66,21 @@ import {
   Blockquote,
   Kbd,
   HR,
-  FileInput,
   Footer,
   FooterLink,
   FooterLinkGroup,
   Banner,
   ToggleSwitch,
+  Drawer,
+  DrawerHeader,
+  DrawerItems,
 } from "flowbite-react";
 import { hesperusTheme } from "./theme";
 import GraphNode from "./components/GraphNode";
 import ConnectionLabel from "./components/ConnectionLabel";
+import SpinnerBlock from "./components/SpinnerBlock";
+import SpinnerDots from "./components/SpinnerDots";
+import FileInputRetro from "./components/FileInputRetro";
 
 // ── Layout helpers ────────────────────────────────────────────────
 
@@ -126,6 +138,8 @@ const NAV_SECTIONS = [
   { id: "feedback", label: "Feedback" },
   { id: "content", label: "Content" },
   { id: "layout", label: "Layout" },
+  { id: "drawer", label: "Drawer" },
+  { id: "page-states", label: "Page States" },
   { id: "graph", label: "Graph Nodes" },
 ];
 
@@ -136,6 +150,9 @@ export default function App() {
   const [openModal, setOpenModal] = useState(false);
   const [openSmallModal, setOpenSmallModal] = useState(false);
   const [openLargeModal, setOpenLargeModal] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDrawerRight, setOpenDrawerRight] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   useEffect(() => {
     if (dark) {
@@ -263,6 +280,12 @@ export default function App() {
                 <Variant label="Ghost">
                   <Button color="ghost">Ghost</Button>
                 </Variant>
+                <Variant label="Success">
+                  <Button color="success">Success</Button>
+                </Variant>
+                <Variant label="Failure">
+                  <Button color="failure">Failure</Button>
+                </Variant>
                 <Variant label="Destructive">
                   <Button color="destructive">Destructive</Button>
                 </Variant>
@@ -290,6 +313,9 @@ export default function App() {
                 </Variant>
                 <Variant label="With value">
                   <TextInput defaultValue="Existing value" className="w-64" />
+                </Variant>
+                <Variant label="Error state">
+                  <TextInput color="failure" defaultValue="bad_input" className="w-64" />
                 </Variant>
                 <Variant label="Disabled">
                   <TextInput placeholder="Disabled input" disabled className="w-64" />
@@ -322,6 +348,12 @@ export default function App() {
                     <Label htmlFor="cb2">Active state</Label>
                   </div>
                 </Variant>
+                <Variant label="Indeterminate">
+                  <div className="flex items-center gap-2">
+                    <Checkbox id="cb3" ref={(el) => el && (el.indeterminate = true)} />
+                    <Label htmlFor="cb3">Mixed state</Label>
+                  </div>
+                </Variant>
                 <Variant label="Radio group">
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
@@ -333,6 +365,59 @@ export default function App() {
                       <Label htmlFor="r2">Option B</Label>
                     </div>
                   </div>
+                </Variant>
+              </Group>
+              <Group label="Textarea">
+                <Variant label="Default">
+                  <Textarea placeholder="Enter notes..." className="w-64" rows={3} />
+                </Variant>
+                <Variant label="With value">
+                  <Textarea defaultValue={"Line one\nLine two"} className="w-64" rows={3} />
+                </Variant>
+                <Variant label="Disabled">
+                  <Textarea placeholder="Disabled textarea" disabled className="w-64" rows={3} />
+                </Variant>
+              </Group>
+              <Group label="Helper Text &amp; Validation">
+                <div className="flex flex-col gap-4 w-full max-w-sm">
+                  <Variant label="Default (muted)">
+                    <div className="w-64">
+                      <TextInput placeholder="Username" />
+                      <HelperText>Must be 3–20 alphanumeric characters.</HelperText>
+                    </div>
+                  </Variant>
+                  <Variant label="Success">
+                    <div className="w-64">
+                      <TextInput placeholder="Email" defaultValue="user@example.com" />
+                      <HelperText color="success">▌ Email verified.</HelperText>
+                    </div>
+                  </Variant>
+                  <Variant label="Failure">
+                    <div className="w-64">
+                      <TextInput placeholder="Password" defaultValue="abc" />
+                      <HelperText color="failure">▌ Password too short — 8 chars minimum.</HelperText>
+                    </div>
+                  </Variant>
+                  <Variant label="Warning">
+                    <div className="w-64">
+                      <TextInput placeholder="API key" />
+                      <HelperText color="warning">▌ Key expires in 3 days.</HelperText>
+                    </div>
+                  </Variant>
+                  <Variant label="Info">
+                    <div className="w-64">
+                      <TextInput placeholder="Slug" />
+                      <HelperText color="info">Used in public URLs — lowercase only.</HelperText>
+                    </div>
+                  </Variant>
+                </div>
+              </Group>
+              <Group label="Datepicker">
+                <Variant label="Default">
+                  <Datepicker className="w-64" />
+                </Variant>
+                <Variant label="With today &amp; clear">
+                  <Datepicker showTodayButton showClearButton className="w-64" />
                 </Variant>
               </Group>
               <Group label="Toggle Switch">
@@ -487,6 +572,32 @@ export default function App() {
                   </Table>
                 </div>
               </Group>
+              <Group label="Sortable columns">
+                <div className="w-full">
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableHeadCell>
+                          <button className="flex items-center gap-1 hover:text-retro-bg/70">
+                            Name <span className="text-[9px]">▲</span>
+                          </button>
+                        </TableHeadCell>
+                        <TableHeadCell>
+                          <button className="flex items-center gap-1 hover:text-retro-bg/70">
+                            Size <span className="text-[9px] opacity-40">▼</span>
+                          </button>
+                        </TableHeadCell>
+                        <TableHeadCell>Modified</TableHeadCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow><TableCell>alpha.sql</TableCell><TableCell>14 KB</TableCell><TableCell>2026-04-30</TableCell></TableRow>
+                      <TableRow><TableCell>beta.sql</TableCell><TableCell>2 KB</TableCell><TableCell>2026-04-28</TableCell></TableRow>
+                      <TableRow><TableCell>schema.json</TableCell><TableCell>88 KB</TableCell><TableCell>2026-04-01</TableCell></TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </Group>
               <Group label="Striped rows">
                 <div className="w-full">
                   <Table striped>
@@ -533,7 +644,7 @@ export default function App() {
                   <BreadcrumbItem>Schema</BreadcrumbItem>
                 </Breadcrumb>
               </Group>
-              <Group label="Tabs">
+              <Group label="Tabs — Segmented (default)">
                 <div className="w-full max-w-lg">
                   <Tabs variant="default">
                     <TabItem title="Schema">
@@ -549,6 +660,58 @@ export default function App() {
                     <TabItem title="Indexes">
                       <p className="font-mono text-[11px] text-retro-fg">
                         Index definitions and performance hints.
+                      </p>
+                    </TabItem>
+                  </Tabs>
+                </div>
+              </Group>
+              <Group label="Tabs — Underline (orange indicator)">
+                <div className="w-full max-w-lg">
+                  <Tabs variant="underline">
+                    <TabItem title="Overview">
+                      <p className="font-mono text-[11px] text-retro-fg">
+                        Overview — summary metrics and recent activity.
+                      </p>
+                    </TabItem>
+                    <TabItem title="Nodes">
+                      <p className="font-mono text-[11px] text-retro-fg">
+                        Node list — 14 entities in the graph.
+                      </p>
+                    </TabItem>
+                    <TabItem title="Logs">
+                      <p className="font-mono text-[11px] text-retro-fg">
+                        Log stream — real-time event output.
+                      </p>
+                    </TabItem>
+                    <TabItem title="Settings">
+                      <p className="font-mono text-[11px] text-retro-fg">
+                        Connection settings and auth config.
+                      </p>
+                    </TabItem>
+                  </Tabs>
+                </div>
+              </Group>
+              <Group label="Tabs — Pills (sub-filters)">
+                <div className="w-full max-w-lg">
+                  <Tabs variant="pills">
+                    <TabItem title="▌ All">
+                      <p className="font-mono text-[11px] text-retro-fg">
+                        All items — 177 total.
+                      </p>
+                    </TabItem>
+                    <TabItem title="Draft">
+                      <p className="font-mono text-[11px] text-retro-fg">
+                        Draft items — unpublished.
+                      </p>
+                    </TabItem>
+                    <TabItem title="Published">
+                      <p className="font-mono text-[11px] text-retro-fg">
+                        Published items — live.
+                      </p>
+                    </TabItem>
+                    <TabItem title="Failed">
+                      <p className="font-mono text-[11px] text-retro-fg">
+                        Failed — needs attention.
                       </p>
                     </TabItem>
                   </Tabs>
@@ -709,41 +872,97 @@ export default function App() {
             {/* ── Feedback ── */}
             <Section id="feedback" title="Feedback">
               <Group label="Spinner">
-                <div className="flex gap-6">
-                  <Variant label="Small">
-                    <Spinner size="sm" />
+                <div className="flex gap-8 items-end">
+                  <Variant label="Ring · linear">
+                    <div className="flex gap-4 items-center">
+                      <Spinner size="sm" />
+                      <Spinner size="md" />
+                      <Spinner size="lg" />
+                      <Spinner size="xl" />
+                    </div>
                   </Variant>
-                  <Variant label="Medium">
-                    <Spinner size="md" />
+                  <Variant label="Block · steps(8)">
+                    <div className="flex gap-4 items-center">
+                      <SpinnerBlock size="sm" />
+                      <SpinnerBlock size="md" />
+                      <SpinnerBlock size="lg" />
+                      <SpinnerBlock size="xl" />
+                    </div>
                   </Variant>
-                  <Variant label="Large">
-                    <Spinner size="xl" />
+                  <Variant label="Dots · steps(2)">
+                    <SpinnerDots />
                   </Variant>
                 </div>
               </Group>
               <Group label="Progress">
                 <div className="flex flex-col gap-4 w-full max-w-lg">
-                  <Variant label="Default (45%)">
-                    <Progress progress={45} />
+                  <Variant label="35%">
+                    <Progress progress={35} className="w-64" />
                   </Variant>
-                  <Variant label="With label">
-                    <Progress progress={75} textLabel="Progress" />
+                  <Variant label="With label (75%)">
+                    <Progress progress={75} textLabel="Uploading" className="w-64" />
                   </Variant>
                   <Variant label="Sizes">
-                    <div className="flex flex-col gap-2 w-full">
+                    <div className="flex flex-col gap-2 w-64">
                       <Progress progress={60} size="sm" />
                       <Progress progress={60} size="md" />
                       <Progress progress={60} size="lg" />
                     </div>
                   </Variant>
+                  <Variant label="Indeterminate">
+                    <div className="w-64 h-2.5 border-2 border-retro-fg rounded-sm bg-retro-secondary progress-indeterminate">
+                      <div className="progress-indeterminate-bar bg-retro-orange rounded-sm" />
+                    </div>
+                  </Variant>
                 </div>
               </Group>
               <Group label="Toast">
-                <Toast>
-                  <div className="font-mono text-[11px]">
-                    Operation completed successfully!
-                  </div>
-                </Toast>
+                <div className="flex flex-col gap-3 max-w-sm">
+                  <Toast className="border-retro-success">
+                    <div className="flex gap-2.5 p-2.5 w-full items-start">
+                      <div className="w-5 h-5 shrink-0 border-2 border-retro-success flex items-center justify-center font-bold text-[10px] text-retro-success rounded-sm">✓</div>
+                      <div className="flex-1 font-mono text-[11px]">
+                        <b className="block text-[10px] uppercase tracking-wider text-retro-success mb-0.5">Success</b>
+                        Node "USER" saved to graph.
+                        <div className="h-0.5 bg-retro-success mt-2 w-3/5" />
+                      </div>
+                      <button className="text-retro-muted-fg hover:text-retro-fg text-[13px] leading-none">×</button>
+                    </div>
+                  </Toast>
+                  <Toast className="border-retro-info">
+                    <div className="flex gap-2.5 p-2.5 w-full items-start">
+                      <div className="w-5 h-5 shrink-0 border-2 border-retro-info flex items-center justify-center font-bold text-[10px] text-retro-info rounded-sm">i</div>
+                      <div className="flex-1 font-mono text-[11px]">
+                        <b className="block text-[10px] uppercase tracking-wider text-retro-info mb-0.5">Info</b>
+                        3 channels marked as read.
+                        <div className="h-0.5 bg-retro-info mt-2 w-2/5" />
+                      </div>
+                      <button className="text-retro-muted-fg hover:text-retro-fg text-[13px] leading-none">×</button>
+                    </div>
+                  </Toast>
+                  <Toast className="border-retro-warning">
+                    <div className="flex gap-2.5 p-2.5 w-full items-start">
+                      <div className="w-5 h-5 shrink-0 border-2 border-retro-warning flex items-center justify-center font-bold text-[10px] text-retro-warning-text rounded-sm">!</div>
+                      <div className="flex-1 font-mono text-[11px]">
+                        <b className="block text-[10px] uppercase tracking-wider text-retro-warning-text mb-0.5">Warning</b>
+                        Connection unstable. Retrying…
+                        <div className="h-0.5 bg-retro-warning mt-2 w-4/5" />
+                      </div>
+                      <button className="text-retro-muted-fg hover:text-retro-fg text-[13px] leading-none">×</button>
+                    </div>
+                  </Toast>
+                  <Toast className="border-retro-error">
+                    <div className="flex gap-2.5 p-2.5 w-full items-start">
+                      <div className="w-5 h-5 shrink-0 border-2 border-retro-error flex items-center justify-center font-bold text-[10px] text-retro-error rounded-sm">✕</div>
+                      <div className="flex-1 font-mono text-[11px]">
+                        <b className="block text-[10px] uppercase tracking-wider text-retro-error mb-0.5">Error</b>
+                        Save failed: techno-babel coupling.
+                        <div className="h-0.5 bg-retro-error mt-2 w-full" />
+                      </div>
+                      <button className="text-retro-muted-fg hover:text-retro-fg text-[13px] leading-none">×</button>
+                    </div>
+                  </Toast>
+                </div>
               </Group>
               <Group label="Rating">
                 <div className="flex gap-6">
@@ -856,7 +1075,7 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Avatar">
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-4 items-center flex-wrap">
                   <Variant label="Small">
                     <Avatar size="sm" />
                   </Variant>
@@ -866,8 +1085,22 @@ export default function App() {
                   <Variant label="Large">
                     <Avatar size="lg" />
                   </Variant>
-                  <Variant label="Extra large">
-                    <Avatar size="xl" />
+                  <Variant label="Online">
+                    <Avatar size="md" status="online" statusPosition="bottom-right" />
+                  </Variant>
+                  <Variant label="Away">
+                    <Avatar size="md" status="away" statusPosition="bottom-right" />
+                  </Variant>
+                  <Variant label="Busy">
+                    <Avatar size="md" status="busy" statusPosition="bottom-right" />
+                  </Variant>
+                  <Variant label="Group">
+                    <AvatarGroup>
+                      <Avatar size="sm" stacked />
+                      <Avatar size="sm" stacked />
+                      <Avatar size="sm" stacked />
+                      <AvatarGroupCounter total={12} href="#" />
+                    </AvatarGroup>
                   </Variant>
                 </div>
               </Group>
@@ -922,22 +1155,56 @@ export default function App() {
                 <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
               </Group>
               <Group label="Dropdown">
-                <Dropdown label="Actions">
-                  <DropdownItem>Edit</DropdownItem>
-                  <DropdownItem>Duplicate</DropdownItem>
-                  <DropdownItem>Archive</DropdownItem>
-                  <DropdownItem>Delete</DropdownItem>
-                </Dropdown>
+                <Variant label="With groups &amp; disabled">
+                  <Dropdown label="Actions" color="outline">
+                    <DropdownItem>Edit</DropdownItem>
+                    <DropdownItem>Duplicate</DropdownItem>
+                    <DropdownDivider />
+                    <DropdownItem>Archive</DropdownItem>
+                    <DropdownItem disabled>Export (unavailable)</DropdownItem>
+                    <DropdownDivider />
+                    <DropdownItem>Delete</DropdownItem>
+                  </Dropdown>
+                </Variant>
               </Group>
               <Group label="Sidebar">
-                <div className="w-64">
-                  <Sidebar>
-                    <SidebarItemGroup>
-                      <SidebarItem href="#">Dashboard</SidebarItem>
-                      <SidebarItem href="#">Projects</SidebarItem>
-                      <SidebarItem href="#">Settings</SidebarItem>
-                    </SidebarItemGroup>
-                  </Sidebar>
+                <div className="flex flex-col gap-3">
+                  <Button color="ghost" size="sm" className="w-fit" onClick={() => setSidebarCollapsed(c => !c)}>
+                    {sidebarCollapsed ? "▶ Expand" : "◀ Collapse"}
+                  </Button>
+                  <div className={sidebarCollapsed ? "w-16" : "w-56"}>
+                    <Sidebar collapsed={sidebarCollapsed}>
+                      <SidebarItems>
+                        <SidebarItemGroup>
+                          <SidebarItem
+                            href="#"
+                            icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}
+                          >
+                            Dashboard
+                          </SidebarItem>
+                          <SidebarItem
+                            href="#"
+                            icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>}
+                          >
+                            Projects
+                          </SidebarItem>
+                          <SidebarItem
+                            href="#"
+                            active
+                            icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>}
+                          >
+                            Graph
+                          </SidebarItem>
+                          <SidebarItem
+                            href="#"
+                            icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>}
+                          >
+                            Settings
+                          </SidebarItem>
+                        </SidebarItemGroup>
+                      </SidebarItems>
+                    </Sidebar>
+                  </div>
                 </div>
               </Group>
               <Group label="Footer">
@@ -974,8 +1241,138 @@ export default function App() {
                 </Popover>
               </Group>
               <Group label="File Input">
-                <div className="w-80">
-                  <FileInput />
+                <Variant label="Default">
+                  <FileInputRetro />
+                </Variant>
+                <Variant label="Multi-select">
+                  <FileInputRetro multiple accept="image/*" />
+                </Variant>
+                <Variant label="Disabled">
+                  <FileInputRetro disabled />
+                </Variant>
+              </Group>
+            </Section>
+
+            {/* ── Drawer ── */}
+            <Section id="drawer" title="Drawer">
+              <Group label="Side-sheet triggers">
+                <div className="flex gap-3">
+                  <Variant label="Left">
+                    <Button color="outline" onClick={() => setOpenDrawer(true)}>
+                      Open Left
+                    </Button>
+                  </Variant>
+                  <Variant label="Right">
+                    <Button color="outline" onClick={() => setOpenDrawerRight(true)}>
+                      Open Right
+                    </Button>
+                  </Variant>
+                </div>
+              </Group>
+
+              {/* Left drawer */}
+              <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)} position="left">
+                <DrawerHeader
+                  title="Navigation"
+                  className="bg-retro-fg px-4 py-3"
+                />
+                <DrawerItems>
+                  <nav className="space-y-0.5">
+                    {["Dashboard", "Projects", "Graph", "Chat", "Settings"].map((item) => (
+                      <a
+                        key={item}
+                        href="#"
+                        className="flex items-center gap-2 px-3 py-2 font-mono text-[11px] uppercase tracking-wider text-retro-fg hover:bg-retro-secondary rounded-sm"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        {item}
+                      </a>
+                    ))}
+                  </nav>
+                  <div className="mt-6 pt-4 border-t border-retro-fg">
+                    <p className="font-mono text-[9px] uppercase tracking-wider text-retro-muted-fg mb-2">
+                      // Version
+                    </p>
+                    <p className="font-mono text-[11px] text-retro-fg">v0.1.0</p>
+                  </div>
+                </DrawerItems>
+              </Drawer>
+
+              {/* Right drawer */}
+              <Drawer open={openDrawerRight} onClose={() => setOpenDrawerRight(false)} position="right">
+                <DrawerHeader
+                  title="Node Details"
+                  className="bg-retro-fg px-4 py-3"
+                />
+                <DrawerItems>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="font-mono text-[9px] uppercase tracking-wider text-retro-muted-fg mb-1">Entity</p>
+                      <p className="font-mono text-[11px] font-bold uppercase text-retro-fg">User</p>
+                    </div>
+                    <div>
+                      <p className="font-mono text-[9px] uppercase tracking-wider text-retro-muted-fg mb-1">Connections</p>
+                      <p className="font-mono text-[11px] text-retro-fg">3 outbound · 1 inbound</p>
+                    </div>
+                    <div>
+                      <p className="font-mono text-[9px] uppercase tracking-wider text-retro-muted-fg mb-1">Attributes</p>
+                      <div className="space-y-1">
+                        {["id", "name", "email", "created_at"].map((a) => (
+                          <p key={a} className="font-mono text-[11px] text-retro-fg border-b border-retro-border pb-1">{a}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-6 flex gap-2">
+                    <Button color="primary" size="sm" onClick={() => setOpenDrawerRight(false)}>Save</Button>
+                    <Button color="ghost" size="sm" onClick={() => setOpenDrawerRight(false)}>Cancel</Button>
+                  </div>
+                </DrawerItems>
+              </Drawer>
+            </Section>
+
+            {/* ── Page States ── */}
+            <Section id="page-states" title="Page States">
+              <Group label="Empty state">
+                <div className="w-full max-w-lg">
+                  <div className="flex flex-col items-center justify-center gap-4 rounded-md border-2 border-dashed border-retro-border bg-retro-bg py-16 px-8 text-center">
+                    <div className="w-10 h-10 border-2 border-retro-muted-fg flex items-center justify-center rounded-sm text-retro-muted-fg">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z" />
+                        <polyline points="13 2 13 9 20 9" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-retro-fg mb-1">No items yet</p>
+                      <p className="font-mono text-[9px] text-retro-muted-fg">Create your first item to get started.</p>
+                    </div>
+                    <Button color="primary" size="sm">New Item</Button>
+                  </div>
+                </div>
+              </Group>
+              <Group label="Loading state">
+                <div className="w-full max-w-lg">
+                  <div className="flex flex-col items-center justify-center gap-4 rounded-md border-2 border-retro-fg bg-retro-bg py-16 px-8">
+                    <SpinnerBlock size="lg" />
+                    <div className="text-center">
+                      <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-retro-fg mb-1">Loading…</p>
+                      <p className="font-mono text-[9px] text-retro-muted-fg">Fetching data from the server.</p>
+                    </div>
+                  </div>
+                </div>
+              </Group>
+              <Group label="Error state">
+                <div className="w-full max-w-lg">
+                  <div className="flex flex-col items-center justify-center gap-4 rounded-md border-2 border-retro-error bg-retro-bg py-16 px-8 text-center">
+                    <div className="w-10 h-10 border-2 border-retro-error flex items-center justify-center rounded-sm text-retro-error font-bold text-lg">
+                      ✕
+                    </div>
+                    <div>
+                      <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-retro-error mb-1">Something went wrong</p>
+                      <p className="font-mono text-[9px] text-retro-muted-fg">Could not load data. Check your connection and try again.</p>
+                    </div>
+                    <Button color="destructive" size="sm">Retry</Button>
+                  </div>
                 </div>
               </Group>
             </Section>
