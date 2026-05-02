@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:flex;gap:24px;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap}
+
+  .page{position:relative;width:480px;height:260px;background:#efeed0;border:1px solid #b8a878;border-radius:4px;overflow:hidden}
+  .backdrop{position:absolute;inset:0;background:rgba(44,36,22,.3)}
+  .drawer{position:absolute;top:0;right:0;bottom:0;width:280px;background:#efeed0;border-left:2px solid #2c2416}
+  .drawer-head{background:#2c2416;color:#efeed0;padding:11px 16px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;justify-content:space-between}
+  .drawer-head .close{background:none;border:none;color:#efeed0;font-size:14px;cursor:pointer;font-family:inherit;padding:0}
+  .drawer-body{padding:16px;font-size:11px;line-height:1.6;color:#2c2416}
+  .drawer-body p{margin:0 0 10px}
+  .drawer-body .divider{border:none;border-top:1px solid #b8a878;margin:10px 0}
+  .btn{font-family:inherit;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;height:28px;padding:0 12px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:3px;cursor:pointer}
+  .btn:hover{background:#2c2416;color:#efeed0}
+
+  /* Left drawer variant */
+  .drawer-left{position:absolute;top:0;left:0;bottom:0;width:220px;background:#efeed0;border-right:2px solid #2c2416}
+</style>
+</head>
+<body>
+<div class="label">// DRAWER — right side-sheet (most common)</div>
+<div class="row">
+  <div class="page">
+    <div class="backdrop"></div>
+    <div class="drawer">
+      <div class="drawer-head">
+        <span>Settings</span>
+        <button class="close">×</button>
+      </div>
+      <div class="drawer-body">
+        <p>Adjust system parameters for the retro-encabulator process.</p>
+        <hr class="divider" />
+        <p style="color:#8a7e6a">// ENCABULATION RATE</p>
+        <p>1200 rpm · nominal</p>
+        <hr class="divider" />
+        <p style="color:#8a7e6a">// AMBIFACIENT LUNAR WANE</p>
+        <p>Active</p>
+        <hr class="divider" />
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn">Save</button>
+          <button class="btn" style="border-color:#8a7e6a;color:#8a7e6a">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="label">// DRAWER — left side-sheet</div>
+<div class="row">
+  <div class="page">
+    <div class="backdrop"></div>
+    <div class="drawer-left">
+      <div class="drawer-head">
+        <span>Navigation</span>
+        <button class="close">×</button>
+      </div>
+      <div class="drawer-body">
+        <p style="font-weight:700;color:#2c2416">Dashboard</p>
+        <p style="color:#8a7e6a">Reports</p>
+        <p style="color:#8a7e6a">Nodes</p>
+        <hr class="divider" />
+        <p style="color:#8a7e6a">Settings</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

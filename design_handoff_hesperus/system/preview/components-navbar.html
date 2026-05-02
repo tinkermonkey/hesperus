@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .nav{height:44px;border:2px solid #2c2416;border-radius:4px;display:flex;align-items:stretch;overflow:hidden}
+  .brand{display:flex;align-items:center;gap:8px;padding:0 18px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:11px;border-right:2px solid #2c2416}
+  .brand .star{width:14px;height:14px;border:2px solid #2c2416;background:#2c2416;transform:rotate(45deg)}
+  .item{display:flex;align-items:center;padding:0 18px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:11px;border-right:2px solid #2c2416;cursor:pointer}
+  .item:last-child{border-right:0}
+  .item:hover{color:#8a7e6a}
+  .item.active{background:#2c2416;color:#efeed0}
+  .spacer{flex:1;border-right:2px solid #2c2416}
+</style>
+</head>
+<body>
+<div class="nav">
+  <div class="brand"><div class="star"></div>HESPERUS</div>
+  <div class="item active">DASHBOARD</div>
+  <div class="item">NODES</div>
+  <div class="item">LOGS</div>
+  <div class="item">SETTINGS</div>
+  <div class="spacer"></div>
+  <div class="item">▌USER_A</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  table{border-collapse:collapse;width:100%;font-size:10px;margin-bottom:12px}
+  th{background:#2c2416;color:#efeed0;text-align:left;padding:6px 10px;font-size:9px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+  td{padding:5px 10px;border-bottom:1px solid #2c2416;border-right:1px solid #2c2416}
+  td:last-child{border-right:0}
+  tbody tr:last-child td{border-bottom:0}
+  .swatch{display:inline-block;width:14px;height:14px;border:1.5px solid #2c2416;vertical-align:middle;margin-right:6px;border-radius:2px}
+  .pass{color:#5C7A28;font-weight:700}
+  .warn{color:#CC6622;font-weight:700}
+  .fail{color:#AA3322;font-weight:700}
+  .legend{font-size:9px;color:#8a7e6a;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="label">// LIGHT MODE — accent / bg #EFEED0 — verified WCAG ratios</div>
+<table>
+  <thead><tr><th>TOKEN</th><th>HEX</th><th>RATIO</th><th>BODY (≥4.5)</th><th>LARGE (≥3)</th><th>USE AS</th></tr></thead>
+  <tbody>
+    <tr><td><span class="swatch" style="background:#2c2416"></span>--retro-fg</td><td>#2C2416</td><td>12.99</td><td class="pass">✓ AAA</td><td class="pass">✓</td><td>text, icons, borders</td></tr>
+    <tr><td><span class="swatch" style="background:#8a7e6a"></span>--retro-muted-fg</td><td>#8A7E6A</td><td>3.38</td><td class="fail">✗</td><td class="pass">✓</td><td>≥18px headings only</td></tr>
+    <tr><td><span class="swatch" style="background:#AA3322"></span>--retro-error</td><td>#AA3322</td><td>5.56</td><td class="pass">✓</td><td class="pass">✓</td><td>text + fill</td></tr>
+    <tr><td><span class="swatch" style="background:#5C7A28"></span>--retro-success</td><td>#5C7A28</td><td>4.17</td><td class="warn">≈</td><td class="pass">✓</td><td>large text + fill</td></tr>
+    <tr><td><span class="swatch" style="background:#5566AA"></span>--retro-info</td><td>#5566AA</td><td>4.61</td><td class="pass">✓</td><td class="pass">✓</td><td>text + fill</td></tr>
+    <tr><td><span class="swatch" style="background:#7744AA"></span>--retro-purple</td><td>#7744AA</td><td>5.58</td><td class="pass">✓</td><td class="pass">✓</td><td>text + fill</td></tr>
+    <tr><td><span class="swatch" style="background:#C4A232"></span>--retro-warning</td><td>#C4A232</td><td>2.08</td><td class="fail">✗</td><td class="fail">✗</td><td>FILL ONLY (no text)</td></tr>
+    <tr><td><span class="swatch" style="background:#CC6622"></span>--retro-orange</td><td>#CC6622</td><td>3.24</td><td class="fail">✗</td><td class="pass">✓</td><td>≥18px text + fill</td></tr>
+    <tr><td><span class="swatch" style="background:#2E8B8B"></span>--retro-cyan</td><td>#2E8B8B</td><td>3.44</td><td class="fail">✗</td><td class="pass">✓</td><td>≥18px text + fill</td></tr>
+  </tbody>
+</table>
+
+<div class="label">// DARK MODE — accent / bg #222627 — *-text aliases lighten failing accents</div>
+<table>
+  <thead><tr><th>TOKEN</th><th>RATIO</th><th>BODY</th><th>NOTE</th></tr></thead>
+  <tbody>
+    <tr><td><span class="swatch" style="background:#d4ccaa"></span>--retro-fg</td><td>9.47</td><td class="pass">✓ AAA</td><td>text, icons</td></tr>
+    <tr><td><span class="swatch" style="background:#887766"></span>--retro-muted-fg</td><td>3.55</td><td class="fail">✗</td><td>≥18px only</td></tr>
+    <tr><td><span class="swatch" style="background:#C4A232"></span>--retro-warning</td><td>6.23</td><td class="pass">✓</td><td>safe as text</td></tr>
+    <tr><td><span class="swatch" style="background:#E0826F"></span>--retro-error-text (lightened)</td><td>4.6</td><td class="pass">✓</td><td>use instead of raw error</td></tr>
+    <tr><td><span class="swatch" style="background:#A4C870"></span>--retro-success-text (lightened)</td><td>5.9</td><td class="pass">✓</td><td>use instead of raw success</td></tr>
+    <tr><td><span class="swatch" style="background:#8FA3D9"></span>--retro-info-text (lightened)</td><td>5.8</td><td class="pass">✓</td><td>use instead of raw info</td></tr>
+  </tbody>
+</table>
+<div class="legend">RULE: For text/icons, prefer <b>--retro-{name}-text</b>. Use raw <b>--retro-{name}</b> only as fills, borders, or pip dots.</div>
+</body>
+</html>

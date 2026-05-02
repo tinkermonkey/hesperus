@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:flex;gap:14px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+  .stamp{font-size:8px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+
+  /* Checkbox */
+  .cb{width:16px;height:16px;border:2px solid #2c2416;background:#efeed0;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:2px}
+  .cb.on{background:#2c2416;color:#efeed0;font-size:11px;font-weight:700}
+  .cb.indet::after{content:'';width:8px;height:2px;background:#2c2416}
+  .cb.disabled{opacity:.4}
+  /* Radio */
+  .rd{width:16px;height:16px;border:2px solid #2c2416;background:#efeed0;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .rd.on::after{content:'';width:6px;height:6px;background:#2c2416;border-radius:50%}
+  /* Toggle */
+  .tg{width:38px;height:20px;border:2px solid #2c2416;background:#efeed0;position:relative;border-radius:9999px;flex-shrink:0}
+  .tg::after{content:'';position:absolute;left:1px;top:1px;width:14px;height:14px;background:#2c2416;border-radius:50%;transition:left 150ms}
+  .tg.on{background:#5C7A28}
+  .tg.on::after{left:19px;background:#efeed0}
+  .pair{display:flex;align-items:center;gap:8px;font-size:11px}
+
+  /* Inputs */
+  .input{font-family:inherit;font-size:11px;padding:8px 12px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:4px;outline:none;width:200px}
+  .input.focus{box-shadow:0 0 0 2px #efeed0,0 0 0 4px #CC6622}
+  .input.error{border-color:#AA3322}
+  .input.disabled{opacity:.4;cursor:not-allowed}
+  .helper{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+  .helper.err{color:#AA3322}
+
+  /* Select */
+  .select{position:relative}
+  .select::after{content:'▾';position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:10px}
+
+  /* Textarea */
+  .ta{font-family:inherit;font-size:11px;padding:8px 12px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:4px;outline:none;width:280px;height:60px;resize:none;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="label">// CHECKBOX — default / checked / indeterminate / disabled</div>
+<div class="row">
+  <div class="pair"><span class="cb"></span><span>UNCHECKED</span></div>
+  <div class="pair"><span class="cb on">✓</span><span>CHECKED</span></div>
+  <div class="pair"><span class="cb indet"></span><span>INDETERMINATE</span></div>
+  <div class="pair"><span class="cb disabled"></span><span style="opacity:.4">DISABLED</span></div>
+</div>
+
+<div class="label">// RADIO — default / selected / disabled</div>
+<div class="row">
+  <div class="pair"><span class="rd"></span><span>OPTION A</span></div>
+  <div class="pair"><span class="rd on"></span><span>OPTION B</span></div>
+  <div class="pair"><span class="rd disabled" style="opacity:.4"></span><span style="opacity:.4">OPTION C</span></div>
+</div>
+
+<div class="label">// TOGGLE — off / on (success-green track)</div>
+<div class="row">
+  <div class="pair"><span class="tg"></span><span>OFF</span></div>
+  <div class="pair"><span class="tg on"></span><span>ON</span></div>
+</div>
+
+<div class="label">// TEXT INPUT — default / focus / error / disabled</div>
+<div class="row">
+  <div><input class="input" placeholder="default…" /><div class="helper">helper text</div></div>
+  <div><input class="input focus" value="focused" /><div class="helper">+ orange focus ring</div></div>
+  <div><input class="input error" value="invalid@" /><div class="helper err">▌ MUST BE A VALID EMAIL</div></div>
+  <div><input class="input disabled" placeholder="disabled" disabled /><div class="helper">read only</div></div>
+</div>
+
+<div class="label">// SELECT + TEXTAREA</div>
+<div class="row">
+  <div class="select"><select class="input" style="appearance:none;-webkit-appearance:none;padding-right:28px"><option>NEWEST FIRST</option><option>OLDEST</option></select></div>
+  <textarea class="ta" placeholder="// type your message…"></textarea>
+</div>
+</body>
+</html>

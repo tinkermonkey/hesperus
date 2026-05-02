@@ -16,6 +16,7 @@
     "dist",
     "public/grid-background-light.svg",
     "public/grid-background-dark.svg",
+    "public/assets/icons/sprite.svg",
     "README.md"
   ],
   "scripts": {

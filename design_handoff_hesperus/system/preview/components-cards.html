@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .card{border:2px solid #2c2416;background:#efeed0;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+  .head{background:#2c2416;color:#efeed0;padding:10px 14px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;justify-content:space-between}
+  .body{padding:14px;font-size:11px;line-height:1.6;flex:1}
+  .body p{margin:0 0 8px}
+  .foot{border-top:1px solid #2c2416;padding:10px 14px;display:flex;gap:8px;justify-content:flex-end}
+  .btn{font-family:"Space Mono",monospace;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;height:28px;padding:0 12px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:3px;cursor:pointer}
+  .btn:hover{background:#2c2416;color:#efeed0}
+  .meta{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.05em}
+  .pill{font-size:9px;border:2px solid #5C7A28;color:#5C7A28;padding:1px 6px;border-radius:2px;text-transform:uppercase;letter-spacing:.05em}
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="card">
+    <div class="head"><span>RETRO-ENCABULATOR</span><span class="pill">ONLINE</span></div>
+    <div class="body">
+      <p>Pre-famulated amulite base plate, with malleable logarithmic casing.</p>
+      <div class="meta">// LAST PING — 10:47 AM</div>
+    </div>
+    <div class="foot"><button class="btn">VIEW</button><button class="btn">DEPLOY</button></div>
+  </div>
+  <div class="card">
+    <div class="head"><span>SECTOR 7G</span></div>
+    <div class="body">
+      <p>14 nodes ▌active. 2 in standby. 0 errors over the past 24h.</p>
+      <p style="color:#8a7e6a">> uptime: 412d 06:14:33</p>
+    </div>
+    <div class="foot"><button class="btn">DETAILS →</button></div>
+  </div>
+</div>
+</body>
+</html>

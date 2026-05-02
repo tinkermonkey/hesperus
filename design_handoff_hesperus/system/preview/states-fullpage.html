@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:flex;gap:24px;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap}
+
+  /* Each state is a viewport-sized card */
+  .state-card{width:360px;height:240px;border:2px solid #2c2416;border-radius:4px;background:#efeed0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center}
+  .state-glyph{font-size:32px;line-height:1;color:#8a7e6a}
+  .state-heading{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#2c2416}
+  .state-body{font-size:10px;color:#8a7e6a;line-height:1.6;max-width:240px}
+  .state-cta{font-family:inherit;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;height:28px;padding:0 14px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:3px;cursor:pointer;margin-top:4px}
+  .state-cta:hover{background:#2c2416;color:#efeed0}
+  .state-cta.danger{border-color:#AA3322;color:#AA3322}
+  .state-cta.danger:hover{background:#AA3322;color:#efeed0}
+
+  /* Loading spinner */
+  .ring{width:22px;height:22px;border:2px solid #2c2416;border-right-color:transparent;border-radius:50%;animation:r 600ms linear infinite}
+  @keyframes r{to{transform:rotate(360deg)}}
+
+  /* Error state card */
+  .error-card .state-glyph{color:#AA3322}
+  .error-card .state-heading{color:#AA3322}
+</style>
+</head>
+<body>
+<div class="label">// FULL-PAGE STATES — empty / loading / error</div>
+<div class="row">
+
+  <!-- Empty state -->
+  <div class="state-card">
+    <div class="state-glyph">□</div>
+    <div class="state-heading">Nothing Here Yet</div>
+    <div class="state-body">No records match your query. Add an entry or adjust your filters to see results.</div>
+    <button class="state-cta">Add Entry</button>
+  </div>
+
+  <!-- Loading state -->
+  <div class="state-card">
+    <div class="ring"></div>
+    <div class="state-heading">Loading...</div>
+    <div class="state-body">Fetching data from the encabulator. Stand by.</div>
+  </div>
+
+  <!-- Error state -->
+  <div class="state-card error-card">
+    <div class="state-glyph">▌ !</div>
+    <div class="state-heading">Something Went Wrong</div>
+    <div class="state-body" style="color:#8a7e6a">
+      <span style="color:#AA3322">ERR_CONNECTION_RESET</span><br />
+      The upstream node returned no response after 30s.
+    </div>
+    <button class="state-cta danger">Retry</button>
+  </div>
+
+</div>
+
+<div class="label">// EMPTY STATE VARIANTS</div>
+<div class="row">
+
+  <!-- No results -->
+  <div class="state-card" style="height:180px">
+    <div class="state-glyph" style="font-size:20px">── ··· ──</div>
+    <div class="state-heading">No Results</div>
+    <div class="state-body">Try a different search term.</div>
+  </div>
+
+  <!-- Access denied -->
+  <div class="state-card" style="height:180px">
+    <div class="state-glyph" style="font-size:20px">[ × ]</div>
+    <div class="state-heading">Access Denied</div>
+    <div class="state-body">You don't have permission to view this resource.</div>
+  </div>
+
+</div>
+</body>
+</html>

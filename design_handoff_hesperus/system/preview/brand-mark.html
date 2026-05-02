@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",monospace;background:#efeed0;color:#2c2416;padding:24px;font-size:11px;display:flex;gap:32px;align-items:center}
+  .lockup{display:flex;align-items:center;gap:14px}
+  .star{width:36px;height:36px;border:2px solid #2c2416;background:#2c2416;transform:rotate(45deg);position:relative}
+  .star::after{content:"";position:absolute;inset:6px;border:2px solid #efeed0}
+  .word{font-size:28px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+  .meta{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+  .dark{background:#222627;color:#d4ccaa;padding:18px;border-radius:4px}
+  .dark .star{border-color:#d4ccaa;background:#d4ccaa}
+  .dark .star::after{border-color:#222627}
+</style>
+</head>
+<body>
+<div class="lockup">
+  <div class="star"></div>
+  <div>
+    <div class="word">HESPERUS</div>
+    <div class="meta">// THE EVENING STAR</div>
+  </div>
+</div>
+<div class="lockup dark">
+  <div class="star"></div>
+  <div>
+    <div class="word">HESPERUS</div>
+    <div class="meta" style="color:#887766">// V0.1.0 — RETRO THEME</div>
+  </div>
+</div>
+</body>
+</html>

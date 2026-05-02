@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Hesperus — Chat</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .chat-shell{display:grid;grid-template-columns:240px 1fr;grid-template-rows:auto 1fr;height:100vh;gap:14px;padding:14px}
+  .chat-main{display:grid;grid-template-rows:auto 1fr auto;gap:12px;min-height:0}
+  .chat-stream{overflow:auto;display:flex;flex-direction:column;gap:10px;padding:6px 4px}
+  .msg{max-width:78%;border:2px solid var(--retro-fg);background:var(--retro-bg);border-radius:4px;padding:9px 12px;font-size:11px;line-height:1.6}
+  .msg .who{font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--retro-fg)}
+  .msg .who.you{color:var(--retro-success)}
+  .msg .gt{color:var(--retro-muted-fg);margin:0 4px}
+  .msg .ts{display:block;font-size:9px;color:var(--retro-muted-fg);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;text-align:right}
+  .msg.from-you{align-self:flex-end}
+  .tool{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--retro-orange);background:var(--retro-bg);border-radius:4px;padding:9px 12px;max-width:78%}
+  .tool .ic{width:28px;height:28px;border:2px solid var(--retro-orange);color:var(--retro-orange);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .tool .body{font-size:11px;line-height:1.6}
+  .tool .label{font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--retro-orange)}
+  .tool .kv{color:var(--retro-fg)}
+  .tool .kv b{color:var(--retro-muted-fg);font-weight:400}
+  .composer{display:flex;gap:8px;border:2px solid var(--retro-fg);border-radius:4px;padding:8px;background:var(--retro-bg)}
+  .composer input{flex:1;font-family:inherit;font-size:11px;padding:8px 12px;border:0;background:transparent;color:var(--retro-fg);outline:0}
+  .composer input::placeholder{color:var(--retro-muted-fg)}
+  .chan-list .item .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .chat-head{display:flex;align-items:center;justify-content:space-between;padding:0 6px}
+  .chat-head h2{font-size:18px}
+  .chat-head .meta{font-size:9px;color:var(--retro-muted-fg);text-transform:uppercase;letter-spacing:.06em}
+</style>
+</head>
+<body>
+<div class="chat-shell bg-grid">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand"><div class="star"></div>HESPERUS</div>
+      <button class="item">DASHBOARD</button>
+      <button class="item active">CHAT</button>
+      <button class="item">GRAPH</button>
+      <div class="search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input placeholder="// search messages…" /><span class="mono-small">⌘K</span>
+      </div>
+      <button class="item" id="darkToggle">☾ DARK</button>
+      <button class="item">▌ USER_A</button>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="surface sidebar chan-list">
+    <div class="group">
+      <div class="group-label">// CHANNELS</div>
+      <div class="item active">
+        <span class="dot" style="background:#5C7A28"></span>#project-hesperus<span class="count">3</span>
+      </div>
+      <div class="item"><span class="dot" style="background:#5566AA"></span>#sector-7g</div>
+      <div class="item"><span class="dot" style="background:#C4A232"></span>#deploys</div>
+      <div class="item"><span class="dot" style="background:#7744AA"></span>#random</div>
+    </div>
+    <div class="group">
+      <div class="group-label">// DIRECT</div>
+      <div class="item"><span class="dot" style="background:#5C7A28"></span>user_b</div>
+      <div class="item"><span class="dot" style="background:#8a7e6a"></span>user_c</div>
+      <div class="item"><span class="dot" style="background:#AA3322"></span>ops_bot</div>
+    </div>
+    <div class="group">
+      <div class="group-label">// TOOLS</div>
+      <div class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Run command
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Read file
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CHAT -->
+  <main class="surface chat-main" style="padding:14px">
+    <div class="chat-head">
+      <div>
+        <h2># PROJECT-HESPERUS</h2>
+        <div class="meta">// 4 MEMBERS • PROJECT_HESPERUS@HESPERUS.LOCAL</div>
+      </div>
+      <span class="badge" style="--c:#5C7A28">● ONLINE</span>
+    </div>
+
+    <div class="chat-stream">
+      <div class="msg"><span class="who">[user_a]</span><span class="gt">&gt;</span>Status update on the retro-encabulator?<span class="ts">10:45 AM</span></div>
+
+      <div class="tool" style="align-self:flex-end">
+        <div class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><circle cx="11" cy="14" r="2"/></svg></div>
+        <div class="body">
+          <div class="label">// TOOL: FILE READ</div>
+          <div class="kv"><b>PATH:</b> /src/components/RetroEncabulator.js</div>
+          <div class="kv"><b>CONTENT:</b> …pre-famulated amulite base plate…</div>
+        </div>
+      </div>
+
+      <div class="msg from-you"><span class="who you">[you]</span><span class="gt">&gt;</span>The base plate is pre-famulated. Proceeding with deployment.<span class="ts">10:47 AM</span></div>
+
+      <div class="msg"><span class="who">[user_a]</span><span class="gt">&gt;</span>Status update is alive, so bunc <span style="color:var(--retro-error)">▒▓▒</span>.<span class="ts">10:48 AM</span></div>
+
+      <div class="tool" style="align-self:flex-end">
+        <div class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <div class="body">
+          <div class="label">// TOOL: FS SEARCH</div>
+          <div class="kv"><b>QUERY:</b> 'techno more'</div>
+          <div class="kv"><b>RESULTS:</b> /docs/specs.txt, /logs/error.log</div>
+        </div>
+      </div>
+
+      <div class="msg"><span class="who">[user_a]</span><span class="gt">&gt;</span>Status update on the retro-encabulator??<span class="ts">10:50 AM</span></div>
+
+      <div class="tool" style="align-self:flex-end">
+        <div class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+        <div class="body">
+          <div class="label">// TOOL: BASH COMMAND</div>
+          <div class="kv"><b>CMD:</b> grep 'techno' /docs/specs.txt</div>
+          <div class="kv"><b>OUTPUT:</b> …found techno-babel coupling…</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;color:var(--retro-muted-fg);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">// COMPOSER</div>
+      <div class="composer">
+        <input id="composerInput" placeholder="Type your command…" />
+        <button class="btn">SEND ▌</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  document.getElementById('darkToggle').addEventListener('click', (e) => {
+    document.documentElement.classList.toggle('dark');
+    e.currentTarget.textContent = document.documentElement.classList.contains('dark') ? '☀ LIGHT' : '☾ DARK';
+  });
+  const inp = document.getElementById('composerInput');
+  const stream = document.querySelector('.chat-stream');
+  document.querySelector('.composer .btn').addEventListener('click', () => {
+    const v = inp.value.trim(); if (!v) return;
+    const m = document.createElement('div');
+    m.className = 'msg from-you';
+    const t = new Date(); const hh = String(t.getHours()%12||12).padStart(2,'0'); const mm = String(t.getMinutes()).padStart(2,'0'); const ap = t.getHours()<12?'AM':'PM';
+    m.innerHTML = `<span class="who you">[you]</span><span class="gt">&gt;</span>${v.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))}<span class="ts">${hh}:${mm} ${ap}</span>`;
+    stream.appendChild(m); inp.value=''; stream.scrollTop = stream.scrollHeight;
+  });
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') document.querySelector('.composer .btn').click(); });
+</script>
+</body>
+</html>

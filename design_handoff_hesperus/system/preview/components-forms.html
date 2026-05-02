@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+  input[type=text],select{font-family:"Space Mono",monospace;font-size:11px;padding:8px 12px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:4px;width:100%;outline:none}
+  input::placeholder{color:#8a7e6a}
+  .check-row{display:flex;align-items:center;gap:8px}
+  .cb{appearance:none;width:16px;height:16px;border:2px solid #2c2416;background:#efeed0;border-radius:2px;cursor:pointer;position:relative}
+  .cb:checked::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#2c2416;font-weight:700}
+  .rb{appearance:none;width:16px;height:16px;border:2px solid #2c2416;background:#efeed0;border-radius:50%;cursor:pointer;position:relative}
+  .rb:checked::after{content:"";position:absolute;inset:3px;background:#2c2416;border-radius:50%}
+  .toggle{position:relative;width:36px;height:20px;border:2px solid #2c2416;border-radius:3px;background:#efeed0;cursor:pointer}
+  .knob{position:absolute;top:2px;left:2px;width:12px;height:12px;border:2px solid #2c2416;background:#5C7A28;border-radius:2px;transition:left 150ms}
+  .toggle.on .knob{left:18px}
+  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%232c2416' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="field">
+    <label>USERNAME</label>
+    <input type="text" placeholder="enter handle…" />
+  </div>
+  <div class="field">
+    <label>SECTOR</label>
+    <select><option>// CHOOSE…</option><option>SECTOR 7G</option><option>SECTOR 12</option></select>
+  </div>
+  <div class="field">
+    <label>OPTIONS</label>
+    <div class="check-row"><input type="checkbox" class="cb" checked /><span>Mount /tmp as tmpfs</span></div>
+    <div class="check-row"><input type="checkbox" class="cb" /><span>Enable phosphor glow</span></div>
+  </div>
+  <div class="field">
+    <label>MODE</label>
+    <div class="check-row"><input type="radio" name="m" class="rb" checked /><span>Read-only</span></div>
+    <div class="check-row"><input type="radio" name="m" class="rb" /><span>Read / write</span></div>
+    <div class="check-row" style="margin-top:4px"><div class="toggle on"><div class="knob"></div></div><span>NOISE OVERLAY</span></div>
+  </div>
+</div>
+</body>
+</html>

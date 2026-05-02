@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:flex;gap:24px;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap}
+
+  /* Input trigger */
+  .input{font-family:inherit;font-size:11px;padding:8px 12px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:4px;outline:none;width:200px}
+  .input.focus{outline:2px solid #CC6622;outline-offset:2px}
+
+  /* Calendar popover */
+  .cal{border:2px solid #2c2416;border-radius:4px;overflow:hidden;background:#efeed0;box-shadow:3px 3px 0 #2c2416;width:256px;display:inline-block}
+  .cal-head{background:#2c2416;color:#efeed0;padding:8px 12px;display:flex;align-items:center;justify-content:space-between}
+  .cal-head .title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .cal-head .nav{font-size:12px;cursor:pointer;color:#efeed0;background:none;border:none;font-family:inherit;padding:0 4px;cursor:pointer}
+  .cal-head .nav:hover{color:#efeed0;opacity:.7}
+  .cal-body{padding:10px}
+  .day-heads{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:4px}
+  .day-heads span{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#8a7e6a;text-align:center;padding:2px 0}
+  .days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+  .day{font-size:10px;font-weight:700;text-align:center;padding:5px 0;border-radius:3px;cursor:pointer;border:0;background:none;font-family:inherit;color:#2c2416}
+  .day:hover{background:#f2ecda}
+  .day.today{color:#CC6622}
+  .day.selected{background:#2c2416;color:#efeed0}
+  .day.selected:hover{background:#2c2416}
+  .day.other{color:#b8a878}
+  .day.disabled{opacity:.4;cursor:not-allowed}
+  .cal-foot{border-top:1px solid #2c2416;padding:8px 12px;display:flex;gap:8px}
+  .cal-btn{flex:1;font-family:inherit;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border:2px solid #2c2416;border-radius:3px;padding:4px 8px;cursor:pointer;background:#efeed0;color:#2c2416}
+  .cal-btn:hover{background:#2c2416;color:#efeed0}
+  .cal-btn.muted{color:#8a7e6a;border-color:#8a7e6a}
+  .cal-btn.muted:hover{background:#2c2416;color:#efeed0;border-color:#2c2416}
+</style>
+</head>
+<body>
+<div class="label">// DATEPICKER — input trigger</div>
+<div class="row">
+  <div>
+    <input class="input" value="04/28/2026" readonly />
+    <div style="font-size:9px;color:#8a7e6a;margin-top:3px;text-transform:uppercase;letter-spacing:.06em">default</div>
+  </div>
+  <div>
+    <input class="input focus" value="04/28/2026" readonly />
+    <div style="font-size:9px;color:#8a7e6a;margin-top:3px;text-transform:uppercase;letter-spacing:.06em">focus state</div>
+  </div>
+</div>
+
+<div class="label">// DATEPICKER — calendar popover</div>
+<div class="row">
+  <div class="cal">
+    <div class="cal-head">
+      <button class="nav">‹</button>
+      <span class="title">April 2026</span>
+      <button class="nav">›</button>
+    </div>
+    <div class="cal-body">
+      <div class="day-heads">
+        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+      </div>
+      <div class="days">
+        <span class="day other">29</span><span class="day other">30</span><span class="day other">31</span>
+        <span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span>
+        <span class="day">5</span><span class="day">6</span><span class="day">7</span><span class="day">8</span><span class="day">9</span><span class="day">10</span><span class="day">11</span>
+        <span class="day">12</span><span class="day">13</span><span class="day">14</span><span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day">18</span>
+        <span class="day">19</span><span class="day">20</span><span class="day">21</span><span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span>
+        <span class="day">26</span><span class="day">27</span><span class="day selected">28</span><span class="day today">29</span><span class="day">30</span>
+        <span class="day other">1</span><span class="day other">2</span>
+      </div>
+    </div>
+    <div class="cal-foot">
+      <button class="cal-btn">Today</button>
+      <button class="cal-btn muted">Clear</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

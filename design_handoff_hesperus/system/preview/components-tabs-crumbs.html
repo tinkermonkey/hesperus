@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}
+  .tabs{display:inline-flex;border:2px solid #2c2416;border-radius:4px;overflow:hidden;margin-bottom:18px}
+  .tab{padding:0 18px;height:36px;display:flex;align-items:center;border-right:1px solid #2c2416;font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:11px;cursor:pointer}
+  .tab:last-child{border-right:0}
+  .tab.active{background:#2c2416;color:#efeed0}
+  .tab:not(.active):hover{background:#f2ecda}
+  .crumbs{display:flex;align-items:center;gap:8px;font-size:11px}
+  .crumbs a{color:#2c2416;text-decoration:underline;text-underline-offset:2px}
+  .crumbs span.cur{font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+  .crumbs .sep{color:#8a7e6a}
+</style>
+</head>
+<body>
+<div class="label">// TABS</div>
+<div class="tabs">
+  <div class="tab active">OVERVIEW</div>
+  <div class="tab">METRICS</div>
+  <div class="tab">EVENTS</div>
+  <div class="tab">CONFIG</div>
+</div>
+<div class="label">// BREADCRUMBS</div>
+<div class="crumbs">
+  <a href="#">home</a><span class="sep">/</span><a href="#">sector_7g</a><span class="sep">/</span><span class="cur">RETRO-ENCABULATOR-01</span>
+</div>
+</body>
+</html>
