@@ -1148,7 +1148,9 @@ export default function App() {
 
             {/* ── Table ── */}
             <Section id="table" title="Table">
+              <style>{stateStyles}</style>
               <Group label="Default">
+                <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Header cells show default state; rows support hover state</p>
                 <div className="w-full">
                   <Table>
                     <TableHead>
@@ -1279,6 +1281,7 @@ export default function App() {
             {/* ── Navigation ── */}
             <Section id="navigation" title="Navigation">
               <Group label="Breadcrumb">
+                <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Links support hover and active states</p>
                 <Breadcrumb>
                   <BreadcrumbItem href="#">Home</BreadcrumbItem>
                   <BreadcrumbItem href="#">Database</BreadcrumbItem>
