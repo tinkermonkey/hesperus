@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Hesperus — light palette</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px;-webkit-font-smoothing:antialiased}
+  h3{margin:0 0 14px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  .row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .swatch{display:flex;flex-direction:column;border:2px solid #2c2416;border-radius:4px;overflow:hidden}
+  .chip{height:54px}
+  .meta{padding:6px 8px;display:flex;flex-direction:column;gap:1px;background:#efeed0}
+  .name{font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:10px}
+  .hex{color:#8a7e6a;font-size:9px}
+</style>
+</head>
+<body>
+<h3>// LIGHT MODE — paper</h3>
+<div class="row">
+  <div class="swatch"><div class="chip" style="background:#efeed0"></div><div class="meta"><div class="name">bg</div><div class="hex">#EFEED0</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#f2ecda"></div><div class="meta"><div class="name">muted</div><div class="hex">#F2ECDA</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#b8a878"></div><div class="meta"><div class="name">border</div><div class="hex">#B8A878</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#8a7e6a"></div><div class="meta"><div class="name">muted-fg</div><div class="hex">#8A7E6A</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#2c2416"></div><div class="meta"><div class="name">fg</div><div class="hex">#2C2416</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#1a1408"></div><div class="meta"><div class="name">ink</div><div class="hex">#1A1408</div></div></div>
+</div>
+</body>
+</html>

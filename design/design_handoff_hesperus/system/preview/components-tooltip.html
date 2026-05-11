@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap;margin-bottom:18px}
+  .anchor{position:relative;padding:10px 14px;border:2px solid #2c2416;background:#efeed0;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-radius:4px}
+  .tip{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 8px);background:#2c2416;color:#efeed0;font-size:9px;text-transform:uppercase;letter-spacing:.06em;padding:5px 9px;border-radius:3px;white-space:nowrap;box-shadow:2px 2px 0 #efeed0,2px 2px 0 1px #2c2416}
+  .tip::after{content:'';position:absolute;left:50%;top:100%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2c2416}
+  .tip.below{bottom:auto;top:calc(100% + 8px)}
+  .tip.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#2c2416}
+  .tip.right{left:calc(100% + 8px);bottom:auto;top:50%;transform:translateY(-50%)}
+  .tip.right::after{left:-5px;top:50%;transform:translateY(-50%);border:5px solid transparent;border-right-color:#2c2416;border-top-color:transparent}
+  .kbd{display:inline-block;font-size:9px;border:1px solid #efeed0;border-radius:2px;padding:0 4px;margin-left:4px}
+
+  /* Themed checkbox — strip native, draw our own 16px square. Matches components-forms-full. */
+  .pop-cb{appearance:none;-webkit-appearance:none;width:14px;height:14px;border:2px solid #2c2416;background:#efeed0;border-radius:2px;margin:0 8px 0 0;flex-shrink:0;cursor:pointer;position:relative;vertical-align:-3px}
+  .pop-cb:checked{background:#2c2416}
+  .pop-cb:checked::after{content:'';position:absolute;left:2px;top:-1px;width:5px;height:9px;border:solid #efeed0;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .pop-cb:focus-visible{outline:none;box-shadow:0 0 0 2px #efeed0,0 0 0 4px #CC6622}
+  .pop-row{display:flex;align-items:center;font-size:11px;text-transform:uppercase;letter-spacing:.04em;font-weight:700;padding:4px 0;cursor:pointer;border-top:1px solid #b8a878}
+  .pop-row:first-of-type{border-top:0}
+  .pop-row .count{margin-left:auto;font-size:9px;color:#8a7e6a;font-weight:400;letter-spacing:.06em}
+</style>
+</head>
+<body>
+<div class="label">// TOOLTIP — dark band, monospace, optional kbd hint</div>
+<div class="row">
+  <div class="anchor">HOVER ME (TOP)
+    <span class="tip">SAVES TO LOCAL <span class="kbd">⌘S</span></span>
+  </div>
+  <div class="anchor">HOVER ME (BOTTOM)
+    <span class="tip below">DELETE NODE</span>
+  </div>
+  <div class="anchor">HOVER ME (RIGHT)
+    <span class="tip right">EXPAND PANEL</span>
+  </div>
+</div>
+
+<div class="label">// POPOVER — bigger sibling, has body content</div>
+<div class="row">
+  <div class="anchor" style="padding:0">
+    <span style="display:inline-block;padding:10px 14px">FILTER ▾</span>
+    <div style="position:absolute;top:calc(100% + 6px);left:0;background:#efeed0;border:2px solid #2c2416;border-radius:4px;min-width:220px;box-shadow:3px 3px 0 #2c2416;font-size:11px;font-weight:400;text-align:left;overflow:hidden">
+      <div style="background:#2c2416;color:#efeed0;padding:6px 10px;font-size:9px;text-transform:uppercase;letter-spacing:.07em;font-weight:700">// FILTERS</div>
+      <div style="padding:8px 12px">
+        <label class="pop-row"><input type="checkbox" class="pop-cb" checked />ACTIVE ONLY <span class="count">142</span></label>
+        <label class="pop-row"><input type="checkbox" class="pop-cb" />WITH ERRORS <span class="count">7</span></label>
+        <label class="pop-row"><input type="checkbox" class="pop-cb" />ARCHIVED <span class="count">31</span></label>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

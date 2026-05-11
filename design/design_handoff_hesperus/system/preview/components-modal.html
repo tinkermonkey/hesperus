@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0;height:100%}
+  body{font-family:"Space Mono",monospace;background:rgba(239,238,208,.7);color:#2c2416;padding:18px;font-size:11px;display:flex;align-items:center;justify-content:center;min-height:100%}
+  body::before{content:"";position:fixed;inset:0;background:#efeed0;background-image:radial-gradient(circle at 1px 1px,#b8a878 1px,transparent 0);background-size:14px 14px;opacity:.35;z-index:-1}
+  .modal{width:100%;max-width:520px;border:2px solid #2c2416;border-radius:4px;overflow:hidden;background:#efeed0}
+  .head{background:#2c2416;color:#efeed0;padding:11px 16px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;justify-content:space-between}
+  .head .x{cursor:pointer;font-size:14px;line-height:1}
+  .body{padding:16px;background:rgba(239,238,208,.7);font-size:11px;line-height:1.6}
+  .foot{border-top:1px solid #b8a878;padding:12px 16px;display:flex;gap:8px;justify-content:flex-end;background:rgba(239,238,208,.7)}
+  .btn{font-family:"Space Mono",monospace;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;height:32px;padding:0 14px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:4px;cursor:pointer}
+  .btn:hover{background:#2c2416;color:#efeed0}
+  .btn-d{border-color:#AA3322;color:#AA3322}
+  .btn-d:hover{background:#AA3322;color:#efeed0}
+</style>
+</head>
+<body>
+<div class="modal">
+  <div class="head"><span>CONFIRM SHUTDOWN</span><span class="x">×</span></div>
+  <div class="body">
+    <p style="margin:0 0 8px">You are about to power down <b>retro-encabulator-01</b>. Active connections (3) will be dropped.</p>
+    <p style="margin:0;color:#8a7e6a">// Type the node name to confirm.</p>
+  </div>
+  <div class="foot"><button class="btn">CANCEL</button><button class="btn btn-d">SHUT DOWN</button></div>
+</div>
+</body>
+</html>

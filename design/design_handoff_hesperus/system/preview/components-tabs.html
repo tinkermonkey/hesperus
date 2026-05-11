@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  /* underline tabs */
+  .tabs{display:flex;gap:0;border-bottom:2px solid #2c2416;margin-bottom:18px}
+  .tab{padding:8px 14px;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;border:0;background:transparent;color:#2c2416;font-family:inherit;border-bottom:3px solid transparent;margin-bottom:-2px}
+  .tab.active{border-bottom-color:#CC6622}
+  .tab:hover{color:#8a7e6a}
+  .tab.disabled{color:#8a7e6a;cursor:not-allowed}
+  /* segmented (banded) tabs */
+  .seg{display:inline-flex;border:2px solid #2c2416;border-radius:4px;overflow:hidden}
+  .seg .si{padding:7px 12px;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;border-right:2px solid #2c2416;background:#efeed0;color:#2c2416}
+  .seg .si:last-child{border-right:0}
+  .seg .si.active{background:#2c2416;color:#efeed0}
+  /* pill tabs */
+  .pills{display:flex;gap:6px}
+  .pill{padding:5px 10px;border:2px solid #2c2416;border-radius:9999px;font-size:9px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;cursor:pointer;background:#efeed0}
+  .pill.active{background:#2c2416;color:#efeed0}
+</style>
+</head>
+<body>
+<div class="label">// UNDERLINE TABS — primary surface tabs (orange accent)</div>
+<div class="tabs">
+  <button class="tab active">OVERVIEW</button>
+  <button class="tab">NODES <span style="color:#8a7e6a">14</span></button>
+  <button class="tab">LOGS</button>
+  <button class="tab">SETTINGS</button>
+  <button class="tab disabled">BILLING [N/A]</button>
+</div>
+
+<div class="label">// SEGMENTED — for filters & view-switchers</div>
+<div style="margin-bottom:18px">
+  <div class="seg">
+    <button class="si active">ALL</button>
+    <button class="si">ACTIVE</button>
+    <button class="si">ARCHIVED</button>
+  </div>
+</div>
+
+<div class="label">// PILL TABS — for chips & sub-filters</div>
+<div class="pills">
+  <button class="pill active">▌ALL</button>
+  <button class="pill">DRAFT</button>
+  <button class="pill">PUBLISHED</button>
+  <button class="pill">FAILED</button>
+</div>
+</body>
+</html>

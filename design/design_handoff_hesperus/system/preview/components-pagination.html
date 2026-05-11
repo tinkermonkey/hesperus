@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .pg{display:inline-flex;border:2px solid #2c2416;border-radius:4px;overflow:hidden;background:#efeed0;margin-bottom:14px}
+  .pg .pi{height:30px;min-width:30px;padding:0 10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;border-right:2px solid #2c2416;background:#efeed0;color:#2c2416;cursor:pointer}
+  .pg .pi:last-child{border-right:0}
+  .pg .pi.active{background:#2c2416;color:#efeed0}
+  .pg .pi.disabled{color:#8a7e6a;cursor:not-allowed}
+  .pg .pi:hover:not(.active):not(.disabled){background:#f2ecda}
+
+  /* Compact pagination */
+  .compact{display:flex;align-items:center;gap:10px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#8a7e6a}
+  .compact b{color:#2c2416;font-weight:700}
+  .arrow{width:30px;height:30px;border:2px solid #2c2416;background:#efeed0;font-weight:700;cursor:pointer;border-radius:4px}
+  .arrow.disabled{opacity:.4;cursor:not-allowed}
+</style>
+</head>
+<body>
+<div class="label">// PAGINATION — full</div>
+<div class="pg">
+  <button class="pi disabled">‹‹</button>
+  <button class="pi disabled">‹</button>
+  <button class="pi active">1</button>
+  <button class="pi">2</button>
+  <button class="pi">3</button>
+  <button class="pi">…</button>
+  <button class="pi">12</button>
+  <button class="pi">›</button>
+  <button class="pi">››</button>
+</div>
+
+<div class="label">// PAGINATION — compact (table footer)</div>
+<div class="compact">
+  <button class="arrow">‹</button>
+  PAGE <b>1</b> OF <b>12</b> · <b>240</b> ROWS
+  <button class="arrow">›</button>
+</div>
+</body>
+</html>

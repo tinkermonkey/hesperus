@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+  .btn{font-family:inherit;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;height:36px;padding:0 14px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:4px;cursor:pointer}
+  .btn.hover{background:#2c2416;color:#efeed0}
+  .btn.active{background:#2c2416;color:#efeed0;transform:translate(1px,1px)}
+  .btn.focus{box-shadow:0 0 0 2px #efeed0,0 0 0 4px #CC6622}
+  .btn.disabled{opacity:.4;cursor:not-allowed}
+  .btn.loading{color:transparent;position:relative}
+  .btn.loading::after{content:'';position:absolute;left:50%;top:50%;width:12px;height:12px;border:2px solid #2c2416;border-right-color:transparent;border-radius:50%;animation:spin 600ms linear infinite;transform:translate(-50%,-50%)}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .stamp{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;text-align:center;margin-top:4px}
+  .col{display:flex;flex-direction:column;align-items:center;gap:0}
+</style>
+</head>
+<body>
+<div class="label">// INTERACTION STATES — every component must answer all five</div>
+<div class="row">
+  <div class="col"><button class="btn">DEFAULT</button><div class="stamp">default</div></div>
+  <div class="col"><button class="btn hover">DEFAULT</button><div class="stamp">:hover</div></div>
+  <div class="col"><button class="btn active">DEFAULT</button><div class="stamp">:active</div></div>
+  <div class="col"><button class="btn focus">DEFAULT</button><div class="stamp">:focus-visible</div></div>
+  <div class="col"><button class="btn disabled">DEFAULT</button><div class="stamp">:disabled</div></div>
+  <div class="col"><button class="btn loading">DEFAULT</button><div class="stamp">[loading]</div></div>
+</div>
+
+<div class="label">// FOCUS RING TOKEN — orange, 2px, 2px offset, ring-on-bg</div>
+<div style="font-size:10px;line-height:1.6">
+  <code style="background:#f2ecda;padding:2px 6px;border:1px solid #2c2416;border-radius:2px">--focus-ring</code>
+  &nbsp;=&nbsp; 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange);
+</div>
+<div style="font-size:10px;line-height:1.6;margin-top:6px;color:#8a7e6a">
+  → Always keyboard-only via :focus-visible. Mouse :focus is suppressed.
+</div>
+</body>
+</html>

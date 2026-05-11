@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:12px}
+  .stack{display:flex;flex-direction:column;gap:4px}
+  .stamp{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.06em}
+  .trigger{font-family:inherit;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;height:32px;padding:0 10px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:4px;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .menu{margin-top:4px;border:2px solid #2c2416;background:#efeed0;border-radius:4px;min-width:180px;box-shadow:3px 3px 0 #2c2416;font-size:11px;overflow:hidden}
+  .menu-head{background:#2c2416;color:#efeed0;padding:6px 10px;font-size:9px;letter-spacing:.07em;text-transform:uppercase;font-weight:700}
+  /* Inset divider — the tan rule sits *inside* the dark chassis with a 2px reveal on each side. */
+  .mi{padding:7px 10px;display:flex;align-items:center;gap:8px;cursor:pointer;position:relative}
+  .mi + .mi::before, .menu-head + .mi::before{content:'';position:absolute;top:0;left:2px;right:2px;height:1px;background:#b8a878}
+  .mi.active{background:#f2ecda;font-weight:700}
+  .mi.danger{color:#AA3322}
+  .mi .kbd{margin-left:auto;font-size:9px;color:#8a7e6a}
+  .mi.disabled{opacity:.4;cursor:not-allowed}
+</style>
+</head>
+<body>
+<div class="label">// DROPDOWN — trigger flips on open. menu has hard-offset shadow.</div>
+<div class="row">
+  <div class="stack">
+    <button class="trigger">SORT BY ▾</button>
+    <div class="stamp">closed</div>
+  </div>
+  <div class="stack">
+    <button class="trigger" style="background:#2c2416;color:#efeed0">SORT BY ▲</button>
+    <div class="menu">
+      <div class="menu-head">// SORT</div>
+      <div class="mi active">▌NEWEST FIRST <span class="kbd">⌘1</span></div>
+      <div class="mi">OLDEST FIRST <span class="kbd">⌘2</span></div>
+      <div class="mi">ALPHABETICAL</div>
+      <div class="mi disabled">RELEVANCE [N/A]</div>
+      <div class="mi danger">▶ RESET</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

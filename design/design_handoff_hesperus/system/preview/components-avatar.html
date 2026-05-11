@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:flex;gap:14px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+  .av{border:2px solid #2c2416;background:#efeed0;color:#2c2416;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-family:inherit;border-radius:9999px;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;position:relative}
+  .av.xs{width:20px;height:20px;font-size:8px}
+  .av.sm{width:28px;height:28px;font-size:10px}
+  .av.md{width:36px;height:36px;font-size:11px}
+  .av.lg{width:48px;height:48px;font-size:14px}
+  .av.xl{width:64px;height:64px;font-size:18px}
+  .av.square{border-radius:4px}
+  .av.filled{background:#2c2416;color:#efeed0}
+  .av.orange{background:#CC6622;color:#efeed0;border-color:#2c2416}
+  .av.purple{background:#7744AA;color:#efeed0;border-color:#2c2416}
+  .av .pip{position:absolute;right:-2px;bottom:-2px;width:11px;height:11px;border-radius:50%;border:2px solid #efeed0;background:#5C7A28}
+  .av .pip.away{background:#C4A232}
+  .av .pip.off{background:#8a7e6a}
+
+  .group{display:flex}
+  .group .av{margin-left:-8px;border-color:#2c2416}
+  .group .av:first-child{margin-left:0}
+  .more{background:#f2ecda;color:#8a7e6a}
+</style>
+</head>
+<body>
+<div class="label">// AVATAR SIZES — round (default) + square variant</div>
+<div class="row">
+  <span class="av xs">A</span>
+  <span class="av sm">RB</span>
+  <span class="av md">JD</span>
+  <span class="av lg">JD</span>
+  <span class="av xl">USR</span>
+  <span class="av md square">▌</span>
+  <span class="av md filled">M</span>
+  <span class="av md orange">CC</span>
+  <span class="av md purple">PR</span>
+</div>
+
+<div class="label">// STATUS PIPS — online / away / offline</div>
+<div class="row">
+  <span class="av md">JD<span class="pip"></span></span>
+  <span class="av md">RB<span class="pip away"></span></span>
+  <span class="av md">M<span class="pip off"></span></span>
+</div>
+
+<div class="label">// AVATAR GROUP</div>
+<div class="row">
+  <div class="group">
+    <span class="av md filled">A</span>
+    <span class="av md">B</span>
+    <span class="av md orange">C</span>
+    <span class="av md purple">D</span>
+    <span class="av md more">+5</span>
+  </div>
+</div>
+</body>
+</html>

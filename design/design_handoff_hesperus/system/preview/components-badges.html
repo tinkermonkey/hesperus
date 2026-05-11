@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  .b{display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;border:2px solid var(--c);color:var(--c);background:#efeed0;border-radius:3px;padding:2px 8px}
+</style>
+</head>
+<body>
+<div class="label">// BADGES — outline only, accent color = border + text</div>
+<div class="row">
+  <span class="b" style="--c:#2c2416">DEFAULT</span>
+  <span class="b" style="--c:#5C7A28">SUCCESS</span>
+  <span class="b" style="--c:#AA3322">FAILURE</span>
+  <span class="b" style="--c:#C4A232">WARNING</span>
+  <span class="b" style="--c:#5566AA">INFO</span>
+  <span class="b" style="--c:#CC6622">v1.4.0</span>
+  <span class="b" style="--c:#7744AA">BETA</span>
+  <span class="b" style="--c:#2E8B8B">ONLINE</span>
+</div>
+</body>
+</html>

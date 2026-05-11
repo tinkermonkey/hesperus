@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .stack{display:flex;flex-direction:column;gap:8px}
+  .alert{display:flex;align-items:flex-start;gap:10px;border:2px solid var(--c);background:#efeed0;border-radius:4px;padding:9px 12px;font-size:11px;color:#2c2416}
+  .alert .ic{width:14px;height:14px;flex-shrink:0;color:var(--c);margin-top:1px}
+  .alert .x{margin-left:auto;color:var(--c);font-weight:700;cursor:pointer;padding:0 4px}
+  b{color:var(--c);text-transform:uppercase;letter-spacing:.05em;margin-right:6px}
+</style>
+</head>
+<body>
+<div class="stack">
+  <div class="alert" style="--c:#2c2416"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span><b>info</b>Base plate is pre-famulated. Proceeding with deployment.</span><span class="x">×</span></div>
+  <div class="alert" style="--c:#5C7A28"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><b>success</b>Deployment complete. 14 modules online.</span><span class="x">×</span></div>
+  <div class="alert" style="--c:#C4A232"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span><b>warning</b>Disk at 87%. Logs are eating it again.</span><span class="x">×</span></div>
+  <div class="alert" style="--c:#AA3322"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span><b>failure</b>Connection refused: phosphor.local:8080</span><span class="x">×</span></div>
+</div>
+</body>
+</html>

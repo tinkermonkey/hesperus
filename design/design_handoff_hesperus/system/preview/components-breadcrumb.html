@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .crumbs{display:flex;align-items:center;gap:6px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;flex-wrap:wrap;margin-bottom:14px}
+  .crumbs a{color:#8a7e6a;text-decoration:none;cursor:pointer;font-family:inherit}
+  .crumbs a:hover{color:#2c2416}
+  .crumbs .sep{color:#8a7e6a;font-weight:400}
+  .crumbs .cur{color:#2c2416}
+  .crumbs.boxed a, .crumbs.boxed .cur{padding:4px 8px;border:1.5px solid #2c2416;border-radius:3px;background:#efeed0}
+  .crumbs.boxed .cur{background:#2c2416;color:#efeed0}
+  .crumbs.boxed .sep{display:none}
+</style>
+</head>
+<body>
+<div class="label">// BREADCRUMB — slash separator (default)</div>
+<div class="crumbs">
+  <a>HESPERUS</a><span class="sep">/</span>
+  <a>WORKSPACES</a><span class="sep">/</span>
+  <a>PROJECT-A</a><span class="sep">/</span>
+  <a>NODES</a><span class="sep">/</span>
+  <span class="cur">USER</span>
+</div>
+
+<div class="label">// BREADCRUMB — chevron separator</div>
+<div class="crumbs">
+  <a>DASHBOARD</a><span class="sep">›</span>
+  <a>GRAPH</a><span class="sep">›</span>
+  <span class="cur">SCHEMA EDITOR</span>
+</div>
+
+<div class="label">// BREADCRUMB — boxed (chunky variant for headers)</div>
+<div class="crumbs boxed">
+  <a>HOME</a>
+  <a>SETTINGS</a>
+  <span class="cur">▌ ACCOUNT</span>
+</div>
+</body>
+</html>

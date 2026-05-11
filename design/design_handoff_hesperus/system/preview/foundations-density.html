@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .grid{display:grid;grid-template-columns:repeat(5,auto);gap:14px 18px;align-items:end;margin-bottom:14px}
+  .ghost{border:2px dashed #8a7e6a;background:transparent;color:#8a7e6a;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:10px;padding:0 12px;white-space:nowrap}
+  .stamp{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-top:4px;text-align:center}
+  .row-demo{height:32px;width:100%;background:#f2ecda;border:1px solid #2c2416;display:flex;align-items:center;padding:0 10px;font-size:10px;border-radius:2px}
+  .row-demo.tall{height:40px}
+</style>
+</head>
+<body>
+<div class="label">// CONTROL HEIGHTS — pick one per surface, never mix</div>
+<div class="grid">
+  <div><div class="ghost" style="height:22px">XS · 22</div><div class="stamp">--control-h-xs</div></div>
+  <div><div class="ghost" style="height:26px">SM · 26</div><div class="stamp">--control-h-sm</div></div>
+  <div><div class="ghost" style="height:36px">MD · 36 (default)</div><div class="stamp">--control-h-md</div></div>
+  <div><div class="ghost" style="height:44px">LG · 44 (touch)</div><div class="stamp">--control-h-lg</div></div>
+  <div><div class="ghost" style="height:44px;border-style:solid">NAVBAR · 44</div><div class="stamp">--navbar-h</div></div>
+</div>
+
+<div class="label">// ROW HEIGHTS — table rows + lists</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px">
+  <div><div class="row-demo">▌ COMPACT · 32px row</div><div class="stamp">--row-h-compact</div></div>
+  <div><div class="row-demo tall">▌ DEFAULT · 40px row</div><div class="stamp">--row-h-default</div></div>
+</div>
+</body>
+</html>

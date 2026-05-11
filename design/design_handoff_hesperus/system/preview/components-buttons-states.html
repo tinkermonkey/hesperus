@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px 10px;margin-bottom:14px}
+  .col{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+  .stamp{font-size:8px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.06em}
+  .btn{font-family:inherit;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;height:36px;padding:0 14px;border:2px solid #2c2416;background:#efeed0;color:#2c2416;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background-color 150ms,color 150ms;width:100%;justify-content:center}
+  .btn.hover{background:#2c2416;color:#efeed0}
+  .btn.active{background:#2c2416;color:#efeed0;transform:translate(1px,1px)}
+  .btn.focus{box-shadow:0 0 0 2px #efeed0,0 0 0 4px #CC6622}
+  .btn.disabled{opacity:.4;cursor:not-allowed}
+  .btn.loading{color:transparent;position:relative}
+  .btn.loading::after{content:'';position:absolute;left:50%;top:50%;width:12px;height:12px;border:2px solid #2c2416;border-right-color:transparent;border-radius:50%;animation:s 600ms linear infinite;transform:translate(-50%,-50%)}
+  @keyframes s{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .btn-ghost{border-color:#8a7e6a;color:#8a7e6a}
+  .btn-ghost.hover{background:transparent;border-color:#2c2416;color:#2c2416}
+  .btn-d{border-color:#AA3322;color:#AA3322}
+  .btn-d.hover{background:#AA3322;color:#efeed0}
+  .btn-success{border-color:#5C7A28;color:#5C7A28}
+  .btn-success.hover{background:#5C7A28;color:#efeed0}
+</style>
+</head>
+<body>
+<div class="label">// PRIMARY — every state, left→right</div>
+<div class="grid">
+  <div class="col"><button class="btn">PRIMARY</button><div class="stamp">default</div></div>
+  <div class="col"><button class="btn hover">PRIMARY</button><div class="stamp">:hover</div></div>
+  <div class="col"><button class="btn active">PRIMARY</button><div class="stamp">:active</div></div>
+  <div class="col"><button class="btn focus">PRIMARY</button><div class="stamp">:focus-visible</div></div>
+  <div class="col"><button class="btn disabled">PRIMARY</button><div class="stamp">:disabled</div></div>
+  <div class="col"><button class="btn loading">PRIMARY</button><div class="stamp">[loading]</div></div>
+</div>
+
+<div class="label">// VARIANTS — primary / ghost / destructive / success</div>
+<div class="grid" style="grid-template-columns:repeat(4,1fr)">
+  <div class="col"><button class="btn">PRIMARY</button><div class="stamp">--retro-fg</div></div>
+  <div class="col"><button class="btn btn-ghost">GHOST</button><div class="stamp">--retro-muted-fg</div></div>
+  <div class="col"><button class="btn btn-d">DELETE</button><div class="stamp">--retro-error</div></div>
+  <div class="col"><button class="btn btn-success">CONFIRM</button><div class="stamp">--retro-success</div></div>
+</div>
+</body>
+</html>

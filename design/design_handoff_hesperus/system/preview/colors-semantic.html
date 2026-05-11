@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  h3{margin:0 0 14px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  .row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .item{border:2px solid var(--c);border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:#efeed0;color:var(--c)}
+  .name{font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:11px}
+  .hex{color:#8a7e6a;font-size:9px;letter-spacing:.05em}
+  .label{font-size:9px;color:#2c2416;letter-spacing:.05em}
+  .pip{height:10px;border:2px solid var(--c);background:var(--c);border-radius:2px;width:34px}
+</style>
+</head>
+<body>
+<h3>// SEMANTIC ACCENTS — muted on purpose</h3>
+<div class="row">
+  <div class="item" style="--c:#5C7A28"><div class="label">// success</div><div class="pip"></div><div class="name">success</div><div class="hex">#5C7A28 olive</div></div>
+  <div class="item" style="--c:#AA3322"><div class="label">// error</div><div class="pip"></div><div class="name">error</div><div class="hex">#AA3322 brick</div></div>
+  <div class="item" style="--c:#C4A232"><div class="label">// warning</div><div class="pip"></div><div class="name">warning</div><div class="hex">#C4A232 gold</div></div>
+  <div class="item" style="--c:#5566AA"><div class="label">// info</div><div class="pip"></div><div class="name">info</div><div class="hex">#5566AA dusk</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Hesperus — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app bg-grid">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand"><div class="star"></div>HESPERUS</div>
+      <button class="item active" data-tab="dashboard">DASHBOARD</button>
+      <a class="item" href="chat.html" style="text-decoration:none">CHAT</a>
+      <a class="item" href="graph.html" style="text-decoration:none">GRAPH</a>
+      <button class="item" data-tab="logs">LOGS</button>
+      <div class="search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input placeholder="// search nodes, logs, configs…" />
+        <span class="mono-small">⌘K</span>
+      </div>
+      <button class="item" id="darkToggle" title="toggle dark mode">☾ DARK</button>
+      <button class="item">▌ USER_A</button>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="surface sidebar">
+    <div class="group">
+      <div class="group-label">// MAIN</div>
+      <div class="item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Overview
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        Nodes <span class="count">14</span>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+        Logs <span class="count">2.1K</span>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Metrics
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-label">// SECTORS</div>
+      <div class="item"><span style="width:10px;height:10px;border:2px solid #5C7A28;background:#5C7A28;border-radius:2px"></span>Sector 7G <span class="count">8</span></div>
+      <div class="item"><span style="width:10px;height:10px;border:2px solid #C4A232;background:#C4A232;border-radius:2px"></span>Sector 12 <span class="count">4</span></div>
+      <div class="item"><span style="width:10px;height:10px;border:2px solid #5566AA;background:#5566AA;border-radius:2px"></span>Sector 19 <span class="count">2</span></div>
+    </div>
+    <div class="group">
+      <div class="group-label">// SETTINGS</div>
+      <div class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 5 15.4a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9 1.65 1.65 0 0 0 4.27 7.18l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Preferences
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="page-head">
+      <div>
+        <div class="crumb">// home / sector_7g / overview</div>
+        <h2>SECTOR 7G — OVERVIEW</h2>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>REFRESH</button>
+        <button class="btn" id="openModal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>NEW NODE</button>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpis">
+      <div class="kpi card">
+        <div class="head"><span>// NODES ONLINE</span><span class="badge" style="--c:#5C7A28">OK</span></div>
+        <div class="body"><div class="num">12<span style="color:var(--retro-muted-fg);font-size:14px">/14</span></div><div class="delta up">▲ +1 (24H)</div></div>
+      </div>
+      <div class="kpi card">
+        <div class="head"><span>// AVG LATENCY</span></div>
+        <div class="body"><div class="num">42<span style="color:var(--retro-muted-fg);font-size:14px">ms</span></div><div class="delta down">▼ −8MS</div></div>
+      </div>
+      <div class="kpi card">
+        <div class="head"><span>// EVENTS / MIN</span></div>
+        <div class="body"><div class="num">1.4<span style="color:var(--retro-muted-fg);font-size:14px">K</span></div><div class="delta up">▲ +12%</div></div>
+      </div>
+      <div class="kpi card">
+        <div class="head"><span>// DISK USAGE</span><span class="badge" style="--c:#C4A232">WATCH</span></div>
+        <div class="body"><div class="num">87<span style="color:var(--retro-muted-fg);font-size:14px">%</span></div><div class="delta down">▲ +3%</div></div>
+      </div>
+    </div>
+
+    <!-- ROW: TABLE + EVENTS -->
+    <div class="row" style="align-items:flex-start">
+      <div class="card grow">
+        <div class="band"><span>// NODE STATUS</span>
+          <div style="display:flex;gap:6px">
+            <span class="badge" style="--c:#5C7A28">12 ONLINE</span>
+            <span class="badge" style="--c:#C4A232">1 WATCH</span>
+            <span class="badge" style="--c:#AA3322">1 OFFLINE</span>
+          </div>
+        </div>
+        <div style="padding:0">
+          <table>
+            <thead><tr><th style="width:60px">ID</th><th>NODE</th><th>SECTOR</th><th>STATUS</th><th>UPTIME</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>001</td><td>retro-encabulator-01</td><td>7G</td><td><span class="badge" style="--c:#5C7A28">ONLINE</span></td><td>412d</td><td style="text-align:right"><button class="btn btn-sm">VIEW</button></td></tr>
+              <tr><td>002</td><td>phosphor-glow-mk2</td><td>7G</td><td><span class="badge" style="--c:#5C7A28">ONLINE</span></td><td>118d</td><td style="text-align:right"><button class="btn btn-sm">VIEW</button></td></tr>
+              <tr><td>003</td><td>amulite-base-plate</td><td>12</td><td><span class="badge" style="--c:#C4A232">DEGRADED</span></td><td>22d</td><td style="text-align:right"><button class="btn btn-sm">VIEW</button></td></tr>
+              <tr><td>004</td><td>logarithmic-casing</td><td>12</td><td><span class="badge" style="--c:#AA3322">OFFLINE</span></td><td>0d</td><td style="text-align:right"><button class="btn btn-sm">VIEW</button></td></tr>
+              <tr><td>005</td><td>panametric-fan</td><td>19</td><td><span class="badge" style="--c:#5C7A28">ONLINE</span></td><td>89d</td><td style="text-align:right"><button class="btn btn-sm">VIEW</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col" style="width:300px">
+        <div class="card">
+          <div class="band">// LIVE EVENTS</div>
+          <div class="body" style="font-size:11px;line-height:1.7">
+            <div><span class="muted">10:47</span> &gt; deploy ok <b style="color:#5C7A28">●</b></div>
+            <div><span class="muted">10:46</span> &gt; node 003 degraded</div>
+            <div><span class="muted">10:42</span> &gt; node 004 offline</div>
+            <div><span class="muted">10:40</span> &gt; gc completed</div>
+            <div><span class="muted">10:38</span> &gt; user_a connected</div>
+            <div><span class="muted">10:31</span> &gt; backup ok</div>
+          </div>
+        </div>
+        <div class="alert" style="--c:#C4A232"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span><b>WARNING</b>Disk at 87%. Logs are eating it again.</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="band"><span>// NEW NODE</span><button class="x" id="closeModal">×</button></div>
+    <div class="body">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">NODE NAME</div><input class="input" placeholder="retro-encabulator-99" style="width:100%" /></div>
+        <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">SECTOR</div><input class="input" placeholder="7G" style="width:100%" /></div>
+        <div class="muted">// node will boot with default phosphor-glow profile.</div>
+      </div>
+    </div>
+    <div class="foot"><button class="btn btn-ghost" id="cancelModal">CANCEL</button><button class="btn">DEPLOY ▌</button></div>
+  </div>
+</div>
+
+<script>
+  const html = document.documentElement;
+  document.getElementById('darkToggle').addEventListener('click', (e) => {
+    html.classList.toggle('dark');
+    e.currentTarget.textContent = html.classList.contains('dark') ? '☀ LIGHT' : '☾ DARK';
+  });
+  const modal = document.getElementById('modal');
+  document.getElementById('openModal').addEventListener('click', () => modal.classList.add('open'));
+  document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('open'));
+  document.getElementById('cancelModal').addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+  document.querySelectorAll('.nav .item[data-tab]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.nav .item[data-tab]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  h3{margin:0 0 14px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .item{border:2px solid var(--c);border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:#efeed0;color:var(--c)}
+  .name{font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:11px}
+  .hex{color:#8a7e6a;font-size:9px;letter-spacing:.05em}
+  .label{font-size:9px;color:#2c2416;letter-spacing:.05em}
+  .pip{height:10px;border:2px solid var(--c);background:var(--c);border-radius:2px;width:34px}
+</style>
+</head>
+<body>
+<h3>// TERTIARY ACCENTS — for status pips, graph nodes, badges</h3>
+<div class="row">
+  <div class="item" style="--c:#CC6622"><div class="label">// orange</div><div class="pip"></div><div class="name">orange</div><div class="hex">#CC6622</div></div>
+  <div class="item" style="--c:#7744AA"><div class="label">// purple</div><div class="pip"></div><div class="name">purple</div><div class="hex">#7744AA</div></div>
+  <div class="item" style="--c:#2E8B8B"><div class="label">// cyan</div><div class="pip"></div><div class="name">cyan</div><div class="hex">#2E8B8B</div></div>
+</div>
+</body>
+</html>

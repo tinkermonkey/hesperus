@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+  .cell{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+  .token{font-size:10px;font-weight:700;letter-spacing:.05em}
+  .meta{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.06em}
+  .swatch-bar{height:6px;width:100%;background:#2c2416;border-radius:1px;position:relative;overflow:hidden}
+  .swatch-bar::after{content:'';position:absolute;left:0;top:0;bottom:0;width:30%;background:#CC6622;animation:slide 1500ms infinite}
+  .swatch-bar.fast::after{animation-duration:100ms}
+  .swatch-bar.base::after{animation-duration:150ms}
+  .swatch-bar.slow::after{animation-duration:250ms}
+  .swatch-bar.slower::after{animation-duration:400ms}
+  @keyframes slide { 0%{transform:translateX(0)} 50%{transform:translateX(233%)} 100%{transform:translateX(0)} }
+  .ease-row{display:grid;grid-template-columns:90px 1fr;gap:10px;margin-bottom:6px;align-items:center;font-size:10px}
+  .ease-track{height:14px;border:1px solid #2c2416;background:#f2ecda;position:relative;border-radius:2px}
+  .dot{position:absolute;top:1px;width:10px;height:10px;background:#2c2416;border-radius:1px;animation:bounce 2s infinite}
+  .dot.step{animation-timing-function:steps(1,end)}
+  .dot.stepped{animation-timing-function:steps(4,end)}
+  .dot.linear{animation-timing-function:linear}
+  .dot.out{animation-timing-function:cubic-bezier(0.2,0.8,0.2,1)}
+  .dot.inout{animation-timing-function:cubic-bezier(0.4,0,0.2,1)}
+  @keyframes bounce { 0%{left:1px} 50%{left:calc(100% - 11px)} 100%{left:1px} }
+</style>
+</head>
+<body>
+<div class="label">// DURATION TOKENS — quick, mechanical, no overshoot</div>
+<div class="row">
+  <div class="cell"><div class="token">--dur-instant</div><div class="meta">0ms · steps</div><div class="swatch-bar" style="--dur:0ms"></div></div>
+  <div class="cell"><div class="token">--dur-fast</div><div class="meta">100ms · hover</div><div class="swatch-bar fast"></div></div>
+  <div class="cell"><div class="token">--dur-base</div><div class="meta">150ms · default</div><div class="swatch-bar base"></div></div>
+  <div class="cell"><div class="token">--dur-slow</div><div class="meta">250ms · modals</div><div class="swatch-bar slow"></div></div>
+  <div class="cell"><div class="token">--dur-slower</div><div class="meta">400ms · pages</div><div class="swatch-bar slower"></div></div>
+</div>
+
+<div class="label">// EASING TOKENS — square. no springs.</div>
+<div class="ease-row"><span class="token">--ease-step</span>      <div class="ease-track"><div class="dot step"></div></div></div>
+<div class="ease-row"><span class="token">--ease-stepped</span>   <div class="ease-track"><div class="dot stepped"></div></div></div>
+<div class="ease-row"><span class="token">--ease-linear</span>    <div class="ease-track"><div class="dot linear"></div></div></div>
+<div class="ease-row"><span class="token">--ease-out</span>       <div class="ease-track"><div class="dot out"></div></div></div>
+<div class="ease-row"><span class="token">--ease-in-out</span>    <div class="ease-track"><div class="dot inout"></div></div></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Hesperus — dark palette</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#222627;color:#d4ccaa;padding:18px;font-size:11px;-webkit-font-smoothing:antialiased}
+  h3{margin:0 0 14px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  .row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .swatch{display:flex;flex-direction:column;border:2px solid #d4ccaa;border-radius:4px;overflow:hidden}
+  .chip{height:54px}
+  .meta{padding:6px 8px;display:flex;flex-direction:column;gap:1px;background:#222627}
+  .name{font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:10px;color:#d4ccaa}
+  .hex{color:#887766;font-size:9px}
+</style>
+</head>
+<body>
+<h3>// DARK MODE — terminal</h3>
+<div class="row">
+  <div class="swatch"><div class="chip" style="background:#222627"></div><div class="meta"><div class="name">bg</div><div class="hex">#222627</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#332c22"></div><div class="meta"><div class="name">muted</div><div class="hex">#332C22</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#3a3428"></div><div class="meta"><div class="name">secondary</div><div class="hex">#3A3428</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#4a4030"></div><div class="meta"><div class="name">border</div><div class="hex">#4A4030</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#887766"></div><div class="meta"><div class="name">muted-fg</div><div class="hex">#887766</div></div></div>
+  <div class="swatch"><div class="chip" style="background:#d4ccaa"></div><div class="meta"><div class="name">fg</div><div class="hex">#D4CCAA</div></div></div>
+</div>
+</body>
+</html>

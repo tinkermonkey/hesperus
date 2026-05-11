@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  .item{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .box{width:80px;height:50px;border:2px solid #2c2416;background:#f2ecda}
+  .meta{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.05em;text-align:center}
+  .meta b{color:#2c2416;display:block;font-size:10px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="label">// RADII — square is the rule</div>
+<div class="row">
+  <div class="item"><div class="box" style="border-radius:0"></div><div class="meta"><b>NONE</b>0 PX</div></div>
+  <div class="item"><div class="box" style="border-radius:3px"></div><div class="meta"><b>SM</b>3 PX</div></div>
+  <div class="item"><div class="box" style="border-radius:4px"></div><div class="meta"><b>MD / DEFAULT</b>4 PX</div></div>
+  <div class="item"><div class="box" style="border-radius:6px"></div><div class="meta"><b>LG</b>6 PX</div></div>
+</div>
+<div class="label">// BORDERS — 2px is the system's primary visual weight</div>
+<div class="row">
+  <div class="item"><div class="box" style="border-width:1px"></div><div class="meta"><b>1 PX</b>row dividers</div></div>
+  <div class="item"><div class="box"></div><div class="meta"><b>2 PX</b>everything else</div></div>
+  <div class="item"><div class="box" style="border-color:#AA3322"></div><div class="meta"><b>2 PX • ERROR</b>destructive</div></div>
+  <div class="item"><div class="box" style="border-color:#5566AA"></div><div class="meta"><b>2 PX • INFO</b>variants</div></div>
+</div>
+</body>
+</html>

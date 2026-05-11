@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0;height:100%}
+  body{font-family:"Space Mono",monospace;color:#2c2416;font-size:11px}
+  .split{display:grid;grid-template-columns:1fr 1fr;height:300px}
+  .pane{position:relative;padding:20px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+  .light{background:#efeed0;background-image:url("../public/grid-background-light.svg");background-repeat:repeat}
+  .dark{background:#222627;color:#d4ccaa;background-image:url("../public/grid-background-dark.svg");background-repeat:repeat}
+  h4{margin:0;text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:13px}
+  .meta{font-size:9px;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+  .stamp{align-self:flex-start;border:2px solid currentColor;padding:4px 10px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="split">
+  <div class="pane light">
+    <h4>// PAPER + GRID</h4>
+    <div class="stamp">grid-background-light.svg</div>
+    <div class="meta">FRACTAL NOISE • GAUSSIAN BLUR • MULTIPLY BLEND</div>
+  </div>
+  <div class="pane dark">
+    <h4>// TERMINAL + GRID</h4>
+    <div class="stamp">grid-background-dark.svg</div>
+    <div class="meta">FRACTAL NOISE • GAUSSIAN BLUR • SCREEN BLEND</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Space Mono",ui-monospace,monospace;background:#efeed0;color:#2c2416;padding:18px;font-size:11px}
+  .label{font-size:9px;color:#8a7e6a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .toasts{display:flex;flex-direction:column;gap:8px;max-width:380px}
+  .toast{display:flex;align-items:flex-start;gap:10px;border:2px solid var(--c,#2c2416);background:#efeed0;border-radius:4px;padding:8px 10px;box-shadow:3px 3px 0 #2c2416}
+  .toast .ic{width:22px;height:22px;flex-shrink:0;border:2px solid var(--c,#2c2416);color:var(--c,#2c2416);display:flex;align-items:center;justify-content:center;font-weight:700;border-radius:2px;background:#efeed0}
+  .toast .body{font-size:11px;flex:1}
+  .toast .body b{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--c,#2c2416);font-weight:700}
+  .toast .x{font-size:11px;color:#8a7e6a;cursor:pointer;background:transparent;border:0;font-family:inherit}
+  .bar{height:2px;background:var(--c,#2c2416);margin-top:6px;width:60%}
+</style>
+</head>
+<body>
+<div class="label">// TOAST — corner notification, hard-shadow, auto-dismisses</div>
+<div class="toasts">
+  <div class="toast" style="--c:#5C7A28">
+    <div class="ic">✓</div>
+    <div class="body"><b>SUCCESS</b><br>Node "USER" saved to graph.<div class="bar"></div></div>
+    <button class="x">×</button>
+  </div>
+  <div class="toast" style="--c:#5566AA">
+    <div class="ic">i</div>
+    <div class="body"><b>INFO</b><br>3 channels marked as read.<div class="bar"></div></div>
+    <button class="x">×</button>
+  </div>
+  <div class="toast" style="--c:#C4A232">
+    <div class="ic">!</div>
+    <div class="body"><b>WARNING</b><br>Connection unstable. Retrying…<div class="bar"></div></div>
+    <button class="x">×</button>
+  </div>
+  <div class="toast" style="--c:#AA3322">
+    <div class="ic">✕</div>
+    <div class="body"><b>ERROR</b><br>Save failed: techno-babel coupling.<div class="bar"></div></div>
+    <button class="x">×</button>
+  </div>
+</div>
+</body>
+</html>
