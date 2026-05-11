@@ -162,6 +162,7 @@ export default function App() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openDrawerRight, setOpenDrawerRight] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (dark) {
@@ -1988,43 +1989,114 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Sidebar">
-                <div className="flex flex-col gap-3">
-                  <Button color="ghost" size="sm" className="w-fit" onClick={() => setSidebarCollapsed(c => !c)}>
-                    {sidebarCollapsed ? "▶ Expand" : "◀ Collapse"}
-                  </Button>
-                  <div className={sidebarCollapsed ? "w-16" : "w-56"}>
-                    <Sidebar collapsed={sidebarCollapsed}>
-                      <SidebarItems>
-                        <SidebarItemGroup>
-                          <SidebarItem
-                            href="#"
-                            icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}
-                          >
-                            Dashboard
-                          </SidebarItem>
-                          <SidebarItem
-                            href="#"
-                            icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>}
-                          >
-                            Projects
-                          </SidebarItem>
-                          <SidebarItem
-                            href="#"
-                            active
-                            icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>}
-                          >
-                            Graph
-                          </SidebarItem>
-                          <SidebarItem
-                            href="#"
-                            icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>}
-                          >
-                            Settings
-                          </SidebarItem>
-                        </SidebarItemGroup>
-                      </SidebarItems>
-                    </Sidebar>
+                <div className="flex flex-col gap-4 w-full">
+                  <div className="bg-retro-secondary/50 p-3 rounded border border-retro-border">
+                    <p className="font-mono text-[9px] uppercase tracking-wider text-retro-fg">
+                      // Desktop: visible at lg breakpoint and above
+                    </p>
+                    <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg mt-1">
+                      Mobile: toggle button shown below lg, tap to reveal
+                    </p>
                   </div>
+
+                  {/* Desktop sidebar - hidden on mobile, shown on lg and above */}
+                  <div className="hidden lg:block max-w-xs">
+                    <div className="mb-3 flex gap-2">
+                      <Button color="ghost" size="sm" className="w-fit" onClick={() => setSidebarCollapsed(c => !c)}>
+                        {sidebarCollapsed ? "▶ Expand" : "◀ Collapse"}
+                      </Button>
+                    </div>
+                    <div className={sidebarCollapsed ? "w-16" : "w-56"}>
+                      <Sidebar collapsed={sidebarCollapsed}>
+                        <SidebarItems>
+                          <SidebarItemGroup>
+                            <SidebarItem
+                              href="#"
+                              icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}
+                            >
+                              Dashboard
+                            </SidebarItem>
+                            <SidebarItem
+                              href="#"
+                              icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>}
+                            >
+                              Projects
+                            </SidebarItem>
+                            <SidebarItem
+                              href="#"
+                              active
+                              icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>}
+                            >
+                              Graph
+                            </SidebarItem>
+                            <SidebarItem
+                              href="#"
+                              icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>}
+                            >
+                              Settings
+                            </SidebarItem>
+                          </SidebarItemGroup>
+                        </SidebarItems>
+                      </Sidebar>
+                    </div>
+                  </div>
+
+                  {/* Mobile toggle - shown on mobile, hidden on lg and above */}
+                  <div className="lg:hidden max-w-xs">
+                    <Button
+                      color="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => setMobileSidebarOpen(true)}
+                    >
+                      ☰ Open Sidebar
+                    </Button>
+                  </div>
+
+                  {/* Mobile sidebar drawer */}
+                  <Drawer
+                    open={mobileSidebarOpen}
+                    onClose={() => setMobileSidebarOpen(false)}
+                    position="left"
+                  >
+                    <DrawerHeader
+                      title="Navigation"
+                      className="bg-retro-fg px-4 py-3"
+                    />
+                    <DrawerItems>
+                      <Sidebar collapsed={false}>
+                        <SidebarItems>
+                          <SidebarItemGroup>
+                            <SidebarItem
+                              href="#"
+                              icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}
+                            >
+                              Dashboard
+                            </SidebarItem>
+                            <SidebarItem
+                              href="#"
+                              icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>}
+                            >
+                              Projects
+                            </SidebarItem>
+                            <SidebarItem
+                              href="#"
+                              active
+                              icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>}
+                            >
+                              Graph
+                            </SidebarItem>
+                            <SidebarItem
+                              href="#"
+                              icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>}
+                            >
+                              Settings
+                            </SidebarItem>
+                          </SidebarItemGroup>
+                        </SidebarItems>
+                      </Sidebar>
+                    </DrawerItems>
+                  </Drawer>
                 </div>
               </Group>
               <Group label="Footer">

@@ -662,7 +662,7 @@ export const hesperusTheme = createTheme({
   // ──────────────────────────── Sidebar ─────────────────────────────
   sidebar: {
     root: {
-      base: "h-full bg-retro-bg border-2 border-retro-fg rounded-md dark:bg-retro-bg dark:border-retro-fg transition-[width] duration-[250ms]",
+      base: "h-full bg-retro-bg border-2 border-retro-fg rounded-md dark:bg-retro-bg dark:border-retro-fg transition-[width,transform] duration-[var(--dur-base)]",
       collapsed: { on: "w-16", off: "w-full" },
       inner: "h-full overflow-y-auto overflow-x-hidden bg-retro-bg px-3 py-4 dark:bg-retro-bg",
     },
