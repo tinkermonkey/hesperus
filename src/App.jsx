@@ -211,6 +211,16 @@ export default function App() {
       transform: translate(-50%, -50%);
     }
 
+    /* Link/Anchor state styles */
+    .state-focus a {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+      outline: none !important;
+    }
+    .state-disabled a {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+
     /* Input state styles */
     .state-hover input:not([type="checkbox"]):not([type="radio"]),
     .state-hover select,
