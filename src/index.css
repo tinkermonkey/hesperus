@@ -115,7 +115,7 @@
   --border-soft:  var(--retro-border);
 
   /* Focus ring */
-  --focus-ring-color:  var(--retro-orange);
+  --focus-ring-color:  var(--color-retro-orange);
   --focus-ring-width:  2px;
   --focus-ring-offset: 2px;
 
@@ -187,10 +187,9 @@
 /* ── Focus ring ── keyboard navigation: 2px orange, 2px offset ───────────
    Overrides focus:ring-0/focus:outline-none (mouse suppression) for keyboard
    users. !important is intentional — accessibility cannot be opted out of. */
-:root { --focus-ring: var(--retro-orange); }
 :focus-visible {
-  outline: 2px solid var(--focus-ring) !important;
-  outline-offset: 2px !important;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color) !important;
+  outline-offset: var(--focus-ring-offset) !important;
 }
 
 /* Checkbox SVG checkmark */
@@ -346,7 +345,7 @@ blockquote {
   color: var(--retro-bg);
 }
 
-.btn:focus {
+.btn:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -362,12 +361,12 @@ blockquote {
 }
 
 .btn-destructive {
-  border-color: var(--retro-error);
-  color: var(--retro-error);
+  border-color: var(--color-retro-error);
+  color: var(--color-retro-error);
 }
 
 .btn-destructive:hover {
-  background: var(--retro-error);
+  background: var(--color-retro-error);
   color: var(--retro-bg);
 }
 
