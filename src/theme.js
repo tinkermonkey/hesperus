@@ -14,6 +14,8 @@ export const hesperusTheme = createTheme({
         "border-2 border-retro-fg bg-retro-bg text-retro-fg hover:bg-retro-fg hover:text-retro-bg aria-[expanded=true]:bg-retro-fg aria-[expanded=true]:text-retro-bg",
       ghost:
         "border-2 border-retro-muted-fg bg-retro-bg text-retro-muted-fg hover:border-retro-fg hover:text-retro-fg",
+      gray:
+        "border-2 border-retro-muted-fg bg-retro-bg text-retro-muted-fg hover:border-retro-fg hover:text-retro-fg",
       destructive:
         "border-2 border-retro-error bg-retro-bg text-retro-error hover:bg-retro-error hover:text-retro-bg",
       success:
@@ -125,7 +127,7 @@ export const hesperusTheme = createTheme({
     root: {
       base: "bg-retro-bg dark:bg-retro-bg rounded-md overflow-hidden border-2 border-retro-fg dark:border-retro-fg py-0",
       inner: {
-        base: "flex items-stretch h-11 [&_li]:list-none",
+        base: "flex items-stretch h-[var(--navbar-h)] [&_li]:list-none",
         fluid: { on: "", off: "" },
       },
     },
