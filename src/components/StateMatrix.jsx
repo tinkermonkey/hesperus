@@ -1,5 +1,5 @@
 // State matrix component that shows all interaction states for a component
-export function StateMatrix({ label, children, includeLoading = false, stateConfig = {} }) {
+export function StateMatrix({ label, children, includeLoading = false }) {
   const states = ["default", "hover", "active", "focus", "disabled"];
   if (includeLoading) states.push("loading");
 
@@ -22,15 +22,6 @@ export function StateMatrix({ label, children, includeLoading = false, stateConf
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-// Wrapper component for inputs that need to show multiple states
-export function StateInputWrapper({ children, state = "default" }) {
-  return (
-    <div className={`state-${state}`} data-state={state}>
-      {children}
     </div>
   );
 }

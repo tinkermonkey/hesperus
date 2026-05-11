@@ -231,6 +231,10 @@ export default function App() {
     }
 
     /* Checkbox/Radio state styles */
+    .state-hover input[type="checkbox"],
+    .state-hover input[type="radio"] {
+      border-color: var(--retro-fg) !important;
+    }
     .state-focus input[type="checkbox"],
     .state-focus input[type="radio"] {
       box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
@@ -858,10 +862,8 @@ export default function App() {
               </Group>
             </Section>
 
-            {/* ── 
             {/* ── Buttons ── */}
             <Section id="buttons" title="Buttons">
-              <style>{stateStyles}</style>
               <Group label="Primary">
                 <StateMatrix label="Primary button — all states" includeLoading>
                   <Button color="primary">Primary</Button>
@@ -880,6 +882,9 @@ export default function App() {
                 <StateMatrix label="Failure button">
                   <Button color="failure">Failure</Button>
                 </StateMatrix>
+                <StateMatrix label="Destructive button">
+                  <Button color="destructive">Destructive</Button>
+                </StateMatrix>
               </Group>
               <Group label="Sizes">
                 <StateMatrix label="Small button" includeLoading>
@@ -893,7 +898,6 @@ export default function App() {
 
             {/* ── Form Inputs ── */}
             <Section id="form" title="Form Inputs">
-              <style>{stateStyles}</style>
               <Group label="Text Input">
                 <StateMatrix label="Text input — all states">
                   <TextInput placeholder="Enter value..." className="w-64" />
@@ -1148,7 +1152,6 @@ export default function App() {
 
             {/* ── Table ── */}
             <Section id="table" title="Table">
-              <style>{stateStyles}</style>
               <Group label="Default">
                 <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Header cells show default state; rows support hover state</p>
                 <div className="w-full">
@@ -1281,33 +1284,95 @@ export default function App() {
             {/* ── Navigation ── */}
             <Section id="navigation" title="Navigation">
               <Group label="Breadcrumb">
-                <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Links support hover and active states</p>
-                <Breadcrumb>
-                  <BreadcrumbItem href="#">Home</BreadcrumbItem>
-                  <BreadcrumbItem href="#">Database</BreadcrumbItem>
-                  <BreadcrumbItem>Schema</BreadcrumbItem>
-                </Breadcrumb>
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                  <div className="state-focus">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                  <div className="state-disabled">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                </div>
               </Group>
               <Group label="Tabs — Segmented (default) — states">
-                <div className="w-full max-w-2xl">
-                  <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Active tab + inactive tab states</p>
-                  <Tabs variant="default">
-                    <TabItem title="Schema">
-                      <p className="font-mono text-[11px] text-retro-fg">
-                        Schema panel — column definitions, types, constraints.
-                      </p>
-                    </TabItem>
-                    <TabItem title="Data">
-                      <p className="font-mono text-[11px] text-retro-fg">
-                        Data panel — row browser and query results.
-                      </p>
-                    </TabItem>
-                    <TabItem title="Indexes">
-                      <p className="font-mono text-[11px] text-retro-fg">
-                        Index definitions and performance hints.
-                      </p>
-                    </TabItem>
-                  </Tabs>
+                <div className="flex flex-col gap-6">
+                  <div className="w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Tabs variant="default">
+                      <TabItem title="Schema">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Schema panel — column definitions, types, constraints.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Data">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Data panel — row browser and query results.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Indexes">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Index definitions and performance hints.
+                        </p>
+                      </TabItem>
+                    </Tabs>
+                  </div>
+                  <div className="state-focus w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
+                    <Tabs variant="default">
+                      <TabItem title="Schema">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Schema panel — column definitions, types, constraints.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Data">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Data panel — row browser and query results.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Indexes">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Index definitions and performance hints.
+                        </p>
+                      </TabItem>
+                    </Tabs>
+                  </div>
+                  <div className="state-disabled w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
+                    <Tabs variant="default">
+                      <TabItem title="Schema">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Schema panel — column definitions, types, constraints.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Data">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Data panel — row browser and query results.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Indexes">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Index definitions and performance hints.
+                        </p>
+                      </TabItem>
+                    </Tabs>
+                  </div>
                 </div>
               </Group>
               <Group label="Tabs — Underline (orange indicator)">
@@ -1636,34 +1701,94 @@ export default function App() {
             {/* ── Content ── */}
             <Section id="content" title="Content">
               <Group label="Accordion">
-                <div className="w-full max-w-2xl">
-                  <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Collapsed and expanded states</p>
-                  <Accordion>
-                    <AccordionPanel>
-                      <AccordionTitle>What is Hesperus?</AccordionTitle>
-                      <AccordionContent>
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          A retro-styled design system built with Flowbite React and Tailwind CSS.
-                        </p>
-                      </AccordionContent>
-                    </AccordionPanel>
-                    <AccordionPanel>
-                      <AccordionTitle>How do I customize it?</AccordionTitle>
-                      <AccordionContent>
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Modify the theme object in theme.js and adjust CSS custom properties in index.css.
-                        </p>
-                      </AccordionContent>
-                    </AccordionPanel>
-                    <AccordionPanel>
-                      <AccordionTitle>Is dark mode supported?</AccordionTitle>
-                      <AccordionContent>
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Yes! Toggle the dark mode using the navbar button.
-                        </p>
-                      </AccordionContent>
-                    </AccordionPanel>
-                  </Accordion>
+                <div className="flex flex-col gap-6">
+                  <div className="w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Accordion>
+                      <AccordionPanel>
+                        <AccordionTitle>What is Hesperus?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            A retro-styled design system built with Flowbite React and Tailwind CSS.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>How do I customize it?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Yes! Toggle the dark mode using the navbar button.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                    </Accordion>
+                  </div>
+                  <div className="state-focus w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
+                    <Accordion>
+                      <AccordionPanel>
+                        <AccordionTitle>What is Hesperus?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            A retro-styled design system built with Flowbite React and Tailwind CSS.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>How do I customize it?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Yes! Toggle the dark mode using the navbar button.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                    </Accordion>
+                  </div>
+                  <div className="state-disabled w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
+                    <Accordion>
+                      <AccordionPanel>
+                        <AccordionTitle>What is Hesperus?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            A retro-styled design system built with Flowbite React and Tailwind CSS.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>How do I customize it?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Yes! Toggle the dark mode using the navbar button.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                    </Accordion>
+                  </div>
                 </div>
               </Group>
               <Group label="Timeline">
@@ -1798,8 +1923,20 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Pagination">
-                <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default, active (current page), and disabled states</p>
-                <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                  <div className="state-focus">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                  <div className="state-disabled">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                </div>
               </Group>
               <Group label="Dropdown">
                 <div className="flex flex-col gap-6">
