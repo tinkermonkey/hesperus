@@ -81,6 +81,7 @@ import ConnectionLabel from "./components/ConnectionLabel";
 import SpinnerBlock from "./components/SpinnerBlock";
 import SpinnerDots from "./components/SpinnerDots";
 import FileInputRetro from "./components/FileInputRetro";
+import { StateMatrix } from "./components/StateMatrix";
 
 // ── Layout helpers ────────────────────────────────────────────────
 
@@ -170,8 +171,112 @@ export default function App() {
     }
   }, [dark]);
 
+  // State matrix styles for interactive components
+  const stateStyles = `
+    /* Button state styles */
+    .state-default button {
+      /* Default state - no changes */
+    }
+    .state-hover button {
+      background-color: var(--retro-fg) !important;
+      color: var(--retro-bg) !important;
+    }
+    .state-active button {
+      background-color: var(--retro-fg) !important;
+      color: var(--retro-bg) !important;
+      transform: translate(1px, 1px) !important;
+    }
+    .state-focus button {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+    }
+    .state-disabled button {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+    .state-loading button {
+      color: transparent !important;
+      position: relative;
+    }
+    .state-loading button::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--retro-fg);
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin 600ms linear infinite;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Input state styles */
+    .state-hover input:not([type="checkbox"]):not([type="radio"]),
+    .state-hover select,
+    .state-hover textarea {
+      border-color: var(--retro-fg) !important;
+    }
+    .state-focus input:not([type="checkbox"]):not([type="radio"]),
+    .state-focus select,
+    .state-focus textarea {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+      outline: none !important;
+    }
+    .state-disabled input:not([type="checkbox"]):not([type="radio"]),
+    .state-disabled select,
+    .state-disabled textarea {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Checkbox/Radio state styles */
+    .state-focus input[type="checkbox"],
+    .state-focus input[type="radio"] {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+    }
+    .state-disabled input[type="checkbox"],
+    .state-disabled input[type="radio"] {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+    .state-disabled label {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Toggle switch state styles */
+    .state-focus [role="switch"] {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+    }
+    .state-disabled [role="switch"] {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Progress loading state */
+    .state-loading .progress-indeterminate {
+      position: relative;
+    }
+    .state-loading .progress-indeterminate-bar {
+      animation: slide-progress 1200ms ease-in-out infinite !important;
+      width: 35% !important;
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes slide-progress {
+      0% { margin-left: 0; }
+      50% { margin-left: 65%; }
+      100% { margin-left: 0; }
+    }
+  `;
+
   return (
     <ThemeProvider theme={hesperusTheme}>
+      <style>{stateStyles}</style>
       <div className="min-h-screen bg-retro-bg text-retro-fg bg-grid">
         {/* ── Header ── */}
         <div className="fixed top-0 left-0 right-0 z-50 p-3">
@@ -756,113 +861,133 @@ export default function App() {
             {/* ── 
             {/* ── Buttons ── */}
             <Section id="buttons" title="Buttons">
-              <Group label="Variants">
-                <Variant label="Primary">
+              <style>{stateStyles}</style>
+              <Group label="Primary">
+                <StateMatrix label="Primary button — all states" includeLoading>
                   <Button color="primary">Primary</Button>
-                </Variant>
-                <Variant label="Outline">
+                </StateMatrix>
+              </Group>
+              <Group label="Variants">
+                <StateMatrix label="Outline button">
                   <Button color="outline">Outline</Button>
-                </Variant>
-                <Variant label="Ghost">
+                </StateMatrix>
+                <StateMatrix label="Ghost button">
                   <Button color="ghost">Ghost</Button>
-                </Variant>
-                <Variant label="Success">
+                </StateMatrix>
+                <StateMatrix label="Success button">
                   <Button color="success">Success</Button>
-                </Variant>
-                <Variant label="Failure">
+                </StateMatrix>
+                <StateMatrix label="Failure button">
                   <Button color="failure">Failure</Button>
-                </Variant>
-                <Variant label="Destructive">
-                  <Button color="destructive">Destructive</Button>
-                </Variant>
+                </StateMatrix>
               </Group>
               <Group label="Sizes">
-                <Variant label="Small">
+                <StateMatrix label="Small button" includeLoading>
                   <Button color="primary" size="sm">Small</Button>
-                </Variant>
-                <Variant label="Medium">
+                </StateMatrix>
+                <StateMatrix label="Medium button" includeLoading>
                   <Button color="primary" size="md">Medium</Button>
-                </Variant>
-              </Group>
-              <Group label="Full width">
-                <div className="w-80">
-                  <Button color="primary" className="w-full">Full Width</Button>
-                </div>
+                </StateMatrix>
               </Group>
             </Section>
 
             {/* ── Form Inputs ── */}
             <Section id="form" title="Form Inputs">
+              <style>{stateStyles}</style>
               <Group label="Text Input">
-                <Variant label="Placeholder">
+                <StateMatrix label="Text input — all states">
                   <TextInput placeholder="Enter value..." className="w-64" />
-                </Variant>
-                <Variant label="With value">
-                  <TextInput defaultValue="Existing value" className="w-64" />
-                </Variant>
-                <Variant label="Error state">
-                  <TextInput color="failure" defaultValue="bad_input" className="w-64" />
-                </Variant>
-                <Variant label="Disabled">
-                  <TextInput placeholder="Disabled input" disabled className="w-64" />
-                </Variant>
+                </StateMatrix>
               </Group>
               <Group label="Select">
-                <Variant label="Default">
+                <StateMatrix label="Select — all states">
                   <Select className="w-48">
                     <option>Option Alpha</option>
                     <option>Option Beta</option>
                     <option>Option Gamma</option>
                   </Select>
-                </Variant>
-                <Variant label="Disabled">
-                  <Select disabled className="w-48">
-                    <option>Disabled select</option>
-                  </Select>
-                </Variant>
+                </StateMatrix>
               </Group>
-              <Group label="Checkbox & Radio">
-                <Variant label="Unchecked">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id="cb1" />
-                    <Label htmlFor="cb1">Enable feature</Label>
-                  </div>
-                </Variant>
-                <Variant label="Checked">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id="cb2" defaultChecked />
-                    <Label htmlFor="cb2">Active state</Label>
-                  </div>
-                </Variant>
-                <Variant label="Indeterminate">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id="cb3" ref={(el) => el && (el.indeterminate = true)} />
-                    <Label htmlFor="cb3">Mixed state</Label>
-                  </div>
-                </Variant>
-                <Variant label="Radio group">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-2">
-                      <Radio id="r1" name="demo" defaultChecked />
-                      <Label htmlFor="r1">Option A</Label>
+              <Group label="Checkbox">
+                <div className="flex flex-col gap-8">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Unchecked</p>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))", maxWidth: "500px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-default" />
+                          <Label htmlFor="cb-default">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-hover">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-hover" />
+                          <Label htmlFor="cb-hover">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:hover</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-focus">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-focus" />
+                          <Label htmlFor="cb-focus">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-checked" defaultChecked />
+                          <Label htmlFor="cb-checked">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">checked</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-disabled">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-disabled" disabled />
+                          <Label htmlFor="cb-disabled">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Radio id="r2" name="demo" />
-                      <Label htmlFor="r2">Option B</Label>
-                    </div>
                   </div>
-                </Variant>
+                </div>
+              </Group>
+              <Group label="Radio">
+                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))", maxWidth: "500px" }}>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-2">
+                      <Radio id="r-default" name="radio-demo" />
+                      <Label htmlFor="r-default">Option</Label>
+                    </div>
+                    <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 state-focus">
+                    <div className="flex items-center gap-2">
+                      <Radio id="r-focus" name="radio-demo-2" />
+                      <Label htmlFor="r-focus">Option</Label>
+                    </div>
+                    <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-2">
+                      <Radio id="r-checked" name="radio-demo-3" defaultChecked />
+                      <Label htmlFor="r-checked">Option</Label>
+                    </div>
+                    <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">checked</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 state-disabled">
+                    <div className="flex items-center gap-2">
+                      <Radio id="r-disabled" name="radio-demo-4" disabled />
+                      <Label htmlFor="r-disabled">Option</Label>
+                    </div>
+                    <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                  </div>
+                </div>
               </Group>
               <Group label="Textarea">
-                <Variant label="Default">
+                <StateMatrix label="Textarea — all states">
                   <Textarea placeholder="Enter notes..." className="w-64" rows={3} />
-                </Variant>
-                <Variant label="With value">
-                  <Textarea defaultValue={"Line one\nLine two"} className="w-64" rows={3} />
-                </Variant>
-                <Variant label="Disabled">
-                  <Textarea placeholder="Disabled textarea" disabled className="w-64" rows={3} />
-                </Variant>
+                </StateMatrix>
               </Group>
               <Group label="Helper Text &amp; Validation">
                 <div className="flex flex-col gap-4 w-full max-w-sm">
@@ -907,12 +1032,42 @@ export default function App() {
                 </Variant>
               </Group>
               <Group label="Toggle Switch">
-                <Variant label="Off">
-                  <ToggleSwitch label="Notifications" />
-                </Variant>
-                <Variant label="On">
-                  <ToggleSwitch label="Auto-save" checked />
-                </Variant>
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Off state</p>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", maxWidth: "500px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <ToggleSwitch label="Notifications" />
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-focus">
+                        <ToggleSwitch label="Notifications" />
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-disabled">
+                        <ToggleSwitch label="Notifications" disabled />
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">On state</p>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", maxWidth: "500px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <ToggleSwitch label="Auto-save" checked />
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-focus">
+                        <ToggleSwitch label="Auto-save" checked />
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-disabled">
+                        <ToggleSwitch label="Auto-save" checked disabled />
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </Group>
             </Section>
 
@@ -1130,8 +1285,9 @@ export default function App() {
                   <BreadcrumbItem>Schema</BreadcrumbItem>
                 </Breadcrumb>
               </Group>
-              <Group label="Tabs — Segmented (default)">
-                <div className="w-full max-w-lg">
+              <Group label="Tabs — Segmented (default) — states">
+                <div className="w-full max-w-2xl">
+                  <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Active tab + inactive tab states</p>
                   <Tabs variant="default">
                     <TabItem title="Schema">
                       <p className="font-mono text-[11px] text-retro-fg">
@@ -1358,7 +1514,7 @@ export default function App() {
             {/* ── Feedback ── */}
             <Section id="feedback" title="Feedback">
               <Group label="Spinner">
-                <div className="flex gap-8 items-end">
+                <div className="flex flex-col gap-6">
                   <Variant label="Ring · linear">
                     <div className="flex gap-4 items-center">
                       <Spinner size="sm" />
@@ -1381,9 +1537,9 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Progress">
-                <div className="flex flex-col gap-4 w-full max-w-lg">
-                  <Variant label="35%">
-                    <Progress progress={35} className="w-64" />
+                <div className="flex flex-col gap-6 w-full max-w-lg">
+                  <Variant label="Determinate (60%)">
+                    <Progress progress={60} className="w-64" />
                   </Variant>
                   <Variant label="With label (75%)">
                     <Progress progress={75} textLabel="Uploading" className="w-64" />
@@ -1395,8 +1551,8 @@ export default function App() {
                       <Progress progress={60} size="lg" />
                     </div>
                   </Variant>
-                  <Variant label="Indeterminate">
-                    <div className="w-64 h-2.5 border-2 border-retro-fg rounded-sm bg-retro-secondary progress-indeterminate">
+                  <Variant label="Indeterminate (loading)">
+                    <div className="state-loading w-64 h-2.5 border-2 border-retro-fg rounded-sm bg-retro-secondary progress-indeterminate">
                       <div className="progress-indeterminate-bar bg-retro-orange rounded-sm" />
                     </div>
                   </Variant>
@@ -1478,6 +1634,7 @@ export default function App() {
             <Section id="content" title="Content">
               <Group label="Accordion">
                 <div className="w-full max-w-2xl">
+                  <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Collapsed and expanded states</p>
                   <Accordion>
                     <AccordionPanel>
                       <AccordionTitle>What is Hesperus?</AccordionTitle>
@@ -1638,20 +1795,47 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Pagination">
+                <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default, active (current page), and disabled states</p>
                 <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
               </Group>
               <Group label="Dropdown">
-                <Variant label="With groups &amp; disabled">
-                  <Dropdown label="Actions" color="outline">
-                    <DropdownItem>Edit</DropdownItem>
-                    <DropdownItem>Duplicate</DropdownItem>
-                    <DropdownDivider />
-                    <DropdownItem>Archive</DropdownItem>
-                    <DropdownItem disabled>Export (unavailable)</DropdownItem>
-                    <DropdownDivider />
-                    <DropdownItem>Delete</DropdownItem>
-                  </Dropdown>
-                </Variant>
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Trigger button states (closed)</p>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", maxWidth: "400px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-hover">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:hover</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-focus">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Dropdown with menu items</p>
+                    <Dropdown label="Actions" color="outline">
+                      <DropdownItem>Edit</DropdownItem>
+                      <DropdownItem>Duplicate</DropdownItem>
+                      <DropdownDivider />
+                      <DropdownItem>Archive</DropdownItem>
+                      <DropdownItem disabled>Export (unavailable)</DropdownItem>
+                      <DropdownDivider />
+                      <DropdownItem>Delete</DropdownItem>
+                    </Dropdown>
+                  </div>
+                </div>
               </Group>
               <Group label="Sidebar">
                 <div className="flex flex-col gap-3">
