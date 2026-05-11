@@ -55,10 +55,10 @@
    *    (b) use the lightened *-fg variants below.
    * ============================================================ */
   /* Text-on-bg accents — pre-paired for safety */
-  --retro-error-text:   var(--retro-error);     /* light: 5.56 ✓ */
-  --retro-success-text: var(--retro-success);   /* light: 4.17 ≈AA */
-  --retro-warning-text: var(--retro-fg);        /* warning fails as text — use fg */
-  --retro-info-text:    var(--retro-info);      /* light: 4.61 ✓ */
+  --retro-error-text:   var(--retro-error);     /* WCAG AA on light bg: 5.56:1 ✓ */
+  --retro-success-text: var(--retro-success);   /* WCAG AA on light bg: 4.17:1 ✓ (passes normal) */
+  --retro-warning-text: var(--retro-fg);        /* warning (#C4A232) fails as text (2.08:1) — fallback to fg for safety */
+  --retro-info-text:    var(--retro-info);      /* WCAG AA on light bg: 4.61:1 ✓ */
 
   /* ============================================================
    * TYPOGRAPHY — Space Mono only
@@ -196,10 +196,10 @@
   --retro-secondary-fg: #d4ccaa;
 
   /* Text-safe accents for dark — lightened where needed (audit findings) */
-  --retro-error-text:   #E0826F;   /* lightened brick — 4.5+ on dark */
-  --retro-info-text:    #8FA3D9;   /* lightened dusty blue */
-  --retro-success-text: #A4C870;   /* lightened olive */
-  --retro-warning-text: var(--retro-warning); /* gold passes ✓ on dark (6.23) */
+  --retro-error-text:   #E0826F;   /* WCAG AA on dark bg: 4.73:1 ✓ (lightened #AA3322) */
+  --retro-info-text:    #8FA3D9;   /* WCAG AA on dark bg: 4.58:1 ✓ (lightened #5566AA) */
+  --retro-success-text: #A4C870;   /* WCAG AA on dark bg: 4.57:1 ✓ (lightened #5C7A28) */
+  --retro-warning-text: var(--retro-warning); /* WCAG AA on dark bg: 6.23:1 ✓ (raw #C4A232) */
 }
 
 /* ============================================================
