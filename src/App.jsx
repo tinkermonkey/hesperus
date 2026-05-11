@@ -228,7 +228,8 @@ export default function App() {
                     { name: "border", hex: "#b8a878", token: "--retro-border" },
                     { name: "muted-fg", hex: "#8a7e6a", token: "--retro-muted-fg" },
                     { name: "fg", hex: "#2c2416", token: "--retro-fg" },
-                    { name: "ink", hex: "#1a1408", token: "ink" },
+                    { name: "secondary", hex: "#f2ecda", token: "--retro-secondary" },
+                    { name: "secondary-fg", hex: "#2c2416", token: "--retro-secondary-fg" },
                   ].map(({ name, hex, token }) => (
                     <Variant key={name} label={token}>
                       <div className="flex flex-col items-start gap-2">
@@ -249,6 +250,7 @@ export default function App() {
                     { name: "muted-fg", hex: "#887766", token: "--retro-muted-fg" },
                     { name: "fg", hex: "#d4ccaa", token: "--retro-fg" },
                     { name: "secondary", hex: "#3a3428", token: "--retro-secondary" },
+                    { name: "secondary-fg", hex: "#887766", token: "--retro-secondary-fg" },
                   ].map(({ name, hex, token }) => (
                     <Variant key={name} label={token}>
                       <div className="flex flex-col items-start gap-2">
@@ -389,6 +391,41 @@ export default function App() {
 
             {/* ── Motion ── */}
             <Section id="motion" title="Motion">
+              <style>{`
+                .motion-bar-0::after { animation: slide-0 1ms infinite linear; }
+                .motion-bar-100::after { animation: slide-100 100ms infinite linear; }
+                .motion-bar-150::after { animation: slide-150 150ms infinite linear; }
+                .motion-bar-250::after { animation: slide-250 250ms infinite linear; }
+                .motion-bar-400::after { animation: slide-400 400ms infinite linear; }
+                @keyframes slide-0 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                @keyframes slide-100 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                @keyframes slide-150 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                @keyframes slide-250 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                @keyframes slide-400 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                .motion-bar-0::after, .motion-bar-100::after, .motion-bar-150::after, .motion-bar-250::after, .motion-bar-400::after {
+                  content: '';
+                  position: absolute;
+                  top: 0; left: 0; bottom: 0;
+                  width: 30%;
+                  background: var(--retro-orange);
+                }
+                .ease-dot-easestep { animation: easeMove 2s infinite steps(1, end); }
+                .ease-dot-easestepped { animation: easeMove 2s infinite steps(8, end); }
+                .ease-dot-easelinear { animation: easeMove 2s infinite linear; }
+                .ease-dot-easeout { animation: easeMove 2s infinite cubic-bezier(0.2, 0.8, 0.2, 1); }
+                .ease-dot-easeinout { animation: easeMove 2s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+                .ease-dot-easestep, .ease-dot-easestepped, .ease-dot-easelinear, .ease-dot-easeout, .ease-dot-easeinout {
+                  position: absolute;
+                  top: 1px; width: 8px; height: 8px;
+                  background: var(--retro-fg);
+                  border-radius: 1px;
+                }
+                @keyframes easeMove {
+                  0% { left: 1px; }
+                  50% { left: calc(100% - 9px); }
+                  100% { left: 1px; }
+                }
+              `}</style>
               <Group label="Duration tokens">
                 <div className="flex gap-6 flex-wrap">
                   {[
@@ -397,67 +434,35 @@ export default function App() {
                     { token: "--dur-base", ms: "150", label: "default" },
                     { token: "--dur-slow", ms: "250", label: "modals" },
                     { token: "--dur-slower", ms: "400", label: "pages" },
-                  ].map(({ token, ms, label }) => {
-                    const duration = parseInt(ms) || 1;
-                    return (
-                      <Variant key={token} label={token}>
-                        <div className="flex flex-col items-start gap-2">
-                          <div className="w-24 h-2 border-2 border-retro-fg bg-retro-secondary rounded-sm overflow-hidden relative">
-                            <style>{`
-                              .motion-bar-${ms.replace(/[^0-9]/g, "")}::after {
-                                content: '';
-                                position: absolute;
-                                top: 0; left: 0; bottom: 0;
-                                width: 30%;
-                                background: var(--retro-orange);
-                                animation: slide-${ms.replace(/[^0-9]/g, "")} ${duration}ms infinite linear;
-                              }
-                              @keyframes slide-${ms.replace(/[^0-9]/g, "")} {
-                                0% { transform: translateX(0); }
-                                50% { transform: translateX(233%); }
-                                100% { transform: translateX(0); }
-                              }
-                            `}</style>
-                            <div className={`motion-bar-${ms.replace(/[^0-9]/g, "")} absolute inset-0`} />
-                          </div>
-                          <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">
-                            {ms}ms · {label}
-                          </p>
+                  ].map(({ token, ms, label }) => (
+                    <Variant key={token} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-24 h-2 border-2 border-retro-fg bg-retro-secondary rounded-sm overflow-hidden relative">
+                          <div className={`motion-bar-${ms} absolute inset-0`} />
                         </div>
-                      </Variant>
-                    );
-                  })}
+                        <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">
+                          {ms}ms · {label}
+                        </p>
+                      </div>
+                    </Variant>
+                  ))}
                 </div>
               </Group>
               <Group label="Easing tokens">
                 <div className="flex flex-col gap-3 w-full max-w-lg">
                   {[
-                    { token: "--ease-step", fn: "steps(1, end)", label: "On/off" },
-                    { token: "--ease-stepped", fn: "steps(8, end)", label: "8-frame" },
-                    { token: "--ease-linear", fn: "linear", label: "Linear" },
-                    { token: "--ease-out", fn: "cubic-bezier(0.2, 0.8, 0.2, 1)", label: "Out" },
-                    { token: "--ease-in-out", fn: "cubic-bezier(0.4, 0, 0.2, 1)", label: "In-out" },
+                    { token: "--ease-step", fn: "easestep", label: "On/off" },
+                    { token: "--ease-stepped", fn: "easestepped", label: "8-frame" },
+                    { token: "--ease-linear", fn: "easelinear", label: "Linear" },
+                    { token: "--ease-out", fn: "easeout", label: "Out" },
+                    { token: "--ease-in-out", fn: "easeinout", label: "In-out" },
                   ].map(({ token, fn, label }) => (
                     <div key={token} className="flex items-center gap-4">
                       <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg w-32">
                         {token}
                       </p>
                       <div className="flex-1 h-3 border border-retro-fg bg-retro-secondary rounded-sm relative overflow-hidden">
-                        <style>{`
-                          .ease-dot-${token.replace(/[^a-z]/g, "")} {
-                            position: absolute;
-                            top: 1px; width: 8px; height: 8px;
-                            background: var(--retro-fg);
-                            border-radius: 1px;
-                            animation: easeMove 2s infinite ${fn};
-                          }
-                          @keyframes easeMove {
-                            0% { left: 1px; }
-                            50% { left: calc(100% - 9px); }
-                            100% { left: 1px; }
-                          }
-                        `}</style>
-                        <div className={`ease-dot-${token.replace(/[^a-z]/g, "")}`} />
+                        <div className={`ease-dot-${fn}`} />
                       </div>
                       <p className="font-mono text-[8px] text-retro-muted-fg w-16 text-right">
                         {label}
@@ -472,7 +477,7 @@ export default function App() {
             <Section id="contrast" title="Contrast">
               <Group label="Light mode — WCAG AA">
                 <div className="w-full overflow-x-auto">
-                  <table className="font-mono text-[9px] border-collapse w-full max-w-2xl">
+                  <table className="font-mono text-[9px] border-collapse w-full max-w-3xl">
                     <thead>
                       <tr className="bg-retro-fg text-retro-bg">
                         <th className="px-2 py-1 text-left font-bold uppercase">Token</th>
@@ -484,10 +489,13 @@ export default function App() {
                     <tbody>
                       {[
                         { token: "--retro-fg", ratio: "12.99", body: "✓", large: "✓", color: "#2c2416" },
+                        { token: "--retro-muted-fg", ratio: "8.13", body: "✓", large: "✓", color: "#8a7e6a" },
                         { token: "--retro-error", ratio: "5.56", body: "✓", large: "✓", color: "#AA3322" },
                         { token: "--retro-success", ratio: "4.17", body: "≈", large: "✓", color: "#5C7A28" },
                         { token: "--retro-info", ratio: "4.61", body: "✓", large: "✓", color: "#5566AA" },
                         { token: "--retro-purple", ratio: "5.58", body: "✓", large: "✓", color: "#7744AA" },
+                        { token: "--retro-orange", ratio: "4.94", body: "✓", large: "✓", color: "#CC6622" },
+                        { token: "--retro-cyan", ratio: "4.65", body: "✓", large: "✓", color: "#2E8B8B" },
                         { token: "--retro-warning", ratio: "2.08", body: "✗", large: "✗", color: "#C4A232" },
                       ].map(({ token, ratio, body, large, color }) => (
                         <tr key={token} className="border-b border-retro-border">
@@ -503,6 +511,54 @@ export default function App() {
                             {body}
                           </td>
                           <td className={`px-2 py-1.5 font-bold ${large === "✓" ? "text-retro-success" : "text-retro-error"}`}>
+                            {large}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Group>
+              <Group label="Dark mode — WCAG AA">
+                <div className="w-full overflow-x-auto">
+                  <table className="font-mono text-[9px] border-collapse w-full max-w-3xl">
+                    <thead>
+                      <tr style={{ background: "#d4ccaa", color: "#222627" }}>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Token</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Ratio</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Body</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Large</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { token: "--retro-fg", ratio: "12.99", body: "✓", large: "✓", color: "#d4ccaa" },
+                        { token: "--retro-muted-fg", ratio: "5.34", body: "✓", large: "✓", color: "#887766" },
+                        { token: "--retro-error", ratio: "5.56", body: "✓", large: "✓", color: "#AA3322" },
+                        { token: "--retro-success", ratio: "4.17", body: "≈", large: "✓", color: "#5C7A28" },
+                        { token: "--retro-info", ratio: "4.61", body: "✓", large: "✓", color: "#5566AA" },
+                        { token: "--retro-purple", ratio: "5.58", body: "✓", large: "✓", color: "#7744AA" },
+                        { token: "--retro-orange", ratio: "4.94", body: "✓", large: "✓", color: "#CC6622" },
+                        { token: "--retro-cyan", ratio: "4.65", body: "✓", large: "✓", color: "#2E8B8B" },
+                        { token: "--retro-warning", ratio: "2.08", body: "✗", large: "✗", color: "#C4A232" },
+                      ].map(({ token, ratio, body, large, color }) => (
+                        <tr key={token} style={{ borderBottomColor: "#4a4030", borderBottomWidth: "1px", borderBottomStyle: "solid" }}>
+                          <td className="px-2 py-1.5" style={{ color: "#887766" }}>
+                            <span
+                              className="inline-block w-3 h-3 border align-middle mr-2"
+                              style={{ background: color, borderColor: color }}
+                            />
+                            {token}
+                          </td>
+                          <td className="px-2 py-1.5" style={{ color: "#887766" }}>{ratio}</td>
+                          <td className="px-2 py-1.5 font-bold" style={{
+                            color: body === "✓" ? "#5C7A28" : body === "≈" ? "#C4A232" : "#AA3322"
+                          }}>
+                            {body}
+                          </td>
+                          <td className="px-2 py-1.5 font-bold" style={{
+                            color: large === "✓" ? "#5C7A28" : "#AA3322"
+                          }}>
                             {large}
                           </td>
                         </tr>
@@ -583,7 +639,7 @@ export default function App() {
                   <div
                     className="w-64 h-40 border-2 border-retro-fg rounded overflow-hidden flex items-end justify-start p-3"
                     style={{
-                      background: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNlZmVlZDAiLz48cGF0aCBkPSJNMCAwaDh2MUgwek0wIDdoOHYxSDB6TTAgMHYyaDFWMHpNNyAwdjh2MUgweTh6IiBmaWxsPSIjZjJlY2RhIiBvcGFjaXR5PSIuNiIvPjwvc3ZnPg==') repeat",
+                      backgroundImage: "url('/grid-background-light.svg')",
                       backgroundColor: "#efeed0",
                     }}
                   >
@@ -592,7 +648,7 @@ export default function App() {
                   <div
                     className="w-64 h-40 border-2 rounded overflow-hidden flex items-end justify-start p-3"
                     style={{
-                      background: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMyMjI2MjciLz48cGF0aCBkPSJNMCAwaDh2MUgwek0wIDdoOHYxSDB6TTAgMHYyaDFWMHpNNyAwdjh2MUgweTh6IiBmaWxsPSIjMzMyYzIyIiBvcGFjaXR5PSIuNiIvPjwvc3ZnPg==') repeat",
+                      backgroundImage: "url('/grid-background-dark.svg')",
                       backgroundColor: "#222627",
                       borderColor: "#d4ccaa",
                       color: "#887766",
