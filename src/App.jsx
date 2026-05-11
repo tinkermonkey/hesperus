@@ -532,15 +532,12 @@ export default function App() {
                     </thead>
                     <tbody>
                       {[
-                        { token: "--retro-fg", ratio: "12.99", body: "✓", large: "✓", color: "#d4ccaa" },
-                        { token: "--retro-muted-fg", ratio: "5.34", body: "✓", large: "✓", color: "#887766" },
-                        { token: "--retro-error", ratio: "5.56", body: "✓", large: "✓", color: "#AA3322" },
-                        { token: "--retro-success", ratio: "4.17", body: "≈", large: "✓", color: "#5C7A28" },
-                        { token: "--retro-info", ratio: "4.61", body: "✓", large: "✓", color: "#5566AA" },
-                        { token: "--retro-purple", ratio: "5.58", body: "✓", large: "✓", color: "#7744AA" },
-                        { token: "--retro-orange", ratio: "4.94", body: "✓", large: "✓", color: "#CC6622" },
-                        { token: "--retro-cyan", ratio: "4.65", body: "✓", large: "✓", color: "#2E8B8B" },
-                        { token: "--retro-warning", ratio: "2.08", body: "✗", large: "✗", color: "#C4A232" },
+                        { token: "--retro-fg", ratio: "9.47", body: "✓", large: "✓", color: "#d4ccaa" },
+                        { token: "--retro-muted-fg", ratio: "3.55", body: "✗", large: "✓", color: "#887766" },
+                        { token: "--retro-warning", ratio: "6.23", body: "✓", large: "✓", color: "#C4A232" },
+                        { token: "--retro-error-text", ratio: "4.6", body: "✓", large: "✓", color: "#E0826F" },
+                        { token: "--retro-success-text", ratio: "5.9", body: "✓", large: "✓", color: "#A4C870" },
+                        { token: "--retro-info-text", ratio: "5.8", body: "✓", large: "✓", color: "#8FA3D9" },
                       ].map(({ token, ratio, body, large, color }) => (
                         <tr key={token} style={{ borderBottomColor: "#4a4030", borderBottomWidth: "1px", borderBottomStyle: "solid" }}>
                           <td className="px-2 py-1.5" style={{ color: "#887766" }}>
