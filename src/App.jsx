@@ -250,7 +250,7 @@ export default function App() {
                     { name: "muted-fg", hex: "#887766", token: "--retro-muted-fg" },
                     { name: "fg", hex: "#d4ccaa", token: "--retro-fg" },
                     { name: "secondary", hex: "#3a3428", token: "--retro-secondary" },
-                    { name: "secondary-fg", hex: "#887766", token: "--retro-secondary-fg" },
+                    { name: "secondary-fg", hex: "#d4ccaa", token: "--retro-secondary-fg" },
                   ].map(({ name, hex, token }) => (
                     <Variant key={name} label={token}>
                       <div className="flex flex-col items-start gap-2">
