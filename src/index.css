@@ -115,7 +115,7 @@
   --border-soft:  var(--retro-border);
 
   /* Focus ring */
-  --focus-ring-color:  #CC6622;
+  --focus-ring-color:  var(--retro-orange);
   --focus-ring-width:  2px;
   --focus-ring-offset: 2px;
 
@@ -187,7 +187,7 @@
 /* ── Focus ring ── keyboard navigation: 2px orange, 2px offset ───────────
    Overrides focus:ring-0/focus:outline-none (mouse suppression) for keyboard
    users. !important is intentional — accessibility cannot be opted out of. */
-:root { --focus-ring: #CC6622; }
+:root { --focus-ring: var(--retro-orange); }
 :focus-visible {
   outline: 2px solid var(--focus-ring) !important;
   outline-offset: 2px !important;
@@ -236,43 +236,36 @@ body {
   line-height: var(--leading-normal);
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   @apply uppercase tracking-wider font-bold;
+  margin: 0;
+}
+
+h1 {
   font-size: var(--text-44);
   line-height: var(--leading-tight);
-  margin: 0;
 }
 
 h2 {
-  @apply uppercase tracking-wider font-bold;
   font-size: var(--text-32);
   line-height: var(--leading-tight);
-  margin: 0;
 }
 
 h3 {
-  @apply uppercase tracking-wider font-bold;
   font-size: var(--text-24);
   line-height: var(--leading-tight);
-  margin: 0;
 }
 
 h4 {
-  @apply uppercase tracking-wider font-bold;
   font-size: var(--text-20);
-  margin: 0;
 }
 
 h5 {
-  @apply uppercase tracking-wider font-bold;
   font-size: var(--text-16);
-  margin: 0;
 }
 
 h6 {
-  @apply uppercase tracking-wider font-bold;
   font-size: var(--text-13);
-  margin: 0;
 }
 
 p {
