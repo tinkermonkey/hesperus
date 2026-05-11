@@ -25,7 +25,7 @@
   --color-retro-yellow:  #C4A232;
   --color-retro-blue:    #5566AA;
 
-  /* Text-safe accent aliases — WCAG AA verified for normal text on bg */
+  /* Text-safe accent aliases — WCAG AA verified on bg (warning uses fg fallback) */
   --color-retro-error-text:   var(--retro-error-text);
   --color-retro-success-text: var(--retro-success-text);
   --color-retro-warning-text: var(--retro-warning-text);
@@ -59,7 +59,7 @@
 
   /* Text-safe accent aliases — verified WCAG on #efeed0 bg */
   --retro-error-text:   #AA3322;   /* 5.56 ✓ */
-  --retro-success-text: #4A5A20;   /* 4.52 ✓ */
+  --retro-success-text: #4A5A20;   /* 6.42 ✓ */
   --retro-warning-text: #2c2416;   /* warning #C4A232 fails as text — use fg */
   --retro-info-text:    #5566AA;   /* 4.61 ✓ */
 
