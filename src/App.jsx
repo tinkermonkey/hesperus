@@ -126,6 +126,14 @@ function Variant({ label, children }) {
 // ── Sidebar nav ───────────────────────────────────────────────────
 
 const NAV_SECTIONS = [
+  { id: "colors", label: "Colors" },
+  { id: "type-scale", label: "Type Scale" },
+  { id: "spacing-radii", label: "Spacing & Radii" },
+  { id: "motion", label: "Motion" },
+  { id: "contrast", label: "Contrast" },
+  { id: "density", label: "Density" },
+  { id: "brand", label: "Brand" },
+  { id: "icons", label: "Icons" },
   { id: "typography", label: "Typography" },
   { id: "buttons", label: "Buttons" },
   { id: "form", label: "Form Inputs" },
@@ -209,6 +217,431 @@ export default function App() {
 
           {/* ── Main content ── */}
           <main className="ml-[200px] flex-1 px-14 py-12 max-w-5xl">
+
+            {/* ── Colors ── */}
+            <Section id="colors" title="Colors">
+              <Group label="Light palette">
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "bg", hex: "#efeed0", token: "--retro-bg" },
+                    { name: "muted", hex: "#f2ecda", token: "--retro-muted" },
+                    { name: "border", hex: "#b8a878", token: "--retro-border" },
+                    { name: "muted-fg", hex: "#8a7e6a", token: "--retro-muted-fg" },
+                    { name: "fg", hex: "#2c2416", token: "--retro-fg" },
+                    { name: "ink", hex: "#1a1408", token: "ink" },
+                  ].map(({ name, hex, token }) => (
+                    <Variant key={name} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
+                        <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
+                        <p className="font-mono text-[8px] text-retro-muted-fg">{hex}</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Dark palette">
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "bg", hex: "#222627", token: "--retro-bg" },
+                    { name: "muted", hex: "#332c22", token: "--retro-muted" },
+                    { name: "border", hex: "#4a4030", token: "--retro-border" },
+                    { name: "muted-fg", hex: "#887766", token: "--retro-muted-fg" },
+                    { name: "fg", hex: "#d4ccaa", token: "--retro-fg" },
+                    { name: "secondary", hex: "#3a3428", token: "--retro-secondary" },
+                  ].map(({ name, hex, token }) => (
+                    <Variant key={name} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-20 h-20 border-2" style={{ background: hex, borderColor: "#d4ccaa" }} />
+                        <p className="font-mono text-[9px] font-bold uppercase text-retro-muted-fg" style={{ color: "#887766" }}>{name}</p>
+                        <p className="font-mono text-[8px] text-retro-muted-fg" style={{ color: "#887766" }}>{hex}</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Semantic colors">
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "error", hex: "#AA3322", token: "--retro-error" },
+                    { name: "success", hex: "#5C7A28", token: "--retro-success" },
+                    { name: "warning", hex: "#C4A232", token: "--retro-warning" },
+                    { name: "info", hex: "#5566AA", token: "--retro-info" },
+                  ].map(({ name, hex, token }) => (
+                    <Variant key={name} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
+                        <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
+                        <p className="font-mono text-[8px] text-retro-muted-fg">{hex}</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Accent colors">
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "orange", hex: "#CC6622", token: "--retro-orange" },
+                    { name: "purple", hex: "#7744AA", token: "--retro-purple" },
+                    { name: "cyan", hex: "#2E8B8B", token: "--retro-cyan" },
+                    { name: "green", hex: "#5C7A28", token: "--retro-green" },
+                    { name: "yellow", hex: "#C4A232", token: "--retro-yellow" },
+                    { name: "blue", hex: "#5566AA", token: "--retro-blue" },
+                  ].map(({ name, hex, token }) => (
+                    <Variant key={name} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
+                        <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
+                        <p className="font-mono text-[8px] text-retro-muted-fg">{hex}</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Type Scale ── */}
+            <Section id="type-scale" title="Type Scale">
+              <Group label="All sizes">
+                <div className="flex flex-col gap-3 w-full max-w-2xl">
+                  {[
+                    { size: "9px", token: "--text-9" },
+                    { size: "10px", token: "--text-10" },
+                    { size: "11px", token: "--text-11" },
+                    { size: "12px", token: "--text-12" },
+                    { size: "13px", token: "--text-13" },
+                    { size: "14px", token: "--text-14" },
+                    { size: "16px", token: "--text-16" },
+                    { size: "20px", token: "--text-20" },
+                    { size: "24px", token: "--text-24" },
+                    { size: "32px", token: "--text-32" },
+                    { size: "44px", token: "--text-44" },
+                  ].map(({ size, token }) => (
+                    <div key={token} className="flex items-baseline gap-4 border-b border-retro-border pb-2">
+                      <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg w-20" style={{ fontSize: "8px" }}>
+                        {token}
+                      </p>
+                      <p className="font-mono uppercase tracking-wider text-retro-fg" style={{ fontSize: size }}>
+                        HESPERUS
+                      </p>
+                      <p className="font-mono text-[9px] text-retro-muted-fg ml-auto">
+                        {size}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Spacing & Radii ── */}
+            <Section id="spacing-radii" title="Spacing & Radii">
+              <Group label="Spacing scale">
+                <div className="flex flex-col gap-4 w-full max-w-2xl">
+                  {[
+                    { token: "--space-0_5", px: "2" },
+                    { token: "--space-1", px: "4" },
+                    { token: "--space-1_5", px: "6" },
+                    { token: "--space-2", px: "8" },
+                    { token: "--space-2_5", px: "10" },
+                    { token: "--space-3", px: "12" },
+                    { token: "--space-3_5", px: "14" },
+                    { token: "--space-4", px: "16" },
+                    { token: "--space-5", px: "20" },
+                    { token: "--space-6", px: "24" },
+                    { token: "--space-8", px: "32" },
+                    { token: "--space-10", px: "40" },
+                    { token: "--space-12", px: "48" },
+                    { token: "--space-16", px: "64" },
+                  ].map(({ token, px }) => (
+                    <div key={token} className="flex items-center gap-4">
+                      <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg w-20">
+                        {token}
+                      </p>
+                      <div className="flex-1 bg-retro-fg rounded-sm" style={{ height: "6px", width: `${parseInt(px) * 2}px` }} />
+                      <p className="font-mono text-[9px] text-retro-muted-fg w-12 text-right">
+                        {px}px
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Radius values">
+                <div className="flex flex-wrap gap-6">
+                  {[
+                    { token: "--radius-sm", px: "3" },
+                    { token: "--radius-md", px: "4" },
+                    { token: "--radius-lg", px: "6" },
+                  ].map(({ token, px }) => (
+                    <Variant key={token} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div
+                          className="w-20 h-20 border-2 border-retro-fg bg-retro-secondary"
+                          style={{ borderRadius: `${px}px` }}
+                        />
+                        <p className="font-mono text-[9px] font-bold uppercase">{token}</p>
+                        <p className="font-mono text-[8px] text-retro-muted-fg">{px}px</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Motion ── */}
+            <Section id="motion" title="Motion">
+              <Group label="Duration tokens">
+                <div className="flex gap-6 flex-wrap">
+                  {[
+                    { token: "--dur-instant", ms: "0", label: "steps" },
+                    { token: "--dur-fast", ms: "100", label: "hover" },
+                    { token: "--dur-base", ms: "150", label: "default" },
+                    { token: "--dur-slow", ms: "250", label: "modals" },
+                    { token: "--dur-slower", ms: "400", label: "pages" },
+                  ].map(({ token, ms, label }) => {
+                    const duration = parseInt(ms) || 1;
+                    return (
+                      <Variant key={token} label={token}>
+                        <div className="flex flex-col items-start gap-2">
+                          <div className="w-24 h-2 border-2 border-retro-fg bg-retro-secondary rounded-sm overflow-hidden relative">
+                            <style>{`
+                              .motion-bar-${ms.replace(/[^0-9]/g, "")}::after {
+                                content: '';
+                                position: absolute;
+                                top: 0; left: 0; bottom: 0;
+                                width: 30%;
+                                background: var(--retro-orange);
+                                animation: slide-${ms.replace(/[^0-9]/g, "")} ${duration}ms infinite linear;
+                              }
+                              @keyframes slide-${ms.replace(/[^0-9]/g, "")} {
+                                0% { transform: translateX(0); }
+                                50% { transform: translateX(233%); }
+                                100% { transform: translateX(0); }
+                              }
+                            `}</style>
+                            <div className={`motion-bar-${ms.replace(/[^0-9]/g, "")} absolute inset-0`} />
+                          </div>
+                          <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">
+                            {ms}ms · {label}
+                          </p>
+                        </div>
+                      </Variant>
+                    );
+                  })}
+                </div>
+              </Group>
+              <Group label="Easing tokens">
+                <div className="flex flex-col gap-3 w-full max-w-lg">
+                  {[
+                    { token: "--ease-step", fn: "steps(1, end)", label: "On/off" },
+                    { token: "--ease-stepped", fn: "steps(8, end)", label: "8-frame" },
+                    { token: "--ease-linear", fn: "linear", label: "Linear" },
+                    { token: "--ease-out", fn: "cubic-bezier(0.2, 0.8, 0.2, 1)", label: "Out" },
+                    { token: "--ease-in-out", fn: "cubic-bezier(0.4, 0, 0.2, 1)", label: "In-out" },
+                  ].map(({ token, fn, label }) => (
+                    <div key={token} className="flex items-center gap-4">
+                      <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg w-32">
+                        {token}
+                      </p>
+                      <div className="flex-1 h-3 border border-retro-fg bg-retro-secondary rounded-sm relative overflow-hidden">
+                        <style>{`
+                          .ease-dot-${token.replace(/[^a-z]/g, "")} {
+                            position: absolute;
+                            top: 1px; width: 8px; height: 8px;
+                            background: var(--retro-fg);
+                            border-radius: 1px;
+                            animation: easeMove 2s infinite ${fn};
+                          }
+                          @keyframes easeMove {
+                            0% { left: 1px; }
+                            50% { left: calc(100% - 9px); }
+                            100% { left: 1px; }
+                          }
+                        `}</style>
+                        <div className={`ease-dot-${token.replace(/[^a-z]/g, "")}`} />
+                      </div>
+                      <p className="font-mono text-[8px] text-retro-muted-fg w-16 text-right">
+                        {label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Contrast ── */}
+            <Section id="contrast" title="Contrast">
+              <Group label="Light mode — WCAG AA">
+                <div className="w-full overflow-x-auto">
+                  <table className="font-mono text-[9px] border-collapse w-full max-w-2xl">
+                    <thead>
+                      <tr className="bg-retro-fg text-retro-bg">
+                        <th className="px-2 py-1 text-left font-bold uppercase">Token</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Ratio</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Body</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Large</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { token: "--retro-fg", ratio: "12.99", body: "✓", large: "✓", color: "#2c2416" },
+                        { token: "--retro-error", ratio: "5.56", body: "✓", large: "✓", color: "#AA3322" },
+                        { token: "--retro-success", ratio: "4.17", body: "≈", large: "✓", color: "#5C7A28" },
+                        { token: "--retro-info", ratio: "4.61", body: "✓", large: "✓", color: "#5566AA" },
+                        { token: "--retro-purple", ratio: "5.58", body: "✓", large: "✓", color: "#7744AA" },
+                        { token: "--retro-warning", ratio: "2.08", body: "✗", large: "✗", color: "#C4A232" },
+                      ].map(({ token, ratio, body, large, color }) => (
+                        <tr key={token} className="border-b border-retro-border">
+                          <td className="px-2 py-1.5">
+                            <span
+                              className="inline-block w-3 h-3 border border-retro-fg align-middle mr-2"
+                              style={{ background: color }}
+                            />
+                            {token}
+                          </td>
+                          <td className="px-2 py-1.5">{ratio}</td>
+                          <td className={`px-2 py-1.5 font-bold ${body === "✓" ? "text-retro-success" : body === "≈" ? "text-retro-warning" : "text-retro-error"}`}>
+                            {body}
+                          </td>
+                          <td className={`px-2 py-1.5 font-bold ${large === "✓" ? "text-retro-success" : "text-retro-error"}`}>
+                            {large}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Density ── */}
+            <Section id="density" title="Density">
+              <Group label="Compact / Default / Relaxed">
+                <div className="flex gap-6 flex-wrap">
+                  {[
+                    { label: "Compact", rowHeight: "32px" },
+                    { label: "Default", rowHeight: "40px" },
+                    { label: "Relaxed", rowHeight: "48px" },
+                  ].map(({ label, rowHeight }) => (
+                    <div key={label} className="flex flex-col gap-2">
+                      <p className="font-mono text-[9px] uppercase tracking-wider text-retro-muted-fg">{label}</p>
+                      <div className="border-2 border-retro-fg rounded overflow-hidden bg-retro-bg" style={{ minWidth: "240px" }}>
+                        {["Item one", "Item two", "Item three"].map((item, i) => (
+                          <div
+                            key={item}
+                            className="flex items-center px-3 border-retro-border font-mono text-[10px] text-retro-fg hover:bg-retro-secondary"
+                            style={{
+                              height: rowHeight,
+                              borderBottom: i < 2 ? "1px solid var(--retro-border)" : "none",
+                            }}
+                          >
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Brand ── */}
+            <Section id="brand" title="Brand">
+              <Group label="Logotype">
+                <div className="flex gap-8">
+                  {[
+                    { isDark: false, bg: "bg-retro-bg", fg: "text-retro-fg" },
+                    { isDark: true, bg: "bg-[#222627]", fg: "text-[#d4ccaa]" },
+                  ].map(({ isDark, bg, fg }, idx) => (
+                    <div key={idx} className={`${bg} p-6 rounded ${fg} flex items-center gap-4`}>
+                      <div
+                        className="w-9 h-9 border-2 flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: isDark ? "#d4ccaa" : "#2c2416",
+                          borderColor: isDark ? "#d4ccaa" : "#2c2416",
+                          transform: "rotate(45deg)",
+                        }}
+                      >
+                        <div
+                          className="border-2 w-5 h-5"
+                          style={{
+                            borderColor: isDark ? "#222627" : "#efeed0",
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[20px] font-bold uppercase tracking-wider">Hesperus</p>
+                        <p className="font-mono text-[8px] uppercase tracking-wider" style={{ opacity: 0.7 }}>
+                          // The Evening Star
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+              <Group label="CRT Grid Backgrounds">
+                <div className="flex gap-4 flex-wrap">
+                  <div
+                    className="w-64 h-40 border-2 border-retro-fg rounded overflow-hidden flex items-end justify-start p-3"
+                    style={{
+                      background: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNlZmVlZDAiLz48cGF0aCBkPSJNMCAwaDh2MUgwek0wIDdoOHYxSDB6TTAgMHYyaDFWMHpNNyAwdjh2MUgweTh6IiBmaWxsPSIjZjJlY2RhIiBvcGFjaXR5PSIuNiIvPjwvc3ZnPg==') repeat",
+                      backgroundColor: "#efeed0",
+                    }}
+                  >
+                    <span className="font-mono text-[8px] text-retro-muted-fg uppercase">light grid</span>
+                  </div>
+                  <div
+                    className="w-64 h-40 border-2 rounded overflow-hidden flex items-end justify-start p-3"
+                    style={{
+                      background: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMyMjI2MjciLz48cGF0aCBkPSJNMCAwaDh2MUgwek0wIDdoOHYxSDB6TTAgMHYyaDFWMHpNNyAwdjh2MUgweTh6IiBmaWxsPSIjMzMyYzIyIiBvcGFjaXR5PSIuNiIvPjwvc3ZnPg==') repeat",
+                      backgroundColor: "#222627",
+                      borderColor: "#d4ccaa",
+                      color: "#887766",
+                    }}
+                  >
+                    <span className="font-mono text-[8px] uppercase">dark grid</span>
+                  </div>
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Icons ── */}
+            <Section id="icons" title="Icons">
+              <Group label="Lucide icons at 16px & 20px (strokeWidth=2, currentColor)">
+                <div className="flex flex-wrap gap-6">
+                  {[
+                    { name: "search", viewBox: "0 0 24 24", path: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>' },
+                    { name: "settings", viewBox: "0 0 24 24", path: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 5 15.4a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9 1.65 1.65 0 0 0 4.27 7.18l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>' },
+                    { name: "mail", viewBox: "0 0 24 24", path: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>' },
+                    { name: "file", viewBox: "0 0 24 24", path: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>' },
+                    { name: "check", viewBox: "0 0 24 24", path: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+                    { name: "alert", viewBox: "0 0 24 24", path: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>' },
+                    { name: "terminal", viewBox: "0 0 24 24", path: '<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>' },
+                    { name: "node", viewBox: "0 0 24 24", path: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>' },
+                  ].map(({ name, viewBox, path }) => (
+                    <div key={name} className="flex flex-col gap-3">
+                      <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">{name}</p>
+                      <div className="flex gap-2">
+                        <div className="w-12 h-12 border-2 border-retro-fg rounded flex items-center justify-center bg-retro-secondary">
+                          <svg width="16" height="16" viewBox={viewBox} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <g dangerouslySetInnerHTML={{ __html: path }} />
+                          </svg>
+                        </div>
+                        <div className="w-12 h-12 border-2 border-retro-fg rounded flex items-center justify-center bg-retro-secondary">
+                          <svg width="20" height="20" viewBox={viewBox} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <g dangerouslySetInnerHTML={{ __html: path }} />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+              <Group label="ASCII glyphs (terminal-native icons)">
+                <p className="font-mono text-[16px] font-bold tracking-widest text-retro-fg">
+                  &gt;  &gt;&gt;  ─  │  └─  ▌  ■  ●  ○  /  •
+                </p>
+              </Group>
+            </Section>
 
             {/* ── Typography ── */}
             <Section id="typography" title="Typography">
