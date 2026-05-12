@@ -213,6 +213,15 @@ export default function App() {
     }
 
     /* Link/Anchor state styles */
+    .state-hover a {
+      background-color: var(--retro-fg) !important;
+      color: var(--retro-bg) !important;
+    }
+    .state-active a {
+      background-color: var(--retro-fg) !important;
+      color: var(--retro-bg) !important;
+      transform: translate(1px, 1px) !important;
+    }
     .state-focus a {
       box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
       outline: none !important;
@@ -1336,9 +1345,8 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Tabs — Segmented (default) — states">
-                <div className="flex flex-col gap-6">
-                  <div className="w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                {(() => {
+                  const tabsDemo = (
                     <Tabs variant="default">
                       <TabItem title="Schema">
                         <p className="font-mono text-[11px] text-retro-fg">
@@ -1356,88 +1364,25 @@ export default function App() {
                         </p>
                       </TabItem>
                     </Tabs>
-                  </div>
-                  <div className="state-hover w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
-                    <Tabs variant="default">
-                      <TabItem title="Schema">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Schema panel — column definitions, types, constraints.
-                        </p>
-                      </TabItem>
-                      <TabItem title="Data">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Data panel — row browser and query results.
-                        </p>
-                      </TabItem>
-                      <TabItem title="Indexes">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Index definitions and performance hints.
-                        </p>
-                      </TabItem>
-                    </Tabs>
-                  </div>
-                  <div className="state-active w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
-                    <Tabs variant="default">
-                      <TabItem title="Schema">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Schema panel — column definitions, types, constraints.
-                        </p>
-                      </TabItem>
-                      <TabItem title="Data">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Data panel — row browser and query results.
-                        </p>
-                      </TabItem>
-                      <TabItem title="Indexes">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Index definitions and performance hints.
-                        </p>
-                      </TabItem>
-                    </Tabs>
-                  </div>
-                  <div className="state-focus w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
-                    <Tabs variant="default">
-                      <TabItem title="Schema">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Schema panel — column definitions, types, constraints.
-                        </p>
-                      </TabItem>
-                      <TabItem title="Data">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Data panel — row browser and query results.
-                        </p>
-                      </TabItem>
-                      <TabItem title="Indexes">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Index definitions and performance hints.
-                        </p>
-                      </TabItem>
-                    </Tabs>
-                  </div>
-                  <div className="state-disabled w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
-                    <Tabs variant="default">
-                      <TabItem title="Schema">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Schema panel — column definitions, types, constraints.
-                        </p>
-                      </TabItem>
-                      <TabItem title="Data">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Data panel — row browser and query results.
-                        </p>
-                      </TabItem>
-                      <TabItem title="Indexes">
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Index definitions and performance hints.
-                        </p>
-                      </TabItem>
-                    </Tabs>
-                  </div>
-                </div>
+                  );
+                  const states = [
+                    { cls: "", label: "Default state" },
+                    { cls: "state-hover", label: ":hover" },
+                    { cls: "state-active", label: ":active" },
+                    { cls: "state-focus", label: ":focus-visible" },
+                    { cls: "state-disabled", label: ":disabled" },
+                  ];
+                  return (
+                    <div className="flex flex-col gap-6">
+                      {states.map(({ cls, label }) => (
+                        <div key={label} className={`${cls} w-full max-w-2xl`}>
+                          <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">{label}</p>
+                          {tabsDemo}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
               </Group>
               <Group label="Tabs — Underline (orange indicator)">
                 <div className="w-full max-w-lg">
@@ -1492,9 +1437,8 @@ export default function App() {
                 </div>
               </Group>
               <Group label="TopNav">
-                <div className="flex flex-col gap-6">
-                  <div className="w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                {(() => {
+                  const navbarDemo = (
                     <Navbar>
                       <NavbarCollapse>
                         <NavbarLink href="#">
@@ -1524,136 +1468,25 @@ export default function App() {
                         </NavbarLink>
                       </NavbarCollapse>
                     </Navbar>
-                  </div>
-                  <div className="state-hover w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
-                    <Navbar>
-                      <NavbarCollapse>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 5v14M5 12h14" />
-                          </svg>
-                          Add Node
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                          </svg>
-                          Add Connection
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                          </svg>
-                          Edit
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="3 6 5 6 21 6" />
-                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
-                          </svg>
-                          Delete
-                        </NavbarLink>
-                      </NavbarCollapse>
-                    </Navbar>
-                  </div>
-                  <div className="state-active w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
-                    <Navbar>
-                      <NavbarCollapse>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 5v14M5 12h14" />
-                          </svg>
-                          Add Node
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                          </svg>
-                          Add Connection
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                          </svg>
-                          Edit
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="3 6 5 6 21 6" />
-                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
-                          </svg>
-                          Delete
-                        </NavbarLink>
-                      </NavbarCollapse>
-                    </Navbar>
-                  </div>
-                  <div className="state-focus w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
-                    <Navbar>
-                      <NavbarCollapse>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 5v14M5 12h14" />
-                          </svg>
-                          Add Node
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                          </svg>
-                          Add Connection
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                          </svg>
-                          Edit
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="3 6 5 6 21 6" />
-                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
-                          </svg>
-                          Delete
-                        </NavbarLink>
-                      </NavbarCollapse>
-                    </Navbar>
-                  </div>
-                  <div className="state-disabled w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
-                    <Navbar>
-                      <NavbarCollapse>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 5v14M5 12h14" />
-                          </svg>
-                          Add Node
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                          </svg>
-                          Add Connection
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                          </svg>
-                          Edit
-                        </NavbarLink>
-                        <NavbarLink href="#">
-                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="3 6 5 6 21 6" />
-                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
-                          </svg>
-                          Delete
-                        </NavbarLink>
-                      </NavbarCollapse>
-                    </Navbar>
-                  </div>
-                </div>
+                  );
+                  const states = [
+                    { cls: "", label: "Default state" },
+                    { cls: "state-hover", label: ":hover" },
+                    { cls: "state-active", label: ":active" },
+                    { cls: "state-focus", label: ":focus-visible" },
+                    { cls: "state-disabled", label: ":disabled" },
+                  ];
+                  return (
+                    <div className="flex flex-col gap-6">
+                      {states.map(({ cls, label }) => (
+                        <div key={label} className={`${cls} w-full max-w-2xl`}>
+                          <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">{label}</p>
+                          {navbarDemo}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
               </Group>
             </Section>
 
@@ -1870,9 +1703,8 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Rating">
-                <div className="flex flex-col gap-6">
-                  <div>
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state (3 stars filled)</p>
+                <div className="flex gap-6">
+                  <Variant label="3 stars">
                     <Rating>
                       <RatingStar filled />
                       <RatingStar filled />
@@ -1880,47 +1712,16 @@ export default function App() {
                       <RatingStar />
                       <RatingStar />
                     </Rating>
-                  </div>
-                  <div className="state-hover">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
+                  </Variant>
+                  <Variant label="5 stars">
                     <Rating>
                       <RatingStar filled />
                       <RatingStar filled />
                       <RatingStar filled />
-                      <RatingStar />
-                      <RatingStar />
+                      <RatingStar filled />
+                      <RatingStar filled />
                     </Rating>
-                  </div>
-                  <div className="state-active">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
-                    <Rating>
-                      <RatingStar filled />
-                      <RatingStar filled />
-                      <RatingStar filled />
-                      <RatingStar />
-                      <RatingStar />
-                    </Rating>
-                  </div>
-                  <div className="state-focus">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
-                    <Rating>
-                      <RatingStar filled />
-                      <RatingStar filled />
-                      <RatingStar filled />
-                      <RatingStar />
-                      <RatingStar />
-                    </Rating>
-                  </div>
-                  <div className="state-disabled">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
-                    <Rating>
-                      <RatingStar filled />
-                      <RatingStar filled />
-                      <RatingStar filled />
-                      <RatingStar />
-                      <RatingStar />
-                    </Rating>
-                  </div>
+                  </Variant>
                 </div>
               </Group>
             </Section>
@@ -1928,9 +1729,8 @@ export default function App() {
             {/* ── Content ── */}
             <Section id="content" title="Content">
               <Group label="Accordion">
-                <div className="flex flex-col gap-6">
-                  <div className="w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                {(() => {
+                  const accordionDemo = (
                     <Accordion>
                       <AccordionPanel>
                         <AccordionTitle>What is Hesperus?</AccordionTitle>
@@ -1957,124 +1757,25 @@ export default function App() {
                         </AccordionContent>
                       </AccordionPanel>
                     </Accordion>
-                  </div>
-                  <div className="state-hover w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
-                    <Accordion>
-                      <AccordionPanel>
-                        <AccordionTitle>What is Hesperus?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            A retro-styled design system built with Flowbite React and Tailwind CSS.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                      <AccordionPanel>
-                        <AccordionTitle>How do I customize it?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                      <AccordionPanel>
-                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            Yes! Toggle the dark mode using the navbar button.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                    </Accordion>
-                  </div>
-                  <div className="state-active w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
-                    <Accordion>
-                      <AccordionPanel>
-                        <AccordionTitle>What is Hesperus?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            A retro-styled design system built with Flowbite React and Tailwind CSS.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                      <AccordionPanel>
-                        <AccordionTitle>How do I customize it?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                      <AccordionPanel>
-                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            Yes! Toggle the dark mode using the navbar button.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                    </Accordion>
-                  </div>
-                  <div className="state-focus w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
-                    <Accordion>
-                      <AccordionPanel>
-                        <AccordionTitle>What is Hesperus?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            A retro-styled design system built with Flowbite React and Tailwind CSS.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                      <AccordionPanel>
-                        <AccordionTitle>How do I customize it?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                      <AccordionPanel>
-                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            Yes! Toggle the dark mode using the navbar button.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                    </Accordion>
-                  </div>
-                  <div className="state-disabled w-full max-w-2xl">
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
-                    <Accordion>
-                      <AccordionPanel>
-                        <AccordionTitle>What is Hesperus?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            A retro-styled design system built with Flowbite React and Tailwind CSS.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                      <AccordionPanel>
-                        <AccordionTitle>How do I customize it?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                      <AccordionPanel>
-                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
-                        <AccordionContent>
-                          <p className="font-mono text-[11px] text-retro-fg">
-                            Yes! Toggle the dark mode using the navbar button.
-                          </p>
-                        </AccordionContent>
-                      </AccordionPanel>
-                    </Accordion>
-                  </div>
-                </div>
+                  );
+                  const states = [
+                    { cls: "", label: "Default state" },
+                    { cls: "state-hover", label: ":hover" },
+                    { cls: "state-active", label: ":active" },
+                    { cls: "state-focus", label: ":focus-visible" },
+                    { cls: "state-disabled", label: ":disabled" },
+                  ];
+                  return (
+                    <div className="flex flex-col gap-6">
+                      {states.map(({ cls, label }) => (
+                        <div key={label} className={`${cls} w-full max-w-2xl`}>
+                          <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">{label}</p>
+                          {accordionDemo}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
               </Group>
               <Group label="Timeline">
                 <div className="w-full max-w-2xl">
@@ -2295,9 +1996,8 @@ export default function App() {
 
                   <div>
                     <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Sidebar item states</p>
-                    <div className="flex flex-col gap-3" style={{ maxWidth: "300px" }}>
-                      <div>
-                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">default</p>
+                    {(() => {
+                      const sidebarItem = (
                         <Sidebar>
                           <SidebarItems>
                             <SidebarItemGroup>
@@ -2305,48 +2005,25 @@ export default function App() {
                             </SidebarItemGroup>
                           </SidebarItems>
                         </Sidebar>
-                      </div>
-                      <div className="state-hover">
-                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">:hover</p>
-                        <Sidebar>
-                          <SidebarItems>
-                            <SidebarItemGroup>
-                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
-                            </SidebarItemGroup>
-                          </SidebarItems>
-                        </Sidebar>
-                      </div>
-                      <div className="state-active">
-                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">:active</p>
-                        <Sidebar>
-                          <SidebarItems>
-                            <SidebarItemGroup>
-                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
-                            </SidebarItemGroup>
-                          </SidebarItems>
-                        </Sidebar>
-                      </div>
-                      <div className="state-focus">
-                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">:focus-visible</p>
-                        <Sidebar>
-                          <SidebarItems>
-                            <SidebarItemGroup>
-                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
-                            </SidebarItemGroup>
-                          </SidebarItems>
-                        </Sidebar>
-                      </div>
-                      <div className="state-disabled">
-                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">:disabled</p>
-                        <Sidebar>
-                          <SidebarItems>
-                            <SidebarItemGroup>
-                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
-                            </SidebarItemGroup>
-                          </SidebarItems>
-                        </Sidebar>
-                      </div>
-                    </div>
+                      );
+                      const states = [
+                        { cls: "", label: "default" },
+                        { cls: "state-hover", label: ":hover" },
+                        { cls: "state-active", label: ":active" },
+                        { cls: "state-focus", label: ":focus-visible" },
+                        { cls: "state-disabled", label: ":disabled" },
+                      ];
+                      return (
+                        <div className="flex flex-col gap-3" style={{ maxWidth: "300px" }}>
+                          {states.map(({ cls, label }) => (
+                            <div key={label} className={cls}>
+                              <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">{label}</p>
+                              {sidebarItem}
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })()}
                   </div>
 
                   {(() => {
