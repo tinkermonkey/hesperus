@@ -493,6 +493,7 @@ export default function App() {
                     { token: "--radius-sm", px: "3" },
                     { token: "--radius-md", px: "4" },
                     { token: "--radius-lg", px: "6" },
+                    { token: "--radius-full", px: "9999" },
                   ].map(({ token, px }) => (
                     <Variant key={token} label={token}>
                       <div className="flex flex-col items-start gap-2">
@@ -1300,6 +1301,22 @@ export default function App() {
                       <BreadcrumbItem>Schema</BreadcrumbItem>
                     </Breadcrumb>
                   </div>
+                  <div className="state-hover">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                  <div className="state-active">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
                   <div className="state-focus">
                     <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
                     <Breadcrumb>
@@ -1322,6 +1339,46 @@ export default function App() {
                 <div className="flex flex-col gap-6">
                   <div className="w-full max-w-2xl">
                     <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Tabs variant="default">
+                      <TabItem title="Schema">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Schema panel — column definitions, types, constraints.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Data">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Data panel — row browser and query results.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Indexes">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Index definitions and performance hints.
+                        </p>
+                      </TabItem>
+                    </Tabs>
+                  </div>
+                  <div className="state-hover w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
+                    <Tabs variant="default">
+                      <TabItem title="Schema">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Schema panel — column definitions, types, constraints.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Data">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Data panel — row browser and query results.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Indexes">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Index definitions and performance hints.
+                        </p>
+                      </TabItem>
+                    </Tabs>
+                  </div>
+                  <div className="state-active w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
                     <Tabs variant="default">
                       <TabItem title="Schema">
                         <p className="font-mono text-[11px] text-retro-fg">
@@ -1435,36 +1492,167 @@ export default function App() {
                 </div>
               </Group>
               <Group label="TopNav">
-                <div className="w-full max-w-2xl">
-                  <Navbar>
-                    <NavbarCollapse>
-                      <NavbarLink href="#">
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M12 5v14M5 12h14" />
-                        </svg>
-                        Add Node
-                      </NavbarLink>
-                      <NavbarLink href="#">
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                        Add Connection
-                      </NavbarLink>
-                      <NavbarLink href="#">
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                        </svg>
-                        Edit
-                      </NavbarLink>
-                      <NavbarLink href="#">
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="3 6 5 6 21 6" />
-                          <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
-                        </svg>
-                        Delete
-                      </NavbarLink>
-                    </NavbarCollapse>
-                  </Navbar>
+                <div className="flex flex-col gap-6">
+                  <div className="w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Navbar>
+                      <NavbarCollapse>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 5v14M5 12h14" />
+                          </svg>
+                          Add Node
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                          Add Connection
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                          </svg>
+                          Edit
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+                          </svg>
+                          Delete
+                        </NavbarLink>
+                      </NavbarCollapse>
+                    </Navbar>
+                  </div>
+                  <div className="state-hover w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
+                    <Navbar>
+                      <NavbarCollapse>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 5v14M5 12h14" />
+                          </svg>
+                          Add Node
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                          Add Connection
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                          </svg>
+                          Edit
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+                          </svg>
+                          Delete
+                        </NavbarLink>
+                      </NavbarCollapse>
+                    </Navbar>
+                  </div>
+                  <div className="state-active w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
+                    <Navbar>
+                      <NavbarCollapse>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 5v14M5 12h14" />
+                          </svg>
+                          Add Node
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                          Add Connection
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                          </svg>
+                          Edit
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+                          </svg>
+                          Delete
+                        </NavbarLink>
+                      </NavbarCollapse>
+                    </Navbar>
+                  </div>
+                  <div className="state-focus w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
+                    <Navbar>
+                      <NavbarCollapse>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 5v14M5 12h14" />
+                          </svg>
+                          Add Node
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                          Add Connection
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                          </svg>
+                          Edit
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+                          </svg>
+                          Delete
+                        </NavbarLink>
+                      </NavbarCollapse>
+                    </Navbar>
+                  </div>
+                  <div className="state-disabled w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
+                    <Navbar>
+                      <NavbarCollapse>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 5v14M5 12h14" />
+                          </svg>
+                          Add Node
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                          Add Connection
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                          </svg>
+                          Edit
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+                          </svg>
+                          Delete
+                        </NavbarLink>
+                      </NavbarCollapse>
+                    </Navbar>
+                  </div>
                 </div>
               </Group>
             </Section>
@@ -1682,8 +1870,9 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Rating">
-                <div className="flex gap-6">
-                  <Variant label="3 stars">
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state (3 stars filled)</p>
                     <Rating>
                       <RatingStar filled />
                       <RatingStar filled />
@@ -1691,16 +1880,47 @@ export default function App() {
                       <RatingStar />
                       <RatingStar />
                     </Rating>
-                  </Variant>
-                  <Variant label="5 stars">
+                  </div>
+                  <div className="state-hover">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
                     <Rating>
                       <RatingStar filled />
                       <RatingStar filled />
                       <RatingStar filled />
-                      <RatingStar filled />
-                      <RatingStar filled />
+                      <RatingStar />
+                      <RatingStar />
                     </Rating>
-                  </Variant>
+                  </div>
+                  <div className="state-active">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
+                    <Rating>
+                      <RatingStar filled />
+                      <RatingStar filled />
+                      <RatingStar filled />
+                      <RatingStar />
+                      <RatingStar />
+                    </Rating>
+                  </div>
+                  <div className="state-focus">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
+                    <Rating>
+                      <RatingStar filled />
+                      <RatingStar filled />
+                      <RatingStar filled />
+                      <RatingStar />
+                      <RatingStar />
+                    </Rating>
+                  </div>
+                  <div className="state-disabled">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
+                    <Rating>
+                      <RatingStar filled />
+                      <RatingStar filled />
+                      <RatingStar filled />
+                      <RatingStar />
+                      <RatingStar />
+                    </Rating>
+                  </div>
                 </div>
               </Group>
             </Section>
@@ -1711,6 +1931,64 @@ export default function App() {
                 <div className="flex flex-col gap-6">
                   <div className="w-full max-w-2xl">
                     <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Accordion>
+                      <AccordionPanel>
+                        <AccordionTitle>What is Hesperus?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            A retro-styled design system built with Flowbite React and Tailwind CSS.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>How do I customize it?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Yes! Toggle the dark mode using the navbar button.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                    </Accordion>
+                  </div>
+                  <div className="state-hover w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
+                    <Accordion>
+                      <AccordionPanel>
+                        <AccordionTitle>What is Hesperus?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            A retro-styled design system built with Flowbite React and Tailwind CSS.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>How do I customize it?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Yes! Toggle the dark mode using the navbar button.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                    </Accordion>
+                  </div>
+                  <div className="state-active w-full max-w-2xl">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
                     <Accordion>
                       <AccordionPanel>
                         <AccordionTitle>What is Hesperus?</AccordionTitle>
@@ -1935,6 +2213,14 @@ export default function App() {
                     <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
                     <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
                   </div>
+                  <div className="state-hover">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                  <div className="state-active">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
                   <div className="state-focus">
                     <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
                     <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
@@ -1949,7 +2235,7 @@ export default function App() {
                 <div className="flex flex-col gap-6">
                   <div>
                     <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Trigger button states (closed)</p>
-                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", maxWidth: "400px" }}>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))", maxWidth: "500px" }}>
                       <div className="flex flex-col items-center gap-2">
                         <Dropdown label="Actions" color="outline">
                           <DropdownItem>Edit</DropdownItem>
@@ -1962,11 +2248,23 @@ export default function App() {
                         </Dropdown>
                         <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:hover</span>
                       </div>
+                      <div className="flex flex-col items-center gap-2 state-active">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:active</span>
+                      </div>
                       <div className="flex flex-col items-center gap-2 state-focus">
                         <Dropdown label="Actions" color="outline">
                           <DropdownItem>Edit</DropdownItem>
                         </Dropdown>
                         <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-disabled">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:disabled</span>
                       </div>
                     </div>
                   </div>
@@ -1993,6 +2291,62 @@ export default function App() {
                     <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mt-1">
                       Mobile: toggle button shown below lg, tap to reveal
                     </p>
+                  </div>
+
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Sidebar item states</p>
+                    <div className="flex flex-col gap-3" style={{ maxWidth: "300px" }}>
+                      <div>
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">default</p>
+                        <Sidebar>
+                          <SidebarItems>
+                            <SidebarItemGroup>
+                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
+                            </SidebarItemGroup>
+                          </SidebarItems>
+                        </Sidebar>
+                      </div>
+                      <div className="state-hover">
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">:hover</p>
+                        <Sidebar>
+                          <SidebarItems>
+                            <SidebarItemGroup>
+                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
+                            </SidebarItemGroup>
+                          </SidebarItems>
+                        </Sidebar>
+                      </div>
+                      <div className="state-active">
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">:active</p>
+                        <Sidebar>
+                          <SidebarItems>
+                            <SidebarItemGroup>
+                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
+                            </SidebarItemGroup>
+                          </SidebarItems>
+                        </Sidebar>
+                      </div>
+                      <div className="state-focus">
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">:focus-visible</p>
+                        <Sidebar>
+                          <SidebarItems>
+                            <SidebarItemGroup>
+                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
+                            </SidebarItemGroup>
+                          </SidebarItems>
+                        </Sidebar>
+                      </div>
+                      <div className="state-disabled">
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">:disabled</p>
+                        <Sidebar>
+                          <SidebarItems>
+                            <SidebarItemGroup>
+                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
+                            </SidebarItemGroup>
+                          </SidebarItems>
+                        </Sidebar>
+                      </div>
+                    </div>
                   </div>
 
                   {(() => {
