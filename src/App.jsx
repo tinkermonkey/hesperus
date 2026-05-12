@@ -643,7 +643,7 @@ export default function App() {
                 <div className="w-full overflow-x-auto">
                   <table className="font-mono text-[9px] border-collapse w-full max-w-3xl">
                     <thead>
-                      <tr style={{ background: "var(--retro-fg)", color: "var(--retro-bg)" }}>
+                      <tr className="bg-retro-fg text-retro-bg">
                         <th className="px-2 py-1 text-left font-bold uppercase">Token</th>
                         <th className="px-2 py-1 text-left font-bold uppercase">Ratio</th>
                         <th className="px-2 py-1 text-left font-bold uppercase">Body</th>
@@ -659,23 +659,19 @@ export default function App() {
                         { token: "--retro-success-text", ratio: "5.9", body: "✓", large: "✓", color: "#A4C870" },
                         { token: "--retro-info-text", ratio: "5.8", body: "✓", large: "✓", color: "#8FA3D9" },
                       ].map(({ token, ratio, body, large, color }) => (
-                        <tr key={token} style={{ borderBottomColor: "var(--retro-border)", borderBottomWidth: "1px", borderBottomStyle: "solid" }}>
-                          <td className="px-2 py-1.5" style={{ color: "var(--retro-muted-fg)" }}>
+                        <tr key={token} className="border-b border-retro-border">
+                          <td className="px-2 py-1.5 text-retro-muted-fg">
                             <span
                               className="inline-block w-3 h-3 border align-middle mr-2"
                               style={{ background: color, borderColor: color }}
                             />
                             {token}
                           </td>
-                          <td className="px-2 py-1.5" style={{ color: "var(--retro-muted-fg)" }}>{ratio}</td>
-                          <td className="px-2 py-1.5 font-bold" style={{
-                            color: body === "✓" ? "var(--retro-success)" : body === "≈" ? "var(--retro-warning)" : "var(--retro-error)"
-                          }}>
+                          <td className="px-2 py-1.5 text-retro-muted-fg">{ratio}</td>
+                          <td className={`px-2 py-1.5 font-bold ${body === "✓" ? "text-retro-success" : body === "≈" ? "text-retro-warning" : "text-retro-error"}`}>
                             {body}
                           </td>
-                          <td className="px-2 py-1.5 font-bold" style={{
-                            color: large === "✓" ? "var(--retro-success)" : "var(--retro-error)"
-                          }}>
+                          <td className={`px-2 py-1.5 font-bold ${large === "✓" ? "text-retro-success" : "text-retro-error"}`}>
                             {large}
                           </td>
                         </tr>
