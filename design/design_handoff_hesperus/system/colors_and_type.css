@@ -67,6 +67,7 @@
   --font-sans: var(--font-mono); /* alias — there is no sans family */
 
   /* type scale (from theme.js literal sizes) */
+  --text-8:    8px;     /* dense labels and annotations only */
   --text-9:    9px;     /* timeline times, smallest button */
   --text-10:   10px;    /* labels, table-head cells */
   --text-11:   11px;    /* default body / inputs / table cells */

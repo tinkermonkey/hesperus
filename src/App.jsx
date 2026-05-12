@@ -440,7 +440,7 @@ export default function App() {
                     { size: "44px", token: "--text-44" },
                   ].map(({ size, token }) => (
                     <div key={token} className="flex items-baseline gap-4 border-b border-retro-border pb-2">
-                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg w-20" style={{ fontSize: "8px" }}>
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg w-20">
                         {token}
                       </p>
                       <p className="font-mono uppercase tracking-wider text-retro-fg" style={{ fontSize: size }}>
