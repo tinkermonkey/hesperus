@@ -609,13 +609,13 @@ export default function App() {
                     <tbody>
                       {[
                         { token: "--retro-fg", ratio: "12.99", body: "✓", large: "✓", color: "#2c2416" },
-                        { token: "--retro-muted-fg", ratio: "8.13", body: "✓", large: "✓", color: "#8a7e6a" },
+                        { token: "--retro-muted-fg", ratio: "3.38", body: "✗", large: "✓", color: "#8a7e6a" },
                         { token: "--retro-error", ratio: "5.56", body: "✓", large: "✓", color: "#AA3322" },
                         { token: "--retro-success", ratio: "4.17", body: "≈", large: "✓", color: "#5C7A28" },
                         { token: "--retro-info", ratio: "4.61", body: "✓", large: "✓", color: "#5566AA" },
                         { token: "--retro-purple", ratio: "5.58", body: "✓", large: "✓", color: "#7744AA" },
-                        { token: "--retro-orange", ratio: "4.94", body: "✓", large: "✓", color: "#CC6622" },
-                        { token: "--retro-cyan", ratio: "4.65", body: "✓", large: "✓", color: "#2E8B8B" },
+                        { token: "--retro-orange", ratio: "3.24", body: "✗", large: "✓", color: "#CC6622" },
+                        { token: "--retro-cyan", ratio: "3.44", body: "✗", large: "✓", color: "#2E8B8B" },
                         { token: "--retro-warning", ratio: "2.08", body: "✗", large: "✗", color: "#C4A232" },
                       ].map(({ token, ratio, body, large, color }) => (
                         <tr key={token} className="border-b border-retro-border">
@@ -643,7 +643,7 @@ export default function App() {
                 <div className="w-full overflow-x-auto">
                   <table className="font-mono text-[9px] border-collapse w-full max-w-3xl">
                     <thead>
-                      <tr style={{ background: "#d4ccaa", color: "#222627" }}>
+                      <tr style={{ background: "var(--retro-fg)", color: "var(--retro-bg)" }}>
                         <th className="px-2 py-1 text-left font-bold uppercase">Token</th>
                         <th className="px-2 py-1 text-left font-bold uppercase">Ratio</th>
                         <th className="px-2 py-1 text-left font-bold uppercase">Body</th>
@@ -659,22 +659,22 @@ export default function App() {
                         { token: "--retro-success-text", ratio: "5.9", body: "✓", large: "✓", color: "#A4C870" },
                         { token: "--retro-info-text", ratio: "5.8", body: "✓", large: "✓", color: "#8FA3D9" },
                       ].map(({ token, ratio, body, large, color }) => (
-                        <tr key={token} style={{ borderBottomColor: "#4a4030", borderBottomWidth: "1px", borderBottomStyle: "solid" }}>
-                          <td className="px-2 py-1.5" style={{ color: "#887766" }}>
+                        <tr key={token} style={{ borderBottomColor: "var(--retro-border)", borderBottomWidth: "1px", borderBottomStyle: "solid" }}>
+                          <td className="px-2 py-1.5" style={{ color: "var(--retro-muted-fg)" }}>
                             <span
                               className="inline-block w-3 h-3 border align-middle mr-2"
                               style={{ background: color, borderColor: color }}
                             />
                             {token}
                           </td>
-                          <td className="px-2 py-1.5" style={{ color: "#887766" }}>{ratio}</td>
+                          <td className="px-2 py-1.5" style={{ color: "var(--retro-muted-fg)" }}>{ratio}</td>
                           <td className="px-2 py-1.5 font-bold" style={{
-                            color: body === "✓" ? "#5C7A28" : body === "≈" ? "#C4A232" : "#AA3322"
+                            color: body === "✓" ? "var(--retro-success)" : body === "≈" ? "var(--retro-warning)" : "var(--retro-error)"
                           }}>
                             {body}
                           </td>
                           <td className="px-2 py-1.5 font-bold" style={{
-                            color: large === "✓" ? "#5C7A28" : "#AA3322"
+                            color: large === "✓" ? "var(--retro-success)" : "var(--retro-error)"
                           }}>
                             {large}
                           </td>
