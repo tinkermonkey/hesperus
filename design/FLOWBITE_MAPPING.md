@@ -48,7 +48,7 @@ Every interactive component must visually answer all of:
 | `<Modal>` | 2px `--retro-fg` border. Header band: `--retro-fg` bg + `--retro-bg` text + `×` button. Backdrop: `rgba(34,38,39,0.55)`. Enter `--dur-slow` `--ease-out`. | open / close | `preview/components-modal.html` |
 | `<Drawer>` | Same border treatment, slides in `--dur-slow` `--ease-out` from edge. | — | (build) |
 | `<Navbar>` | Height `--navbar-h` (44px). Items: 2px right-border separators. Active item: full color flip (bg `--retro-fg`, text `--retro-bg`). Brand: bold + `★` square mark. | default / hover / active | `preview/components-navbar.html` |
-| `<Sidebar>` | Same `surface` treatment. `<Sidebar.Item>`: `--text-11`, uppercase. Active: `--retro-secondary` bg + bold. Counts: `--text-9` `--retro-muted-fg`. | default / hover / active | (web-app `index.html`) |
+| `<Sidebar>` | Same `surface` treatment. `<Sidebar.Item>`: `--text-11`, uppercase. Active: `--retro-secondary` bg + bold. Counts: `--text-9` `--retro-muted-fg`. Mobile collapse: hidden below `lg`, toggled via `<Drawer>` on mobile, 150ms transition. | default / hover / active / mobile-open-close | `App.jsx` Layout section |
 | `<Tabs>` | Underline variant (default): 2px `--retro-fg` bottom border on container, 3px `--retro-orange` indicator on active tab. Pill variant: 9999 radius, full color flip. Segmented: 2px border, dividers between, full flip on active. | default / hover / active / disabled | `preview/components-tabs.html` |
 | `<Accordion>` | 2px outer border. Items separated by 2px `--retro-fg`. Open header: full color flip + chevron rotated 90°. Body: 1px top border, 10/12px padding. | collapsed / expanded | `preview/components-accordion.html` |
 | `<Breadcrumb>` | Slash separator default. Current: `--retro-fg`. Inactive: `--retro-muted-fg` link. Boxed variant for headers: 1.5px borders + flip on current. | default / hover | `preview/components-breadcrumb.html` |
@@ -148,8 +148,6 @@ These need building before the theme is feature-complete:
 - `<Datepicker>` — calendar popover
 - `<FileInput>` — file selector with "CHOOSE FILE" button affordance
 - `<Rating>` — star rating with `--retro-warning` fill
-- `<Drawer>` — side-sheet
 - Empty / loading / error full-page states (under `preview/states-*.html`)
-- `<Sidebar>` mobile collapse
 
 When you build these in code, add a matching `preview/*.html` card and update this table.

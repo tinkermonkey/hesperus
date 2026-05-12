@@ -25,7 +25,7 @@
   --color-retro-yellow:  #C4A232;
   --color-retro-blue:    #5566AA;
 
-  /* Text-safe accent aliases — use these for text on bg (contrast-verified) */
+  /* Text-safe accent aliases — WCAG AA verified on bg (warning uses fg fallback) */
   --color-retro-error-text:   var(--retro-error-text);
   --color-retro-success-text: var(--retro-success-text);
   --color-retro-warning-text: var(--retro-warning-text);
@@ -33,15 +33,16 @@
 
   --font-mono: "Space Mono", "Fira Code", "Roboto Mono", monospace;
   --radius-sm:      3px;
-  --radius-DEFAULT: 4px;
+  --radius-default: 4px;
   --radius-md:      4px;
   --radius-lg:      6px;
+  --radius-full:    9999px;
 
   /* Hard-offset shadows — the only allowed shadow treatment */
-  --shadow-hard-1: 2px 2px 0 var(--retro-fg);
-  --shadow-hard-2: 3px 3px 0 var(--retro-fg);
-  --shadow-hard-3: 4px 4px 0 var(--retro-fg);
-  /* Tooltip double-shadow: bg outline + fg hard offset */
+  --shadow-none:    0 0 0 transparent;
+  --shadow-hard-1:  2px 2px 0 var(--retro-fg);
+  --shadow-hard-2:  3px 3px 0 var(--retro-fg);
+  --shadow-hard-3:  4px 4px 0 var(--retro-fg);
   --shadow-tooltip: 2px 2px 0 var(--retro-bg), 2px 2px 0 2px var(--retro-fg);
 }
 
@@ -58,36 +59,101 @@
 
   /* Text-safe accent aliases — verified WCAG on #efeed0 bg */
   --retro-error-text:   #AA3322;   /* 5.56 ✓ */
-  --retro-success-text: #5C7A28;   /* 4.17 ≈AA */
+  --retro-success-text: #4A5A20;   /* 6.42 ✓ */
   --retro-warning-text: #2c2416;   /* warning #C4A232 fails as text — use fg */
   --retro-info-text:    #5566AA;   /* 4.61 ✓ */
 
+  /* Typography — Space Mono only */
+  --font-mono: "Space Mono", "Fira Code", "Roboto Mono", monospace;
+  --font-sans: var(--font-mono);
+
+  /* Type scale */
+  --text-8:    8px;  /* Dense labels and annotations only */
+  --text-9:    9px;
+  --text-10:   10px;
+  --text-11:   11px;
+  --text-12:   12px;
+  --text-13:   13px;
+  --text-14:   14px;
+  --text-16:   16px;
+  --text-20:   20px;
+  --text-24:   24px;
+  --text-32:   32px;
+  --text-44:   44px;
+
+  /* Letter spacing */
+  --tracking-wider: 0.05em;
+  --tracking-wide:  0.025em;
+  --tracking-1px:   1px;
+
+  /* Font weight */
+  --weight-normal: 400;
+  --weight-bold:   700;
+
+  /* Line height */
+  --leading-tight:   1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+
   /* Motion — quick, mechanical, no bounce */
-  --dur-fast:    100ms;
-  --dur-base:    150ms;
-  --dur-slow:    250ms;
-  --dur-slower:  400ms;
-  --ease-out:    cubic-bezier(0.2, 0.8, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-instant:  0ms;
+  --dur-fast:     100ms;
+  --dur-base:     150ms;
+  --dur-slow:     250ms;
+  --dur-slower:   400ms;
+  --ease-step:    steps(1, end);
   --ease-stepped: steps(8, end);
+  --ease-linear:  linear;
+  --ease-out:     cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Interaction */
   --disabled-opacity: 0.4;
+  --disabled-cursor:  not-allowed;
 
-  /* Hard shadows */
-  --shadow-hard-1: 2px 2px 0 var(--retro-fg);
-  --shadow-hard-2: 3px 3px 0 var(--retro-fg);
-  --shadow-hard-3: 4px 4px 0 var(--retro-fg);
-  --shadow-tooltip: 2px 2px 0 var(--retro-bg), 2px 2px 0 2px var(--retro-fg);
+  /* Borders */
+  --border-width: 2px;
+  --border-fg:    var(--retro-fg);
+  --border-soft:  var(--retro-border);
+
+  /* Focus ring */
+  --focus-ring-color:  var(--color-retro-orange);
+  --focus-ring-width:  2px;
+  --focus-ring-offset: 2px;
+  --focus-ring:        0 0 0 var(--focus-ring-width) var(--retro-bg),
+                       0 0 0 calc(var(--focus-ring-width) * 2) var(--focus-ring-color);
+
+  /* Surface tokens */
+  --hover-bg-soft:  var(--retro-secondary);
+  --active-bg-soft: var(--retro-border);
+
+  /* Spacing — Tailwind 4px scale */
+  --space-0_5: 0.125rem;
+  --space-1:   0.25rem;
+  --space-1_5: 0.375rem;
+  --space-2:   0.5rem;
+  --space-2_5: 0.625rem;
+  --space-3:   0.75rem;
+  --space-3_5: 0.875rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
 
   /* Component size contract */
+  --control-h-xs:  22px;
+  --control-h-sm:  26px;
+  --control-h-md:  36px;
+  --control-h-lg:  44px;
   --navbar-h:      44px;
   --button-h-sm:   26px;
   --button-h-md:   36px;
-  --control-h-sm:  26px;
-  --control-h-md:  36px;
   --row-h-compact: 32px;
   --row-h-default: 40px;
+  --status-indicator-size: 11px;
 }
 
 /* Dark mode */
@@ -102,19 +168,18 @@
   --retro-secondary-fg: #d4ccaa;
 
   /* Lightened text-safe accents for dark mode (audit findings) */
-  --retro-error-text:   #E0826F;   /* lightened brick — 4.5+ on #222627 */
-  --retro-info-text:    #8FA3D9;   /* lightened dusty blue */
-  --retro-success-text: #A4C870;   /* lightened olive */
-  --retro-warning-text: #C4A232;   /* gold passes ✓ on dark (6.23) */
+  --retro-error-text:   #E0826F;   /* WCAG AA on dark bg: 5.52:1 ✓ */
+  --retro-info-text:    #8FA3D9;   /* WCAG AA on dark bg: 6.12:1 ✓ */
+  --retro-success-text: #A4C870;   /* WCAG AA on dark bg: 8.06:1 ✓ */
+  --retro-warning-text: #C4A232;   /* WCAG AA on dark bg: 6.23:1 ✓ */
 }
 
 /* ── Focus ring ── keyboard navigation: 2px orange, 2px offset ───────────
    Overrides focus:ring-0/focus:outline-none (mouse suppression) for keyboard
    users. !important is intentional — accessibility cannot be opted out of. */
-:root { --focus-ring: #CC6622; }
 :focus-visible {
-  outline: 2px solid var(--focus-ring) !important;
-  outline-offset: 2px !important;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color) !important;
+  outline-offset: var(--focus-ring-offset) !important;
 }
 
 /* Checkbox SVG checkmark */
@@ -154,10 +219,164 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23d4ccaa' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
 }
 
-body { @apply bg-retro-bg text-retro-fg font-mono antialiased; }
+body {
+  @apply bg-retro-bg text-retro-fg font-mono antialiased;
+  font-size: var(--text-11);
+  line-height: var(--leading-normal);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply uppercase tracking-wider font-bold;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--text-44);
+  line-height: var(--leading-tight);
+}
+
+h2 {
+  font-size: var(--text-32);
+  line-height: var(--leading-tight);
+}
+
+h3 {
+  font-size: var(--text-24);
+  line-height: var(--leading-tight);
+}
+
+h4 {
+  font-size: var(--text-20);
+}
+
+h5 {
+  font-size: var(--text-16);
+}
+
+h6 {
+  font-size: var(--text-13);
+}
+
+p {
+  font-size: var(--text-11);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+small {
+  font-size: var(--text-10);
+  color: var(--retro-muted-fg);
+}
+
+code, kbd {
+  font-family: var(--font-mono);
+  border: var(--border-width) solid var(--retro-fg);
+  background: var(--retro-bg);
+  color: var(--retro-fg);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-size: var(--text-10);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  font-weight: var(--weight-bold);
+}
+
+a {
+  color: var(--retro-fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--retro-muted-fg);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--retro-fg);
+  margin: 1rem 0;
+}
+
+blockquote {
+  border-left: 2px solid var(--retro-fg);
+  padding-left: 1rem;
+  font-style: italic;
+  margin: 0;
+}
+
 .bg-grid { background-image: url('/grid-background-light.svg'); background-repeat: repeat; }
 .dark .bg-grid { background-image: url('/grid-background-dark.svg'); }
-h1, h2, h3, h4, h5, h6 { @apply uppercase tracking-wider font-bold; }
+
+/* ── Utility Classes ───────────────────────────────────────────────────── */
+
+/* Reusable button-shell — 2px border, hover-flip */
+.btn {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-11);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  height: var(--button-h-md);
+  padding: 0 14px;
+  border: var(--border-width) solid var(--retro-fg);
+  background: var(--retro-bg);
+  color: var(--retro-fg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn:hover {
+  background: var(--retro-fg);
+  color: var(--retro-bg);
+}
+
+.btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.btn-ghost {
+  border-color: var(--retro-muted-fg);
+  color: var(--retro-muted-fg);
+}
+
+.btn-ghost:hover {
+  background: transparent;
+  border-color: var(--retro-fg);
+  color: var(--retro-fg);
+}
+
+.btn-destructive {
+  border-color: var(--color-retro-error);
+  color: var(--color-retro-error);
+}
+
+.btn-destructive:hover {
+  background: var(--color-retro-error);
+  color: var(--retro-bg);
+}
+
+/* 2px-border surface card */
+.surface {
+  background: var(--retro-bg);
+  border: var(--border-width) solid var(--retro-fg);
+  border-radius: var(--radius-md);
+}
+
+/* "tab-style" header — dark band on top of a card */
+.heading-band {
+  background: var(--retro-fg);
+  color: var(--retro-bg);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-13);
+  padding: 10px 16px;
+}
 
 /* Optional: Extra noise overlay (add .noise-overlay class to any element) */
 .noise-overlay {

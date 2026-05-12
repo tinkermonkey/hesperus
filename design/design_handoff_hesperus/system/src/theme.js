@@ -3,21 +3,29 @@ import { createTheme } from "flowbite-react";
 export const hesperusTheme = createTheme({
   // ───────────────────────────── Button ─────────────────────────────
   button: {
-    base: "font-mono uppercase tracking-wider focus:z-10 focus:outline-none focus:ring-0 transition-colors duration-150 rounded-lg",
+    base: "font-mono uppercase tracking-wider focus:z-10 focus:outline-none focus:ring-0 transition-colors duration-150 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed active:translate-x-px active:translate-y-px",
     fullSized: "w-full",
     color: {
+      default:
+        "border-2 border-retro-fg bg-retro-bg text-retro-fg hover:bg-retro-fg hover:text-retro-bg aria-[expanded=true]:bg-retro-fg aria-[expanded=true]:text-retro-bg",
       primary:
-        "border-2 border-retro-fg bg-retro-bg text-retro-fg hover:bg-retro-fg hover:text-retro-bg",
+        "border-2 border-retro-fg bg-retro-bg text-retro-fg hover:bg-retro-fg hover:text-retro-bg aria-[expanded=true]:bg-retro-fg aria-[expanded=true]:text-retro-bg",
       outline:
-        "border-2 border-retro-fg bg-retro-bg text-retro-fg hover:bg-retro-fg hover:text-retro-bg",
+        "border-2 border-retro-fg bg-retro-bg text-retro-fg hover:bg-retro-fg hover:text-retro-bg aria-[expanded=true]:bg-retro-fg aria-[expanded=true]:text-retro-bg",
       ghost:
+        "border-2 border-retro-muted-fg bg-retro-bg text-retro-muted-fg hover:border-retro-fg hover:text-retro-fg",
+      gray:
         "border-2 border-retro-muted-fg bg-retro-bg text-retro-muted-fg hover:border-retro-fg hover:text-retro-fg",
       destructive:
         "border-2 border-retro-error bg-retro-bg text-retro-error hover:bg-retro-error hover:text-retro-bg",
+      success:
+        "border-2 border-retro-success bg-retro-bg text-retro-success-text hover:bg-retro-success hover:text-retro-bg",
+      failure:
+        "border-2 border-retro-error bg-retro-bg text-retro-error hover:bg-retro-error hover:text-retro-bg",
     },
     size: {
-      sm: "text-[9px] h-[26px] rounded-sm px-3.5",
-      md: "text-[11px] h-9 rounded-md px-3.5",
+      sm: "text-[length:var(--text-9)] h-[var(--control-h-sm)] rounded-sm px-3.5",
+      md: "text-[length:var(--text-11)] h-[var(--control-h-md)] rounded-md px-3.5",
     },
     pill: "",
   },
@@ -30,7 +38,7 @@ export const hesperusTheme = createTheme({
         default: "border-retro-fg bg-retro-bg text-retro-fg dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
         success: "border-retro-success bg-retro-bg text-retro-success dark:border-retro-success dark:bg-retro-bg dark:text-retro-success",
         failure: "border-retro-error bg-retro-bg text-retro-error dark:border-retro-error dark:bg-retro-bg dark:text-retro-error",
-        warning: "border-retro-warning bg-retro-bg text-retro-warning dark:border-retro-warning dark:bg-retro-bg dark:text-retro-warning",
+        warning: "border-retro-warning bg-retro-bg text-retro-warning-text dark:border-retro-warning dark:bg-retro-bg dark:text-retro-warning-text",
         info: "border-retro-info bg-retro-bg text-retro-info dark:border-retro-info dark:bg-retro-bg dark:text-retro-info",
       },
     },
@@ -46,7 +54,7 @@ export const hesperusTheme = createTheme({
 
   // ───────────────────────────── Alert ──────────────────────────────
   alert: {
-    base: "flex items-start gap-2.5 rounded-md border-2 px-3.5 py-2.5 font-mono text-[11px]",
+    base: "flex items-start gap-2.5 rounded-md border-2 px-3.5 py-2.5 font-mono text-[length:var(--text-11)]",
     color: {
       default: "border-retro-fg bg-retro-bg text-retro-fg dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
       success: "border-retro-success bg-retro-bg text-retro-fg dark:border-retro-success dark:bg-retro-bg dark:text-retro-fg",
@@ -59,7 +67,7 @@ export const hesperusTheme = createTheme({
       color: {
         default: "bg-transparent text-retro-fg hover:bg-retro-secondary dark:bg-transparent dark:text-retro-fg dark:hover:bg-retro-secondary",
         success: "bg-transparent text-retro-success hover:bg-retro-secondary dark:bg-transparent dark:text-retro-success dark:hover:bg-retro-secondary",
-        warning: "bg-transparent text-retro-warning hover:bg-retro-secondary dark:bg-transparent dark:text-retro-warning dark:hover:bg-retro-secondary",
+        warning: "bg-transparent text-retro-warning-text hover:bg-retro-secondary dark:bg-transparent dark:text-retro-warning dark:hover:bg-retro-secondary",
         failure: "bg-transparent text-retro-error hover:bg-retro-secondary dark:bg-transparent dark:text-retro-error dark:hover:bg-retro-secondary",
         info: "bg-transparent text-retro-info hover:bg-retro-secondary dark:bg-transparent dark:text-retro-info dark:hover:bg-retro-secondary",
       },
@@ -99,7 +107,7 @@ export const hesperusTheme = createTheme({
     header: {
       base: "flex items-center justify-between bg-retro-fg px-4 py-3.5 rounded-t-md",
       title:
-        "font-mono text-[13px] font-bold uppercase tracking-wider text-retro-bg",
+        "font-mono text-[length:var(--text-13)] font-bold uppercase tracking-wider text-retro-bg",
       close: {
         base: "ml-auto inline-flex items-center rounded p-1 text-retro-bg hover:bg-retro-bg/20",
         icon: "h-4 w-4",
@@ -114,7 +122,6 @@ export const hesperusTheme = createTheme({
   },
 
   // ──────────────────────────── Navbar ──────────────────────────────
-  // Toolbar-style nav: fixed height, clipped rounded corners, no collapse.
   navbar: {
     root: {
       base: "bg-retro-bg dark:bg-retro-bg rounded-md overflow-hidden border-2 border-retro-fg dark:border-retro-fg py-0",
@@ -124,7 +131,7 @@ export const hesperusTheme = createTheme({
       },
     },
     brand: {
-      base: "flex items-center gap-2 h-full pr-5 border-r-2 border-retro-fg dark:border-retro-fg font-mono text-[11px] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
+      base: "flex items-center gap-2 h-full pr-5 border-r-2 border-retro-fg dark:border-retro-fg font-mono text-[length:var(--text-11)] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
     },
     collapse: {
       base: "flex items-stretch",
@@ -132,10 +139,10 @@ export const hesperusTheme = createTheme({
       hidden: { on: "", off: "" },
     },
     link: {
-      base: "flex items-center gap-2 h-full px-5 md:px-5 font-mono text-[11px] font-bold uppercase tracking-wider text-retro-fg hover:text-retro-muted-fg md:hover:text-retro-muted-fg hover:bg-retro-bg/10 transition-colors focus:outline-none focus:ring-0 whitespace-nowrap",
+      base: "flex items-center gap-2 h-full px-5 md:px-5 font-mono text-[length:var(--text-11)] font-bold uppercase tracking-wider transition-colors duration-150 focus:outline-none focus:ring-0 whitespace-nowrap",
       active: {
-        on: "bg-retro-bg/10 dark:bg-retro-bg/10 text-retro-fg md:text-retro-fg dark:text-retro-fg",
-        off: "text-retro-fg hover:text-retro-muted-fg md:hover:text-retro-muted-fg dark:text-retro-fg dark:hover:text-retro-muted-fg dark:md:hover:text-retro-muted-fg",
+        on: "bg-retro-fg text-retro-bg dark:bg-retro-fg dark:text-retro-bg",
+        off: "text-retro-fg hover:bg-retro-fg hover:text-retro-bg dark:text-retro-fg dark:hover:bg-retro-fg dark:hover:text-retro-bg",
       },
     },
     toggle: {
@@ -150,15 +157,32 @@ export const hesperusTheme = createTheme({
     field: {
       base: "relative w-full",
       input: {
-        base: "block w-full font-mono text-[11px] focus:outline-none focus:ring-0",
+        base: "block w-full font-mono text-[length:var(--text-11)] focus:outline-none focus:ring-0",
         sizes: {
           md: "px-3 py-2",
         },
         colors: {
-          gray: "border-2 border-retro-fg bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+          gray:    "border-2 border-retro-fg     bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-fg     dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+          failure: "border-2 border-retro-error  bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-error  dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+          success: "border-2 border-retro-success bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-success dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+          warning: "border-2 border-retro-warning bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-warning dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+          info:    "border-2 border-retro-info    bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-info    dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
         },
       },
     },
+  },
+
+  // ──────────────────────────── Textarea ───────────────────────────
+  textarea: {
+    base: "block w-full font-mono text-[length:var(--text-11)] focus:outline-none focus:ring-0 resize-none",
+    colors: {
+      gray:    "border-2 border-retro-fg     bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-fg     dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+      failure: "border-2 border-retro-error  bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-error  dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+      success: "border-2 border-retro-success bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-success dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+      warning: "border-2 border-retro-warning bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-warning dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+      info:    "border-2 border-retro-info    bg-retro-bg text-retro-fg placeholder-retro-muted-fg dark:border-retro-info    dark:bg-retro-bg dark:text-retro-fg dark:placeholder-retro-muted-fg rounded-md",
+    },
+    withShadow: { on: "", off: "" },
   },
 
   // ──────────────────────────── Select ──────────────────────────────
@@ -167,12 +191,16 @@ export const hesperusTheme = createTheme({
     field: {
       base: "relative w-full",
       select: {
-        base: "block w-full font-mono text-[11px] focus:outline-none focus:ring-0 appearance-none",
+        base: "block w-full font-mono text-[length:var(--text-11)] focus:outline-none focus:ring-0 appearance-none",
         sizes: {
           md: "px-3 py-2",
         },
         colors: {
-          gray: "border-2 border-retro-fg bg-retro-bg text-retro-fg rounded-md dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
+          gray:    "border-2 border-retro-fg     bg-retro-bg text-retro-fg rounded-md dark:border-retro-fg     dark:bg-retro-bg dark:text-retro-fg",
+          failure: "border-2 border-retro-error  bg-retro-bg text-retro-fg rounded-md dark:border-retro-error  dark:bg-retro-bg dark:text-retro-fg",
+          success: "border-2 border-retro-success bg-retro-bg text-retro-fg rounded-md dark:border-retro-success dark:bg-retro-bg dark:text-retro-fg",
+          warning: "border-2 border-retro-warning bg-retro-bg text-retro-fg rounded-md dark:border-retro-warning dark:bg-retro-bg dark:text-retro-fg",
+          info:    "border-2 border-retro-info    bg-retro-bg text-retro-fg rounded-md dark:border-retro-info    dark:bg-retro-bg dark:text-retro-fg",
         },
       },
     },
@@ -180,12 +208,13 @@ export const hesperusTheme = createTheme({
 
   // ──────────────────────────── Checkbox ────────────────────────────
   checkbox: {
-    base: "appearance-none h-4 w-4 rounded-sm border-2 border-retro-fg bg-retro-bg checked:bg-retro-bg checked:border-retro-fg dark:border-retro-fg dark:bg-retro-bg dark:checked:bg-retro-bg dark:checked:border-retro-fg focus:ring-0 focus:ring-offset-0 cursor-pointer",
+    base: "appearance-none h-4 w-4 rounded-sm border-2 border-retro-fg bg-retro-bg checked:bg-retro-bg checked:border-retro-fg dark:border-retro-fg dark:bg-retro-bg dark:checked:bg-retro-bg dark:checked:border-retro-fg focus:ring-0 focus:ring-offset-0 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
   },
 
   // ──────────────────────────── Radio ───────────────────────────────
+  // Checked dot SVG is defined in index.css (light + dark) using actual token hex values.
   radio: {
-    base: "appearance-none h-4 w-4 border-2 border-retro-fg bg-retro-bg checked:border-retro-fg dark:border-retro-fg dark:bg-retro-bg dark:checked:border-retro-fg dark:checked:bg-[url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22%231E2110%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%223%22%2F%3E%3C%2Fsvg%3E')] focus:ring-0 focus:ring-offset-0 cursor-pointer",
+    base: "appearance-none h-4 w-4 border-2 border-retro-fg bg-retro-bg checked:border-retro-fg dark:border-retro-fg dark:bg-retro-bg dark:checked:border-retro-fg focus:ring-0 focus:ring-offset-0 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
     color: {
       default: "text-retro-fg dark:text-retro-fg",
     },
@@ -197,9 +226,9 @@ export const hesperusTheme = createTheme({
       base: "group flex rounded-lg focus:outline-none",
       active: {
         on: "cursor-pointer",
-        off: "cursor-not-allowed opacity-50",
+        off: "cursor-not-allowed opacity-40",
       },
-      label: "ms-3 mt-0.5 text-start font-mono text-[10px] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
+      label: "ms-3 mt-0.5 text-start font-mono text-[length:var(--text-10)] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
       input: "sr-only",
     },
     toggle: {
@@ -222,9 +251,23 @@ export const hesperusTheme = createTheme({
   // ──────────────────────────── Label ───────────────────────────────
   label: {
     root: {
-      base: "font-mono text-[10px] font-bold uppercase tracking-wider",
+      base: "font-mono text-[length:var(--text-10)] font-bold uppercase tracking-wider",
       colors: {
         default: "text-retro-fg dark:text-retro-fg",
+      },
+    },
+  },
+
+  // ──────────────────────────── HelperText ──────────────────────────
+  helperText: {
+    root: {
+      base: "font-mono text-[length:var(--text-9)] mt-1",
+      colors: {
+        gray: "text-retro-muted-fg dark:text-retro-muted-fg",
+        failure: "text-retro-error-text dark:text-retro-error-text",
+        success: "text-retro-success-text dark:text-retro-success-text",
+        warning: "text-retro-warning-text dark:text-retro-warning-text",
+        info: "text-retro-info-text dark:text-retro-info-text",
       },
     },
   },
@@ -232,14 +275,14 @@ export const hesperusTheme = createTheme({
   // ──────────────────────────── Table ───────────────────────────────
   table: {
     root: {
-      base: "w-full text-left font-mono text-[11px] text-retro-fg dark:text-retro-fg",
+      base: "w-full text-left font-mono text-[length:var(--text-11)] text-retro-fg dark:text-retro-fg",
       shadow: "",
       wrapper: "overflow-x-auto rounded-md border-2 border-retro-fg dark:border-retro-fg",
     },
     head: {
       base: "uppercase tracking-wider",
       cell: {
-        base: "bg-retro-fg px-3 py-2 text-retro-bg dark:bg-retro-fg dark:text-retro-bg font-bold text-[10px] tracking-wider border-r border-retro-bg last:border-r-0 group-first/head:first:rounded-none group-first/head:last:rounded-none",
+        base: "bg-retro-fg px-3 py-2 text-retro-bg dark:bg-retro-fg dark:text-retro-bg font-bold text-[length:var(--text-10)] tracking-wider border-r border-retro-bg last:border-r-0 group-first/head:first:rounded-none group-first/head:last:rounded-none",
       },
     },
     body: {
@@ -256,39 +299,65 @@ export const hesperusTheme = createTheme({
   },
 
   // ──────────────────────────── Tabs ────────────────────────────────
+  // Three variants:
+  //   default   — segmented/boxed (2px outer border, dividers, flip on active)
+  //   underline — orange 3px indicator on active tab, bottom-border container
+  //   pills     — pill-shaped tabs with flip on active
   tabs: {
     base: "flex flex-col",
     tablist: {
-      base: "flex w-fit overflow-hidden rounded-md border-2 border-retro-fg",
+      base: "flex",
       variant: {
-        // flex-nowrap: cancels default flex-wrap
-        // border-b-2: overrides default border-b (1px→2px); without this, border-b-0 was removing the bottom border entirely
-        // border-retro-fg / dark:border-retro-fg: overrides default border-gray-200/dark:border-gray-700
-        //   (variant is applied AFTER base in twMerge, so color must be set here too to win)
-        default: "flex-nowrap border-b-2 border-retro-fg dark:border-retro-fg",
+        default:   "w-fit overflow-hidden rounded-md border-2 border-retro-fg dark:border-retro-fg",
+        underline: "w-full border-b-2 border-retro-fg dark:border-retro-fg",
+        pills:     "gap-1.5 flex-wrap",
+        fullWidth: "w-full overflow-hidden rounded-md border-2 border-retro-fg dark:border-retro-fg divide-x-2 divide-retro-fg dark:divide-retro-fg",
       },
       tabitem: {
-        // rounded-t-none: cancels default rounded-t-lg — must use rounded-t-* group, not rounded-none
-        //   (rounded-none is in the "rounded" group; rounded-t-lg is in "rounded-t" — different twMerge
-        //    groups, so rounded-none doesn't cancel it. rounded-t-none is in the same group.)
-        // border-r border-retro-fg: consistent foreground-color separator on every tab
-        base: "flex items-center justify-center rounded-t-none py-0 font-mono text-[11px] font-bold uppercase tracking-[1px] px-5 h-9 border-r border-retro-fg last:border-r-0 focus:outline-none focus:ring-0 transition-colors",
+        base: "flex items-center justify-center font-mono text-[length:var(--text-11)] font-bold uppercase tracking-[1px] focus:outline-none focus:ring-0 transition-colors duration-150",
         variant: {
           default: {
-            // rounded-t-none: cancels this variant's own rounded-t-lg default
-            base: "rounded-t-none",
+            base: "px-5 h-[var(--control-h-md)] border-r-2 border-retro-fg last:border-r-0 dark:border-retro-fg",
             active: {
-              // dark:bg-retro-fg / dark:text-retro-bg: cancel default dark:bg-gray-800 / dark:text-primary-500
-              on: "bg-retro-fg text-retro-bg dark:bg-retro-fg dark:text-retro-bg",
-              // hover:text-retro-fg: cancels default hover:text-gray-600
-              // dark:*: cancel default dark:text-gray-400 / dark:hover:bg-gray-800 / dark:hover:text-gray-300
-              off: "bg-retro-bg text-retro-fg hover:bg-retro-secondary hover:text-retro-fg dark:bg-retro-bg dark:text-retro-fg dark:hover:bg-retro-secondary dark:hover:text-retro-fg",
+              on:  "bg-retro-fg text-retro-bg dark:bg-retro-fg dark:text-retro-bg",
+              off: "bg-retro-bg text-retro-fg hover:bg-retro-secondary dark:bg-retro-bg dark:text-retro-fg dark:hover:bg-retro-secondary",
+            },
+          },
+          underline: {
+            base: "px-4 h-[var(--control-h-md)] border-b-[3px] mb-[-2px] border-transparent",
+            active: {
+              on:  "border-retro-orange text-retro-fg dark:border-retro-orange dark:text-retro-fg",
+              off: "border-transparent text-retro-muted-fg hover:text-retro-fg dark:border-transparent dark:text-retro-muted-fg dark:hover:text-retro-fg",
+            },
+          },
+          pills: {
+            base: "px-3.5 py-1.5 rounded-full border-2 border-retro-fg dark:border-retro-fg",
+            active: {
+              on:  "bg-retro-fg text-retro-bg dark:bg-retro-fg dark:text-retro-bg",
+              off: "bg-retro-bg text-retro-fg hover:bg-retro-secondary dark:bg-retro-bg dark:text-retro-fg dark:hover:bg-retro-secondary",
+            },
+          },
+          fullWidth: {
+            base: "px-5 h-[var(--control-h-md)] w-full",
+            active: {
+              on:  "bg-retro-fg text-retro-bg dark:bg-retro-fg dark:text-retro-bg",
+              off: "bg-retro-bg text-retro-fg hover:bg-retro-secondary dark:bg-retro-bg dark:text-retro-fg dark:hover:bg-retro-secondary",
             },
           },
         },
+        icon: "mr-2 h-4 w-4",
       },
     },
-    tabpanel: "p-4",
+    tabitemcontainer: {
+      base: "",
+      variant: {
+        default: "",
+        underline: "",
+        pills: "",
+        fullWidth: "",
+      },
+    },
+    tabpanel: "py-3",
   },
 
   // ──────────────────────────── Breadcrumb ──────────────────────────
@@ -298,7 +367,7 @@ export const hesperusTheme = createTheme({
       list: "flex items-center gap-1",
     },
     item: {
-      base: "flex items-center gap-1 font-mono text-[11px]",
+      base: "flex items-center gap-1 font-mono text-[length:var(--text-11)]",
       chevron: "h-3 w-3 text-retro-muted-fg",
       href: {
         off: "font-bold uppercase tracking-wider text-retro-fg",
@@ -308,15 +377,17 @@ export const hesperusTheme = createTheme({
   },
 
   // ──────────────────────────── Tooltip ─────────────────────────────
+  // Dark fill (retro-fg bg, retro-bg text) with hard-offset double shadow.
   tooltip: {
     target: "",
-    base: "absolute z-10 inline-block rounded-md border-2 border-retro-fg bg-retro-bg px-3 py-2 font-mono text-[11px] text-retro-fg shadow-none dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
+    base: "absolute z-10 inline-block rounded-sm border-2 border-retro-fg bg-retro-fg px-3 py-1.5 font-mono text-[length:var(--text-9)] uppercase tracking-wider text-retro-bg shadow-tooltip dark:border-retro-fg dark:bg-retro-fg dark:text-retro-bg",
     arrow: {
-      base: "absolute z-10 h-2 w-2 rotate-45 border border-retro-fg bg-retro-bg dark:border-retro-fg dark:bg-retro-bg",
+      base: "absolute z-10 h-2 w-2 rotate-45 border border-retro-fg bg-retro-fg dark:border-retro-fg dark:bg-retro-fg",
     },
   },
 
   // ──────────────────────────── Spinner ─────────────────────────────
+  // Ring spinner — use SpinnerBlock and SpinnerDots for the other variants.
   spinner: {
     base: "inline animate-spin text-retro-fg dark:text-retro-fg",
     color: {
@@ -332,10 +403,18 @@ export const hesperusTheme = createTheme({
   },
 
   // ──────────────────────────── Progress ────────────────────────────
+  // Orange fill bar. For indeterminate, use .progress-indeterminate wrapper + .progress-indeterminate-bar.
   progress: {
-    base: "w-full overflow-hidden rounded-sm bg-retro-secondary dark:bg-retro-secondary",
-    label: "mb-1 flex justify-between font-mono text-[10px] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
-    bar: "rounded-sm bg-retro-fg dark:bg-retro-fg",
+    base: "w-full overflow-hidden rounded-sm border-2 border-retro-fg bg-retro-secondary dark:border-retro-fg dark:bg-retro-secondary",
+    label: "mb-1 flex justify-between font-mono text-[length:var(--text-10)] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
+    bar: "rounded-none",
+    color: {
+      default: "bg-retro-orange dark:bg-retro-orange",
+      success: "bg-retro-success dark:bg-retro-success",
+      failure: "bg-retro-error dark:bg-retro-error",
+      warning: "bg-retro-warning dark:bg-retro-warning",
+      info:    "bg-retro-info dark:bg-retro-info",
+    },
     size: {
       sm: "h-1.5",
       md: "h-2.5",
@@ -345,13 +424,16 @@ export const hesperusTheme = createTheme({
   },
 
   // ──────────────────────────── Toast ───────────────────────────────
+  // Semantic color variants are applied via className on the Toast component.
+  // Interior layout (icon block, label, progress bar) is custom JSX in consumer code.
   toast: {
     root: {
-      base: "flex w-full max-w-xs items-center rounded-md border-2 border-retro-fg bg-retro-bg p-4 text-retro-fg dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
+      base: "flex w-full max-w-sm rounded-md border-2 border-retro-fg bg-retro-bg text-retro-fg shadow-hard-2 dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg overflow-hidden",
+      closed: "opacity-0 ease-out",
     },
     toggle: {
-      base: "-m-1.5 ml-auto inline-flex h-8 w-8 rounded-lg p-1.5 text-retro-fg hover:bg-retro-secondary dark:text-retro-fg dark:hover:bg-retro-secondary",
-      icon: "h-5 w-5",
+      base: "ms-auto inline-flex items-center p-1 text-retro-muted-fg hover:text-retro-fg focus:outline-none dark:text-retro-muted-fg dark:hover:text-retro-fg",
+      icon: "h-4 w-4",
     },
   },
 
@@ -362,7 +444,7 @@ export const hesperusTheme = createTheme({
     },
     star: {
       empty: "text-retro-muted-fg dark:text-retro-muted-fg",
-      filled: "text-retro-fg dark:text-retro-fg",
+      filled: "text-retro-warning dark:text-retro-warning",
       sizes: {
         sm: "w-4 h-4",
         md: "w-5 h-5",
@@ -377,19 +459,19 @@ export const hesperusTheme = createTheme({
       base: "divide-y divide-retro-fg border-2 border-retro-fg rounded-md dark:divide-retro-fg dark:border-retro-fg",
     },
     content: {
-      base: "p-4 font-mono text-[11px]",
+      base: "p-4 font-mono text-[length:var(--text-11)]",
     },
     title: {
-      base: "flex w-full items-center justify-between p-4 font-mono text-[11px] font-bold uppercase tracking-wider text-retro-fg hover:bg-retro-secondary dark:text-retro-fg dark:hover:bg-retro-secondary",
+      base: "flex w-full items-center justify-between p-4 font-mono text-[length:var(--text-11)] font-bold uppercase tracking-wider transition-colors duration-150",
       open: {
-        on: "bg-retro-secondary dark:bg-retro-secondary",
-        off: "",
+        on: "bg-retro-fg text-retro-bg hover:bg-retro-fg/90 dark:bg-retro-fg dark:text-retro-bg dark:hover:bg-retro-fg/90",
+        off: "text-retro-fg hover:bg-retro-secondary dark:text-retro-fg dark:hover:bg-retro-secondary",
       },
       arrow: {
-        base: "h-4 w-4 shrink-0 text-retro-fg dark:text-retro-fg",
+        base: "h-4 w-4 shrink-0 transition-transform",
         open: {
-          on: "rotate-180",
-          off: "",
+          on: "rotate-90 text-retro-bg dark:text-retro-bg",
+          off: "text-retro-fg dark:text-retro-fg",
         },
       },
     },
@@ -414,9 +496,9 @@ export const hesperusTheme = createTheme({
           horizontal: "mt-3 sm:pr-8",
           vertical: "",
         },
-        time: "mb-1 font-mono text-[9px] uppercase tracking-wider text-retro-muted-fg dark:text-retro-muted-fg",
-        title: "font-mono text-[11px] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
-        body: "font-mono text-[11px] text-retro-muted-fg dark:text-retro-muted-fg",
+        time: "mb-1 font-mono text-[length:var(--text-9)] uppercase tracking-wider text-retro-muted-fg dark:text-retro-muted-fg",
+        title: "font-mono text-[length:var(--text-11)] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
+        body: "font-mono text-[length:var(--text-11)] text-retro-muted-fg dark:text-retro-muted-fg",
       },
       point: {
         horizontal: "flex items-center",
@@ -437,7 +519,7 @@ export const hesperusTheme = createTheme({
   // ──────────────────────────── List ────────────────────────────────
   list: {
     root: {
-      base: "space-y-1 font-mono text-[11px] text-retro-fg dark:text-retro-fg list-inside",
+      base: "space-y-1 font-mono text-[length:var(--text-11)] text-retro-fg dark:text-retro-fg list-inside",
       ordered: {
         off: "list-disc",
         on: "list-decimal",
@@ -459,7 +541,8 @@ export const hesperusTheme = createTheme({
   avatar: {
     root: {
       base: "flex items-center justify-center space-x-2",
-      bordered: "p-1 ring-2 ring-retro-fg dark:ring-retro-fg",
+      inner: "relative",
+      bordered: "ring-2 ring-retro-fg dark:ring-retro-fg",
       rounded: "rounded-sm",
       color: {
         default: "ring-retro-fg dark:ring-retro-fg",
@@ -472,16 +555,35 @@ export const hesperusTheme = createTheme({
         xl: "w-24 h-24",
       },
       stacked: "ring-2 ring-retro-bg dark:ring-retro-bg",
+      img: {
+        base: "rounded-sm",
+        off: "relative overflow-hidden bg-retro-secondary dark:bg-retro-secondary",
+        on: "",
+        placeholder: "absolute w-auto h-auto text-retro-muted-fg dark:text-retro-muted-fg -bottom-1",
+      },
+      initials: {
+        base: "inline-flex items-center justify-center overflow-hidden rounded-sm bg-retro-secondary dark:bg-retro-secondary",
+        text: "font-mono text-[length:var(--text-11)] font-bold uppercase text-retro-fg dark:text-retro-fg",
+      },
+      status: {
+        away: "bg-retro-warning",
+        base: "absolute h-[var(--status-indicator-size)] w-[var(--status-indicator-size)] rounded-full border-2 border-retro-bg dark:border-retro-bg",
+        busy: "bg-retro-error",
+        offline: "bg-retro-muted-fg",
+        online: "bg-retro-success",
+      },
+      statusPosition: {
+        "bottom-left":  "bottom-0 left-0",
+        "bottom-right": "bottom-0 right-0",
+        "top-left":     "top-0 left-0",
+        "top-right":    "top-0 right-0",
+      },
     },
-    img: {
-      base: "rounded-sm",
-      off: "relative overflow-hidden bg-retro-secondary dark:bg-retro-secondary",
-      on: "",
-      placeholder: "absolute w-auto h-auto text-retro-muted-fg dark:text-retro-muted-fg -bottom-1",
+    group: {
+      base: "flex -space-x-3",
     },
-    initials: {
-      base: "inline-flex items-center justify-center overflow-hidden rounded-sm bg-retro-secondary dark:bg-retro-secondary",
-      text: "font-mono text-[11px] font-bold uppercase text-retro-fg dark:text-retro-fg",
+    groupCounter: {
+      base: "relative flex h-10 w-10 items-center justify-center rounded-sm border-2 border-retro-fg bg-retro-muted font-mono text-[length:var(--text-11)] font-bold text-retro-muted-fg ring-2 ring-retro-bg dark:border-retro-fg dark:bg-retro-muted dark:text-retro-muted-fg dark:ring-retro-bg",
     },
   },
 
@@ -502,7 +604,7 @@ export const hesperusTheme = createTheme({
   // ──────────────────────────── Kbd ─────────────────────────────────
   kbd: {
     root: {
-      base: "px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-wider border-2 border-retro-fg bg-retro-bg text-retro-fg rounded-sm dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
+      base: "px-2 py-1 font-mono text-[length:var(--text-10)] font-bold uppercase tracking-wider border-2 border-retro-fg bg-retro-bg text-retro-fg rounded-sm dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
     },
   },
 
@@ -517,12 +619,12 @@ export const hesperusTheme = createTheme({
     },
   },
 
-  // ──────────────────────────── pagination ──────────────────────────
+  // ──────────────────────────── Pagination ──────────────────────────
   pagination: {
     base: "flex items-center gap-2",
     layout: {
       table: {
-        base: "text-[11px] font-mono text-retro-muted-fg dark:text-retro-muted-fg",
+        base: "text-[length:var(--text-11)] font-mono text-retro-muted-fg dark:text-retro-muted-fg",
         span: "font-bold text-retro-fg dark:text-retro-fg",
       },
     },
@@ -537,7 +639,7 @@ export const hesperusTheme = createTheme({
         icon: "h-4 w-4",
       },
       selector: {
-        base: "w-10 border-2 border-retro-fg bg-retro-bg py-2 text-center font-mono text-[11px] leading-tight text-retro-fg hover:bg-retro-fg hover:text-retro-bg dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg dark:hover:bg-retro-fg dark:hover:text-retro-bg",
+        base: "w-10 border-2 border-retro-fg bg-retro-bg py-2 text-center font-mono text-[length:var(--text-11)] leading-tight text-retro-fg hover:bg-retro-fg hover:text-retro-bg dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg dark:hover:bg-retro-fg dark:hover:text-retro-bg",
         active: "bg-retro-fg text-retro-bg hover:bg-retro-fg hover:text-retro-bg dark:bg-retro-fg dark:text-retro-bg",
       },
     },
@@ -549,9 +651,11 @@ export const hesperusTheme = createTheme({
     content: "py-1 focus:outline-none rounded-md border-2 border-retro-fg bg-retro-bg dark:border-retro-fg dark:bg-retro-bg",
     floating: {
       target: "w-fit",
-      base: "z-10 w-fit rounded-md divide-y divide-retro-fg dark:divide-retro-fg",
+      base: "z-10 w-fit rounded-md divide-y divide-retro-border shadow-hard-2 dark:divide-retro-border",
       item: {
-        base: "flex items-center justify-start px-4 py-2 font-mono text-[11px] text-retro-fg cursor-pointer hover:bg-retro-secondary dark:text-retro-fg dark:hover:bg-retro-secondary",
+        container: "",
+        base: "flex items-center justify-start px-4 py-2 font-mono text-[length:var(--text-11)] text-retro-fg cursor-pointer hover:bg-retro-secondary dark:text-retro-fg dark:hover:bg-retro-secondary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent",
+        icon: "mr-2 h-4 w-4",
       },
     },
   },
@@ -559,18 +663,189 @@ export const hesperusTheme = createTheme({
   // ──────────────────────────── Sidebar ─────────────────────────────
   sidebar: {
     root: {
-      base: "h-full bg-retro-bg border-2 border-retro-fg rounded-md dark:bg-retro-bg dark:border-retro-fg",
+      base: "h-full bg-retro-bg border-2 border-retro-fg rounded-md dark:bg-retro-bg dark:border-retro-fg transition-[width] duration-[250ms]",
+      collapsed: { on: "w-16", off: "w-full" },
       inner: "h-full overflow-y-auto overflow-x-hidden bg-retro-bg px-3 py-4 dark:bg-retro-bg",
     },
+    collapse: {
+      button: "group flex w-full items-center rounded-sm p-2 font-mono text-[length:var(--text-11)] text-retro-fg hover:bg-retro-secondary dark:text-retro-fg dark:hover:bg-retro-secondary",
+      icon: {
+        base: "h-4 w-4 shrink-0 text-retro-fg dark:text-retro-fg",
+        open: { on: "", off: "" },
+      },
+      label: {
+        base: "ml-3 flex-1 whitespace-nowrap text-left",
+        title: "",
+        icon: {
+          base: "h-4 w-4",
+          open: { on: "rotate-180", off: "" },
+        },
+      },
+      list: "space-y-1 py-1",
+    },
+    cta: {
+      base: "mt-6 rounded-md p-3",
+      color: {
+        blue: "bg-retro-info/10", dark: "bg-retro-secondary", failure: "bg-retro-error/10",
+        gray: "bg-retro-muted", green: "bg-retro-success/10", light: "bg-retro-secondary",
+        purple: "bg-retro-purple/10", red: "bg-retro-error/10", success: "bg-retro-success/10",
+        warning: "bg-retro-warning/10", yellow: "bg-retro-warning/10",
+      },
+    },
     item: {
-      base: "flex items-center justify-center rounded-sm p-2 font-mono text-[11px] text-retro-fg hover:bg-retro-secondary dark:text-retro-fg dark:hover:bg-retro-secondary",
-      active: "bg-retro-secondary dark:bg-retro-secondary",
+      active: "bg-retro-secondary dark:bg-retro-secondary font-bold",
+      base: "flex items-center justify-start rounded-sm p-2 font-mono text-[length:var(--text-11)] text-retro-fg hover:bg-retro-secondary dark:text-retro-fg dark:hover:bg-retro-secondary",
+      collapsed: {
+        insideCollapse: "group w-full pl-8",
+        noIcon: "font-bold",
+      },
       content: {
         base: "px-3 flex-1 whitespace-nowrap",
       },
+      icon: {
+        base: "h-4 w-4 shrink-0 text-retro-fg dark:text-retro-fg",
+        active: "text-retro-fg dark:text-retro-fg",
+      },
+      label: "ml-auto inline-flex items-center rounded-sm px-1.5 py-0.5 font-mono text-[length:var(--text-9)] font-bold",
+      listItem: "",
     },
+    items: { base: "" },
     itemGroup: {
-      base: "mt-4 space-y-2 border-t border-retro-fg pt-4 first:mt-0 first:border-t-0 first:pt-0 dark:border-retro-fg",
+      base: "mt-4 space-y-1 border-t border-retro-fg pt-4 first:mt-0 first:border-t-0 first:pt-0 dark:border-retro-fg",
+    },
+    logo: {
+      base: "mb-5 flex items-center pl-2",
+      collapsed: { on: "hidden", off: "" },
+      img: "mr-3 h-6",
+    },
+  },
+
+  // ──────────────────────────── Drawer ──────────────────────────────
+  // Side-sheet. Header dark band is applied via className on DrawerHeader in consumer code.
+  drawer: {
+    root: {
+      base: "fixed z-40 overflow-y-auto bg-retro-bg border-2 border-retro-fg transition-transform duration-[250ms] dark:bg-retro-bg dark:border-retro-fg",
+      backdrop: "fixed inset-0 z-30 bg-retro-fg/30 dark:bg-retro-fg/30",
+      edge: "bottom-16",
+      position: {
+        top: {
+          on:  "left-0 right-0 top-0 w-full transform-none",
+          off: "left-0 right-0 top-0 w-full -translate-y-full",
+        },
+        right: {
+          on:  "right-0 top-0 h-screen w-80 transform-none",
+          off: "right-0 top-0 h-screen w-80 translate-x-full",
+        },
+        bottom: {
+          on:  "bottom-0 left-0 right-0 w-full transform-none",
+          off: "bottom-0 left-0 right-0 w-full translate-y-full",
+        },
+        left: {
+          on:  "left-0 top-0 h-screen w-80 transform-none",
+          off: "left-0 top-0 h-screen w-80 -translate-x-full",
+        },
+      },
+    },
+    header: {
+      inner: {
+        titleIcon: "mr-2 h-4 w-4",
+        titleText: "font-mono text-[length:var(--text-13)] font-bold uppercase tracking-wider text-retro-fg dark:text-retro-fg",
+        closeButton: "absolute end-3 top-3 flex h-8 w-8 items-center justify-center rounded-md border-2 border-retro-fg bg-retro-bg text-retro-fg hover:bg-retro-secondary focus:outline-none dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg dark:hover:bg-retro-secondary",
+        closeIcon: "h-4 w-4",
+        titleCloseIcon: "sr-only",
+      },
+      collapsed: {
+        on: "hidden",
+        off: "block",
+      },
+    },
+    items: {
+      base: "p-4",
+    },
+  },
+
+  // ──────────────────────────── Datepicker ──────────────────────────
+  datepicker: {
+    root: {
+      base: "relative",
+    },
+    popup: {
+      root: {
+        base: "absolute top-10 z-50 block pt-2",
+        inline: "relative top-0 z-auto",
+        inner: "inline-block rounded-md border-2 border-retro-fg bg-retro-bg shadow-hard-2 dark:border-retro-fg dark:bg-retro-bg",
+      },
+      header: {
+        base: "flex items-center justify-between bg-retro-fg dark:bg-retro-fg px-3 py-2",
+        title: "font-mono text-[length:var(--text-11)] font-bold uppercase tracking-wider text-retro-bg dark:text-retro-bg",
+        selectors: {
+          base: "flex",
+          button: {
+            base: "flex items-center justify-center p-1 text-retro-bg dark:text-retro-bg hover:text-retro-bg/70 dark:hover:text-retro-bg/70 focus:outline-none",
+            prev: "",
+            next: "",
+            view: "px-2 font-mono text-[length:var(--text-11)] font-bold uppercase tracking-wider",
+          },
+        },
+      },
+      view: {
+        base: "p-3",
+      },
+      footer: {
+        base: "flex border-t border-retro-fg px-3 py-2 gap-2",
+        button: {
+          base: "flex-1 font-mono text-[length:var(--text-9)] uppercase tracking-wider font-bold border-2 border-retro-fg px-2 py-1 transition-colors focus:outline-none",
+          today: "bg-retro-bg text-retro-fg hover:bg-retro-fg hover:text-retro-bg",
+          clear: "bg-retro-bg text-retro-muted-fg hover:bg-retro-fg hover:text-retro-bg",
+        },
+      },
+    },
+    views: {
+      days: {
+        header: {
+          base: "mb-1 grid grid-cols-7",
+          title: "font-mono text-[length:var(--text-9)] uppercase tracking-wider text-retro-muted-fg text-center font-bold",
+        },
+        items: {
+          base: "grid w-64 grid-cols-7",
+          item: {
+            base: "block flex-1 cursor-pointer rounded-sm border-0 text-center font-mono text-[length:var(--text-10)] leading-9 font-bold focus:outline-none hover:bg-retro-secondary",
+            selected: "bg-retro-fg text-retro-bg hover:bg-retro-fg",
+            disabled: "opacity-40 cursor-not-allowed hover:bg-transparent",
+            today: "text-retro-orange dark:text-retro-orange",
+          },
+        },
+      },
+      months: {
+        items: {
+          base: "grid w-64 grid-cols-4",
+          item: {
+            base: "block flex-1 cursor-pointer rounded-sm border-0 text-center font-mono text-[length:var(--text-10)] leading-9 font-bold focus:outline-none hover:bg-retro-secondary",
+            selected: "bg-retro-fg text-retro-bg hover:bg-retro-fg",
+            disabled: "opacity-40 cursor-not-allowed hover:bg-transparent",
+          },
+        },
+      },
+      years: {
+        items: {
+          base: "grid w-64 grid-cols-4",
+          item: {
+            base: "block flex-1 cursor-pointer rounded-sm border-0 text-center font-mono text-[length:var(--text-10)] leading-9 font-bold focus:outline-none hover:bg-retro-secondary",
+            selected: "bg-retro-fg text-retro-bg hover:bg-retro-fg",
+            disabled: "opacity-40 cursor-not-allowed hover:bg-transparent",
+          },
+        },
+      },
+      decades: {
+        items: {
+          base: "grid w-64 grid-cols-4",
+          item: {
+            base: "block flex-1 cursor-pointer rounded-sm border-0 text-center font-mono text-[length:var(--text-10)] leading-9 font-bold focus:outline-none hover:bg-retro-secondary",
+            selected: "bg-retro-fg text-retro-bg hover:bg-retro-fg",
+            disabled: "opacity-40 cursor-not-allowed hover:bg-transparent",
+          },
+        },
+      },
     },
   },
 
@@ -581,7 +856,7 @@ export const hesperusTheme = createTheme({
       container: "w-full p-6",
     },
     groupLink: {
-      base: "flex flex-wrap font-mono text-[11px] text-retro-fg dark:text-retro-fg",
+      base: "flex flex-wrap font-mono text-[length:var(--text-11)] text-retro-fg dark:text-retro-fg",
       link: {
         base: "mr-4 last:mr-0 hover:underline hover:text-retro-muted-fg dark:hover:text-retro-muted-fg",
       },
@@ -598,7 +873,7 @@ export const hesperusTheme = createTheme({
 
   // ──────────────────────────── Popover ─────────────────────────────
   popover: {
-    base: "absolute z-20 inline-block w-max max-w-[100vw] rounded-md border-2 border-retro-fg bg-retro-bg shadow-none dark:border-retro-fg dark:bg-retro-bg",
+    base: "absolute z-20 inline-block w-max max-w-[100vw] rounded-md border-2 border-retro-fg bg-retro-bg shadow-hard-2 dark:border-retro-fg dark:bg-retro-bg",
     content: "z-10 overflow-hidden rounded-md",
     arrow: {
       base: "absolute h-2 w-2 z-0 rotate-45 border border-retro-fg bg-retro-bg dark:border-retro-fg dark:bg-retro-bg",
@@ -606,6 +881,9 @@ export const hesperusTheme = createTheme({
   },
 
   // ──────────────────────────── FileInput ───────────────────────────
+  // Consumers: use FileInputRetro (src/components/FileInputRetro.jsx) for the full
+  // "CHOOSE FILE" button + filename affordance. This slot styles Flowbite's native
+  // <FileInput> if used directly, but FileInputRetro is the recommended component.
   fileInput: {
     root: {
       base: "flex",
@@ -613,10 +891,10 @@ export const hesperusTheme = createTheme({
     field: {
       base: "relative w-full",
       input: {
-        base: "block w-full overflow-hidden rounded-md border-2 border-retro-fg bg-retro-bg font-mono text-[11px] text-retro-fg cursor-pointer focus:outline-none dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
+        base: "block w-full overflow-hidden rounded-md border-2 border-retro-fg bg-retro-bg font-mono text-[length:var(--text-11)] text-retro-fg cursor-pointer focus:outline-none dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
         sizes: {
           sm: "sm:text-xs",
-          md: "text-[11px]",
+          md: "text-[length:var(--text-11)]",
           lg: "sm:text-base",
         },
       },

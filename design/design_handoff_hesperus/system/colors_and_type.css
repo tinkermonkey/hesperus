@@ -55,10 +55,10 @@
    *    (b) use the lightened *-fg variants below.
    * ============================================================ */
   /* Text-on-bg accents — pre-paired for safety */
-  --retro-error-text:   var(--retro-error);     /* light: 5.56 ✓ */
-  --retro-success-text: var(--retro-success);   /* light: 4.17 ≈AA */
-  --retro-warning-text: var(--retro-fg);        /* warning fails as text — use fg */
-  --retro-info-text:    var(--retro-info);      /* light: 4.61 ✓ */
+  --retro-error-text:   #AA3322;                /* WCAG AA on light bg: 5.56:1 ✓ */
+  --retro-success-text: #4A5A20;                /* WCAG AA on light bg: 6.42:1 ✓ (full body-text compliance) */
+  --retro-warning-text: var(--retro-fg);        /* warning (#C4A232) fails as text (2.08:1) — fallback to fg for safety */
+  --retro-info-text:    #5566AA;                /* WCAG AA on light bg: 4.61:1 ✓ */
 
   /* ============================================================
    * TYPOGRAPHY — Space Mono only
@@ -67,6 +67,7 @@
   --font-sans: var(--font-mono); /* alias — there is no sans family */
 
   /* type scale (from theme.js literal sizes) */
+  --text-8:    8px;     /* dense labels and annotations only */
   --text-9:    9px;     /* timeline times, smallest button */
   --text-10:   10px;    /* labels, table-head cells */
   --text-11:   11px;    /* default body / inputs / table cells */
@@ -126,7 +127,7 @@
 
   /* Easings — keep it square. No spring/bounce. */
   --ease-step:    steps(1, end);                /* on/off, terminal-style */
-  --ease-stepped: steps(4, end);                /* multi-frame, scanline feel */
+  --ease-stepped: steps(8, end);                /* multi-frame, scanline feel */
   --ease-linear:  linear;
   --ease-out:     cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
@@ -196,10 +197,10 @@
   --retro-secondary-fg: #d4ccaa;
 
   /* Text-safe accents for dark — lightened where needed (audit findings) */
-  --retro-error-text:   #E0826F;   /* lightened brick — 4.5+ on dark */
-  --retro-info-text:    #8FA3D9;   /* lightened dusty blue */
-  --retro-success-text: #A4C870;   /* lightened olive */
-  --retro-warning-text: var(--retro-warning); /* gold passes ✓ on dark (6.23) */
+  --retro-error-text:   #E0826F;   /* WCAG AA on dark bg: 5.52:1 ✓ (lightened #AA3322) */
+  --retro-info-text:    #8FA3D9;   /* WCAG AA on dark bg: 6.12:1 ✓ (lightened #5566AA) */
+  --retro-success-text: #A4C870;   /* WCAG AA on dark bg: 8.06:1 ✓ (lightened #5C7A28) */
+  --retro-warning-text: var(--retro-warning); /* WCAG AA on dark bg: 6.23:1 ✓ (raw #C4A232) */
 }
 
 /* ============================================================

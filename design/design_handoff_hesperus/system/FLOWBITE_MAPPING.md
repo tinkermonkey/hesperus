@@ -34,11 +34,11 @@ Every interactive component must visually answer all of:
 
 | Flowbite component | Hesperus tokens | States required | Visual target |
 |---|---|---|---|
-| `<Button>` | `--retro-fg` border + bg flip on hover. `color="success"` → `--retro-success`, `color="failure"` → `--retro-error`. `--button-h-md` (36px) default; `--button-h-sm` (26px). | all 6 | `preview/components-buttons-states.html` |
+| `<Button>` | `--retro-fg` border + bg flip on hover. `color="success"` → `--retro-success`, `color="failure"` → `--retro-error`. `--button-h-md` (36px) default; `--button-h-sm` (26px). Disabled: `opacity: 0.4` + `cursor-not-allowed`. Active/pressed: `translate: 1px 1px`. | all 6 | `preview/components-buttons-states.html` |
 | `<Button color="gray">` | `--retro-muted-fg` border + text. Hover: `--retro-fg`. | all 6 | same |
-| `<TextInput>` | 2px `--retro-fg` border, `--retro-bg` fill, `--retro-fg` text, `--retro-muted-fg` placeholder. `color="failure"` → `--retro-error` border + helper. | default, focus (orange ring), error, disabled | `preview/components-forms-full.html` |
+| `<TextInput>` | 2px border, `--retro-bg` fill, `--retro-fg` text, `--retro-muted-fg` placeholder. Variants: gray (`--retro-muted-fg` border), failure (`--retro-error` border + helper), success (`--retro-success` border), warning (`--retro-warning` border), info (`--retro-info` border). Default: `--retro-fg` border. | default, focus (orange ring), error, disabled | `preview/components-forms-full.html` |
 | `<Textarea>` | Same as TextInput, `resize: none`, line-height `--leading-normal`. | same | same |
-| `<Select>` | Same as TextInput + `▾` chevron suffix. Native `<select>`, restyled. | same | same |
+| `<Select>` | Same as TextInput + `▾` chevron suffix. Variants: gray, failure, success, warning, info. Native `<select>`, restyled. | same | same |
 | `<Checkbox>` | 16px square, 2px `--retro-fg` border, `--radius-sm`. Checked: `--retro-fg` fill + `--retro-bg` ✓ glyph. Indeterminate: `—` bar. | unchecked / checked / indeterminate / disabled / focus | same |
 | `<Radio>` | 16px circle, 2px border. Selected: 6px inner dot. | same | same |
 | `<ToggleSwitch>` | 38×20 pill. Off: `--retro-bg` track, `--retro-fg` knob. On: `--retro-success` track, `--retro-bg` knob (right). | off / on / disabled | same |
@@ -46,15 +46,15 @@ Every interactive component must visually answer all of:
 | `<HelperText>` | `--text-9`, `--retro-muted-fg`. With `color="failure"`: `--retro-error`, prefix `▌`. | default / error | same |
 | `<Card>` | 2px `--retro-fg` border, `--radius-md`, `--retro-bg` fill, no shadow (or `--shadow-hard-2` for elevated variant). Optional dark heading band (`background: --retro-fg; color: --retro-bg`). | hover (subtle bg → `--retro-secondary`) | `preview/components-cards.html` |
 | `<Modal>` | 2px `--retro-fg` border. Header band: `--retro-fg` bg + `--retro-bg` text + `×` button. Backdrop: `rgba(34,38,39,0.55)`. Enter `--dur-slow` `--ease-out`. | open / close | `preview/components-modal.html` |
-| `<Drawer>` | Same border treatment, slides in `--dur-slow` `--ease-out` from edge. | — | (build) |
+| `<Drawer>` | Same border treatment, slides in `--dur-slow` `--ease-out` from edge. | — | ✓ complete |
 | `<Navbar>` | Height `--navbar-h` (44px). Items: 2px right-border separators. Active item: full color flip (bg `--retro-fg`, text `--retro-bg`). Brand: bold + `★` square mark. | default / hover / active | `preview/components-navbar.html` |
 | `<Sidebar>` | Same `surface` treatment. `<Sidebar.Item>`: `--text-11`, uppercase. Active: `--retro-secondary` bg + bold. Counts: `--text-9` `--retro-muted-fg`. | default / hover / active | (web-app `index.html`) |
 | `<Tabs>` | Underline variant (default): 2px `--retro-fg` bottom border on container, 3px `--retro-orange` indicator on active tab. Pill variant: 9999 radius, full color flip. Segmented: 2px border, dividers between, full flip on active. | default / hover / active / disabled | `preview/components-tabs.html` |
-| `<Accordion>` | 2px outer border. Items separated by 2px `--retro-fg`. Open header: full color flip + chevron rotated 90°. Body: 1px top border, 10/12px padding. | collapsed / expanded | `preview/components-accordion.html` |
+| `<Accordion>` | 2px outer border. Items separated by 2px `--retro-fg`. Open header: full color flip (bg: `--retro-fg` → `--retro-bg`, text: `--retro-bg` → `--retro-fg`) + chevron rotated 90°. Body: 1px top border, 10/12px padding. | collapsed / expanded | `preview/components-accordion.html` |
 | `<Breadcrumb>` | Slash separator default. Current: `--retro-fg`. Inactive: `--retro-muted-fg` link. Boxed variant for headers: 1.5px borders + flip on current. | default / hover | `preview/components-breadcrumb.html` |
 | `<Pagination>` | All buttons in one bordered group, dividers between. Active: full flip. Disabled: `--disabled-opacity`. Compact variant: lone arrows + "PAGE n OF m". | default / hover / active / disabled | `preview/components-pagination.html` |
 | `<Dropdown>` | Trigger flips on open (bg ↔ fg). Menu: 2px border + `--shadow-hard-2`. Items separated by 1px `--retro-border`. Active: `--retro-secondary` bg + bold. Disabled: `--disabled-opacity`. Header: dark band. | trigger states + menu hover/active/disabled | `preview/components-dropdown.html` |
-| `<Tooltip>` | Dark fill (`--retro-fg` bg, `--retro-bg` text), `--text-9`, uppercase, 5/9 padding, arrow on edge. Outer 1px shadow for offset effect. | — | `preview/components-tooltip.html` |
+| `<Tooltip>` | Dark-fill default (inverted colors): `--retro-fg` bg + `--retro-bg` text. `--text-9`, uppercase, 5/9 padding, arrow on edge. Outer 1px shadow for offset effect. | — | `preview/components-tooltip.html` |
 | `<Popover>` | Like dropdown menu — 2px border, `--shadow-hard-2`, optional dark band header. | — | `preview/components-tooltip.html` (right side) |
 | `<Toast>` | 2px border in `--retro-{semantic}` color. Square icon block with same border, +letter glyph. Body text in `--retro-fg`. Progress bar at bottom in `--retro-{semantic}`. Hard shadow `--shadow-hard-2`. | enter / dismiss | `preview/components-toast.html` |
 | `<Alert>` | Border + label in `--retro-{semantic}`. Body in `--retro-fg`. Optional `▌` prefix on label. | — | `preview/components-alerts.html` |
@@ -64,9 +64,9 @@ Every interactive component must visually answer all of:
 | `<Spinner>` | Three styles: block (`steps(8)` rotation), ring (linear cubic-bezier rotation), dots (`steps(2)` blink). Default: ring 22px. | — | `preview/components-spinner.html` |
 | `<Progress>` | 8px height, 2px `--retro-fg` border, `--retro-bg` fill, `--retro-orange` (or semantic) progress fill. Indeterminate: 35%-wide bar sliding `--dur-slower`. | determinate / indeterminate | same |
 | `<Table>` | 2px outer border. `<th>`: full color flip (`--retro-fg` bg + `--retro-bg` text), `--text-10`, uppercase. `<td>`: 1px `--retro-fg` cell borders, `--text-11`. Row hover: `--retro-secondary`. | hover / sorted (with ▲/▼) | `preview/components-table.html` |
-| `<Datepicker>` | Inherit input styles. Calendar popover: 2px border + hard shadow, day cells with hover. | — | (build) |
-| `<FileInput>` | "CHOOSE FILE" label = `<Button>`, filename in `--retro-muted-fg`. | empty / selected / disabled | (build) |
-| `<Rating>` | 5 stars; filled = `--retro-warning` (warning is fill-safe, not text). | — | (build) |
+| `<Datepicker>` | Inherit input styles. Calendar popover: 2px border + hard shadow, day cells with hover. | — | ✓ complete |
+| `<FileInput>` | "CHOOSE FILE" label = `<Button>`, filename in `--retro-muted-fg`. | empty / selected / disabled | ✓ complete |
+| `<Rating>` | 5 stars; filled stars = `--retro-warning` color (warning is fill-safe for status indicators). Empty stars: `--retro-muted-fg`. | — | ✓ complete |
 | `<Banner>` / `<Footer>` | Use `<Card>` rules. Footer separators: 1px `--retro-border`. | — | — |
 | `<KBD>` | 2px `--retro-fg` border, `--retro-bg` fill, `--text-10`, uppercase, 1/4 padding, `--radius-sm`. | — | `preview/type-body.html` |
 
@@ -145,11 +145,6 @@ Before marking a component "done" in the React theme, verify:
 
 These need building before the theme is feature-complete:
 
-- `<Datepicker>` — calendar popover
-- `<FileInput>` — file selector with "CHOOSE FILE" button affordance
-- `<Rating>` — star rating with `--retro-warning` fill
-- `<Drawer>` — side-sheet
-- Empty / loading / error full-page states (under `preview/states-*.html`)
 - `<Sidebar>` mobile collapse
 
 When you build these in code, add a matching `preview/*.html` card and update this table.

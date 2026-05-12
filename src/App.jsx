@@ -81,6 +81,7 @@ import ConnectionLabel from "./components/ConnectionLabel";
 import SpinnerBlock from "./components/SpinnerBlock";
 import SpinnerDots from "./components/SpinnerDots";
 import FileInputRetro from "./components/FileInputRetro";
+import { StateMatrix } from "./components/StateMatrix";
 
 // ── Layout helpers ────────────────────────────────────────────────
 
@@ -115,7 +116,7 @@ function Variant({ label, children }) {
     <div className="flex flex-col items-start gap-2">
       {children}
       {label && (
-        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">
+        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">
           {label}
         </span>
       )}
@@ -126,6 +127,14 @@ function Variant({ label, children }) {
 // ── Sidebar nav ───────────────────────────────────────────────────
 
 const NAV_SECTIONS = [
+  { id: "colors", label: "Colors" },
+  { id: "type-scale", label: "Type Scale" },
+  { id: "spacing-radii", label: "Spacing & Radii" },
+  { id: "motion", label: "Motion" },
+  { id: "contrast", label: "Contrast" },
+  { id: "density", label: "Density" },
+  { id: "brand", label: "Brand" },
+  { id: "icons", label: "Icons" },
   { id: "typography", label: "Typography" },
   { id: "buttons", label: "Buttons" },
   { id: "form", label: "Form Inputs" },
@@ -153,6 +162,7 @@ export default function App() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openDrawerRight, setOpenDrawerRight] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (dark) {
@@ -162,8 +172,135 @@ export default function App() {
     }
   }, [dark]);
 
+  // State matrix styles for interactive components
+  const stateStyles = `
+    /* Button state styles */
+    .state-default button {
+      /* Default state - no changes */
+    }
+    .state-hover button {
+      background-color: var(--retro-fg) !important;
+      color: var(--retro-bg) !important;
+    }
+    .state-active button {
+      background-color: var(--retro-fg) !important;
+      color: var(--retro-bg) !important;
+      transform: translate(1px, 1px) !important;
+    }
+    .state-focus button {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+    }
+    .state-disabled button {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+    .state-loading button {
+      color: transparent !important;
+      position: relative;
+    }
+    .state-loading button::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--retro-fg);
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin 600ms linear infinite;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Link/Anchor state styles */
+    .state-hover a {
+      background-color: var(--retro-fg) !important;
+      color: var(--retro-bg) !important;
+    }
+    .state-active a {
+      background-color: var(--retro-fg) !important;
+      color: var(--retro-bg) !important;
+      transform: translate(1px, 1px) !important;
+    }
+    .state-focus a {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+      outline: none !important;
+    }
+    .state-disabled a {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Input state styles */
+    .state-hover input:not([type="checkbox"]):not([type="radio"]),
+    .state-hover select,
+    .state-hover textarea {
+      border-color: var(--retro-fg) !important;
+    }
+    .state-focus input:not([type="checkbox"]):not([type="radio"]),
+    .state-focus select,
+    .state-focus textarea {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+      outline: none !important;
+    }
+    .state-disabled input:not([type="checkbox"]):not([type="radio"]),
+    .state-disabled select,
+    .state-disabled textarea {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Checkbox/Radio state styles */
+    .state-hover input[type="checkbox"],
+    .state-hover input[type="radio"] {
+      border-color: var(--retro-fg) !important;
+    }
+    .state-focus input[type="checkbox"],
+    .state-focus input[type="radio"] {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+    }
+    .state-disabled input[type="checkbox"],
+    .state-disabled input[type="radio"] {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+    .state-disabled label {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Toggle switch state styles */
+    .state-focus [role="switch"] {
+      box-shadow: 0 0 0 2px var(--retro-bg), 0 0 0 4px var(--retro-orange) !important;
+    }
+    .state-disabled [role="switch"] {
+      opacity: 0.4 !important;
+      cursor: not-allowed !important;
+    }
+
+    /* Progress loading state */
+    .state-loading .progress-indeterminate {
+      position: relative;
+    }
+    .state-loading .progress-indeterminate-bar {
+      animation: slide-progress 1200ms ease-in-out infinite !important;
+      width: 35% !important;
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes slide-progress {
+      0% { margin-left: 0; }
+      50% { margin-left: 65%; }
+      100% { margin-left: 0; }
+    }
+  `;
+
   return (
     <ThemeProvider theme={hesperusTheme}>
+      <style>{stateStyles}</style>
       <div className="min-h-screen bg-retro-bg text-retro-fg bg-grid">
         {/* ── Header ── */}
         <div className="fixed top-0 left-0 right-0 z-50 p-3">
@@ -190,7 +327,7 @@ export default function App() {
         <div className="flex pt-[68px]">
           {/* ── Sidebar ── */}
           <nav className="fixed left-3 top-[68px] bottom-3 w-44 bg-retro-bg border-2 border-retro-fg rounded-lg overflow-y-auto py-8 px-5">
-            <p className="font-mono text-[8px] uppercase tracking-widest text-retro-muted-fg mb-4">
+            <p className="font-mono text-[length:var(--text-8)] uppercase tracking-widest text-retro-muted-fg mb-4">
               Components
             </p>
             <ul className="space-y-0.5">
@@ -209,6 +346,481 @@ export default function App() {
 
           {/* ── Main content ── */}
           <main className="ml-[200px] flex-1 px-14 py-12 max-w-5xl">
+
+            {/* ── Colors ── */}
+            <Section id="colors" title="Colors">
+              <Group label="Light palette">
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "bg", hex: "#efeed0", token: "--retro-bg" },
+                    { name: "muted", hex: "#f2ecda", token: "--retro-muted" },
+                    { name: "border", hex: "#b8a878", token: "--retro-border" },
+                    { name: "muted-fg", hex: "#8a7e6a", token: "--retro-muted-fg" },
+                    { name: "fg", hex: "#2c2416", token: "--retro-fg" },
+                    { name: "secondary", hex: "#f2ecda", token: "--retro-secondary" },
+                    { name: "secondary-fg", hex: "#2c2416", token: "--retro-secondary-fg" },
+                  ].map(({ name, hex, token }) => (
+                    <Variant key={name} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
+                        <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg">{hex}</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Dark palette">
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "bg", hex: "#222627", token: "--retro-bg" },
+                    { name: "muted", hex: "#332c22", token: "--retro-muted" },
+                    { name: "border", hex: "#4a4030", token: "--retro-border" },
+                    { name: "muted-fg", hex: "#887766", token: "--retro-muted-fg" },
+                    { name: "fg", hex: "#d4ccaa", token: "--retro-fg" },
+                    { name: "secondary", hex: "#3a3428", token: "--retro-secondary" },
+                    { name: "secondary-fg", hex: "#d4ccaa", token: "--retro-secondary-fg" },
+                  ].map(({ name, hex, token }) => (
+                    <Variant key={name} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-20 h-20 border-2" style={{ background: hex, borderColor: "#d4ccaa" }} />
+                        <p className="font-mono text-[9px] font-bold uppercase text-retro-muted-fg" style={{ color: "#887766" }}>{name}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg" style={{ color: "#887766" }}>{hex}</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Semantic colors">
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "error", hex: "#AA3322", token: "--retro-error" },
+                    { name: "success", hex: "#5C7A28", token: "--retro-success" },
+                    { name: "warning", hex: "#C4A232", token: "--retro-warning" },
+                    { name: "info", hex: "#5566AA", token: "--retro-info" },
+                  ].map(({ name, hex, token }) => (
+                    <Variant key={name} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
+                        <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg">{hex}</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Accent colors">
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "orange", hex: "#CC6622", token: "--retro-orange" },
+                    { name: "purple", hex: "#7744AA", token: "--retro-purple" },
+                    { name: "cyan", hex: "#2E8B8B", token: "--retro-cyan" },
+                    { name: "green", hex: "#5C7A28", token: "--retro-green" },
+                    { name: "yellow", hex: "#C4A232", token: "--retro-yellow" },
+                    { name: "blue", hex: "#5566AA", token: "--retro-blue" },
+                  ].map(({ name, hex, token }) => (
+                    <Variant key={name} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
+                        <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg">{hex}</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Type Scale ── */}
+            <Section id="type-scale" title="Type Scale">
+              <Group label="All sizes">
+                <div className="flex flex-col gap-3 w-full max-w-2xl">
+                  {[
+                    { size: "9px", token: "--text-9" },
+                    { size: "10px", token: "--text-10" },
+                    { size: "11px", token: "--text-11" },
+                    { size: "12px", token: "--text-12" },
+                    { size: "13px", token: "--text-13" },
+                    { size: "14px", token: "--text-14" },
+                    { size: "16px", token: "--text-16" },
+                    { size: "20px", token: "--text-20" },
+                    { size: "24px", token: "--text-24" },
+                    { size: "32px", token: "--text-32" },
+                    { size: "44px", token: "--text-44" },
+                  ].map(({ size, token }) => (
+                    <div key={token} className="flex items-baseline gap-4 border-b border-retro-border pb-2">
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg w-20">
+                        {token}
+                      </p>
+                      <p className="font-mono uppercase tracking-wider text-retro-fg" style={{ fontSize: size }}>
+                        HESPERUS
+                      </p>
+                      <p className="font-mono text-[9px] text-retro-muted-fg ml-auto">
+                        {size}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Spacing & Radii ── */}
+            <Section id="spacing-radii" title="Spacing & Radii">
+              <Group label="Spacing scale">
+                <div className="flex flex-col gap-4 w-full max-w-2xl">
+                  {[
+                    { token: "--space-0_5", px: "2" },
+                    { token: "--space-1", px: "4" },
+                    { token: "--space-1_5", px: "6" },
+                    { token: "--space-2", px: "8" },
+                    { token: "--space-2_5", px: "10" },
+                    { token: "--space-3", px: "12" },
+                    { token: "--space-3_5", px: "14" },
+                    { token: "--space-4", px: "16" },
+                    { token: "--space-5", px: "20" },
+                    { token: "--space-6", px: "24" },
+                    { token: "--space-8", px: "32" },
+                    { token: "--space-10", px: "40" },
+                    { token: "--space-12", px: "48" },
+                    { token: "--space-16", px: "64" },
+                  ].map(({ token, px }) => (
+                    <div key={token} className="flex items-center gap-4">
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg w-20">
+                        {token}
+                      </p>
+                      <div className="flex-1 bg-retro-fg rounded-sm" style={{ height: "6px", width: `${parseInt(px) * 2}px` }} />
+                      <p className="font-mono text-[9px] text-retro-muted-fg w-12 text-right">
+                        {px}px
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Radius values">
+                <div className="flex flex-wrap gap-6">
+                  {[
+                    { token: "--radius-sm", px: "3" },
+                    { token: "--radius-md", px: "4" },
+                    { token: "--radius-lg", px: "6" },
+                    { token: "--radius-full", px: "9999" },
+                  ].map(({ token, px }) => (
+                    <Variant key={token} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div
+                          className="w-20 h-20 border-2 border-retro-fg bg-retro-secondary"
+                          style={{ borderRadius: `${px}px` }}
+                        />
+                        <p className="font-mono text-[9px] font-bold uppercase">{token}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg">{px}px</p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Motion ── */}
+            <Section id="motion" title="Motion">
+              <style>{`
+                .motion-bar-0::after { animation: slide-0 1ms infinite linear; }
+                .motion-bar-100::after { animation: slide-100 100ms infinite linear; }
+                .motion-bar-150::after { animation: slide-150 150ms infinite linear; }
+                .motion-bar-250::after { animation: slide-250 250ms infinite linear; }
+                .motion-bar-400::after { animation: slide-400 400ms infinite linear; }
+                @keyframes slide-0 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                @keyframes slide-100 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                @keyframes slide-150 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                @keyframes slide-250 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                @keyframes slide-400 { 0% { transform: translateX(0); } 50% { transform: translateX(233%); } 100% { transform: translateX(0); } }
+                .motion-bar-0::after, .motion-bar-100::after, .motion-bar-150::after, .motion-bar-250::after, .motion-bar-400::after {
+                  content: '';
+                  position: absolute;
+                  top: 0; left: 0; bottom: 0;
+                  width: 30%;
+                  background: var(--retro-orange);
+                }
+                .ease-dot-easestep { animation: easeMove 2s infinite steps(1, end); }
+                .ease-dot-easestepped { animation: easeMove 2s infinite steps(8, end); }
+                .ease-dot-easelinear { animation: easeMove 2s infinite linear; }
+                .ease-dot-easeout { animation: easeMove 2s infinite cubic-bezier(0.2, 0.8, 0.2, 1); }
+                .ease-dot-easeinout { animation: easeMove 2s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+                .ease-dot-easestep, .ease-dot-easestepped, .ease-dot-easelinear, .ease-dot-easeout, .ease-dot-easeinout {
+                  position: absolute;
+                  top: 1px; width: 8px; height: 8px;
+                  background: var(--retro-fg);
+                  border-radius: 1px;
+                }
+                @keyframes easeMove {
+                  0% { left: 1px; }
+                  50% { left: calc(100% - 9px); }
+                  100% { left: 1px; }
+                }
+              `}</style>
+              <Group label="Duration tokens">
+                <div className="flex gap-6 flex-wrap">
+                  {[
+                    { token: "--dur-instant", ms: "0", label: "steps" },
+                    { token: "--dur-fast", ms: "100", label: "hover" },
+                    { token: "--dur-base", ms: "150", label: "default" },
+                    { token: "--dur-slow", ms: "250", label: "modals" },
+                    { token: "--dur-slower", ms: "400", label: "pages" },
+                  ].map(({ token, ms, label }) => (
+                    <Variant key={token} label={token}>
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="w-24 h-2 border-2 border-retro-fg bg-retro-secondary rounded-sm overflow-hidden relative">
+                          <div className={`motion-bar-${ms} absolute inset-0`} />
+                        </div>
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">
+                          {ms}ms · {label}
+                        </p>
+                      </div>
+                    </Variant>
+                  ))}
+                </div>
+              </Group>
+              <Group label="Easing tokens">
+                <div className="flex flex-col gap-3 w-full max-w-lg">
+                  {[
+                    { token: "--ease-step", fn: "easestep", label: "On/off" },
+                    { token: "--ease-stepped", fn: "easestepped", label: "8-frame" },
+                    { token: "--ease-linear", fn: "easelinear", label: "Linear" },
+                    { token: "--ease-out", fn: "easeout", label: "Out" },
+                    { token: "--ease-in-out", fn: "easeinout", label: "In-out" },
+                  ].map(({ token, fn, label }) => (
+                    <div key={token} className="flex items-center gap-4">
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg w-32">
+                        {token}
+                      </p>
+                      <div className="flex-1 h-3 border border-retro-fg bg-retro-secondary rounded-sm relative overflow-hidden">
+                        <div className={`ease-dot-${fn}`} />
+                      </div>
+                      <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg w-16 text-right">
+                        {label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Contrast ── */}
+            <Section id="contrast" title="Contrast">
+              <Group label="Light mode — WCAG AA">
+                <div className="w-full overflow-x-auto">
+                  <table className="font-mono text-[9px] border-collapse w-full max-w-3xl">
+                    <thead>
+                      <tr className="bg-retro-fg text-retro-bg">
+                        <th className="px-2 py-1 text-left font-bold uppercase">Token</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Ratio</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Body</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Large</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { token: "--retro-fg", ratio: "12.99", body: "✓", large: "✓", color: "#2c2416" },
+                        { token: "--retro-muted-fg", ratio: "3.38", body: "✗", large: "✓", color: "#8a7e6a" },
+                        { token: "--retro-error", ratio: "5.56", body: "✓", large: "✓", color: "#AA3322" },
+                        { token: "--retro-success", ratio: "4.17", body: "≈", large: "✓", color: "#5C7A28" },
+                        { token: "--retro-info", ratio: "4.61", body: "✓", large: "✓", color: "#5566AA" },
+                        { token: "--retro-purple", ratio: "5.58", body: "✓", large: "✓", color: "#7744AA" },
+                        { token: "--retro-orange", ratio: "3.24", body: "✗", large: "✓", color: "#CC6622" },
+                        { token: "--retro-cyan", ratio: "3.44", body: "✗", large: "✓", color: "#2E8B8B" },
+                        { token: "--retro-warning", ratio: "2.08", body: "✗", large: "✗", color: "#C4A232" },
+                      ].map(({ token, ratio, body, large, color }) => (
+                        <tr key={token} className="border-b border-retro-border">
+                          <td className="px-2 py-1.5">
+                            <span
+                              className="inline-block w-3 h-3 border border-retro-fg align-middle mr-2"
+                              style={{ background: color }}
+                            />
+                            {token}
+                          </td>
+                          <td className="px-2 py-1.5">{ratio}</td>
+                          <td className={`px-2 py-1.5 font-bold ${body === "✓" ? "text-retro-success" : body === "≈" ? "text-retro-warning" : "text-retro-error"}`}>
+                            {body}
+                          </td>
+                          <td className={`px-2 py-1.5 font-bold ${large === "✓" ? "text-retro-success" : "text-retro-error"}`}>
+                            {large}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Group>
+              <Group label="Dark mode — WCAG AA">
+                <div className="w-full overflow-x-auto">
+                  <table className="font-mono text-[9px] border-collapse w-full max-w-3xl">
+                    <thead>
+                      <tr className="bg-retro-fg text-retro-bg">
+                        <th className="px-2 py-1 text-left font-bold uppercase">Token</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Ratio</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Body</th>
+                        <th className="px-2 py-1 text-left font-bold uppercase">Large</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { token: "--retro-fg", ratio: "9.47", body: "✓", large: "✓", color: "#d4ccaa" },
+                        { token: "--retro-muted-fg", ratio: "3.55", body: "✗", large: "✓", color: "#887766" },
+                        { token: "--retro-warning", ratio: "6.23", body: "✓", large: "✓", color: "#C4A232" },
+                        { token: "--retro-error-text", ratio: "5.52", body: "✓", large: "✓", color: "#E0826F" },
+                        { token: "--retro-success-text", ratio: "8.06", body: "✓", large: "✓", color: "#A4C870" },
+                        { token: "--retro-info-text", ratio: "6.12", body: "✓", large: "✓", color: "#8FA3D9" },
+                      ].map(({ token, ratio, body, large, color }) => (
+                        <tr key={token} className="border-b border-retro-border">
+                          <td className="px-2 py-1.5 text-retro-muted-fg">
+                            <span
+                              className="inline-block w-3 h-3 border align-middle mr-2"
+                              style={{ background: color, borderColor: color }}
+                            />
+                            {token}
+                          </td>
+                          <td className="px-2 py-1.5 text-retro-muted-fg">{ratio}</td>
+                          <td className={`px-2 py-1.5 font-bold ${body === "✓" ? "text-retro-success" : body === "≈" ? "text-retro-warning" : "text-retro-error"}`}>
+                            {body}
+                          </td>
+                          <td className={`px-2 py-1.5 font-bold ${large === "✓" ? "text-retro-success" : "text-retro-error"}`}>
+                            {large}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Density ── */}
+            <Section id="density" title="Density">
+              <Group label="Compact / Default / Relaxed">
+                <div className="flex gap-6 flex-wrap">
+                  {[
+                    { label: "Compact", rowHeight: "32px" },
+                    { label: "Default", rowHeight: "40px" },
+                    { label: "Relaxed", rowHeight: "48px" },
+                  ].map(({ label, rowHeight }) => (
+                    <div key={label} className="flex flex-col gap-2">
+                      <p className="font-mono text-[9px] uppercase tracking-wider text-retro-muted-fg">{label}</p>
+                      <div className="border-2 border-retro-fg rounded overflow-hidden bg-retro-bg" style={{ minWidth: "240px" }}>
+                        {["Item one", "Item two", "Item three"].map((item, i) => (
+                          <div
+                            key={item}
+                            className="flex items-center px-3 border-retro-border font-mono text-[10px] text-retro-fg hover:bg-retro-secondary"
+                            style={{
+                              height: rowHeight,
+                              borderBottom: i < 2 ? "1px solid var(--retro-border)" : "none",
+                            }}
+                          >
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Brand ── */}
+            <Section id="brand" title="Brand">
+              <Group label="Logotype">
+                <div className="flex gap-8">
+                  {[
+                    { isDark: false, bg: "bg-retro-bg", fg: "text-retro-fg" },
+                    { isDark: true, bg: "bg-[#222627]", fg: "text-[#d4ccaa]" },
+                  ].map(({ isDark, bg, fg }, idx) => (
+                    <div key={idx} className={`${bg} p-6 rounded ${fg} flex items-center gap-4`}>
+                      <div
+                        className="w-9 h-9 border-2 flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: isDark ? "#d4ccaa" : "#2c2416",
+                          borderColor: isDark ? "#d4ccaa" : "#2c2416",
+                          transform: "rotate(45deg)",
+                        }}
+                      >
+                        <div
+                          className="border-2 w-5 h-5"
+                          style={{
+                            borderColor: isDark ? "#222627" : "#efeed0",
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[20px] font-bold uppercase tracking-wider">Hesperus</p>
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider" style={{ opacity: 0.7 }}>
+                          // The Evening Star
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+              <Group label="CRT Grid Backgrounds">
+                <div className="flex gap-4 flex-wrap">
+                  <div
+                    className="w-64 h-40 border-2 border-retro-fg rounded overflow-hidden flex items-end justify-start p-3"
+                    style={{
+                      backgroundImage: "url('/grid-background-light.svg')",
+                      backgroundColor: "#efeed0",
+                    }}
+                  >
+                    <span className="font-mono text-[length:var(--text-8)] text-retro-muted-fg uppercase">light grid</span>
+                  </div>
+                  <div
+                    className="w-64 h-40 border-2 rounded overflow-hidden flex items-end justify-start p-3"
+                    style={{
+                      backgroundImage: "url('/grid-background-dark.svg')",
+                      backgroundColor: "#222627",
+                      borderColor: "#d4ccaa",
+                      color: "#887766",
+                    }}
+                  >
+                    <span className="font-mono text-[length:var(--text-8)] uppercase">dark grid</span>
+                  </div>
+                </div>
+              </Group>
+            </Section>
+
+            {/* ── Icons ── */}
+            <Section id="icons" title="Icons">
+              <Group label="Lucide icons at 16px & 20px (strokeWidth=2, currentColor)">
+                <div className="flex flex-wrap gap-6">
+                  {[
+                    { name: "search", viewBox: "0 0 24 24", path: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>' },
+                    { name: "settings", viewBox: "0 0 24 24", path: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 5 15.4a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9 1.65 1.65 0 0 0 4.27 7.18l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>' },
+                    { name: "mail", viewBox: "0 0 24 24", path: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>' },
+                    { name: "file", viewBox: "0 0 24 24", path: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>' },
+                    { name: "check", viewBox: "0 0 24 24", path: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+                    { name: "alert", viewBox: "0 0 24 24", path: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>' },
+                    { name: "terminal", viewBox: "0 0 24 24", path: '<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>' },
+                    { name: "node", viewBox: "0 0 24 24", path: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>' },
+                  ].map(({ name, viewBox, path }) => (
+                    <div key={name} className="flex flex-col gap-3">
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">{name}</p>
+                      <div className="flex gap-2">
+                        <div className="w-12 h-12 border-2 border-retro-fg rounded flex items-center justify-center bg-retro-secondary">
+                          <svg width="16" height="16" viewBox={viewBox} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <g dangerouslySetInnerHTML={{ __html: path }} />
+                          </svg>
+                        </div>
+                        <div className="w-12 h-12 border-2 border-retro-fg rounded flex items-center justify-center bg-retro-secondary">
+                          <svg width="20" height="20" viewBox={viewBox} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <g dangerouslySetInnerHTML={{ __html: path }} />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Group>
+              <Group label="ASCII glyphs (terminal-native icons)">
+                <p className="font-mono text-[16px] font-bold tracking-widest text-retro-fg">
+                  &gt;  &gt;&gt;  ─  │  └─  ▌  ■  ●  ○  /  •
+                </p>
+              </Group>
+            </Section>
 
             {/* ── Typography ── */}
             <Section id="typography" title="Typography">
@@ -267,116 +879,136 @@ export default function App() {
               </Group>
             </Section>
 
-            {/* ── 
             {/* ── Buttons ── */}
             <Section id="buttons" title="Buttons">
-              <Group label="Variants">
-                <Variant label="Primary">
+              <Group label="Primary">
+                <StateMatrix label="Primary button — all states" includeLoading>
                   <Button color="primary">Primary</Button>
-                </Variant>
-                <Variant label="Outline">
+                </StateMatrix>
+              </Group>
+              <Group label="Variants">
+                <StateMatrix label="Outline button">
                   <Button color="outline">Outline</Button>
-                </Variant>
-                <Variant label="Ghost">
+                </StateMatrix>
+                <StateMatrix label="Ghost button">
                   <Button color="ghost">Ghost</Button>
-                </Variant>
-                <Variant label="Success">
+                </StateMatrix>
+                <StateMatrix label="Success button">
                   <Button color="success">Success</Button>
-                </Variant>
-                <Variant label="Failure">
+                </StateMatrix>
+                <StateMatrix label="Failure button">
                   <Button color="failure">Failure</Button>
-                </Variant>
-                <Variant label="Destructive">
+                </StateMatrix>
+                <StateMatrix label="Destructive button">
                   <Button color="destructive">Destructive</Button>
-                </Variant>
+                </StateMatrix>
               </Group>
               <Group label="Sizes">
-                <Variant label="Small">
+                <StateMatrix label="Small button" includeLoading>
                   <Button color="primary" size="sm">Small</Button>
-                </Variant>
-                <Variant label="Medium">
+                </StateMatrix>
+                <StateMatrix label="Medium button" includeLoading>
                   <Button color="primary" size="md">Medium</Button>
-                </Variant>
-              </Group>
-              <Group label="Full width">
-                <div className="w-80">
-                  <Button color="primary" className="w-full">Full Width</Button>
-                </div>
+                </StateMatrix>
               </Group>
             </Section>
 
             {/* ── Form Inputs ── */}
             <Section id="form" title="Form Inputs">
               <Group label="Text Input">
-                <Variant label="Placeholder">
+                <StateMatrix label="Text input — all states">
                   <TextInput placeholder="Enter value..." className="w-64" />
-                </Variant>
-                <Variant label="With value">
-                  <TextInput defaultValue="Existing value" className="w-64" />
-                </Variant>
-                <Variant label="Error state">
-                  <TextInput color="failure" defaultValue="bad_input" className="w-64" />
-                </Variant>
-                <Variant label="Disabled">
-                  <TextInput placeholder="Disabled input" disabled className="w-64" />
-                </Variant>
+                </StateMatrix>
               </Group>
               <Group label="Select">
-                <Variant label="Default">
+                <StateMatrix label="Select — all states">
                   <Select className="w-48">
                     <option>Option Alpha</option>
                     <option>Option Beta</option>
                     <option>Option Gamma</option>
                   </Select>
-                </Variant>
-                <Variant label="Disabled">
-                  <Select disabled className="w-48">
-                    <option>Disabled select</option>
-                  </Select>
-                </Variant>
+                </StateMatrix>
               </Group>
-              <Group label="Checkbox & Radio">
-                <Variant label="Unchecked">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id="cb1" />
-                    <Label htmlFor="cb1">Enable feature</Label>
-                  </div>
-                </Variant>
-                <Variant label="Checked">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id="cb2" defaultChecked />
-                    <Label htmlFor="cb2">Active state</Label>
-                  </div>
-                </Variant>
-                <Variant label="Indeterminate">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id="cb3" ref={(el) => el && (el.indeterminate = true)} />
-                    <Label htmlFor="cb3">Mixed state</Label>
-                  </div>
-                </Variant>
-                <Variant label="Radio group">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-2">
-                      <Radio id="r1" name="demo" defaultChecked />
-                      <Label htmlFor="r1">Option A</Label>
+              <Group label="Checkbox">
+                <div className="flex flex-col gap-8">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Unchecked</p>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))", maxWidth: "500px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-default" />
+                          <Label htmlFor="cb-default">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-hover">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-hover" />
+                          <Label htmlFor="cb-hover">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:hover</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-focus">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-focus" />
+                          <Label htmlFor="cb-focus">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-checked" defaultChecked />
+                          <Label htmlFor="cb-checked">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">checked</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-disabled">
+                        <div className="flex items-center gap-2">
+                          <Checkbox id="cb-disabled" disabled />
+                          <Label htmlFor="cb-disabled">Feature</Label>
+                        </div>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Radio id="r2" name="demo" />
-                      <Label htmlFor="r2">Option B</Label>
-                    </div>
                   </div>
-                </Variant>
+                </div>
+              </Group>
+              <Group label="Radio">
+                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))", maxWidth: "500px" }}>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-2">
+                      <Radio id="r-default" name="radio-demo" />
+                      <Label htmlFor="r-default">Option</Label>
+                    </div>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 state-focus">
+                    <div className="flex items-center gap-2">
+                      <Radio id="r-focus" name="radio-demo-2" />
+                      <Label htmlFor="r-focus">Option</Label>
+                    </div>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-2">
+                      <Radio id="r-checked" name="radio-demo-3" defaultChecked />
+                      <Label htmlFor="r-checked">Option</Label>
+                    </div>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">checked</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 state-disabled">
+                    <div className="flex items-center gap-2">
+                      <Radio id="r-disabled" name="radio-demo-4" disabled />
+                      <Label htmlFor="r-disabled">Option</Label>
+                    </div>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                  </div>
+                </div>
               </Group>
               <Group label="Textarea">
-                <Variant label="Default">
+                <StateMatrix label="Textarea — all states">
                   <Textarea placeholder="Enter notes..." className="w-64" rows={3} />
-                </Variant>
-                <Variant label="With value">
-                  <Textarea defaultValue={"Line one\nLine two"} className="w-64" rows={3} />
-                </Variant>
-                <Variant label="Disabled">
-                  <Textarea placeholder="Disabled textarea" disabled className="w-64" rows={3} />
-                </Variant>
+                </StateMatrix>
               </Group>
               <Group label="Helper Text &amp; Validation">
                 <div className="flex flex-col gap-4 w-full max-w-sm">
@@ -421,12 +1053,42 @@ export default function App() {
                 </Variant>
               </Group>
               <Group label="Toggle Switch">
-                <Variant label="Off">
-                  <ToggleSwitch label="Notifications" />
-                </Variant>
-                <Variant label="On">
-                  <ToggleSwitch label="Auto-save" checked />
-                </Variant>
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Off state</p>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", maxWidth: "500px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <ToggleSwitch label="Notifications" />
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-focus">
+                        <ToggleSwitch label="Notifications" />
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-disabled">
+                        <ToggleSwitch label="Notifications" disabled />
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">On state</p>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", maxWidth: "500px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <ToggleSwitch label="Auto-save" checked />
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-focus">
+                        <ToggleSwitch label="Auto-save" checked />
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-disabled">
+                        <ToggleSwitch label="Auto-save" checked disabled />
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </Group>
             </Section>
 
@@ -508,6 +1170,7 @@ export default function App() {
             {/* ── Table ── */}
             <Section id="table" title="Table">
               <Group label="Default">
+                <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Header cells show default state; rows support hover state</p>
                 <div className="w-full">
                   <Table>
                     <TableHead>
@@ -638,32 +1301,88 @@ export default function App() {
             {/* ── Navigation ── */}
             <Section id="navigation" title="Navigation">
               <Group label="Breadcrumb">
-                <Breadcrumb>
-                  <BreadcrumbItem href="#">Home</BreadcrumbItem>
-                  <BreadcrumbItem href="#">Database</BreadcrumbItem>
-                  <BreadcrumbItem>Schema</BreadcrumbItem>
-                </Breadcrumb>
-              </Group>
-              <Group label="Tabs — Segmented (default)">
-                <div className="w-full max-w-lg">
-                  <Tabs variant="default">
-                    <TabItem title="Schema">
-                      <p className="font-mono text-[11px] text-retro-fg">
-                        Schema panel — column definitions, types, constraints.
-                      </p>
-                    </TabItem>
-                    <TabItem title="Data">
-                      <p className="font-mono text-[11px] text-retro-fg">
-                        Data panel — row browser and query results.
-                      </p>
-                    </TabItem>
-                    <TabItem title="Indexes">
-                      <p className="font-mono text-[11px] text-retro-fg">
-                        Index definitions and performance hints.
-                      </p>
-                    </TabItem>
-                  </Tabs>
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                  <div className="state-hover">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                  <div className="state-active">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                  <div className="state-focus">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                  <div className="state-disabled">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
+                    <Breadcrumb>
+                      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                      <BreadcrumbItem href="#">Database</BreadcrumbItem>
+                      <BreadcrumbItem>Schema</BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
                 </div>
+              </Group>
+              <Group label="Tabs — Segmented (default) — states">
+                {(() => {
+                  const tabsDemo = (
+                    <Tabs variant="default">
+                      <TabItem title="Schema">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Schema panel — column definitions, types, constraints.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Data">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Data panel — row browser and query results.
+                        </p>
+                      </TabItem>
+                      <TabItem title="Indexes">
+                        <p className="font-mono text-[11px] text-retro-fg">
+                          Index definitions and performance hints.
+                        </p>
+                      </TabItem>
+                    </Tabs>
+                  );
+                  const states = [
+                    { cls: "", label: "Default state" },
+                    { cls: "state-hover", label: ":hover" },
+                    { cls: "state-active", label: ":active" },
+                    { cls: "state-focus", label: ":focus-visible" },
+                    { cls: "state-disabled", label: ":disabled" },
+                  ];
+                  return (
+                    <div className="flex flex-col gap-6">
+                      {states.map(({ cls, label }) => (
+                        <div key={label} className={`${cls} w-full max-w-2xl`}>
+                          <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">{label}</p>
+                          {tabsDemo}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
               </Group>
               <Group label="Tabs — Underline (orange indicator)">
                 <div className="w-full max-w-lg">
@@ -718,37 +1437,56 @@ export default function App() {
                 </div>
               </Group>
               <Group label="TopNav">
-                <div className="w-full max-w-2xl">
-                  <Navbar>
-                    <NavbarCollapse>
-                      <NavbarLink href="#">
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M12 5v14M5 12h14" />
-                        </svg>
-                        Add Node
-                      </NavbarLink>
-                      <NavbarLink href="#">
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                        Add Connection
-                      </NavbarLink>
-                      <NavbarLink href="#">
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                        </svg>
-                        Edit
-                      </NavbarLink>
-                      <NavbarLink href="#">
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="3 6 5 6 21 6" />
-                          <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
-                        </svg>
-                        Delete
-                      </NavbarLink>
-                    </NavbarCollapse>
-                  </Navbar>
-                </div>
+                {(() => {
+                  const navbarDemo = (
+                    <Navbar>
+                      <NavbarCollapse>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 5v14M5 12h14" />
+                          </svg>
+                          Add Node
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                          Add Connection
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                          </svg>
+                          Edit
+                        </NavbarLink>
+                        <NavbarLink href="#">
+                          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+                          </svg>
+                          Delete
+                        </NavbarLink>
+                      </NavbarCollapse>
+                    </Navbar>
+                  );
+                  const states = [
+                    { cls: "", label: "Default state" },
+                    { cls: "state-hover", label: ":hover" },
+                    { cls: "state-active", label: ":active" },
+                    { cls: "state-focus", label: ":focus-visible" },
+                    { cls: "state-disabled", label: ":disabled" },
+                  ];
+                  return (
+                    <div className="flex flex-col gap-6">
+                      {states.map(({ cls, label }) => (
+                        <div key={label} className={`${cls} w-full max-w-2xl`}>
+                          <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">{label}</p>
+                          {navbarDemo}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
               </Group>
             </Section>
 
@@ -872,7 +1610,7 @@ export default function App() {
             {/* ── Feedback ── */}
             <Section id="feedback" title="Feedback">
               <Group label="Spinner">
-                <div className="flex gap-8 items-end">
+                <div className="flex flex-col gap-6">
                   <Variant label="Ring · linear">
                     <div className="flex gap-4 items-center">
                       <Spinner size="sm" />
@@ -895,9 +1633,9 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Progress">
-                <div className="flex flex-col gap-4 w-full max-w-lg">
-                  <Variant label="35%">
-                    <Progress progress={35} className="w-64" />
+                <div className="flex flex-col gap-6 w-full max-w-lg">
+                  <Variant label="Determinate (60%)">
+                    <Progress progress={60} className="w-64" />
                   </Variant>
                   <Variant label="With label (75%)">
                     <Progress progress={75} textLabel="Uploading" className="w-64" />
@@ -909,8 +1647,8 @@ export default function App() {
                       <Progress progress={60} size="lg" />
                     </div>
                   </Variant>
-                  <Variant label="Indeterminate">
-                    <div className="w-64 h-2.5 border-2 border-retro-fg rounded-sm bg-retro-secondary progress-indeterminate">
+                  <Variant label="Indeterminate (loading)">
+                    <div className="state-loading w-64 h-2.5 border-2 border-retro-fg rounded-sm bg-retro-secondary progress-indeterminate">
                       <div className="progress-indeterminate-bar bg-retro-orange rounded-sm" />
                     </div>
                   </Variant>
@@ -991,34 +1729,53 @@ export default function App() {
             {/* ── Content ── */}
             <Section id="content" title="Content">
               <Group label="Accordion">
-                <div className="w-full max-w-2xl">
-                  <Accordion>
-                    <AccordionPanel>
-                      <AccordionTitle>What is Hesperus?</AccordionTitle>
-                      <AccordionContent>
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          A retro-styled design system built with Flowbite React and Tailwind CSS.
-                        </p>
-                      </AccordionContent>
-                    </AccordionPanel>
-                    <AccordionPanel>
-                      <AccordionTitle>How do I customize it?</AccordionTitle>
-                      <AccordionContent>
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Modify the theme object in theme.js and adjust CSS custom properties in index.css.
-                        </p>
-                      </AccordionContent>
-                    </AccordionPanel>
-                    <AccordionPanel>
-                      <AccordionTitle>Is dark mode supported?</AccordionTitle>
-                      <AccordionContent>
-                        <p className="font-mono text-[11px] text-retro-fg">
-                          Yes! Toggle the dark mode using the navbar button.
-                        </p>
-                      </AccordionContent>
-                    </AccordionPanel>
-                  </Accordion>
-                </div>
+                {(() => {
+                  const accordionDemo = (
+                    <Accordion>
+                      <AccordionPanel>
+                        <AccordionTitle>What is Hesperus?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            A retro-styled design system built with Flowbite React and Tailwind CSS.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>How do I customize it?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Modify the theme object in theme.js and adjust CSS custom properties in index.css.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                      <AccordionPanel>
+                        <AccordionTitle>Is dark mode supported?</AccordionTitle>
+                        <AccordionContent>
+                          <p className="font-mono text-[11px] text-retro-fg">
+                            Yes! Toggle the dark mode using the navbar button.
+                          </p>
+                        </AccordionContent>
+                      </AccordionPanel>
+                    </Accordion>
+                  );
+                  const states = [
+                    { cls: "", label: "Default state" },
+                    { cls: "state-hover", label: ":hover" },
+                    { cls: "state-active", label: ":active" },
+                    { cls: "state-focus", label: ":focus-visible" },
+                    { cls: "state-disabled", label: ":disabled" },
+                  ];
+                  return (
+                    <div className="flex flex-col gap-6">
+                      {states.map(({ cls, label }) => (
+                        <div key={label} className={`${cls} w-full max-w-2xl`}>
+                          <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">{label}</p>
+                          {accordionDemo}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
               </Group>
               <Group label="Timeline">
                 <div className="w-full max-w-2xl">
@@ -1152,28 +1909,125 @@ export default function App() {
                 </div>
               </Group>
               <Group label="Pagination">
-                <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Default state</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                  <div className="state-hover">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:hover</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                  <div className="state-active">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:active</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                  <div className="state-focus">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:focus-visible</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                  <div className="state-disabled">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">:disabled</p>
+                    <Pagination currentPage={1} totalPages={10} onPageChange={() => {}} />
+                  </div>
+                </div>
               </Group>
               <Group label="Dropdown">
-                <Variant label="With groups &amp; disabled">
-                  <Dropdown label="Actions" color="outline">
-                    <DropdownItem>Edit</DropdownItem>
-                    <DropdownItem>Duplicate</DropdownItem>
-                    <DropdownDivider />
-                    <DropdownItem>Archive</DropdownItem>
-                    <DropdownItem disabled>Export (unavailable)</DropdownItem>
-                    <DropdownDivider />
-                    <DropdownItem>Delete</DropdownItem>
-                  </Dropdown>
-                </Variant>
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Trigger button states (closed)</p>
+                    <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))", maxWidth: "500px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-hover">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:hover</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-active">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:active</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-focus">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 state-disabled">
+                        <Dropdown label="Actions" color="outline">
+                          <DropdownItem>Edit</DropdownItem>
+                        </Dropdown>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:disabled</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Dropdown with menu items</p>
+                    <Dropdown label="Actions" color="outline">
+                      <DropdownItem>Edit</DropdownItem>
+                      <DropdownItem>Duplicate</DropdownItem>
+                      <DropdownDivider />
+                      <DropdownItem>Archive</DropdownItem>
+                      <DropdownItem disabled>Export (unavailable)</DropdownItem>
+                      <DropdownDivider />
+                      <DropdownItem>Delete</DropdownItem>
+                    </Dropdown>
+                  </div>
+                </div>
               </Group>
               <Group label="Sidebar">
-                <div className="flex flex-col gap-3">
-                  <Button color="ghost" size="sm" className="w-fit" onClick={() => setSidebarCollapsed(c => !c)}>
-                    {sidebarCollapsed ? "▶ Expand" : "◀ Collapse"}
-                  </Button>
-                  <div className={sidebarCollapsed ? "w-16" : "w-56"}>
-                    <Sidebar collapsed={sidebarCollapsed}>
+                <div className="flex flex-col gap-4 w-full">
+                  <div className="bg-retro-secondary/50 p-3 rounded border border-retro-border">
+                    <p className="font-mono text-[9px] uppercase tracking-wider text-retro-fg">
+                      // Desktop: visible at lg breakpoint and above
+                    </p>
+                    <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mt-1">
+                      Mobile: toggle button shown below lg, tap to reveal
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-retro-muted-fg mb-3">Sidebar item states</p>
+                    {(() => {
+                      const sidebarItem = (
+                        <Sidebar>
+                          <SidebarItems>
+                            <SidebarItemGroup>
+                              <SidebarItem href="#" icon={() => <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>}>Dashboard</SidebarItem>
+                            </SidebarItemGroup>
+                          </SidebarItems>
+                        </Sidebar>
+                      );
+                      const states = [
+                        { cls: "", label: "default" },
+                        { cls: "state-hover", label: ":hover" },
+                        { cls: "state-active", label: ":active" },
+                        { cls: "state-focus", label: ":focus-visible" },
+                        { cls: "state-disabled", label: ":disabled" },
+                      ];
+                      return (
+                        <div className="flex flex-col gap-3" style={{ maxWidth: "300px" }}>
+                          {states.map(({ cls, label }) => (
+                            <div key={label} className={cls}>
+                              <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mb-2">{label}</p>
+                              {sidebarItem}
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })()}
+                  </div>
+
+                  {(() => {
+                    const sidebarContent = (
                       <SidebarItems>
                         <SidebarItemGroup>
                           <SidebarItem
@@ -1203,8 +2057,56 @@ export default function App() {
                           </SidebarItem>
                         </SidebarItemGroup>
                       </SidebarItems>
-                    </Sidebar>
-                  </div>
+                    );
+
+                    return (
+                      <>
+                        {/* Desktop sidebar - hidden on mobile, shown on lg and above */}
+                        <div className="hidden lg:block max-w-xs">
+                          <div className="mb-3 flex gap-2">
+                            <Button color="ghost" size="sm" className="w-fit" onClick={() => setSidebarCollapsed(c => !c)}>
+                              {sidebarCollapsed ? "▶ Expand" : "◀ Collapse"}
+                            </Button>
+                          </div>
+                          <div className={sidebarCollapsed ? "w-16" : "w-56"}>
+                            <Sidebar collapsed={sidebarCollapsed}>
+                              {sidebarContent}
+                            </Sidebar>
+                          </div>
+                        </div>
+
+                        {/* Mobile toggle - shown on mobile, hidden on lg and above */}
+                        <div className="lg:hidden max-w-xs">
+                          <Button
+                            color="outline"
+                            size="sm"
+                            className="w-full"
+                            onClick={() => setMobileSidebarOpen(true)}
+                          >
+                            ☰ Open Sidebar
+                          </Button>
+                        </div>
+
+                        {/* Mobile sidebar drawer */}
+                        <Drawer
+                          open={mobileSidebarOpen}
+                          onClose={() => setMobileSidebarOpen(false)}
+                          position="left"
+                          className="duration-[var(--dur-base)]"
+                        >
+                          <DrawerHeader
+                            title="Navigation"
+                            className="bg-retro-fg px-4 py-3"
+                          />
+                          <DrawerItems>
+                            <Sidebar collapsed={false}>
+                              {sidebarContent}
+                            </Sidebar>
+                          </DrawerItems>
+                        </Drawer>
+                      </>
+                    );
+                  })()}
                 </div>
               </Group>
               <Group label="Footer">
