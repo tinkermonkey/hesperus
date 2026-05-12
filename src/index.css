@@ -120,6 +120,8 @@
   --focus-ring-color:  var(--color-retro-orange);
   --focus-ring-width:  2px;
   --focus-ring-offset: 2px;
+  --focus-ring:        0 0 0 var(--focus-ring-width) var(--retro-bg),
+                       0 0 0 calc(var(--focus-ring-width) * 2) var(--focus-ring-color);
 
   /* Surface tokens */
   --hover-bg-soft:  var(--retro-secondary);
