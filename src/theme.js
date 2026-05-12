@@ -894,9 +894,9 @@ export const hesperusTheme = createTheme({
       input: {
         base: "block w-full overflow-hidden rounded-md border-2 border-retro-fg bg-retro-bg font-mono text-[length:var(--text-11)] text-retro-fg cursor-pointer focus:outline-none dark:border-retro-fg dark:bg-retro-bg dark:text-retro-fg",
         sizes: {
-          sm: "sm:text-xs",
+          sm: "text-[length:var(--text-10)]",
           md: "text-[length:var(--text-11)]",
-          lg: "sm:text-base",
+          lg: "text-[length:var(--text-12)]",
         },
       },
     },
