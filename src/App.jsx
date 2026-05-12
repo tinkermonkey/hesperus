@@ -665,9 +665,9 @@ export default function App() {
                         { token: "--retro-fg", ratio: "9.47", body: "✓", large: "✓", color: "#d4ccaa" },
                         { token: "--retro-muted-fg", ratio: "3.55", body: "✗", large: "✓", color: "#887766" },
                         { token: "--retro-warning", ratio: "6.23", body: "✓", large: "✓", color: "#C4A232" },
-                        { token: "--retro-error-text", ratio: "4.6", body: "✓", large: "✓", color: "#E0826F" },
-                        { token: "--retro-success-text", ratio: "5.9", body: "✓", large: "✓", color: "#A4C870" },
-                        { token: "--retro-info-text", ratio: "5.8", body: "✓", large: "✓", color: "#8FA3D9" },
+                        { token: "--retro-error-text", ratio: "5.52", body: "✓", large: "✓", color: "#E0826F" },
+                        { token: "--retro-success-text", ratio: "8.06", body: "✓", large: "✓", color: "#A4C870" },
+                        { token: "--retro-info-text", ratio: "6.12", body: "✓", large: "✓", color: "#8FA3D9" },
                       ].map(({ token, ratio, body, large, color }) => (
                         <tr key={token} className="border-b border-retro-border">
                           <td className="px-2 py-1.5 text-retro-muted-fg">

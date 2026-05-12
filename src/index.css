@@ -168,10 +168,10 @@
   --retro-secondary-fg: #d4ccaa;
 
   /* Lightened text-safe accents for dark mode (audit findings) */
-  --retro-error-text:   #E0826F;   /* lightened brick — 4.5+ on #222627 */
-  --retro-info-text:    #8FA3D9;   /* lightened dusty blue */
-  --retro-success-text: #A4C870;   /* lightened olive */
-  --retro-warning-text: #C4A232;   /* gold passes ✓ on dark (6.23) */
+  --retro-error-text:   #E0826F;   /* WCAG AA on dark bg: 5.52:1 ✓ */
+  --retro-info-text:    #8FA3D9;   /* WCAG AA on dark bg: 6.12:1 ✓ */
+  --retro-success-text: #A4C870;   /* WCAG AA on dark bg: 8.06:1 ✓ */
+  --retro-warning-text: #C4A232;   /* WCAG AA on dark bg: 6.23:1 ✓ */
 }
 
 /* ── Focus ring ── keyboard navigation: 2px orange, 2px offset ───────────
