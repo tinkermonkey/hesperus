@@ -68,6 +68,7 @@
   --font-sans: var(--font-mono);
 
   /* Type scale */
+  --text-8:    8px;  /* Dense labels and annotations only */
   --text-9:    9px;
   --text-10:   10px;
   --text-11:   11px;

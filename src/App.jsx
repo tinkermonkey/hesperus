@@ -116,7 +116,7 @@ function Variant({ label, children }) {
     <div className="flex flex-col items-start gap-2">
       {children}
       {label && (
-        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">
+        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">
           {label}
         </span>
       )}
@@ -318,7 +318,7 @@ export default function App() {
         <div className="flex pt-[68px]">
           {/* ── Sidebar ── */}
           <nav className="fixed left-3 top-[68px] bottom-3 w-44 bg-retro-bg border-2 border-retro-fg rounded-lg overflow-y-auto py-8 px-5">
-            <p className="font-mono text-[8px] uppercase tracking-widest text-retro-muted-fg mb-4">
+            <p className="font-mono text-[length:var(--text-8)] uppercase tracking-widest text-retro-muted-fg mb-4">
               Components
             </p>
             <ul className="space-y-0.5">
@@ -355,7 +355,7 @@ export default function App() {
                       <div className="flex flex-col items-start gap-2">
                         <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
                         <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
-                        <p className="font-mono text-[8px] text-retro-muted-fg">{hex}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg">{hex}</p>
                       </div>
                     </Variant>
                   ))}
@@ -376,7 +376,7 @@ export default function App() {
                       <div className="flex flex-col items-start gap-2">
                         <div className="w-20 h-20 border-2" style={{ background: hex, borderColor: "#d4ccaa" }} />
                         <p className="font-mono text-[9px] font-bold uppercase text-retro-muted-fg" style={{ color: "#887766" }}>{name}</p>
-                        <p className="font-mono text-[8px] text-retro-muted-fg" style={{ color: "#887766" }}>{hex}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg" style={{ color: "#887766" }}>{hex}</p>
                       </div>
                     </Variant>
                   ))}
@@ -394,7 +394,7 @@ export default function App() {
                       <div className="flex flex-col items-start gap-2">
                         <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
                         <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
-                        <p className="font-mono text-[8px] text-retro-muted-fg">{hex}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg">{hex}</p>
                       </div>
                     </Variant>
                   ))}
@@ -414,7 +414,7 @@ export default function App() {
                       <div className="flex flex-col items-start gap-2">
                         <div className="w-20 h-20 border-2 border-retro-fg rounded" style={{ background: hex }} />
                         <p className="font-mono text-[9px] font-bold uppercase">{name}</p>
-                        <p className="font-mono text-[8px] text-retro-muted-fg">{hex}</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg">{hex}</p>
                       </div>
                     </Variant>
                   ))}
@@ -440,7 +440,7 @@ export default function App() {
                     { size: "44px", token: "--text-44" },
                   ].map(({ size, token }) => (
                     <div key={token} className="flex items-baseline gap-4 border-b border-retro-border pb-2">
-                      <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg w-20" style={{ fontSize: "8px" }}>
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg w-20" style={{ fontSize: "8px" }}>
                         {token}
                       </p>
                       <p className="font-mono uppercase tracking-wider text-retro-fg" style={{ fontSize: size }}>
@@ -476,7 +476,7 @@ export default function App() {
                     { token: "--space-16", px: "64" },
                   ].map(({ token, px }) => (
                     <div key={token} className="flex items-center gap-4">
-                      <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg w-20">
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg w-20">
                         {token}
                       </p>
                       <div className="flex-1 bg-retro-fg rounded-sm" style={{ height: "6px", width: `${parseInt(px) * 2}px` }} />
@@ -501,7 +501,7 @@ export default function App() {
                           style={{ borderRadius: `${px}px` }}
                         />
                         <p className="font-mono text-[9px] font-bold uppercase">{token}</p>
-                        <p className="font-mono text-[8px] text-retro-muted-fg">{px}px</p>
+                        <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg">{px}px</p>
                       </div>
                     </Variant>
                   ))}
@@ -560,7 +560,7 @@ export default function App() {
                         <div className="w-24 h-2 border-2 border-retro-fg bg-retro-secondary rounded-sm overflow-hidden relative">
                           <div className={`motion-bar-${ms} absolute inset-0`} />
                         </div>
-                        <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">
                           {ms}ms · {label}
                         </p>
                       </div>
@@ -578,13 +578,13 @@ export default function App() {
                     { token: "--ease-in-out", fn: "easeinout", label: "In-out" },
                   ].map(({ token, fn, label }) => (
                     <div key={token} className="flex items-center gap-4">
-                      <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg w-32">
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg w-32">
                         {token}
                       </p>
                       <div className="flex-1 h-3 border border-retro-fg bg-retro-secondary rounded-sm relative overflow-hidden">
                         <div className={`ease-dot-${fn}`} />
                       </div>
-                      <p className="font-mono text-[8px] text-retro-muted-fg w-16 text-right">
+                      <p className="font-mono text-[length:var(--text-8)] text-retro-muted-fg w-16 text-right">
                         {label}
                       </p>
                     </div>
@@ -739,7 +739,7 @@ export default function App() {
                       </div>
                       <div>
                         <p className="font-mono text-[20px] font-bold uppercase tracking-wider">Hesperus</p>
-                        <p className="font-mono text-[8px] uppercase tracking-wider" style={{ opacity: 0.7 }}>
+                        <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider" style={{ opacity: 0.7 }}>
                           // The Evening Star
                         </p>
                       </div>
@@ -756,7 +756,7 @@ export default function App() {
                       backgroundColor: "#efeed0",
                     }}
                   >
-                    <span className="font-mono text-[8px] text-retro-muted-fg uppercase">light grid</span>
+                    <span className="font-mono text-[length:var(--text-8)] text-retro-muted-fg uppercase">light grid</span>
                   </div>
                   <div
                     className="w-64 h-40 border-2 rounded overflow-hidden flex items-end justify-start p-3"
@@ -767,7 +767,7 @@ export default function App() {
                       color: "#887766",
                     }}
                   >
-                    <span className="font-mono text-[8px] uppercase">dark grid</span>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase">dark grid</span>
                   </div>
                 </div>
               </Group>
@@ -788,7 +788,7 @@ export default function App() {
                     { name: "node", viewBox: "0 0 24 24", path: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>' },
                   ].map(({ name, viewBox, path }) => (
                     <div key={name} className="flex flex-col gap-3">
-                      <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">{name}</p>
+                      <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">{name}</p>
                       <div className="flex gap-2">
                         <div className="w-12 h-12 border-2 border-retro-fg rounded flex items-center justify-center bg-retro-secondary">
                           <svg width="16" height="16" viewBox={viewBox} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -929,35 +929,35 @@ export default function App() {
                           <Checkbox id="cb-default" />
                           <Label htmlFor="cb-default">Feature</Label>
                         </div>
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-hover">
                         <div className="flex items-center gap-2">
                           <Checkbox id="cb-hover" />
                           <Label htmlFor="cb-hover">Feature</Label>
                         </div>
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:hover</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:hover</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-focus">
                         <div className="flex items-center gap-2">
                           <Checkbox id="cb-focus" />
                           <Label htmlFor="cb-focus">Feature</Label>
                         </div>
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
                       </div>
                       <div className="flex flex-col items-center gap-2">
                         <div className="flex items-center gap-2">
                           <Checkbox id="cb-checked" defaultChecked />
                           <Label htmlFor="cb-checked">Feature</Label>
                         </div>
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">checked</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">checked</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-disabled">
                         <div className="flex items-center gap-2">
                           <Checkbox id="cb-disabled" disabled />
                           <Label htmlFor="cb-disabled">Feature</Label>
                         </div>
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">disabled</span>
                       </div>
                     </div>
                   </div>
@@ -970,28 +970,28 @@ export default function App() {
                       <Radio id="r-default" name="radio-demo" />
                       <Label htmlFor="r-default">Option</Label>
                     </div>
-                    <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
                   </div>
                   <div className="flex flex-col items-center gap-2 state-focus">
                     <div className="flex items-center gap-2">
                       <Radio id="r-focus" name="radio-demo-2" />
                       <Label htmlFor="r-focus">Option</Label>
                     </div>
-                    <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <div className="flex items-center gap-2">
                       <Radio id="r-checked" name="radio-demo-3" defaultChecked />
                       <Label htmlFor="r-checked">Option</Label>
                     </div>
-                    <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">checked</span>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">checked</span>
                   </div>
                   <div className="flex flex-col items-center gap-2 state-disabled">
                     <div className="flex items-center gap-2">
                       <Radio id="r-disabled" name="radio-demo-4" disabled />
                       <Label htmlFor="r-disabled">Option</Label>
                     </div>
-                    <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                    <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">disabled</span>
                   </div>
                 </div>
               </Group>
@@ -1049,15 +1049,15 @@ export default function App() {
                     <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", maxWidth: "500px" }}>
                       <div className="flex flex-col items-center gap-2">
                         <ToggleSwitch label="Notifications" />
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-focus">
                         <ToggleSwitch label="Notifications" />
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-disabled">
                         <ToggleSwitch label="Notifications" disabled />
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">disabled</span>
                       </div>
                     </div>
                   </div>
@@ -1066,15 +1066,15 @@ export default function App() {
                     <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", maxWidth: "500px" }}>
                       <div className="flex flex-col items-center gap-2">
                         <ToggleSwitch label="Auto-save" checked />
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-focus">
                         <ToggleSwitch label="Auto-save" checked />
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-disabled">
                         <ToggleSwitch label="Auto-save" checked disabled />
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">disabled</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">disabled</span>
                       </div>
                     </div>
                   </div>
@@ -1954,19 +1954,19 @@ export default function App() {
                         <Dropdown label="Actions" color="outline">
                           <DropdownItem>Edit</DropdownItem>
                         </Dropdown>
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">default</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">default</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-hover">
                         <Dropdown label="Actions" color="outline">
                           <DropdownItem>Edit</DropdownItem>
                         </Dropdown>
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:hover</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:hover</span>
                       </div>
                       <div className="flex flex-col items-center gap-2 state-focus">
                         <Dropdown label="Actions" color="outline">
                           <DropdownItem>Edit</DropdownItem>
                         </Dropdown>
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg">:focus</span>
+                        <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg">:focus</span>
                       </div>
                     </div>
                   </div>
@@ -1990,7 +1990,7 @@ export default function App() {
                     <p className="font-mono text-[9px] uppercase tracking-wider text-retro-fg">
                       // Desktop: visible at lg breakpoint and above
                     </p>
-                    <p className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg mt-1">
+                    <p className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg mt-1">
                       Mobile: toggle button shown below lg, tap to reveal
                     </p>
                   </div>

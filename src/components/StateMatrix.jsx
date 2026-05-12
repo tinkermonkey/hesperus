@@ -16,7 +16,7 @@ export function StateMatrix({ label, children, includeLoading = false }) {
             <div className={`state-${state} w-full flex justify-center`} data-state={state}>
               {children}
             </div>
-            <span className="font-mono text-[8px] uppercase tracking-wider text-retro-muted-fg text-center">
+            <span className="font-mono text-[length:var(--text-8)] uppercase tracking-wider text-retro-muted-fg text-center">
               {state === "focus" ? ":focus-visible" : state === "default" ? "default" : `:${state}`}
             </span>
           </div>
