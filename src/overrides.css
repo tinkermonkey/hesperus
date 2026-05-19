@@ -1,4 +1,719 @@
 /* Hesperus BEM overrides layer
  * Component-specific CSS overrides for Heimdall components.
- * Populated in Phase 2.
+ * Phase 2: Primitives and form inputs (Button, Badge, Icon, Chip, StatusBadge, TextInput, TextArea, Select, NumberInput, TriState, Field)
+ *
+ * All overrides follow Hesperus rules:
+ * - 2px solid borders using --canvas-fg-1 or --canvas-border
+ * - No box-shadow (flat design)
+ * - Hover: background ↔ foreground flip
+ * - Disabled: 0.4 opacity + cursor: not-allowed
+ * - Focus ring: 2px outline using --focus-ring (orange)
+ * - Typography: uppercase + 0.05em letter-spacing for labels
+ * - Motion: 100ms button flip, 150ms default, 250ms modals
+ * - Dark mode: all rules under html.dark selector
  */
+
+/* ============================================================
+ * BUTTON (.btn)
+ * ============================================================ */
+
+html.dark .btn {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  outline: none;
+  transition: background-color var(--transition-fast) var(--timing-ease-out),
+              color var(--transition-fast) var(--timing-ease-out);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-button);
+  letter-spacing: var(--letter-spacing-default);
+  cursor: pointer;
+}
+
+html.dark .btn:hover {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .btn:active {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+  transform: translate(1px, 1px);
+}
+
+html.dark .btn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+html.dark .btn:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* Button variants — semantic colors */
+
+html.dark .btn.btn--ghost {
+  color: var(--canvas-fg-2);
+  border-color: var(--canvas-fg-2);
+}
+
+html.dark .btn.btn--ghost:hover {
+  background: transparent;
+  border-color: var(--canvas-fg-1);
+  color: var(--canvas-fg-1);
+}
+
+html.dark .btn.btn--error,
+html.dark .btn.btn--danger {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+html.dark .btn.btn--error:hover,
+html.dark .btn.btn--danger:hover {
+  background: var(--color-error);
+  color: var(--canvas-bg);
+}
+
+html.dark .btn.btn--success {
+  color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+html.dark .btn.btn--success:hover {
+  background: var(--color-success);
+  color: var(--canvas-bg);
+}
+
+html.dark .btn.btn--warning {
+  color: var(--color-warning-text);
+  border-color: var(--color-warning);
+}
+
+html.dark .btn.btn--warning:hover {
+  background: var(--color-warning);
+  color: var(--canvas-bg);
+}
+
+html.dark .btn.btn--info {
+  color: var(--color-info);
+  border-color: var(--color-info);
+}
+
+html.dark .btn.btn--info:hover {
+  background: var(--color-info);
+  color: var(--canvas-bg);
+}
+
+/* ============================================================
+ * BADGE (.badge)
+ * ============================================================ */
+
+html.dark .badge {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-10);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Badge semantic variants */
+
+html.dark .badge.badge--success {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+html.dark .badge.badge--error,
+html.dark .badge.badge--failure {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+html.dark .badge.badge--warning {
+  border-color: var(--color-warning);
+  color: var(--color-warning-text);
+}
+
+html.dark .badge.badge--info {
+  border-color: var(--color-info);
+  color: var(--color-info);
+}
+
+/* Badge accent variants */
+
+html.dark .badge.badge--orange {
+  border-color: var(--color-accent-orange);
+  color: var(--color-accent-orange);
+}
+
+html.dark .badge.badge--purple {
+  border-color: var(--color-accent-purple);
+  color: var(--color-accent-purple);
+}
+
+html.dark .badge.badge--cyan {
+  border-color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan);
+}
+
+/* ============================================================
+ * ICON (.icon)
+ * ============================================================ */
+
+html.dark .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+html.dark .icon svg {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+html.dark .icon--sm {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.5;
+}
+
+html.dark .icon--md {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+html.dark .icon--lg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+}
+
+html.dark .icon--xl {
+  width: 32px;
+  height: 32px;
+  stroke-width: 2;
+}
+
+/* ============================================================
+ * CHIP (.chip)
+ * ============================================================ */
+
+html.dark .chip {
+  border: var(--border-width-default) solid var(--canvas-border);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  border-radius: var(--radius-md);
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color var(--transition-default) var(--timing-ease-out),
+              color var(--transition-default) var(--timing-ease-out);
+  cursor: pointer;
+}
+
+html.dark .chip:hover {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .chip.chip--active {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .chip:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+html.dark .chip:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* ============================================================
+ * STATUS BADGE (.status-badge)
+ * ============================================================ */
+
+html.dark .status-badge {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-10);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Status-specific colors */
+
+html.dark .status-badge.status-badge--success {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+html.dark .status-badge.status-badge--error {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+html.dark .status-badge.status-badge--warning {
+  border-color: var(--color-warning);
+  color: var(--color-warning-text);
+}
+
+html.dark .status-badge.status-badge--info {
+  border-color: var(--color-info);
+  color: var(--color-info);
+}
+
+html.dark .status-badge.status-badge--offline {
+  border-color: var(--canvas-fg-2);
+  color: var(--canvas-fg-2);
+}
+
+/* ============================================================
+ * TEXT INPUT (.text-input)
+ * ============================================================ */
+
+html.dark .text-input {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-default) var(--timing-ease-out),
+              background-color var(--transition-default) var(--timing-ease-out);
+}
+
+html.dark .text-input::placeholder {
+  color: var(--canvas-fg-2);
+}
+
+html.dark .text-input:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--canvas-fg-1);
+}
+
+html.dark .text-input:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* Text input variants */
+
+html.dark .text-input.text-input--error {
+  border-color: var(--color-error);
+}
+
+html.dark .text-input.text-input--success {
+  border-color: var(--color-success);
+}
+
+html.dark .text-input.text-input--warning {
+  border-color: var(--color-warning);
+}
+
+html.dark .text-input.text-input--info {
+  border-color: var(--color-info);
+}
+
+html.dark .text-input.text-input--gray {
+  border-color: var(--canvas-border);
+  color: var(--canvas-fg-2);
+}
+
+/* ============================================================
+ * TEXTAREA (.textarea)
+ * ============================================================ */
+
+html.dark .textarea {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  resize: none;
+  line-height: var(--leading-normal);
+  transition: border-color var(--transition-default) var(--timing-ease-out),
+              background-color var(--transition-default) var(--timing-ease-out);
+}
+
+html.dark .textarea::placeholder {
+  color: var(--canvas-fg-2);
+}
+
+html.dark .textarea:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--canvas-fg-1);
+}
+
+html.dark .textarea:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* Textarea variants */
+
+html.dark .textarea.textarea--error {
+  border-color: var(--color-error);
+}
+
+html.dark .textarea.textarea--success {
+  border-color: var(--color-success);
+}
+
+html.dark .textarea.textarea--warning {
+  border-color: var(--color-warning);
+}
+
+html.dark .textarea.textarea--info {
+  border-color: var(--color-info);
+}
+
+/* ============================================================
+ * SELECT (.select)
+ * ============================================================ */
+
+html.dark .select {
+  position: relative;
+  display: inline-block;
+}
+
+html.dark .select__input {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  padding: 8px 28px 8px 12px;
+  padding-right: 28px;
+  border-radius: var(--radius-md);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: border-color var(--transition-default) var(--timing-ease-out),
+              background-color var(--transition-default) var(--timing-ease-out);
+}
+
+html.dark .select__input::placeholder {
+  color: var(--canvas-fg-2);
+}
+
+html.dark .select__input:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--canvas-fg-1);
+}
+
+html.dark .select__input:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* Select chevron indicator */
+
+html.dark .select::after {
+  content: '▾';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 10px;
+  color: var(--canvas-fg-1);
+}
+
+/* Select variants */
+
+html.dark .select__input.select--error {
+  border-color: var(--color-error);
+}
+
+html.dark .select__input.select--success {
+  border-color: var(--color-success);
+}
+
+html.dark .select__input.select--warning {
+  border-color: var(--color-warning);
+}
+
+html.dark .select__input.select--info {
+  border-color: var(--color-info);
+}
+
+html.dark .select__input.select--gray {
+  border-color: var(--canvas-border);
+  color: var(--canvas-fg-2);
+}
+
+/* ============================================================
+ * NUMBER INPUT (.number-input)
+ * ============================================================ */
+
+html.dark .number-input {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-default) var(--timing-ease-out),
+              background-color var(--transition-default) var(--timing-ease-out);
+}
+
+/* Remove spinner in modern browsers */
+
+html.dark .number-input::-webkit-outer-spin-button,
+html.dark .number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+html.dark .number-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+html.dark .number-input::placeholder {
+  color: var(--canvas-fg-2);
+}
+
+html.dark .number-input:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--canvas-fg-1);
+}
+
+html.dark .number-input:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* Number input variants */
+
+html.dark .number-input.number-input--error {
+  border-color: var(--color-error);
+}
+
+html.dark .number-input.number-input--success {
+  border-color: var(--color-success);
+}
+
+html.dark .number-input.number-input--warning {
+  border-color: var(--color-warning);
+}
+
+html.dark .number-input.number-input--info {
+  border-color: var(--color-info);
+}
+
+/* ============================================================
+ * TRI-STATE (.tri-state)
+ * Checkbox and Radio combined three-state component
+ * ============================================================ */
+
+html.dark .tri-state {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-sm);
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  transition: background-color var(--transition-default) var(--timing-ease-out),
+              border-color var(--transition-default) var(--timing-ease-out),
+              color var(--transition-default) var(--timing-ease-out);
+}
+
+html.dark .tri-state:hover {
+  background: var(--hover-bg);
+}
+
+html.dark .tri-state.tri-state--checked {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .tri-state.tri-state--indeterminate {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .tri-state:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+html.dark .tri-state:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* Radio variant (circular) */
+
+html.dark .tri-state.tri-state--radio {
+  border-radius: 50%;
+}
+
+html.dark .tri-state.tri-state--radio.tri-state--checked::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--canvas-bg);
+  border-radius: 50%;
+}
+
+/* Checkbox variant (square with checkmark) */
+
+html.dark .tri-state.tri-state--checkbox.tri-state--checked::after {
+  content: '✓';
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+}
+
+html.dark .tri-state.tri-state--checkbox.tri-state--indeterminate::after {
+  content: '−';
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+}
+
+/* ============================================================
+ * FIELD (.field)
+ * Container for form fields with label and helper text
+ * ============================================================ */
+
+html.dark .field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+html.dark .field__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-10);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-1);
+  margin-bottom: 4px;
+}
+
+html.dark .field__label--required::after {
+  content: ' *';
+  color: var(--color-error);
+}
+
+html.dark .field__input {
+  /* Inherit from input elements */
+}
+
+html.dark .field__helper {
+  font-family: var(--font-mono);
+  font-size: var(--text-9);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-2);
+  margin-top: 2px;
+}
+
+html.dark .field__helper--error {
+  color: var(--color-error);
+}
+
+html.dark .field__helper--success {
+  color: var(--color-success);
+}
+
+html.dark .field__helper--warning {
+  color: var(--color-warning-text);
+}
+
+html.dark .field__helper--info {
+  color: var(--color-info);
+}
+
+/* Field error state */
+
+html.dark .field.field--error .field__label {
+  color: var(--color-error);
+}
+
+html.dark .field.field--error .field__helper {
+  color: var(--color-error);
+}
+
+/* Field success state */
+
+html.dark .field.field--success .field__label {
+  color: var(--color-success);
+}
+
+html.dark .field.field--success .field__helper {
+  color: var(--color-success);
+}
+
+/* Field disabled state */
+
+html.dark .field.field--disabled .field__label {
+  opacity: var(--disabled-opacity);
+}
+
+html.dark .field.field--disabled .field__helper {
+  opacity: var(--disabled-opacity);
+}
