@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     ".": "./dist/hesperus.css",
-    "./tokens": "./dist/tokens.css"
+    "./tokens": "./dist/tokens.css",
+    "./components": "./dist/components/index.js"
   },
   "files": [
     "dist",

@@ -1764,3 +1764,885 @@ html.dark .panel__footer {
   background: var(--canvas-bg);
   flex-shrink: 0;
 }
+
+/* ============================================================
+ * ACCORDION (.accordion, .accordion__panel, .accordion__title, .accordion__content)
+ * ============================================================ */
+
+html.dark .accordion {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--canvas-bg);
+}
+
+html.dark .accordion__panel {
+  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
+}
+
+html.dark .accordion__panel:last-child {
+  border-bottom: none;
+}
+
+html.dark .accordion__title {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: none;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  cursor: pointer;
+  transition: background-color var(--transition-fast) var(--timing-ease-out),
+              color var(--transition-fast) var(--timing-ease-out);
+}
+
+html.dark .accordion__title:hover {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .accordion__panel.accordion__panel--open .accordion__title {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .accordion__content {
+  padding: 12px 16px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border-top: 1px solid var(--canvas-border);
+}
+
+/* ============================================================
+ * DROPDOWN (.dropdown, .dropdown__trigger, .dropdown__menu, .dropdown__item, .dropdown__divider)
+ * ============================================================ */
+
+html.dark .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+html.dark .dropdown__trigger {
+  padding: 8px 12px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  cursor: pointer;
+  transition: background-color var(--transition-fast) var(--timing-ease-out),
+              color var(--transition-fast) var(--timing-ease-out);
+}
+
+html.dark .dropdown__trigger:hover,
+html.dark .dropdown.dropdown--open .dropdown__trigger {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .dropdown__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--canvas-bg);
+  border: var(--border-width-strong) solid var(--canvas-fg-1);
+  border-radius: var(--radius-md);
+  min-width: 150px;
+  z-index: 1000;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+html.dark .dropdown__item {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: none;
+  border-bottom: 1px solid var(--canvas-border);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-fast) var(--timing-ease-out);
+}
+
+html.dark .dropdown__item:last-child {
+  border-bottom: none;
+}
+
+html.dark .dropdown__item:hover {
+  background: var(--canvas-secondary);
+}
+
+html.dark .dropdown__item:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+html.dark .dropdown__divider {
+  height: 1px;
+  background: var(--canvas-border);
+  margin: 4px 0;
+}
+
+/* ============================================================
+ * PAGINATION (.pagination, .pagination__button, .pagination__page)
+ * ============================================================ */
+
+html.dark .pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+}
+
+html.dark .pagination__button,
+html.dark .pagination__page {
+  padding: 8px 12px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  cursor: pointer;
+  transition: background-color var(--transition-fast) var(--timing-ease-out);
+}
+
+html.dark .pagination__button:hover:not(:disabled),
+html.dark .pagination__page:hover {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .pagination__page.pagination__page--active {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .pagination__button:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* ============================================================
+ * TOOLTIP (.tooltip, .tooltip__content)
+ * ============================================================ */
+
+html.dark .tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+html.dark .tooltip__content {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 9px;
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+  font-size: var(--text-9);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+html.dark .tooltip__content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--canvas-fg-1);
+}
+
+/* ============================================================
+ * SPINNER (.spinner, .spinner__segment, .spinner__dot)
+ * ============================================================ */
+
+html.dark .spinner {
+  display: inline-block;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: 50%;
+  animation: spin 1s var(--timing-ease-out) infinite;
+}
+
+html.dark .spinner--ring {
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+
+html.dark .spinner--block {
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+html.dark .spinner__segment {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--canvas-fg-1);
+  animation: spin-block 1s steps(8) infinite;
+}
+
+html.dark .spinner--dots::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-block {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.3; }
+}
+
+/* ============================================================
+ * PROGRESS (.progress, .progress__bar)
+ * ============================================================ */
+
+html.dark .progress {
+  width: 100%;
+  height: 8px;
+  background: var(--canvas-bg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+html.dark .progress__bar {
+  height: 100%;
+  background: var(--color-warning);
+  transition: width var(--transition-default) var(--timing-ease-out);
+}
+
+html.dark .progress.progress--indeterminate .progress__bar {
+  width: 35%;
+  animation: progress-slide 1.2s var(--timing-ease-in-out) infinite;
+}
+
+html.dark .progress.progress--success .progress__bar {
+  background: var(--color-success);
+}
+
+html.dark .progress.progress--error .progress__bar {
+  background: var(--color-error);
+}
+
+html.dark .progress.progress--info .progress__bar {
+  background: var(--color-info);
+}
+
+@keyframes progress-slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(500%); }
+}
+
+/* ============================================================
+ * AVATAR (.avatar, .avatar__image, .avatar__initials, .avatar__status)
+ * ============================================================ */
+
+html.dark .avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: 50%;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  position: relative;
+  overflow: hidden;
+}
+
+html.dark .avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+html.dark .avatar__initials {
+  font-size: 0.5em;
+  text-transform: uppercase;
+}
+
+html.dark .avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 11px;
+  height: 11px;
+  border: var(--border-width-default) solid var(--canvas-bg);
+  border-radius: 50%;
+  background: var(--color-info);
+}
+
+html.dark .avatar__status--success {
+  background: var(--color-success);
+}
+
+html.dark .avatar__status--warning {
+  background: var(--color-warning);
+}
+
+html.dark .avatar__status--offline {
+  background: var(--canvas-fg-2);
+}
+
+/* ============================================================
+ * AVATAR GROUP (.avatar-group, .avatar-group__counter)
+ * ============================================================ */
+
+html.dark .avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+html.dark .avatar-group .avatar {
+  margin-left: -8px;
+  border-color: var(--canvas-bg);
+}
+
+html.dark .avatar-group .avatar:first-child {
+  margin-left: 0;
+}
+
+html.dark .avatar-group__counter {
+  margin-left: -8px;
+  padding: 2px 6px;
+  background: var(--canvas-fg-2);
+  color: var(--canvas-muted-fg);
+  font-size: var(--text-9);
+  font-family: var(--font-mono);
+  border: var(--border-width-default) solid var(--canvas-fg-2);
+  border-radius: var(--radius-sm);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+ * POPOVER (.popover, .popover__trigger, .popover__content)
+ * ============================================================ */
+
+html.dark .popover {
+  position: relative;
+  display: inline-block;
+}
+
+html.dark .popover__trigger {
+  padding: 8px 12px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  cursor: pointer;
+  transition: background-color var(--transition-fast) var(--timing-ease-out);
+}
+
+html.dark .popover__trigger:hover,
+html.dark .popover.popover--open .popover__trigger {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .popover__content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  padding: 12px 16px;
+  background: var(--canvas-bg);
+  border: var(--border-width-strong) solid var(--canvas-fg-1);
+  border-radius: var(--radius-md);
+  min-width: 200px;
+  z-index: 1000;
+}
+
+html.dark .popover.popover--left .popover__content {
+  right: auto;
+  left: 0;
+}
+
+html.dark .popover.popover--top .popover__content {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+/* ============================================================
+ * RATING (.rating, .rating__star)
+ * ============================================================ */
+
+html.dark .rating {
+  display: inline-flex;
+  gap: 4px;
+}
+
+html.dark .rating__star {
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+html.dark .rating__star:hover {
+  background: var(--canvas-secondary);
+}
+
+html.dark .rating__star.rating__star--filled {
+  color: var(--color-warning);
+}
+
+html.dark .rating__star:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* ============================================================
+ * TIMELINE (.timeline, .timeline__item, .timeline__point, .timeline__content, .timeline__time, .timeline__title, .timeline__body)
+ * ============================================================ */
+
+html.dark .timeline {
+  position: relative;
+}
+
+html.dark .timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 20px;
+  bottom: 0;
+  width: var(--border-width-default);
+  background: var(--canvas-fg-1);
+}
+
+html.dark .timeline__item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+html.dark .timeline__point {
+  width: 33px;
+  height: 33px;
+  background: var(--canvas-bg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+html.dark .timeline__content {
+  flex: 1;
+  padding-top: 4px;
+}
+
+html.dark .timeline__time {
+  display: block;
+  font-size: var(--text-9);
+  font-family: var(--font-mono);
+  color: var(--canvas-muted-fg);
+  margin-bottom: 4px;
+}
+
+html.dark .timeline__title {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  margin: 0 0 4px 0;
+}
+
+html.dark .timeline__body {
+  font-size: var(--text-11);
+  color: var(--canvas-fg-1);
+  margin: 0;
+}
+
+/* ============================================================
+ * DATEPICKER (.datepicker, .datepicker__input, .datepicker__popover, .datepicker__calendar)
+ * ============================================================ */
+
+html.dark .datepicker {
+  position: relative;
+  display: inline-block;
+}
+
+html.dark .datepicker__input {
+  padding: 8px 12px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+html.dark .datepicker__input:hover {
+  background: var(--canvas-secondary);
+}
+
+html.dark .datepicker__input:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+html.dark .datepicker__input:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+html.dark .datepicker__popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--canvas-bg);
+  border: var(--border-width-strong) solid var(--canvas-fg-1);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  z-index: 1000;
+  min-width: 280px;
+}
+
+html.dark .datepicker__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+html.dark .datepicker__header button {
+  padding: 4px 8px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  font-size: 9px;
+}
+
+html.dark .datepicker__header button:hover {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .datepicker__title {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  font-size: var(--text-10);
+}
+
+html.dark .datepicker__calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+html.dark .datepicker__weekday {
+  padding: 4px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-9);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  color: var(--canvas-muted-fg);
+}
+
+html.dark .datepicker__day,
+html.dark .datepicker__day--empty {
+  padding: 6px 2px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-10);
+}
+
+html.dark .datepicker__day {
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+html.dark .datepicker__day:hover {
+  background: var(--canvas-secondary);
+}
+
+html.dark .datepicker__day.datepicker__day--selected {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .datepicker__day--empty {
+  background: transparent;
+  border: none;
+}
+
+/* ============================================================
+ * FILE INPUT (.file-input, .file-input__button, .file-input__name)
+ * ============================================================ */
+
+html.dark .file-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+html.dark .file-input__button {
+  padding: 8px 12px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+html.dark .file-input__button:hover {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .file-input__button:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+html.dark .file-input__name {
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  color: var(--canvas-muted-fg);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+ * BLOCKQUOTE (.blockquote, .blockquote__text, .blockquote__cite)
+ * ============================================================ */
+
+html.dark .blockquote {
+  border-left: var(--border-width-default) solid var(--canvas-fg-1);
+  padding: 0 16px;
+  margin: 16px 0;
+}
+
+html.dark .blockquote__text {
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  color: var(--canvas-fg-1);
+  margin: 0 0 8px 0;
+  font-style: italic;
+}
+
+html.dark .blockquote__cite {
+  font-family: var(--font-mono);
+  font-size: var(--text-10);
+  color: var(--canvas-muted-fg);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+ * KBD (.kbd)
+ * ============================================================ */
+
+html.dark .kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-10);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+}
+
+/* ============================================================
+ * HR (.hr)
+ * ============================================================ */
+
+html.dark .hr {
+  border: none;
+  border-top: var(--border-width-default) solid var(--canvas-fg-1);
+  margin: 16px 0;
+}
+
+html.dark .hr.hr--dashed {
+  border-top-style: dashed;
+}
+
+html.dark .hr.hr--dotted {
+  border-top-style: dotted;
+}
+
+/* ============================================================
+ * LIST (.list, .list__item)
+ * ============================================================ */
+
+html.dark .list {
+  margin: 16px 0;
+  padding-left: 24px;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  color: var(--canvas-fg-1);
+}
+
+html.dark .list.list--ordered {
+  list-style-type: decimal;
+}
+
+html.dark .list.list--unordered {
+  list-style-type: disc;
+}
+
+html.dark .list__item {
+  margin-bottom: 8px;
+}
+
+/* ============================================================
+ * FOOTER (.footer, .footer__link, .footer__link-group)
+ * ============================================================ */
+
+html.dark .footer {
+  border-top: var(--border-width-default) solid var(--canvas-fg-1);
+  padding: 24px;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+}
+
+html.dark .footer__link-group {
+  margin-bottom: 16px;
+  display: inline-block;
+  margin-right: 32px;
+}
+
+html.dark .footer__link-group-title {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  font-size: var(--text-10);
+  margin: 0 0 8px 0;
+}
+
+html.dark .footer__link {
+  display: block;
+  color: var(--canvas-muted-fg);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  margin-bottom: 4px;
+  transition: color var(--transition-fast);
+}
+
+html.dark .footer__link:hover {
+  color: var(--canvas-fg-1);
+}
+
+/* ============================================================
+ * BANNER (.banner, .banner__content, .banner__close)
+ * ============================================================ */
+
+html.dark .banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--canvas-bg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-md);
+  color: var(--canvas-fg-1);
+}
+
+html.dark .banner.banner--info {
+  border-color: var(--color-info);
+  background: var(--canvas-bg);
+}
+
+html.dark .banner.banner--success {
+  border-color: var(--color-success);
+}
+
+html.dark .banner.banner--warning {
+  border-color: var(--color-warning);
+}
+
+html.dark .banner.banner--error {
+  border-color: var(--color-error);
+}
+
+html.dark .banner__content {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+}
+
+html.dark .banner__close {
+  background: transparent;
+  border: none;
+  color: var(--canvas-fg-1);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--transition-fast);
+}
+
+html.dark .banner__close:hover {
+  color: var(--canvas-secondary);
+}

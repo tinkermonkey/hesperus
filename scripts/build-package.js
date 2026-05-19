@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, copyFile, writeFile, rm, readFile } from 'fs/promises';
+import { mkdir, copyFile, writeFile, rm, readFile, cp } from 'fs/promises';
 import { existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -10,7 +10,7 @@ const rootDir = join(__dirname, '..');
 const distDir = join(rootDir, 'dist');
 
 async function build() {
-  console.log('🏗️  Building Hesperus CSS-only package...\n');
+  console.log('🏗️  Building Hesperus package with CSS and React components...\n');
 
   // Clean dist directory
   if (existsSync(distDir)) {
@@ -47,10 +47,20 @@ async function build() {
   );
   console.log('✅ Exported dist/tokens.css');
 
+  // Copy React components to dist
+  await mkdir(join(distDir, 'components'), { recursive: true });
+  await cp(
+    join(rootDir, 'src', 'components'),
+    join(distDir, 'components'),
+    { recursive: true }
+  );
+  console.log('✅ Copied React components to dist/components');
+
   console.log('\n✨ Package build complete! Ready for publishing.\n');
   console.log('📦 Package exports:');
-  console.log('   - hesperus.css (token overrides + BEM overrides)');
-  console.log('   - ./tokens (token overrides only)\n');
+  console.log('   - ./dist/hesperus.css (token overrides + BEM overrides)');
+  console.log('   - ./dist/tokens.css (token overrides only)');
+  console.log('   - ./dist/components (React components)\n');
   console.log('🎨 Assets:');
   console.log('   - public/grid-background-light.svg');
   console.log('   - public/grid-background-dark.svg\n');
