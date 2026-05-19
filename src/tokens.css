@@ -36,6 +36,8 @@
   --transition-slow: 250ms;       /* modal/drawer enter */
   --timing-linear: linear;
   --timing-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-stepped: steps(8, end);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* ────────────────────────────────────────────────────────────────────
      SHADOWS — Hesperus forbids shadows (flat design)
