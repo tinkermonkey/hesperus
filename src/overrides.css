@@ -1,7 +1,7 @@
 /* Hesperus BEM overrides layer
  * Component-specific CSS overrides for Heimdall components.
- * Phase 2: Primitives and form inputs (Button, Badge, Icon, Chip, StatusBadge, TextInput, TextArea, Select, NumberInput, TriState, Field)
- * Phase 3: Data display and navigation (Table, StatTile, StatGrid, Sidebar, Topbar, TabBar, NavItem)
+ * Primitives and form inputs (Button, Badge, Icon, Chip, StatusBadge, TextInput, TextArea, Select, NumberInput, TriState, Field)
+ * Data display and navigation (Table, StatTile, StatGrid, Sidebar, Topbar, TabBar, NavItem)
  *
  * All overrides follow Hesperus rules:
  * - 2px solid borders using --canvas-fg-1 or --canvas-border
@@ -717,21 +717,21 @@ html.dark .field.field--disabled .field__helper {
 }
 
 /* ============================================================
- * PHASE 3: DATA DISPLAY & NAVIGATION
+ * DATA DISPLAY & NAVIGATION
  * ============================================================ */
 
 /* ============================================================
  * TABLE (.table, th, td)
  * ============================================================ */
 
-html.dark table {
+html.dark .table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-mono);
   font-size: var(--text-11);
 }
 
-html.dark table th {
+html.dark .table th {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   border: var(--border-width-default) solid var(--canvas-fg-1);
@@ -743,19 +743,15 @@ html.dark table th {
   text-align: left;
 }
 
-html.dark table td {
+html.dark .table td {
   border: 1px solid var(--canvas-fg-1);
   padding: 9px 12px;
   color: var(--canvas-fg-1);
 }
 
-html.dark table tbody tr:hover td {
+html.dark .table tbody tr:hover td {
   background: var(--hover-bg);
   transition: background-color var(--transition-default) var(--timing-ease-out);
-}
-
-html.dark table tbody tr:last-child td {
-  border-bottom: 1px solid var(--canvas-fg-1);
 }
 
 /* ============================================================
@@ -859,7 +855,7 @@ html.dark .sidebar__item {
   font-size: var(--text-11);
   font-weight: var(--weight-normal);
   text-transform: var(--text-transform-heading);
-  letter-spacing: 0.02em;
+  letter-spacing: var(--letter-spacing-default);
   color: var(--canvas-fg-1);
   background: var(--canvas-bg);
   border: none;
@@ -881,6 +877,11 @@ html.dark .sidebar__item.sidebar__item--active {
   background: var(--hover-bg);
   border-left: 2px solid var(--canvas-fg-1);
   font-weight: var(--weight-bold);
+}
+
+html.dark .sidebar__item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* ============================================================
@@ -948,6 +949,11 @@ html.dark .nav__item.nav__item--active {
   color: var(--canvas-bg);
 }
 
+html.dark .nav__item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
 html.dark .nav__item:last-child {
   border-right: none;
 }
@@ -993,8 +999,13 @@ html.dark .tab.tab--active {
   color: var(--canvas-fg-1);
 }
 
+html.dark .tab:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
 html.dark .tab:disabled {
-  color: var(--canvas-fg-2);
+  opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
@@ -1002,7 +1013,6 @@ html.dark .tab:disabled {
 
 html.dark .tab-bar.tab-bar--segmented {
   border: var(--border-width-default) solid var(--canvas-fg-1);
-  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
   border-radius: var(--radius-md);
   gap: 0;
   padding: 0;
@@ -1058,6 +1068,11 @@ html.dark .nav-item.nav-item--active {
   background: var(--hover-bg);
   border-left: 2px solid var(--canvas-fg-1);
   font-weight: var(--weight-bold);
+}
+
+html.dark .nav-item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 html.dark .nav-item:disabled {
