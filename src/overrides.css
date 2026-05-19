@@ -1289,10 +1289,6 @@ html.dark .toast.toast--error {
   border-color: var(--color-error);
 }
 
-html.dark .toast.toast--error {
-  border-color: var(--color-error);
-}
-
 html.dark .toast.toast--error .toast__icon {
   border-color: var(--color-error);
   color: var(--color-error);
