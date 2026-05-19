@@ -42,6 +42,18 @@ import SpinnerDots from "./components/SpinnerDots";
 import FileInputRetro from "./components/FileInputRetro";
 import { StateMatrix } from "./components/StateMatrix";
 
+// ── Avatar placeholder helper ─────────────────────────────────────
+
+function createAvatarPlaceholder(initials) {
+  const colors = ["#E8D5B9", "#A89968", "#7A6F5E", "#5C4B3D"];
+  const color = colors[initials.charCodeAt(0) % colors.length];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="${color}"/>
+    <text x="50" y="50" font-family="monospace" font-size="32" font-weight="bold" fill="#000" text-anchor="middle" dominant-baseline="middle" text-transform="uppercase">${initials}</text>
+  </svg>`;
+  return `data:image/svg+xml;base64,${btoa(svg)}`;
+}
+
 // ── Layout helpers ────────────────────────────────────────────────
 
 function Section({ id, title, children }) {
@@ -209,7 +221,7 @@ function Modal({ open, onClose, title, children }) {
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center">
       <div className="absolute inset-0 bg-retro-bg/70" onClick={onClose} />
-      <div className="relative bg-retro-bg border-2 border-retro-fg rounded-md max-w-md w-full mx-4 shadow-lg">
+      <div className="relative bg-retro-bg border-2 border-retro-fg rounded-md max-w-md w-full mx-4">
         <div className="border-b-2 border-retro-fg bg-retro-fg px-4 py-2">
           <h2 className="font-mono text-[11px] font-bold uppercase tracking-widest text-retro-bg">
             {title}
@@ -353,7 +365,6 @@ const NAV_SECTIONS = [
 export default function App() {
   const [dark, setDark] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [selectedTab, setSelectedTab] = useState(0);
   const [ratings, setRatings] = useState({ default: 3, hover: 4 });
 
   useEffect(() => {
@@ -542,6 +553,18 @@ export default function App() {
                 <Badge variant="info">Info</Badge>
               </Variant>
             </Group>
+            <Group label="Badge states">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Badge>Disabled</Badge>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-sm inline-block">
+                  <Badge>Focused</Badge>
+                </div>
+              </Variant>
+            </Group>
           </Section>
 
           {/* ── Alerts ── */}
@@ -568,12 +591,28 @@ export default function App() {
                 </Alert>
               </Variant>
             </Group>
+            <Group label="Alert states">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Alert title="Disabled Alert" variant="info">
+                    This alert is disabled
+                  </Alert>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md">
+                  <Alert title="Focused Alert" variant="info">
+                    This alert has focus
+                  </Alert>
+                </div>
+              </Variant>
+            </Group>
           </Section>
 
           {/* ── Cards & Modals ── */}
           <Section id="cards" title="Cards & Modals">
             <Group label="Cards">
-              <Variant label="Basic card">
+              <Variant label="Default">
                 <Card title="Card Title">
                   This is a basic card with some content
                 </Card>
@@ -585,6 +624,20 @@ export default function App() {
                 >
                   Card content with a footer
                 </Card>
+              </Variant>
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Card title="Disabled Card">
+                    This card is disabled
+                  </Card>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md">
+                  <Card title="Focused Card">
+                    This card has focus
+                  </Card>
+                </div>
               </Variant>
             </Group>
             <Group label="Modals">
@@ -600,7 +653,7 @@ export default function App() {
 
           {/* ── Table ── */}
           <Section id="table" title="Table">
-            <Group label="Basic table">
+            <Group label="Default">
               <Table
                 columns={["Name", "Email", "Status"]}
                 rows={[
@@ -610,11 +663,33 @@ export default function App() {
                 ]}
               />
             </Group>
+            <Group label="Disabled">
+              <div className="opacity-40">
+                <Table
+                  columns={["Name", "Email", "Status"]}
+                  rows={[
+                    ["Alice", "alice@example.com", "Active"],
+                    ["Bob", "bob@example.com", "Inactive"],
+                  ]}
+                />
+              </div>
+            </Group>
+            <Group label="Focus">
+              <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md overflow-hidden">
+                <Table
+                  columns={["Name", "Email", "Status"]}
+                  rows={[
+                    ["Alice", "alice@example.com", "Active"],
+                    ["Bob", "bob@example.com", "Inactive"],
+                  ]}
+                />
+              </div>
+            </Group>
           </Section>
 
           {/* ── Accordion ── */}
           <Section id="accordion" title="Accordion">
-            <Group label="Accordion">
+            <Group label="Default">
               <Accordion>
                 <AccordionPanel>
                   <AccordionTitle>Panel 1</AccordionTitle>
@@ -630,6 +705,42 @@ export default function App() {
                 </AccordionPanel>
               </Accordion>
             </Group>
+            <Group label="Disabled">
+              <div className="opacity-40">
+                <Accordion>
+                  <AccordionPanel>
+                    <AccordionTitle>Panel 1</AccordionTitle>
+                    <AccordionContent>
+                      Content for panel 1
+                    </AccordionContent>
+                  </AccordionPanel>
+                  <AccordionPanel>
+                    <AccordionTitle>Panel 2</AccordionTitle>
+                    <AccordionContent>
+                      Content for panel 2
+                    </AccordionContent>
+                  </AccordionPanel>
+                </Accordion>
+              </div>
+            </Group>
+            <Group label="Focus">
+              <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md">
+                <Accordion>
+                  <AccordionPanel>
+                    <AccordionTitle>Panel 1</AccordionTitle>
+                    <AccordionContent>
+                      Content for panel 1
+                    </AccordionContent>
+                  </AccordionPanel>
+                  <AccordionPanel>
+                    <AccordionTitle>Panel 2</AccordionTitle>
+                    <AccordionContent>
+                      Content for panel 2
+                    </AccordionContent>
+                  </AccordionPanel>
+                </Accordion>
+              </div>
+            </Group>
           </Section>
 
           {/* ── Avatar ── */}
@@ -638,72 +749,131 @@ export default function App() {
               <Variant label="Default">
                 <Avatar
                   alt="avatar"
-                  img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                  img={createAvatarPlaceholder("AC")}
                 />
               </Variant>
               <Variant label="With label">
                 <div className="flex items-center gap-2">
                   <Avatar
                     alt="avatar"
-                    img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                    img={createAvatarPlaceholder("AC")}
                   />
                   <span className="font-mono text-[11px]">User</span>
+                </div>
+              </Variant>
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Avatar
+                    alt="avatar"
+                    img={createAvatarPlaceholder("AC")}
+                  />
                 </div>
               </Variant>
             </Group>
             <Group label="Avatar group">
               <Variant label="Group">
                 <AvatarGroup>
-                  <Avatar alt="avatar" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" />
-                  <Avatar alt="avatar" img="https://flowbite.com/docs/images/people/profile-picture-3.jpg" />
-                  <Avatar alt="avatar" img="https://flowbite.com/docs/images/people/profile-picture-2.jpg" />
+                  <Avatar alt="avatar" img={createAvatarPlaceholder("AC")} />
+                  <Avatar alt="avatar" img={createAvatarPlaceholder("BD")} />
+                  <Avatar alt="avatar" img={createAvatarPlaceholder("CE")} />
                 </AvatarGroup>
+              </Variant>
+              <Variant label="Group Disabled">
+                <div className="opacity-40">
+                  <AvatarGroup>
+                    <Avatar alt="avatar" img={createAvatarPlaceholder("AC")} />
+                    <Avatar alt="avatar" img={createAvatarPlaceholder("BD")} />
+                    <Avatar alt="avatar" img={createAvatarPlaceholder("CE")} />
+                  </AvatarGroup>
+                </div>
               </Variant>
             </Group>
           </Section>
 
           {/* ── Banner ── */}
           <Section id="banner" title="Banner">
-            <Group label="Banner types">
-              <Variant label="Default">
+            <Group label="Default">
+              <Variant label="Banner">
                 <Banner>
                   Important announcement
                 </Banner>
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Banner>
+                    Disabled banner
+                  </Banner>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md">
+                  <Banner>
+                    Focused banner
+                  </Banner>
+                </div>
               </Variant>
             </Group>
           </Section>
 
           {/* ── Blockquote ── */}
           <Section id="blockquote" title="Blockquote">
-            <Group label="Blockquotes">
-              <Variant label="Default">
+            <Group label="Default">
+              <Variant label="Blockquote">
                 <Blockquote>
                   This is a blockquote with some important information
                 </Blockquote>
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Blockquote>
+                    Disabled blockquote
+                  </Blockquote>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md">
+                  <Blockquote>
+                    Focused blockquote
+                  </Blockquote>
+                </div>
               </Variant>
             </Group>
           </Section>
 
           {/* ── Datepicker ── */}
           <Section id="datepicker" title="Datepicker">
-            <Group label="Date input">
+            <Group label="States">
               <Variant label="Default">
                 <Datepicker />
               </Variant>
               <Variant label="Disabled">
                 <Datepicker disabled />
               </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md inline-block">
+                  <Datepicker />
+                </div>
+              </Variant>
             </Group>
           </Section>
 
           {/* ── File Input ── */}
           <Section id="file-input" title="File Input">
-            <Group label="File inputs">
+            <Group label="States">
               <Variant label="Default">
                 <FileInput />
               </Variant>
               <Variant label="Disabled">
                 <FileInput disabled />
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md inline-block">
+                  <FileInput />
+                </div>
               </Variant>
               <Variant label="Retro style">
                 <FileInputRetro />
@@ -713,22 +883,60 @@ export default function App() {
 
           {/* ── Footer ── */}
           <Section id="footer" title="Footer">
-            <Group label="Footer">
-              <Footer>
-                <FooterLinkGroup>
-                  <FooterLink href="#">Link 1</FooterLink>
-                  <FooterLink href="#">Link 2</FooterLink>
-                  <FooterLink href="#">Link 3</FooterLink>
-                </FooterLinkGroup>
-              </Footer>
+            <Group label="Default">
+              <Variant label="Footer">
+                <Footer>
+                  <FooterLinkGroup>
+                    <FooterLink href="#">Link 1</FooterLink>
+                    <FooterLink href="#">Link 2</FooterLink>
+                    <FooterLink href="#">Link 3</FooterLink>
+                  </FooterLinkGroup>
+                </Footer>
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Footer>
+                    <FooterLinkGroup>
+                      <FooterLink href="#">Link 1</FooterLink>
+                      <FooterLink href="#">Link 2</FooterLink>
+                      <FooterLink href="#">Link 3</FooterLink>
+                    </FooterLinkGroup>
+                  </Footer>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md">
+                  <Footer>
+                    <FooterLinkGroup>
+                      <FooterLink href="#">Link 1</FooterLink>
+                      <FooterLink href="#">Link 2</FooterLink>
+                      <FooterLink href="#">Link 3</FooterLink>
+                    </FooterLinkGroup>
+                  </Footer>
+                </div>
+              </Variant>
             </Group>
           </Section>
 
           {/* ── Horizontal Rule ── */}
           <Section id="hr" title="Horizontal Rule">
-            <Group label="HR variants">
-              <Variant label="Default">
+            <Group label="Default">
+              <Variant label="HR">
                 <div className="w-44">
+                  <HR />
+                </div>
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40 w-44">
+                  <HR />
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md p-2 w-44">
                   <HR />
                 </div>
               </Variant>
@@ -737,7 +945,7 @@ export default function App() {
 
           {/* ── Keyboard Key ── */}
           <Section id="kbd" title="Keyboard Key">
-            <Group label="Keyboard keys">
+            <Group label="Default">
               <Variant label="Keys">
                 <div className="flex gap-2">
                   <Kbd>Ctrl</Kbd>
@@ -746,11 +954,29 @@ export default function App() {
                 </div>
               </Variant>
             </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40 flex gap-2">
+                  <Kbd>Ctrl</Kbd>
+                  <Kbd>+</Kbd>
+                  <Kbd>C</Kbd>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md p-2">
+                  <div className="flex gap-2">
+                    <Kbd>Ctrl</Kbd>
+                    <Kbd>+</Kbd>
+                    <Kbd>C</Kbd>
+                  </div>
+                </div>
+              </Variant>
+            </Group>
           </Section>
 
           {/* ── List ── */}
           <Section id="list" title="List">
-            <Group label="Lists">
+            <Group label="Default">
               <Variant label="Unordered">
                 <List>
                   <ListItem>Item 1</ListItem>
@@ -759,31 +985,79 @@ export default function App() {
                 </List>
               </Variant>
             </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <List>
+                    <ListItem>Item 1</ListItem>
+                    <ListItem>Item 2</ListItem>
+                    <ListItem>Item 3</ListItem>
+                  </List>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md">
+                  <List>
+                    <ListItem>Item 1</ListItem>
+                    <ListItem>Item 2</ListItem>
+                    <ListItem>Item 3</ListItem>
+                  </List>
+                </div>
+              </Variant>
+            </Group>
           </Section>
 
           {/* ── Pagination ── */}
           <Section id="pagination" title="Pagination">
-            <Group label="Pagination">
-              <Variant label="Default">
+            <Group label="Default">
+              <Variant label="Pagination">
                 <Pagination />
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Pagination />
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md inline-block p-2">
+                  <Pagination />
+                </div>
               </Variant>
             </Group>
           </Section>
 
           {/* ── Popover ── */}
           <Section id="popover" title="Popover">
-            <Group label="Popovers">
-              <Variant label="Default">
+            <Group label="Default">
+              <Variant label="Popover">
                 <Popover title="Popover">
                   This is a popover with content
                 </Popover>
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Popover title="Popover">
+                    Disabled popover
+                  </Popover>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md inline-block">
+                  <Popover title="Popover">
+                    Focused popover
+                  </Popover>
+                </div>
               </Variant>
             </Group>
           </Section>
 
           {/* ── Progress ── */}
           <Section id="progress" title="Progress">
-            <Group label="Progress bars">
+            <Group label="Progress states">
               <Variant label="0%">
                 <Progress progress={0} />
               </Variant>
@@ -794,11 +1068,23 @@ export default function App() {
                 <Progress progress={100} />
               </Variant>
             </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Progress progress={50} />
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md p-2">
+                  <Progress progress={50} />
+                </div>
+              </Variant>
+            </Group>
           </Section>
 
           {/* ── Rating ── */}
           <Section id="rating" title="Rating">
-            <Group label="Ratings">
+            <Group label="Default">
               <Variant label="Default (3/5)">
                 <Rating value={3} readonly />
               </Variant>
@@ -807,6 +1093,18 @@ export default function App() {
               </Variant>
               <Variant label="Interactive">
                 <Rating value={ratings.default} onChange={(v) => setRatings({ ...ratings, default: v })} />
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Rating value={3} readonly />
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md p-2 inline-block">
+                  <Rating value={3} readonly />
+                </div>
               </Variant>
             </Group>
           </Section>
@@ -832,39 +1130,99 @@ export default function App() {
                 <SpinnerDots />
               </Variant>
             </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Spinner />
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-full p-2 inline-block">
+                  <Spinner />
+                </div>
+              </Variant>
+            </Group>
           </Section>
 
           {/* ── Timeline ── */}
           <Section id="timeline" title="Timeline">
-            <Group label="Timeline">
-              <Timeline>
-                <TimelineItem>
-                  <TimelinePoint />
-                  <TimelineContent>
-                    <TimelineTime>2024-01-15</TimelineTime>
-                    <TimelineTitle>Event 1</TimelineTitle>
-                    <TimelineBody>First event in timeline</TimelineBody>
-                  </TimelineContent>
-                </TimelineItem>
-                <TimelineItem>
-                  <TimelinePoint />
-                  <TimelineContent>
-                    <TimelineTime>2024-01-16</TimelineTime>
-                    <TimelineTitle>Event 2</TimelineTitle>
-                    <TimelineBody>Second event in timeline</TimelineBody>
-                  </TimelineContent>
-                </TimelineItem>
-              </Timeline>
+            <Group label="Default">
+              <Variant label="Timeline">
+                <Timeline>
+                  <TimelineItem>
+                    <TimelinePoint />
+                    <TimelineContent>
+                      <TimelineTime>2024-01-15</TimelineTime>
+                      <TimelineTitle>Event 1</TimelineTitle>
+                      <TimelineBody>First event in timeline</TimelineBody>
+                    </TimelineContent>
+                  </TimelineItem>
+                  <TimelineItem>
+                    <TimelinePoint />
+                    <TimelineContent>
+                      <TimelineTime>2024-01-16</TimelineTime>
+                      <TimelineTitle>Event 2</TimelineTitle>
+                      <TimelineBody>Second event in timeline</TimelineBody>
+                    </TimelineContent>
+                  </TimelineItem>
+                </Timeline>
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Timeline>
+                    <TimelineItem>
+                      <TimelinePoint />
+                      <TimelineContent>
+                        <TimelineTime>2024-01-15</TimelineTime>
+                        <TimelineTitle>Event 1</TimelineTitle>
+                        <TimelineBody>First event</TimelineBody>
+                      </TimelineContent>
+                    </TimelineItem>
+                  </Timeline>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md p-2">
+                  <Timeline>
+                    <TimelineItem>
+                      <TimelinePoint />
+                      <TimelineContent>
+                        <TimelineTime>2024-01-15</TimelineTime>
+                        <TimelineTitle>Event 1</TimelineTitle>
+                        <TimelineBody>First event</TimelineBody>
+                      </TimelineContent>
+                    </TimelineItem>
+                  </Timeline>
+                </div>
+              </Variant>
             </Group>
           </Section>
 
           {/* ── Tooltip ── */}
           <Section id="tooltip" title="Tooltip">
-            <Group label="Tooltips">
-              <Variant label="Default">
+            <Group label="Default">
+              <Variant label="Tooltip">
                 <Tooltip content="Tooltip text">
                   <span className="border-b border-retro-fg cursor-help">Hover me</span>
                 </Tooltip>
+              </Variant>
+            </Group>
+            <Group label="States">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <Tooltip content="Tooltip text">
+                    <span className="border-b border-retro-fg cursor-help">Hover me</span>
+                  </Tooltip>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md p-2 inline-block">
+                  <Tooltip content="Tooltip text">
+                    <span className="border-b border-retro-fg cursor-help">Hover me</span>
+                  </Tooltip>
+                </div>
               </Variant>
             </Group>
           </Section>
@@ -916,9 +1274,43 @@ export default function App() {
                   <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
                 </div>
               </Variant>
+              <Variant label="Disabled">
+                <div className="opacity-40 flex items-center gap-4">
+                  <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
+                  <ConnectionLabel>connection</ConnectionLabel>
+                  <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="flex items-center gap-4 ring-2 ring-retro-orange ring-offset-2 rounded-md p-2">
+                  <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
+                  <ConnectionLabel>connection</ConnectionLabel>
+                  <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
+                </div>
+              </Variant>
             </Group>
             <Group label="State matrix">
               <StateMatrix />
+            </Group>
+            <Group label="Node states">
+              <Variant label="Disabled">
+                <div className="opacity-40">
+                  <GraphNode
+                    title="Node Disabled"
+                    attributes={["Attribute 1", "Attribute 2"]}
+                    accentColor="orange"
+                  />
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md inline-block p-2">
+                  <GraphNode
+                    title="Node Focused"
+                    attributes={["Attribute 1", "Attribute 2"]}
+                    accentColor="orange"
+                  />
+                </div>
+              </Variant>
             </Group>
           </Section>
 
