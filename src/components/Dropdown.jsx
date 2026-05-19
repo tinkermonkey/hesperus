@@ -1,4 +1,4 @@
-import { forwardRef, useState, useRef, useEffect } from 'react';
+import { forwardRef, useState, useRef, useEffect, useImperativeHandle } from 'react';
 import { mergeClasses } from './utils';
 
 /**
@@ -15,11 +15,13 @@ import { mergeClasses } from './utils';
 export const Dropdown = forwardRef(
   ({ trigger, children, className, closeOnClick = true, ...props }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
-    const menuRef = useRef(null);
+    const internalRef = useRef(null);
+
+    useImperativeHandle(ref, () => internalRef.current);
 
     useEffect(() => {
       function handleClickOutside(event) {
-        if (menuRef.current && !menuRef.current.contains(event.target)) {
+        if (internalRef.current && !internalRef.current.contains(event.target)) {
           setIsOpen(false);
         }
       }
@@ -32,7 +34,7 @@ export const Dropdown = forwardRef(
 
     return (
       <div
-        ref={ref}
+        ref={internalRef}
         className={mergeClasses('dropdown', { open: isOpen }, className)}
         {...props}
       >
@@ -45,7 +47,6 @@ export const Dropdown = forwardRef(
 
         {isOpen && (
           <div
-            ref={menuRef}
             className="dropdown__menu"
             onClick={() => closeOnClick && setIsOpen(false)}
           >

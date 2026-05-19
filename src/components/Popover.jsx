@@ -1,4 +1,4 @@
-import { forwardRef, useState, useRef, useEffect } from 'react';
+import { forwardRef, useState, useRef, useEffect, useImperativeHandle } from 'react';
 import { mergeClasses } from './utils';
 
 /**
@@ -15,11 +15,13 @@ import { mergeClasses } from './utils';
 export const Popover = forwardRef(
   ({ trigger, children, position = 'right', className, ...props }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
-    const contentRef = useRef(null);
+    const internalRef = useRef(null);
+
+    useImperativeHandle(ref, () => internalRef.current);
 
     useEffect(() => {
       function handleClickOutside(event) {
-        if (contentRef.current && !contentRef.current.contains(event.target)) {
+        if (internalRef.current && !internalRef.current.contains(event.target)) {
           setIsOpen(false);
         }
       }
@@ -32,7 +34,7 @@ export const Popover = forwardRef(
 
     return (
       <div
-        ref={ref}
+        ref={internalRef}
         className={mergeClasses(
           'popover',
           { open: isOpen, [position]: true },
@@ -48,7 +50,7 @@ export const Popover = forwardRef(
         </button>
 
         {isOpen && (
-          <div ref={contentRef} className="popover__content">
+          <div className="popover__content">
             {children}
           </div>
         )}

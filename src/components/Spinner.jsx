@@ -21,7 +21,7 @@ export const Spinner = forwardRef(
       return (
         <div
           ref={ref}
-          className={mergeClasses('spinner spinner--block', {}, className)}
+          className={mergeClasses('spinner', { block: true }, className)}
           style={{ width: sizePixels, height: sizePixels }}
           {...props}
         >
@@ -34,7 +34,7 @@ export const Spinner = forwardRef(
       return (
         <div
           ref={ref}
-          className={mergeClasses('spinner spinner--dots', {}, className)}
+          className={mergeClasses('spinner', { dots: true }, className)}
           style={{ width: sizePixels, height: sizePixels }}
           {...props}
         >
@@ -46,7 +46,7 @@ export const Spinner = forwardRef(
     return (
       <div
         ref={ref}
-        className={mergeClasses('spinner spinner--ring', {}, className)}
+        className={mergeClasses('spinner', { ring: true }, className)}
         style={{ width: sizePixels, height: sizePixels }}
         {...props}
       />

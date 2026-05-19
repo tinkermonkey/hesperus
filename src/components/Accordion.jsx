@@ -26,7 +26,7 @@ Accordion.displayName = 'Accordion';
 
 /**
  * @typedef {Object} AccordionPanelProps
- * @property {React.ReactNode} children
+ * @property {(state: {isOpen: boolean, setIsOpen: Function}) => React.ReactNode} children
  * @property {boolean} [defaultOpen]
  * @property {string} [className]
  */

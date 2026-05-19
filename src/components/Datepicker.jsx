@@ -1,4 +1,4 @@
-import { forwardRef, useState, useRef, useEffect } from 'react';
+import { forwardRef, useState, useRef, useEffect, useImperativeHandle } from 'react';
 import { mergeClasses } from './utils';
 
 /**
@@ -26,11 +26,13 @@ export const Datepicker = forwardRef(
     const [currentMonth, setCurrentMonth] = useState(
       value ? new Date(value) : new Date()
     );
-    const popoverRef = useRef(null);
+    const internalRef = useRef(null);
+
+    useImperativeHandle(ref, () => internalRef.current);
 
     useEffect(() => {
       function handleClickOutside(event) {
-        if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+        if (internalRef.current && !internalRef.current.contains(event.target)) {
           setIsOpen(false);
         }
       }
@@ -73,7 +75,7 @@ export const Datepicker = forwardRef(
 
     return (
       <div
-        ref={ref}
+        ref={internalRef}
         className={mergeClasses('datepicker', {}, className)}
         {...props}
       >
@@ -86,7 +88,7 @@ export const Datepicker = forwardRef(
         </button>
 
         {isOpen && (
-          <div ref={popoverRef} className="datepicker__popover">
+          <div className="datepicker__popover">
             <div className="datepicker__header">
               <button
                 onClick={() =>

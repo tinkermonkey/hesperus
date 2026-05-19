@@ -5,6 +5,7 @@ import { mergeClasses } from './utils';
  * @typedef {Object} AvatarProps
  * @property {string} [initials]
  * @property {string} [src]
+ * @property {string} [alt]
  * @property {'xs' | 'sm' | 'md' | 'lg' | 'xl'} [size]
  * @property {string} [status]
  * @property {string} [className]
@@ -20,6 +21,7 @@ export const Avatar = forwardRef(
     {
       initials,
       src,
+      alt = '',
       size = 'md',
       status,
       className,
@@ -41,7 +43,7 @@ export const Avatar = forwardRef(
         {...props}
       >
         {src ? (
-          <img src={src} alt="avatar" className="avatar__image" />
+          <img src={src} alt={alt} className="avatar__image" />
         ) : (
           <span className="avatar__initials">{initials}</span>
         )}
