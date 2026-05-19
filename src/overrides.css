@@ -190,6 +190,12 @@ html.dark .icon svg {
   stroke-width: 2;
 }
 
+html.dark .icon--xs {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}
+
 html.dark .icon--sm {
   width: 16px;
   height: 16px;
@@ -205,12 +211,6 @@ html.dark .icon--md {
 html.dark .icon--lg {
   width: 24px;
   height: 24px;
-  stroke-width: 2;
-}
-
-html.dark .icon--xl {
-  width: 32px;
-  height: 32px;
   stroke-width: 2;
 }
 
@@ -431,7 +431,7 @@ html.dark .select__input {
   outline: none;
   font-family: var(--font-mono);
   font-size: var(--text-11);
-  padding: 8px 28px 8px 12px;
+  padding: 8px 12px;
   padding-right: 28px;
   border-radius: var(--radius-md);
   appearance: none;
@@ -657,10 +657,6 @@ html.dark .field__label {
 html.dark .field__label--required::after {
   content: ' *';
   color: var(--color-error);
-}
-
-html.dark .field__input {
-  /* Inherit from input elements */
 }
 
 html.dark .field__helper {

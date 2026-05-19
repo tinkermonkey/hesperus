@@ -19,6 +19,7 @@
      ──────────────────────────────────────────────────────────────────── */
   --hover-bg: #f2ecda;            /* lighter beige for hover */
   --disabled-opacity: 0.4;        /* opacity for disabled/inactive state */
+  --disabled-cursor: not-allowed; /* cursor for disabled interactive elements */
   --focus-opacity: 0.9;
   --hover-opacity: 0.85;
 
