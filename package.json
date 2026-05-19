@@ -39,11 +39,9 @@
     "url": "https://github.com/tinkermonkey/hesperus/issues"
   },
   "homepage": "https://github.com/tinkermonkey/hesperus#readme",
-  "peerDependencies": {
-    "@tinkermonkey/heimdall-ui": "^0.1.0"
-  },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.4",
+    "flowbite-react": "^0.12.3",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "vite": "^7.3.1"

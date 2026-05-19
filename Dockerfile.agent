@@ -20,7 +20,8 @@ WORKDIR /workspace/hesperus
 
 COPY package.json package-lock.json ./
 
-RUN npm ci --legacy-peer-deps && \
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --legacy-peer-deps && \
     chown -R orchestrator:orchestrator node_modules
 
 # ============================================================================
@@ -31,7 +32,9 @@ USER orchestrator
 # ============================================================================
 # Verify required CLIs
 # ============================================================================
-RUN claude --version && \
+RUN node --version && \
+    npm --version && \
+    claude --version && \
     git --version && \
     gh --version
 
