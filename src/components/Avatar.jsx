@@ -21,6 +21,7 @@ export const Avatar = forwardRef(
     {
       initials,
       src,
+      img,
       alt = '',
       size = 'md',
       status,
@@ -30,6 +31,7 @@ export const Avatar = forwardRef(
     ref
   ) => {
     const sizePixels = SIZE_MAP[size] || SIZE_MAP.md;
+    const imageSrc = src || img;
 
     return (
       <div
@@ -42,8 +44,8 @@ export const Avatar = forwardRef(
         style={{ width: sizePixels, height: sizePixels }}
         {...props}
       >
-        {src ? (
-          <img src={src} alt={alt} className="avatar__image" />
+        {imageSrc ? (
+          <img src={imageSrc} alt={alt} className="avatar__image" />
         ) : (
           <span className="avatar__initials">{initials}</span>
         )}

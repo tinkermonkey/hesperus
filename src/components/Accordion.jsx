@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useState, Children, cloneElement } from 'react';
 import { mergeClasses } from './utils';
 
 /**
@@ -26,7 +26,7 @@ Accordion.displayName = 'Accordion';
 
 /**
  * @typedef {Object} AccordionPanelProps
- * @property {(state: {isOpen: boolean, setIsOpen: Function}) => React.ReactNode} children
+ * @property {React.ReactNode} children
  * @property {boolean} [defaultOpen]
  * @property {string} [className]
  */
@@ -37,13 +37,19 @@ Accordion.displayName = 'Accordion';
 export const AccordionPanel = forwardRef(({ children, defaultOpen = false, className, ...props }, ref) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
+  // Find AccordionTitle and AccordionContent children
+  const childArray = Children.toArray(children);
+  const titleChild = childArray.find(child => child?.type?.displayName === 'AccordionTitle');
+  const contentChild = childArray.find(child => child?.type?.displayName === 'AccordionContent');
+
   return (
     <div
       ref={ref}
       className={mergeClasses('accordion__panel', { open: isOpen }, className)}
       {...props}
     >
-      {children({ isOpen, setIsOpen })}
+      {titleChild && cloneElement(titleChild, { onClick: () => setIsOpen(!isOpen) })}
+      {isOpen && contentChild}
     </div>
   );
 });
@@ -53,7 +59,7 @@ AccordionPanel.displayName = 'AccordionPanel';
 /**
  * @typedef {Object} AccordionTitleProps
  * @property {React.ReactNode} children
- * @property {Function} onClick
+ * @property {Function} [onClick]
  * @property {string} [className]
  */
 
