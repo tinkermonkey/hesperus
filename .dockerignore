@@ -9,3 +9,7 @@ build/
 .idea/
 .claude/
 design/
+test-results/
+playwright-report/
+.flowbite-react/
+.vite/
