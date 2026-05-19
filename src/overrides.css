@@ -1096,6 +1096,7 @@ html.dark .modal {
   box-shadow: none;
   border-radius: var(--radius-md);
   overflow: hidden;
+  animation: modal-enter var(--transition-slow) var(--timing-ease-out);
 }
 
 html.dark .modal__header {
@@ -1109,7 +1110,6 @@ html.dark .modal__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
 }
 
 html.dark .modal__body {
@@ -1140,10 +1140,6 @@ html.dark .modal__footer {
   }
 }
 
-html.dark .modal {
-  animation: modal-enter var(--transition-slow) var(--timing-ease-out);
-}
-
 /* ============================================================
  * DRAWER (.drawer, .drawer__header, .drawer__body)
  * ============================================================ */
@@ -1167,7 +1163,6 @@ html.dark .drawer__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
 }
 
 html.dark .drawer__body {
@@ -1200,6 +1195,7 @@ html.dark .confirm-dialog {
   box-shadow: none;
   border-radius: var(--radius-md);
   overflow: hidden;
+  animation: modal-enter var(--transition-slow) var(--timing-ease-out);
 }
 
 html.dark .confirm-dialog__header {
@@ -1210,7 +1206,6 @@ html.dark .confirm-dialog__header {
   font-weight: var(--weight-bold);
   text-transform: var(--text-transform-heading);
   letter-spacing: var(--letter-spacing-default);
-  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
 }
 
 html.dark .confirm-dialog__body {
@@ -1226,10 +1221,6 @@ html.dark .confirm-dialog__footer {
   gap: 8px;
   justify-content: flex-end;
   background: var(--canvas-bg);
-}
-
-html.dark .confirm-dialog {
-  animation: modal-enter var(--transition-slow) var(--timing-ease-out);
 }
 
 /* ============================================================
@@ -1298,57 +1289,57 @@ html.dark .toast.toast--error {
   border-color: var(--color-error);
 }
 
-html.dark .toast.toast--error .toast__icon,
-html.dark .toast.toast--error .toast__progress {
+html.dark .toast.toast--error {
+  border-color: var(--color-error);
+}
+
+html.dark .toast.toast--error .toast__icon {
   border-color: var(--color-error);
   color: var(--color-error);
   background-color: var(--canvas-bg);
 }
 
-html.dark .toast.toast--error .toast__icon {
-  color: var(--color-error);
+html.dark .toast.toast--error .toast__progress {
+  background: var(--color-error);
 }
 
 html.dark .toast.toast--success {
   border-color: var(--color-success);
 }
 
-html.dark .toast.toast--success .toast__icon,
-html.dark .toast.toast--success .toast__progress {
+html.dark .toast.toast--success .toast__icon {
   border-color: var(--color-success);
   color: var(--color-success);
 }
 
-html.dark .toast.toast--success .toast__icon {
-  color: var(--color-success);
+html.dark .toast.toast--success .toast__progress {
+  background: var(--color-success);
 }
 
 html.dark .toast.toast--warning {
   border-color: var(--color-warning);
 }
 
-html.dark .toast.toast--warning .toast__icon,
-html.dark .toast.toast--warning .toast__progress {
+html.dark .toast.toast--warning .toast__icon {
   border-color: var(--color-warning);
-  color: var(--color-warning);
+  color: var(--color-warning-text);
 }
 
-html.dark .toast.toast--warning .toast__icon {
-  color: var(--color-warning-text);
+html.dark .toast.toast--warning .toast__progress {
+  background: var(--color-warning);
 }
 
 html.dark .toast.toast--info {
   border-color: var(--color-info);
 }
 
-html.dark .toast.toast--info .toast__icon,
-html.dark .toast.toast--info .toast__progress {
+html.dark .toast.toast--info .toast__icon {
   border-color: var(--color-info);
   color: var(--color-info);
 }
 
-html.dark .toast.toast--info .toast__icon {
-  color: var(--color-info);
+html.dark .toast.toast--info .toast__progress {
+  background: var(--color-info);
 }
 
 /* ============================================================
@@ -1760,7 +1751,6 @@ html.dark .panel__header {
   font-weight: var(--weight-bold);
   text-transform: var(--text-transform-heading);
   letter-spacing: var(--letter-spacing-default);
-  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
   flex-shrink: 0;
 }
 
