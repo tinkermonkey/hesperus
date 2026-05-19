@@ -1,6 +1,7 @@
 /* Hesperus BEM overrides layer
  * Component-specific CSS overrides for Heimdall components.
  * Phase 2: Primitives and form inputs (Button, Badge, Icon, Chip, StatusBadge, TextInput, TextArea, Select, NumberInput, TriState, Field)
+ * Phase 3: Data display and navigation (Table, StatTile, StatGrid, Sidebar, Topbar, TabBar, NavItem)
  *
  * All overrides follow Hesperus rules:
  * - 2px solid borders using --canvas-fg-1 or --canvas-border
@@ -11,6 +12,7 @@
  * - Typography: uppercase + 0.05em letter-spacing for labels
  * - Motion: 100ms button flip, 150ms default, 250ms modals
  * - Dark mode: all rules under html.dark selector
+ * - Single-surface model: navigation surfaces use --canvas-bg (not --shell-bg)
  */
 
 /* ============================================================
@@ -712,4 +714,353 @@ html.dark .field.field--disabled .field__label {
 
 html.dark .field.field--disabled .field__helper {
   opacity: var(--disabled-opacity);
+}
+
+/* ============================================================
+ * PHASE 3: DATA DISPLAY & NAVIGATION
+ * ============================================================ */
+
+/* ============================================================
+ * TABLE (.table, th, td)
+ * ============================================================ */
+
+html.dark table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+}
+
+html.dark table th {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  padding: 8px 12px;
+  font-size: var(--text-10);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  text-align: left;
+}
+
+html.dark table td {
+  border: 1px solid var(--canvas-fg-1);
+  padding: 9px 12px;
+  color: var(--canvas-fg-1);
+}
+
+html.dark table tbody tr:hover td {
+  background: var(--hover-bg);
+  transition: background-color var(--transition-default) var(--timing-ease-out);
+}
+
+html.dark table tbody tr:last-child td {
+  border-bottom: 1px solid var(--canvas-fg-1);
+}
+
+/* ============================================================
+ * STAT TILE / STAT GRID (.stat-tile, .stat-grid)
+ * ============================================================ */
+
+html.dark .stat-tile {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  box-shadow: none;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+html.dark .stat-tile__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-10);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-2);
+}
+
+html.dark .stat-tile__value {
+  font-family: var(--font-mono);
+  font-size: var(--text-20);
+  font-weight: var(--weight-bold);
+  color: var(--canvas-fg-1);
+  line-height: 1;
+}
+
+html.dark .stat-tile__helper {
+  font-family: var(--font-mono);
+  font-size: var(--text-9);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-2);
+}
+
+html.dark .stat-grid {
+  display: grid;
+  gap: 12px;
+}
+
+/* Semantic color variants for stat values */
+
+html.dark .stat-tile.stat-tile--success .stat-tile__value {
+  color: var(--color-success);
+}
+
+html.dark .stat-tile.stat-tile--error .stat-tile__value {
+  color: var(--color-error);
+}
+
+html.dark .stat-tile.stat-tile--warning .stat-tile__value {
+  color: var(--color-warning);
+}
+
+html.dark .stat-tile.stat-tile--info .stat-tile__value {
+  color: var(--color-info);
+}
+
+/* ============================================================
+ * SIDEBAR (.sidebar, .sidebar__group, .sidebar__item)
+ * ============================================================ */
+
+html.dark .sidebar {
+  background: var(--canvas-bg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  box-shadow: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+}
+
+html.dark .sidebar__group {
+  border-top: var(--border-width-default) solid var(--canvas-border);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+html.dark .sidebar__group:first-child {
+  border-top: none;
+  padding-top: 10px;
+}
+
+html.dark .sidebar__group-label {
+  font-size: var(--text-9);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-2);
+  padding: 0 10px 6px;
+}
+
+html.dark .sidebar__item {
+  padding: 8px 10px;
+  font-size: var(--text-11);
+  font-weight: var(--weight-normal);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: 0.02em;
+  color: var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border: none;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color var(--transition-default) var(--timing-ease-out),
+              color var(--transition-default) var(--timing-ease-out);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+html.dark .sidebar__item:hover {
+  background: var(--hover-bg);
+}
+
+html.dark .sidebar__item.sidebar__item--active {
+  background: var(--hover-bg);
+  border-left: 2px solid var(--canvas-fg-1);
+  font-weight: var(--weight-bold);
+}
+
+/* ============================================================
+ * TOPBAR / NAVBAR (.topbar, .nav, .nav__item)
+ * ============================================================ */
+
+html.dark .topbar {
+  background: var(--canvas-bg);
+  border: none;
+  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
+  box-shadow: none;
+  padding: 0;
+}
+
+html.dark .nav {
+  background: var(--canvas-bg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  box-shadow: none;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: stretch;
+  font-family: var(--font-mono);
+  height: 44px;
+}
+
+html.dark .nav__brand {
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-right: var(--border-width-default) solid var(--canvas-fg-1);
+  font-size: var(--text-11);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-1);
+}
+
+html.dark .nav__item {
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-right: var(--border-width-default) solid var(--canvas-fg-1);
+  font-size: var(--text-11);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  cursor: pointer;
+  transition: background-color var(--transition-default) var(--timing-ease-out),
+              color var(--transition-default) var(--timing-ease-out);
+}
+
+html.dark .nav__item:hover {
+  background: var(--hover-bg);
+}
+
+html.dark .nav__item.nav__item--active {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+html.dark .nav__item:last-child {
+  border-right: none;
+}
+
+html.dark .nav__spacer {
+  flex: 1;
+  border-right: var(--border-width-default) solid var(--canvas-fg-1);
+}
+
+/* ============================================================
+ * TAB BAR (.tab-bar, .tab, .tab--active)
+ * ============================================================ */
+
+html.dark .tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
+  font-family: var(--font-mono);
+}
+
+html.dark .tab {
+  padding: 8px 14px;
+  font-size: var(--text-11);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-1);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: color var(--transition-default) var(--timing-ease-out),
+              border-color var(--transition-default) var(--timing-ease-out);
+  margin-bottom: -2px;
+}
+
+html.dark .tab:hover {
+  color: var(--canvas-fg-2);
+}
+
+html.dark .tab.tab--active {
+  border-bottom-color: var(--color-accent-orange);
+  color: var(--canvas-fg-1);
+}
+
+html.dark .tab:disabled {
+  color: var(--canvas-fg-2);
+  cursor: var(--disabled-cursor);
+}
+
+/* Tab variants */
+
+html.dark .tab-bar.tab-bar--segmented {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-md);
+  gap: 0;
+  padding: 0;
+}
+
+html.dark .tab-bar.tab-bar--segmented .tab {
+  border-right: var(--border-width-default) solid var(--canvas-fg-1);
+  border-bottom: none;
+  border-radius: 0;
+  padding: 7px 12px;
+  font-size: var(--text-10);
+  margin-bottom: 0;
+}
+
+html.dark .tab-bar.tab-bar--segmented .tab:last-child {
+  border-right: none;
+}
+
+html.dark .tab-bar.tab-bar--segmented .tab.tab--active {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+  border-bottom-color: transparent;
+}
+
+/* ============================================================
+ * NAV ITEM (.nav-item)
+ * ============================================================ */
+
+html.dark .nav-item {
+  padding: 8px 12px;
+  font-size: var(--text-11);
+  font-weight: var(--weight-normal);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border: none;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color var(--transition-default) var(--timing-ease-out),
+              color var(--transition-default) var(--timing-ease-out);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+html.dark .nav-item:hover {
+  background: var(--hover-bg);
+}
+
+html.dark .nav-item.nav-item--active {
+  background: var(--hover-bg);
+  border-left: 2px solid var(--canvas-fg-1);
+  font-weight: var(--weight-bold);
+}
+
+html.dark .nav-item:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
 }
