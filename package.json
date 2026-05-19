@@ -41,6 +41,7 @@
   },
   "homepage": "https://github.com/tinkermonkey/hesperus#readme",
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@vitejs/plugin-react": "^5.1.4",
     "esbuild": "^0.23.0",
     "flowbite-react": "^0.12.3",
