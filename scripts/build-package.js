@@ -24,6 +24,7 @@ async function transpileJSXFiles(srcDir, outDir) {
       entryPoints: [srcPath],
       format: 'esm',
       outfile: outPath,
+      jsx: 'automatic',
       jsxImportSource: 'react',
     });
   }
@@ -132,6 +133,7 @@ async function build() {
     entryPoints: [join(srcComponentsDir, 'index.js')],
     format: 'esm',
     outfile: join(distComponentsDir, 'index.js'),
+    jsx: 'automatic',
     jsxImportSource: 'react',
   });
   console.log('✅ Transpiled components/index.js');
