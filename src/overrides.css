@@ -2541,11 +2541,12 @@
   font-size: 20px;
   cursor: pointer;
   padding: 0;
-  transition: color var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 .banner__close:hover {
-  color: var(--canvas-secondary);
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
 }
 
 /* ============================================================
