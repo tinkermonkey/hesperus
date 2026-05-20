@@ -31,8 +31,8 @@ jobs:
     
     - name: Verify package contents
       run: |
-        test -f dist/hesperus.css || exit 1
-        test -f dist/tokens.css || exit 1
+        test -s dist/hesperus.css || exit 1
+        test -s dist/tokens.css || exit 1
         test -d dist/components || exit 1
         echo "✅ Package build verified"
     
@@ -41,6 +41,9 @@ jobs:
 
     - name: Check for TypeScript issues
       run: npm run type-check
+
+    - name: Run component tests
+      run: npx playwright test
 
   lint:
     runs-on: ubuntu-latest
