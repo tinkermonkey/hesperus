@@ -1,0 +1,15 @@
+node_modules/
+.git/
+.github/
+dist/
+demo/
+build/
+*.log
+.vscode/
+.idea/
+.claude/
+design/
+test-results/
+playwright-report/
+.flowbite-react/
+.vite/

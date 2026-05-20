@@ -1,0 +1,7 @@
+/* Hesperus Theme
+ * CSS-only theme for Heimdall UI components.
+ * Provides token overrides (tokens.css) and BEM component overrides (overrides.css).
+ */
+
+@import "./tokens.css";
+@import "./overrides.css";

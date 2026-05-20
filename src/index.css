@@ -1,182 +1,11 @@
-@import "tailwindcss";
-@import "flowbite-react/plugin/tailwindcss";
-@source "../.flowbite-react/class-list.json";
+/* Demo app styles
+ * Import Hesperus tokens for the demo component browser
+ */
 
-@variant dark (&:is(.dark *));
-
-@theme inline {
-
-  --color-retro-bg:           var(--retro-bg);
-  --color-retro-fg:           var(--retro-fg);
-  --color-retro-muted:        var(--retro-muted);
-  --color-retro-muted-fg:     var(--retro-muted-fg);
-  --color-retro-border:       var(--retro-border);
-  --color-retro-secondary:    var(--retro-secondary);
-  --color-retro-secondary-fg: var(--retro-secondary-fg);
-  --color-retro-error:   #AA3322;
-  --color-retro-success: #5C7A28;
-  --color-retro-warning: #C4A232;
-  --color-retro-info:    #5566AA;
-  --color-retro-orange:  #CC6622;
-  --color-retro-purple:  #7744AA;
-  --color-retro-cyan:    #2E8B8B;
-  --color-retro-red:     #AA3322;
-  --color-retro-green:   #5C7A28;
-  --color-retro-yellow:  #C4A232;
-  --color-retro-blue:    #5566AA;
-
-  /* Text-safe accent aliases — WCAG AA verified on bg (warning uses fg fallback) */
-  --color-retro-error-text:   var(--retro-error-text);
-  --color-retro-success-text: var(--retro-success-text);
-  --color-retro-warning-text: var(--retro-warning-text);
-  --color-retro-info-text:    var(--retro-info-text);
-
-  --font-mono: "Space Mono", "Fira Code", "Roboto Mono", monospace;
-  --radius-sm:      3px;
-  --radius-default: 4px;
-  --radius-md:      4px;
-  --radius-lg:      6px;
-  --radius-full:    9999px;
-
-  /* Hard-offset shadows — the only allowed shadow treatment */
-  --shadow-none:    0 0 0 transparent;
-  --shadow-hard-1:  2px 2px 0 var(--retro-fg);
-  --shadow-hard-2:  3px 3px 0 var(--retro-fg);
-  --shadow-hard-3:  4px 4px 0 var(--retro-fg);
-  --shadow-tooltip: 2px 2px 0 var(--retro-bg), 2px 2px 0 2px var(--retro-fg);
-}
-
-/* Light mode */
-:root {
-  --retro-bg: #efeed0;
-  --retro-bg-rgb: 239 238 208;
-  --retro-fg: #2c2416;
-  --retro-muted: #f2ecda;
-  --retro-muted-fg: #8a7e6a;
-  --retro-border: #b8a878;
-  --retro-secondary: #f2ecda;
-  --retro-secondary-fg: #2c2416;
-
-  /* Text-safe accent aliases — verified WCAG on #efeed0 bg */
-  --retro-error-text:   #AA3322;   /* 5.56 ✓ */
-  --retro-success-text: #4A5A20;   /* 6.42 ✓ */
-  --retro-warning-text: #2c2416;   /* warning #C4A232 fails as text — use fg */
-  --retro-info-text:    #5566AA;   /* 4.61 ✓ */
-
-  /* Typography — Space Mono only */
-  --font-mono: "Space Mono", "Fira Code", "Roboto Mono", monospace;
-  --font-sans: var(--font-mono);
-
-  /* Type scale */
-  --text-8:    8px;  /* Dense labels and annotations only */
-  --text-9:    9px;
-  --text-10:   10px;
-  --text-11:   11px;
-  --text-12:   12px;
-  --text-13:   13px;
-  --text-14:   14px;
-  --text-16:   16px;
-  --text-20:   20px;
-  --text-24:   24px;
-  --text-32:   32px;
-  --text-44:   44px;
-
-  /* Letter spacing */
-  --tracking-wider: 0.05em;
-  --tracking-wide:  0.025em;
-  --tracking-1px:   1px;
-
-  /* Font weight */
-  --weight-normal: 400;
-  --weight-bold:   700;
-
-  /* Line height */
-  --leading-tight:   1.25;
-  --leading-normal:  1.5;
-  --leading-relaxed: 1.625;
-
-  /* Motion — quick, mechanical, no bounce */
-  --dur-instant:  0ms;
-  --dur-fast:     100ms;
-  --dur-base:     150ms;
-  --dur-slow:     250ms;
-  --dur-slower:   400ms;
-  --ease-step:    steps(1, end);
-  --ease-stepped: steps(8, end);
-  --ease-linear:  linear;
-  --ease-out:     cubic-bezier(0.2, 0.8, 0.2, 1);
-  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Interaction */
-  --disabled-opacity: 0.4;
-  --disabled-cursor:  not-allowed;
-
-  /* Borders */
-  --border-width: 2px;
-  --border-fg:    var(--retro-fg);
-  --border-soft:  var(--retro-border);
-
-  /* Focus ring */
-  --focus-ring-color:  var(--color-retro-orange);
-  --focus-ring-width:  2px;
-  --focus-ring-offset: 2px;
-  --focus-ring:        0 0 0 var(--focus-ring-width) var(--retro-bg),
-                       0 0 0 calc(var(--focus-ring-width) * 2) var(--focus-ring-color);
-
-  /* Surface tokens */
-  --hover-bg-soft:  var(--retro-secondary);
-  --active-bg-soft: var(--retro-border);
-
-  /* Spacing — Tailwind 4px scale */
-  --space-0_5: 0.125rem;
-  --space-1:   0.25rem;
-  --space-1_5: 0.375rem;
-  --space-2:   0.5rem;
-  --space-2_5: 0.625rem;
-  --space-3:   0.75rem;
-  --space-3_5: 0.875rem;
-  --space-4:   1rem;
-  --space-5:   1.25rem;
-  --space-6:   1.5rem;
-  --space-8:   2rem;
-  --space-10:  2.5rem;
-  --space-12:  3rem;
-  --space-16:  4rem;
-
-  /* Component size contract */
-  --control-h-xs:  22px;
-  --control-h-sm:  26px;
-  --control-h-md:  36px;
-  --control-h-lg:  44px;
-  --navbar-h:      44px;
-  --button-h-sm:   26px;
-  --button-h-md:   36px;
-  --row-h-compact: 32px;
-  --row-h-default: 40px;
-  --status-indicator-size: 11px;
-}
-
-/* Dark mode */
-.dark {
-  --retro-bg: #222627;
-  --retro-bg-rgb: 34 38 39;
-  --retro-fg: #d4ccaa;
-  --retro-muted: #332c22;
-  --retro-muted-fg: #887766;
-  --retro-border: #4a4030;
-  --retro-secondary: #3a3428;
-  --retro-secondary-fg: #d4ccaa;
-
-  /* Lightened text-safe accents for dark mode (audit findings) */
-  --retro-error-text:   #E0826F;   /* WCAG AA on dark bg: 5.52:1 ✓ */
-  --retro-info-text:    #8FA3D9;   /* WCAG AA on dark bg: 6.12:1 ✓ */
-  --retro-success-text: #A4C870;   /* WCAG AA on dark bg: 8.06:1 ✓ */
-  --retro-warning-text: #C4A232;   /* WCAG AA on dark bg: 6.23:1 ✓ */
-}
+@import "./hesperus.css";
 
 /* ── Focus ring ── keyboard navigation: 2px orange, 2px offset ───────────
-   Overrides focus:ring-0/focus:outline-none (mouse suppression) for keyboard
-   users. !important is intentional — accessibility cannot be opted out of. */
+   !important is intentional — accessibility cannot be opted out of. */
 :focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color) !important;
   outline-offset: var(--focus-ring-offset) !important;
@@ -190,9 +19,10 @@
   background-repeat: no-repeat;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%232c2416' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
 }
-.dark [type='checkbox']:checked {
+html.dark [type='checkbox']:checked {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23d4ccaa' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
 }
+
 /* Indeterminate checkbox — dash glyph */
 [type='checkbox']:indeterminate {
   background-origin: border-box;
@@ -200,9 +30,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%232c2416' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3' y='7' width='10' height='2' rx='1'/%3E%3C/svg%3E");
-  background-color: var(--retro-bg);
+  background-color: var(--canvas-bg);
 }
-.dark [type='checkbox']:indeterminate {
+html.dark [type='checkbox']:indeterminate {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23d4ccaa' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3' y='7' width='10' height='2' rx='1'/%3E%3C/svg%3E");
 }
 
@@ -215,18 +45,24 @@
   background-repeat: no-repeat;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%232c2416' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
 }
-.dark [type='radio']:checked {
+html.dark [type='radio']:checked {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23d4ccaa' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
 }
 
 body {
-  @apply bg-retro-bg text-retro-fg font-mono antialiased;
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  font-family: var(--font-mono);
   font-size: var(--text-11);
   line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply uppercase tracking-wider font-bold;
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-heading);
   margin: 0;
 }
 
@@ -265,48 +101,48 @@ p {
 
 small {
   font-size: var(--text-10);
-  color: var(--retro-muted-fg);
+  color: var(--canvas-fg-2);
 }
 
 code, kbd {
   font-family: var(--font-mono);
-  border: var(--border-width) solid var(--retro-fg);
-  background: var(--retro-bg);
-  color: var(--retro-fg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
   border-radius: var(--radius-sm);
   padding: 2px 6px;
   font-size: var(--text-10);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wider);
+  letter-spacing: var(--letter-spacing-default);
   font-weight: var(--weight-bold);
 }
 
 a {
-  color: var(--retro-fg);
+  color: var(--canvas-fg-1);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
 
 a:hover {
-  color: var(--retro-muted-fg);
+  color: var(--canvas-fg-2);
 }
 
 hr {
   border: 0;
-  border-top: 1px solid var(--retro-fg);
+  border-top: 1px solid var(--canvas-fg-1);
   margin: 1rem 0;
 }
 
 blockquote {
-  border-left: 2px solid var(--retro-fg);
+  border-left: 2px solid var(--canvas-fg-1);
   padding-left: 1rem;
   font-style: italic;
   margin: 0;
 }
 
 .bg-grid { background-image: url('/grid-background-light.svg'); background-repeat: repeat; }
-.dark .bg-grid { background-image: url('/grid-background-dark.svg'); }
+html.dark .bg-grid { background-image: url('/grid-background-dark.svg'); }
 
 /* ── Utility Classes ───────────────────────────────────────────────────── */
 
@@ -316,12 +152,12 @@ blockquote {
   font-weight: var(--weight-bold);
   font-size: var(--text-11);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wider);
+  letter-spacing: var(--letter-spacing-default);
   height: var(--button-h-md);
   padding: 0 14px;
-  border: var(--border-width) solid var(--retro-fg);
-  background: var(--retro-bg);
-  color: var(--retro-fg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: background-color 150ms, color 150ms;
@@ -331,8 +167,8 @@ blockquote {
 }
 
 .btn:hover {
-  background: var(--retro-fg);
-  color: var(--retro-bg);
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
 }
 
 .btn:focus:not(:focus-visible) {
@@ -340,39 +176,39 @@ blockquote {
 }
 
 .btn-ghost {
-  border-color: var(--retro-muted-fg);
-  color: var(--retro-muted-fg);
+  border-color: var(--canvas-fg-2);
+  color: var(--canvas-fg-2);
 }
 
 .btn-ghost:hover {
   background: transparent;
-  border-color: var(--retro-fg);
-  color: var(--retro-fg);
+  border-color: var(--canvas-fg-1);
+  color: var(--canvas-fg-1);
 }
 
 .btn-destructive {
-  border-color: var(--color-retro-error);
-  color: var(--color-retro-error);
+  border-color: var(--color-error);
+  color: var(--color-error);
 }
 
 .btn-destructive:hover {
-  background: var(--color-retro-error);
-  color: var(--retro-bg);
+  background: var(--color-error);
+  color: var(--canvas-bg);
 }
 
 /* 2px-border surface card */
 .surface {
-  background: var(--retro-bg);
-  border: var(--border-width) solid var(--retro-fg);
+  background: var(--canvas-bg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
   border-radius: var(--radius-md);
 }
 
 /* "tab-style" header — dark band on top of a card */
 .heading-band {
-  background: var(--retro-fg);
-  color: var(--retro-bg);
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wider);
+  letter-spacing: var(--letter-spacing-default);
   font-weight: var(--weight-bold);
   font-size: var(--text-13);
   padding: 10px 16px;

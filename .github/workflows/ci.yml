@@ -31,20 +31,22 @@ jobs:
     
     - name: Verify package contents
       run: |
-        test -f dist/theme.js || exit 1
-        test -f dist/theme.d.ts || exit 1
-        test -f dist/index.css || exit 1
+        test -s dist/hesperus.css || exit 1
+        test -s dist/tokens.css || exit 1
+        test -d dist/components || exit 1
         echo "✅ Package build verified"
     
     - name: Build demo site
       run: npm run build
-      
-    - name: Check for TypeScript issues (if any)
-      run: |
-        if [ -f "tsconfig.json" ]; then
-          npm run type-check || echo "No type-check script"
-        fi
-      continue-on-error: true
+
+    - name: Check for TypeScript issues
+      run: npm run type-check
+
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps chromium
+
+    - name: Run component tests
+      run: npx playwright test
 
   lint:
     runs-on: ubuntu-latest

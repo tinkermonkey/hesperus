@@ -48,8 +48,9 @@ web_modules/
 # TypeScript cache
 *.tsbuildinfo
 
-# Screenshots and images
+# Screenshots and images (except Playwright test snapshots)
 *.png
+!tests/**/*.png
 
 # Optional npm cache directory
 .npm
@@ -158,3 +159,11 @@ vite.config.ts.timestamp-*
 *.njsproj
 *.sln
 *.sw?
+
+# Playwright test artifacts
+playwright-report/
+test-results/
+.playwright/
+
+# Build environment artifacts
+hesperus/

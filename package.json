@@ -1,22 +1,17 @@
 {
   "name": "@tinkermonkey/hesperus-theme",
-  "version": "0.1.0",
-  "description": "A retro-inspired design system theme for Flowbite React with vintage CRT monitor aesthetics",
+  "version": "1.0.0",
+  "description": "A retro-inspired CSS-only theme for Heimdall UI with vintage CRT monitor aesthetics",
   "type": "module",
-  "main": "./dist/theme.js",
-  "types": "./dist/theme.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/theme.js",
-      "types": "./dist/theme.d.ts"
-    },
-    "./styles": "./dist/index.css"
+    ".": "./dist/hesperus.css",
+    "./tokens": "./dist/tokens.css",
+    "./components": "./dist/components/index.js"
   },
   "files": [
     "dist",
     "public/grid-background-light.svg",
     "public/grid-background-dark.svg",
-    "public/assets/icons/sprite.svg",
     "README.md"
   ],
   "scripts": {
@@ -24,17 +19,17 @@
     "build": "vite build",
     "build:package": "node scripts/build-package.js",
     "preview": "vite preview",
+    "type-check": "tsc --noEmit -p tsconfig.typecheck.json",
     "prepublishOnly": "npm run build:package"
   },
   "keywords": [
-    "flowbite",
-    "flowbite-react",
+    "heimdall",
+    "heimdall-ui",
     "theme",
     "design-system",
     "retro",
     "crt",
-    "react",
-    "tailwindcss"
+    "css"
   ],
   "author": "tinkermonkey",
   "license": "MIT",
@@ -47,19 +42,18 @@
   },
   "homepage": "https://github.com/tinkermonkey/hesperus#readme",
   "peerDependencies": {
-    "flowbite-react": "^0.12.0",
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "flowbite-react": "^0.12.17",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "@tinkermonkey/heimdall-ui": "^0.3.0",
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.2.0",
+    "@playwright/test": "^1.60.0",
+    "@types/react": "^19.2.15",
     "@vitejs/plugin-react": "^5.1.4",
-    "tailwindcss": "^4.2.0",
+    "esbuild": "^0.23.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "typescript": "^5.3.3",
     "vite": "^7.3.1"
   }
 }

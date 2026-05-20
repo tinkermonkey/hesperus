@@ -1,0 +1,55 @@
+# ============================================================================
+# Hesperus Agent Environment
+# ============================================================================
+FROM switchyard-orchestrator:latest
+
+USER root
+
+# ============================================================================
+# Install Node.js 22.x
+# ============================================================================
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# ============================================================================
+# Pre-install npm dependencies from manifests only
+# ============================================================================
+WORKDIR /workspace/hesperus
+
+COPY package.json package-lock.json ./
+
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --legacy-peer-deps && \
+    chown -R orchestrator:orchestrator node_modules
+
+# ============================================================================
+# Install Playwright Chromium browser and OS dependencies
+# ============================================================================
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+RUN npx playwright install --with-deps chromium && \
+    chmod -R o+rx /ms-playwright
+
+# ============================================================================
+# Writable temp directories for dev tooling
+# ============================================================================
+ENV VITE_CACHE_DIR=/tmp/.vite
+RUN mkdir -p /tmp/.vite /tmp/.playwright-results && \
+    chown -R orchestrator:orchestrator /tmp/.vite /tmp/.playwright-results
+
+# ============================================================================
+# Switch to runtime user
+# ============================================================================
+USER orchestrator
+
+# ============================================================================
+# Verify required CLIs
+# ============================================================================
+RUN node --version && \
+    npm --version && \
+    claude --version && \
+    git --version && \
+    gh --version
+
+CMD ["/bin/bash"]
