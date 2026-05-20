@@ -38,13 +38,9 @@ jobs:
     
     - name: Build demo site
       run: npm run build
-      
-    - name: Check for TypeScript issues (if any)
-      run: |
-        if [ -f "tsconfig.json" ]; then
-          npm run type-check || echo "No type-check script"
-        fi
-      continue-on-error: true
+
+    - name: Check for TypeScript issues
+      run: npm run type-check
 
   lint:
     runs-on: ubuntu-latest

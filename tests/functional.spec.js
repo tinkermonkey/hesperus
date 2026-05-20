@@ -74,7 +74,7 @@ test.describe('Component Browser Regression Tests', () => {
     // Check each section exists in the DOM
     for (const section of sections) {
       const sectionElement = page.locator(`#${section}`);
-      await expect(sectionElement).toBeTruthy();
+      await expect(sectionElement).toHaveCount(1);
     }
   });
 
@@ -137,8 +137,8 @@ test.describe('Component Browser Regression Tests', () => {
     const section = page.locator('#spinner');
     await section.scrollIntoViewIfNeeded();
 
-    // Check for spinner-like elements (divs, spans with animation)
-    const elements = section.locator('div, span');
+    // Check for spinner elements with the spinner class
+    const elements = section.locator('[class*="spinner"]');
     const count = await elements.count();
     expect(count).toBeGreaterThan(0);
   });
@@ -218,8 +218,8 @@ test.describe('Component Browser Regression Tests', () => {
     const section = page.locator('#badges');
     await section.scrollIntoViewIfNeeded();
 
-    // Check for badge elements
-    const badges = section.locator('span');
+    // Check for badge elements (spans with rounded-sm styling)
+    const badges = section.locator('span[class*="rounded-sm"]');
     const count = await badges.count();
     expect(count).toBeGreaterThanOrEqual(5); // At least one of each type
   });
@@ -231,8 +231,8 @@ test.describe('Component Browser Regression Tests', () => {
     const section = page.locator('#alerts');
     await section.scrollIntoViewIfNeeded();
 
-    // Check for alert boxes
-    const alerts = section.locator('div[class*="border"]');
+    // Check for alert boxes (divs with border-2 and bg-retro-bg)
+    const alerts = section.locator('div.border-2[class*="bg-retro-bg"]');
     const count = await alerts.count();
     expect(count).toBeGreaterThanOrEqual(4); // At least one of each type
   });
