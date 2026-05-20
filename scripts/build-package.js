@@ -10,33 +10,68 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, '..');
 const distDir = join(rootDir, 'dist');
 
+async function getADR1Components(srcDir) {
+  // Read index.js and extract which component files are exported
+  const indexPath = join(srcDir, 'index.js');
+  const indexContent = await readFile(indexPath, 'utf-8');
+
+  // Extract all component file imports from index.js
+  // Matches: from './ComponentName' or from './utility'
+  const importMatches = indexContent.match(/from\s+['"]\.\/([^'"]+)['"]/g) || [];
+
+  const componentFiles = new Set();
+  for (const match of importMatches) {
+    const fileName = match.match(/from\s+['"]\.\/([^'"]+)['"]/)[1];
+    componentFiles.add(fileName);
+  }
+
+  return componentFiles;
+}
+
 async function transpileJSXFiles(srcDir, outDir) {
+  const adder1Components = await getADR1Components(srcDir);
   const files = await readdir(srcDir, { recursive: true });
   const jsxFiles = files.filter(f => f.endsWith('.jsx'));
 
   for (const file of jsxFiles) {
+    // Extract the component/utility name without extension
+    const name = file.replace(/\.jsx$/, '');
+
+    // Only transpile files that are exported from index.js (ADR-1 compliance)
+    if (!adder1Components.has(name)) {
+      continue;
+    }
+
     const srcPath = join(srcDir, file);
     const outPath = join(outDir, file.replace(/\.jsx$/, '.js'));
 
     await mkdir(dirname(outPath), { recursive: true });
 
+    // No bundle: true or external — esbuild will naturally leave React imports as-is
     await esbuild.build({
       entryPoints: [srcPath],
-      bundle: true,
       format: 'esm',
       outfile: outPath,
       jsx: 'automatic',
       jsxImportSource: 'react',
-      external: ['react', 'react/jsx-runtime'],
     });
   }
 }
 
 async function generateTypeDeclarations(srcDir, outDir) {
+  const adder1Components = await getADR1Components(srcDir);
   const files = await readdir(srcDir, { recursive: true });
   const jsxFiles = files.filter(f => f.endsWith('.jsx'));
 
   for (const file of jsxFiles) {
+    // Extract the component/utility name without extension
+    const name = file.replace(/\.jsx$/, '');
+
+    // Only generate .d.ts for files that are exported from index.js (ADR-1 compliance)
+    if (!adder1Components.has(name)) {
+      continue;
+    }
+
     const srcPath = join(srcDir, file);
     const outPath = join(outDir, file.replace(/\.jsx$/, '.d.ts'));
 
@@ -64,13 +99,27 @@ async function generateTypeDeclarations(srcDir, outDir) {
 
 function generateDTSContent(jsxContent, fileName) {
   let dts = '';
+  let imports = '';
+
+  // Extract @typedef JSDoc blocks
+  const typedefBlockRegex = /\/\*\*[\s\S]*?@typedef\s+\{Object\}\s+(\w+)[\s\S]*?\*\//g;
+  const typedefMatches = [...jsxContent.matchAll(typedefBlockRegex)];
+  const typedefNames = new Set(typedefMatches.map(m => m[1]));
 
   // Extract React.forwardRef component exports
   const componentExports = jsxContent.match(/export\s+const\s+(\w+)\s*=\s*forwardRef/g) || [];
 
   for (const match of componentExports) {
     const componentName = match.match(/export\s+const\s+(\w+)/)[1];
-    dts += `export const ${componentName}: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLElement> & React.RefAttributes<HTMLElement>>;\n`;
+    const propsTypeName = componentName + 'Props';
+
+    // If we have a typedef for this component, use it; otherwise use a permissive type
+    if (typedefNames.has(propsTypeName)) {
+      dts += `export const ${componentName}: React.ForwardRefExoticComponent<${propsTypeName} & React.RefAttributes<HTMLElement>>;\n`;
+    } else {
+      // Use a permissive type that doesn't reject valid component-specific props
+      dts += `export const ${componentName}: React.ForwardRefExoticComponent<Record<string, unknown> & React.RefAttributes<HTMLElement>>;\n`;
+    }
   }
 
   // Extract function exports that aren't components
@@ -86,10 +135,10 @@ function generateDTSContent(jsxContent, fileName) {
 
   // Add React import for proper typing
   if (componentExports.length > 0) {
-    dts = `import * as React from 'react';\n\n${dts}`;
+    imports = `import * as React from 'react';\n\n`;
   }
 
-  return dts || 'export {};\n';
+  return imports + dts || 'export {};\n';
 }
 
 async function build() {
