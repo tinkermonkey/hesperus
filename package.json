@@ -19,7 +19,7 @@
     "build": "vite build",
     "build:package": "node scripts/build-package.js",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --noEmit -p tsconfig.typecheck.json",
     "prepublishOnly": "npm run build:package"
   },
   "keywords": [
