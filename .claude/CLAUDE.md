@@ -94,8 +94,8 @@ Renders every themed component in a scrollable page with a fixed navbar and side
 |---|---|---|---|
 | `--canvas-bg` | Page/surface background | #efeed0 (beige) | #222627 (charcoal) |
 | `--canvas-fg-1` | Primary text & borders | #2c2416 (dark brown) | #d4ccaa (warm gray) |
-| `--canvas-fg-2` | Secondary/muted text | #8a7e6a (muted tan) | #8a8471 (muted gray) |
-| `--canvas-border` | Dividers | #b8a878 (tan) | #4a4030 (medium brown) |
+| `--canvas-fg-2` | Secondary/muted text | #8a7e6a (muted tan) | #887766 (muted gray) |
+| `--canvas-border` | Dividers | #b8a878 (tan) | #3d3d3d (darker dividers) |
 | `--color-error` | Error status (fixed) | #AA3322 (brick red) | #AA3322 |
 | `--color-success` | Success status (fixed) | #5C7A28 (olive) | #5C7A28 |
 | `--color-warning` | Warning status (fixed) | #C4A232 (gold) | #C4A232 |

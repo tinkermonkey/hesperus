@@ -173,8 +173,8 @@ All colors use CSS custom properties for automatic light/dark switching:
 ### Dark Mode
 - Background: `--canvas-bg` (#222627 charcoal)
 - Primary text: `--canvas-fg-1` (#d4ccaa warm gray)
-- Secondary text: `--canvas-fg-2` (#8a8471 muted gray)
-- Dividers: `--canvas-border` (#4a4030 medium brown)
+- Secondary text: `--canvas-fg-2` (#887766 muted gray)
+- Dividers: `--canvas-border` (#3d3d3d darker dividers)
 
 ### Semantic Colors (Fixed, no light/dark variants)
 - Error: `--color-error` (#AA3322 brick red)
