@@ -363,6 +363,10 @@ const NAV_SECTIONS = [
   { id: "timeline", label: "Timeline" },
   { id: "tooltip", label: "Tooltip" },
   { id: "graph", label: "Graph Nodes" },
+  { id: "chat", label: "Chat UI" },
+  { id: "shell", label: "Shell Layout" },
+  { id: "stats", label: "Stats & Metrics" },
+  { id: "complex-inputs", label: "Complex Inputs" },
 ];
 
 // ── App ───────────────────────────────────────────────────────────
@@ -1337,6 +1341,289 @@ export default function App() {
                   />
                 </div>
               </Variant>
+            </Group>
+          </Section>
+
+          {/* ── Chat UI ── */}
+          <Section id="chat" title="Chat UI">
+            <Group label="Chat container with messages">
+              <div className="w-96 h-96 chat-container">
+                <div className="chat-container__header">
+                  Conversation
+                </div>
+                <div className="chat-container__messages">
+                  <div className="chat-message">
+                    <div className="chat-message__avatar">A</div>
+                    <div className="chat-message__bubble">
+                      <span>Hello there! How can I help you?</span>
+                      <span className="chat-message__time">10:30 AM</span>
+                    </div>
+                  </div>
+                  <div className="chat-message chat-message--user">
+                    <div className="chat-message__avatar">U</div>
+                    <div className="chat-message__bubble">
+                      <span>I need some information about the system</span>
+                      <span className="chat-message__time">10:32 AM</span>
+                    </div>
+                  </div>
+                  <div className="chat-divider">
+                    Today
+                  </div>
+                  <div className="chat-message">
+                    <div className="chat-message__avatar">A</div>
+                    <div className="chat-message__bubble">
+                      <span>Sure! What would you like to know?</span>
+                      <span className="chat-message__time">10:35 AM</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat-container__footer">
+                  <div className="chat-composer">
+                    <div className="chat-composer__input-group">
+                      <textarea
+                        className="chat-composer__textarea"
+                        placeholder="Type a message..."
+                        rows="2"
+                      />
+                      <button className="chat-composer__send">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Group>
+            <Group label="Chat suggestions">
+              <div className="w-96 chat-suggestions">
+                <div className="chat-suggestions__title">Suggestions</div>
+                <button className="chat-suggestions__item">
+                  Help with documentation
+                </button>
+                <button className="chat-suggestions__item">
+                  Show recent messages
+                </button>
+                <button className="chat-suggestions__item">
+                  Clear conversation
+                </button>
+              </div>
+            </Group>
+          </Section>
+
+          {/* ── Shell Layout ── */}
+          <Section id="shell" title="Shell Layout">
+            <Group label="Desktop shell layout">
+              <div className="w-96 h-72 shell-layout">
+                <div className="shell-header">
+                  <div className="titlebar">
+                    <div className="titlebar__title">Application</div>
+                    <div className="titlebar__controls">
+                      <button className="btn" style={{fontSize: '10px', padding: '4px 8px'}}>Settings</button>
+                    </div>
+                  </div>
+                </div>
+                <div className="shell-content">
+                  <div className="shell-sidebar" style={{width: '120px'}}>
+                    <div style={{padding: '12px', fontSize: '11px'}}>
+                      <div style={{marginBottom: '8px', paddingBottom: '8px', borderBottom: '1px solid var(--canvas-border)'}}>Menu 1</div>
+                      <div style={{marginBottom: '8px', paddingBottom: '8px', borderBottom: '1px solid var(--canvas-border)'}}>Menu 2</div>
+                      <div>Menu 3</div>
+                    </div>
+                  </div>
+                  <div className="shell-main" style={{flex: 1, overflow: 'auto', padding: '12px'}}>
+                    <div style={{fontSize: '11px', lineHeight: '1.6'}}>
+                      Main content area
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Group>
+            <Group label="Statusbar">
+              <div className="statusbar">
+                <div className="statusbar__item">
+                  <div className="statusbar__indicator"></div>
+                  <span>Connected</span>
+                </div>
+                <div className="statusbar__item">
+                  Last updated: 10:45 AM
+                </div>
+                <div className="statusbar__item">
+                  <div className="statusbar__indicator statusbar__indicator--warning"></div>
+                  <span>Warning</span>
+                </div>
+              </div>
+            </Group>
+            <Group label="Split pane">
+              <div className="w-96 h-64 split-pane split-pane--vertical">
+                <div className="split-pane__pane" style={{borderRight: '2px solid var(--canvas-fg-1)'}}>
+                  <div style={{padding: '16px', fontSize: '11px'}}>
+                    Left panel content
+                  </div>
+                </div>
+                <div className="split-pane__divider" />
+                <div className="split-pane__pane">
+                  <div style={{padding: '16px', fontSize: '11px'}}>
+                    Right panel content
+                  </div>
+                </div>
+              </div>
+            </Group>
+          </Section>
+
+          {/* ── Stats & Metrics ── */}
+          <Section id="stats" title="Stats & Metrics">
+            <Group label="Stat tiles">
+              <div className="stat-grid" style={{gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', maxWidth: '300px'}}>
+                <div className="stat-tile">
+                  <div className="stat-tile__label">Total Users</div>
+                  <div className="stat-tile__value">1,234</div>
+                  <div className="stat-tile__helper">+12% from last week</div>
+                </div>
+                <div className="stat-tile">
+                  <div className="stat-tile__label">Revenue</div>
+                  <div className="stat-tile__value">$45.2K</div>
+                  <div className="stat-tile__helper">+8% from last week</div>
+                </div>
+                <div className="stat-tile stat-tile--success">
+                  <div className="stat-tile__label">Uptime</div>
+                  <div className="stat-tile__value">99.9%</div>
+                  <div className="stat-tile__helper">All systems operational</div>
+                </div>
+                <div className="stat-tile stat-tile--error">
+                  <div className="stat-tile__label">Errors</div>
+                  <div className="stat-tile__value">24</div>
+                  <div className="stat-tile__helper">-5% from last week</div>
+                </div>
+              </div>
+            </Group>
+            <Group label="Metric rows">
+              <div style={{border: '2px solid var(--canvas-fg-1)', borderRadius: '6px', overflow: 'hidden', maxWidth: '300px'}}>
+                <div className="metric-row">
+                  <div className="metric-row__label">CPU Usage</div>
+                  <div>
+                    <div className="metric-row__value">45<span className="metric-row__unit">%</span></div>
+                  </div>
+                </div>
+                <div className="metric-row">
+                  <div className="metric-row__label">Memory</div>
+                  <div>
+                    <div className="metric-row__value">2.8<span className="metric-row__unit">GB</span></div>
+                  </div>
+                </div>
+                <div className="metric-row">
+                  <div className="metric-row__label">Requests/sec</div>
+                  <div>
+                    <div className="metric-row__value">1,234<span className="metric-row__unit">/s</span></div>
+                  </div>
+                </div>
+              </div>
+            </Group>
+          </Section>
+
+          {/* ── Complex Inputs ── */}
+          <Section id="complex-inputs" title="Complex Inputs">
+            <Group label="Entity picker">
+              <div className="entity-picker" style={{maxWidth: '300px'}}>
+                <div className="entity-picker__search">
+                  <input type="text" placeholder="Search entities..." />
+                </div>
+                <div className="entity-picker__list">
+                  <div className="entity-picker__item">User Alpha</div>
+                  <div className="entity-picker__item entity-picker__item--selected">User Beta</div>
+                  <div className="entity-picker__item">User Gamma</div>
+                  <div className="entity-picker__item">User Delta</div>
+                </div>
+              </div>
+            </Group>
+            <Group label="Key-value editor">
+              <div className="key-value-editor" style={{maxWidth: '400px'}}>
+                <div className="key-value-editor__row">
+                  <input type="text" className="key-value-editor__input" placeholder="Key" value="environment" readOnly />
+                  <input type="text" className="key-value-editor__input" placeholder="Value" value="production" />
+                  <button className="key-value-editor__delete">✕</button>
+                </div>
+                <div className="key-value-editor__row">
+                  <input type="text" className="key-value-editor__input" placeholder="Key" value="version" readOnly />
+                  <input type="text" className="key-value-editor__input" placeholder="Value" value="2.1.0" />
+                  <button className="key-value-editor__delete">✕</button>
+                </div>
+                <button className="key-value-editor__add-row">+ Add row</button>
+              </div>
+            </Group>
+            <Group label="Relationship builder">
+              <div className="relationship-builder" style={{maxWidth: '400px'}}>
+                <div className="relationship-builder__row">
+                  <div className="relationship-builder__column">
+                    <div className="relationship-builder__label">Entity A</div>
+                    <select style={{padding: '8px', border: '2px solid var(--canvas-fg-1)', borderRadius: '4px', background: 'var(--canvas-bg)', color: 'var(--canvas-fg-1)', fontFamily: 'monospace'}}>
+                      <option>User</option>
+                      <option>Team</option>
+                    </select>
+                  </div>
+                  <div className="relationship-builder__operator">→</div>
+                  <div className="relationship-builder__column">
+                    <div className="relationship-builder__label">Entity B</div>
+                    <select style={{padding: '8px', border: '2px solid var(--canvas-fg-1)', borderRadius: '4px', background: 'var(--canvas-bg)', color: 'var(--canvas-fg-1)', fontFamily: 'monospace'}}>
+                      <option>Project</option>
+                      <option>Task</option>
+                    </select>
+                  </div>
+                  <button className="relationship-builder__button">Delete</button>
+                </div>
+              </div>
+            </Group>
+            <Group label="Pipeline card">
+              <div className="pipeline-card" style={{maxWidth: '300px'}}>
+                <div className="pipeline-card__header">
+                  <h3 className="pipeline-card__title">Deployment Pipeline</h3>
+                </div>
+                <div className="pipeline-card__body">
+                  <div className="pipeline-card__stage">
+                    <div className="pipeline-card__stage-label">Build</div>
+                    <div className="pipeline-card__stage-status">✓</div>
+                  </div>
+                  <div className="pipeline-card__stage">
+                    <div className="pipeline-card__stage-label">Test</div>
+                    <div className="pipeline-card__stage-status">✓</div>
+                  </div>
+                  <div className="pipeline-card__stage">
+                    <div className="pipeline-card__stage-label">Deploy</div>
+                    <div className="pipeline-card__stage-status">Running</div>
+                  </div>
+                </div>
+              </div>
+            </Group>
+            <Group label="Command palette">
+              <button className="btn" onClick={() => {
+                const searchInput = document.querySelector('.command-palette__input');
+                if (searchInput) searchInput.focus();
+              }}>
+                Open Palette
+              </button>
+              <div className="command-palette">
+                <input
+                  type="text"
+                  className="command-palette__input"
+                  placeholder="Search commands..."
+                />
+                <ul className="command-palette__list">
+                  <li>
+                    <button className="command-palette__suggestion">
+                      <span className="command-palette__suggestion-label">Go to settings</span>
+                      <span className="command-palette__suggestion-kbd">⌘ K</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button className="command-palette__suggestion command-palette__suggestion--active">
+                      <span className="command-palette__suggestion-label">Create new file</span>
+                      <span className="command-palette__suggestion-kbd">⌘ N</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button className="command-palette__suggestion">
+                      <span className="command-palette__suggestion-label">Save document</span>
+                      <span className="command-palette__suggestion-kbd">⌘ S</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </Group>
           </Section>
 
