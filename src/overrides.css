@@ -1560,6 +1560,12 @@
   color: var(--canvas-fg-2);
 }
 
+.dropdown__divider {
+  height: 1px;
+  background: var(--canvas-border);
+  margin: 4px 2px;
+}
+
 /* ============================================================
  * COMMAND PALETTE (.command-palette, .command-palette__suggestion)
  * ============================================================ */
