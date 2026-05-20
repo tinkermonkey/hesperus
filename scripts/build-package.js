@@ -22,10 +22,12 @@ async function transpileJSXFiles(srcDir, outDir) {
 
     await esbuild.build({
       entryPoints: [srcPath],
+      bundle: true,
       format: 'esm',
       outfile: outPath,
       jsx: 'automatic',
       jsxImportSource: 'react',
+      external: ['react', 'react/jsx-runtime'],
     });
   }
 }
@@ -46,37 +48,45 @@ async function generateTypeDeclarations(srcDir, outDir) {
     await writeFile(outPath, dtsContent);
   }
 
-  // Also generate index.d.ts
-  const indexDtsPath = join(outDir, 'index.d.ts');
-  const indexDts = jsxFiles
-    .map(f => {
-      const componentName = f
-        .replace(/\.jsx$/, '')
-        .split('/')
-        .pop();
-      return `export * from './${f.replace(/\.jsx$/, '.js')}';`;
-    })
-    .join('\n');
+  // Generate index.d.ts from actual index.js exports
+  const indexJsPath = join(srcDir, 'index.js');
+  const indexJsContent = await readFile(indexJsPath, 'utf-8');
 
+  // Extract all export statements from index.js
+  const exportMatches = indexJsContent.match(/^export\s+\{[^}]+\}\s+from\s+'\.\/[^']+';$/gm) || [];
+
+  const indexDts = exportMatches.join('\n')
+    .replace(/from '\.\/([^']+)';?$/gm, "from './$1.js';");
+
+  const indexDtsPath = join(outDir, 'index.d.ts');
   await writeFile(indexDtsPath, indexDts + '\n');
 }
 
 function generateDTSContent(jsxContent, fileName) {
-  const typedefMatches = jsxContent.match(/@typedef\s+\{[^}]+\}\s+(\w+)/g) || [];
-  const exports = jsxContent.match(/export\s+(?:const|function)\s+(\w+)/g) || [];
-
   let dts = '';
 
-  for (const match of typedefMatches) {
-    const typeName = match.match(/@typedef\s+\{[^}]+\}\s+(\w+)/)[1];
-    dts += `export interface ${typeName} {
-  [key: string]: any;
-}\n\n`;
+  // Extract React.forwardRef component exports
+  const componentExports = jsxContent.match(/export\s+const\s+(\w+)\s*=\s*forwardRef/g) || [];
+
+  for (const match of componentExports) {
+    const componentName = match.match(/export\s+const\s+(\w+)/)[1];
+    dts += `export const ${componentName}: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLElement> & React.RefAttributes<HTMLElement>>;\n`;
   }
 
-  for (const match of exports) {
-    const exportName = match.match(/export\s+(?:const|function)\s+(\w+)/)[1];
-    dts += `export declare const ${exportName}: any;\n`;
+  // Extract function exports that aren't components
+  const functionExports = jsxContent.match(/export\s+(?:function|const)\s+(\w+)(?!\s*=\s*forwardRef)/g) || [];
+
+  for (const match of functionExports) {
+    const functionName = match.match(/export\s+(?:function|const)\s+(\w+)/)[1];
+    // Skip if already exported as a component
+    if (!componentExports.some(c => c.includes(functionName))) {
+      dts += `export function ${functionName}(...args: any[]): any;\n`;
+    }
+  }
+
+  // Add React import for proper typing
+  if (componentExports.length > 0) {
+    dts = `import * as React from 'react';\n\n${dts}`;
   }
 
   return dts || 'export {};\n';
@@ -131,10 +141,12 @@ async function build() {
   // Transpile index.js
   await esbuild.build({
     entryPoints: [join(srcComponentsDir, 'index.js')],
+    bundle: true,
     format: 'esm',
     outfile: join(distComponentsDir, 'index.js'),
     jsx: 'automatic',
     jsxImportSource: 'react',
+    external: ['react', 'react/jsx-runtime'],
   });
   console.log('✅ Transpiled components/index.js');
 
