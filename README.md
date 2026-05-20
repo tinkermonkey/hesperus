@@ -60,7 +60,7 @@ import '@tinkermonkey/hesperus-theme/tokens'; // Just CSS variables, no componen
 
 Option A: Use [Heimdall UI](https://github.com/tinkermonkey/heimdall-ui) components (recommended):
 ```jsx
-import { Button, TextInput, Accordion } from '@tinkermonkey/heimdall-ui';
+import { Button, TextInput, Accordion, AccordionPanel } from '@tinkermonkey/heimdall-ui';
 
 export function MyApp() {
   return (
