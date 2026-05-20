@@ -344,7 +344,6 @@ const NAV_SECTIONS = [
   { id: "banner", label: "Banner" },
   { id: "blockquote", label: "Blockquote" },
   { id: "datepicker", label: "Datepicker" },
-  { id: "dropdown", label: "Dropdown" },
   { id: "file-input", label: "File Input" },
   { id: "footer", label: "Footer" },
   { id: "hr", label: "Horizontal Rule" },
