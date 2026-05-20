@@ -119,7 +119,6 @@ All design documentation, token specs, and component preview cards live under `d
 |---|---|
 | `README.md` | Brand context, visual foundations, voice & tone, iconography rules |
 | `HEIMDALL_MAPPING.md` | Per-component BEM class + token contract — the implementation handoff (canonical) |
-| `FLOWBITE_MAPPING.md` | **Legacy:** Flowbite theme mapping (v0.x, kept for reference) |
 | `colors_and_type.css` | Extended token reference (color, type, spacing, motion, density) |
 | `preview/*.html` | Standalone HTML cards for every component — the visual targets |
 | `public/grid-background-{light,dark}.svg` | CRT grid backgrounds (fractal-noise + glow filters baked in) |
