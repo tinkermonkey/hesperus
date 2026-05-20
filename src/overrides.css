@@ -11,7 +11,6 @@
  * - Focus ring: 2px outline using --focus-ring (orange)
  * - Typography: uppercase + 0.05em letter-spacing for labels
  * - Motion: 100ms button flip, 150ms default, 250ms modals
- * - Dark mode: all rules under html.dark selector
  * - Single-surface model: navigation surfaces use --canvas-bg (not --shell-bg)
  */
 
@@ -19,7 +18,7 @@
  * BUTTON (.btn)
  * ============================================================ */
 
-html.dark .btn {
+.btn {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -34,78 +33,78 @@ html.dark .btn {
   cursor: pointer;
 }
 
-html.dark .btn:hover {
+.btn:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .btn:active {
+.btn:active {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   transform: translate(1px, 1px);
 }
 
-html.dark .btn:focus-visible {
+.btn:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .btn:disabled {
+.btn:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
 /* Button variants — semantic colors */
 
-html.dark .btn.btn--ghost {
+.btn.btn--ghost {
   color: var(--canvas-fg-2);
   border-color: var(--canvas-fg-2);
 }
 
-html.dark .btn.btn--ghost:hover {
+.btn.btn--ghost:hover {
   background: transparent;
   border-color: var(--canvas-fg-1);
   color: var(--canvas-fg-1);
 }
 
-html.dark .btn.btn--error,
-html.dark .btn.btn--danger {
+.btn.btn--error,
+.btn.btn--danger {
   color: var(--color-error);
   border-color: var(--color-error);
 }
 
-html.dark .btn.btn--error:hover,
-html.dark .btn.btn--danger:hover {
+.btn.btn--error:hover,
+.btn.btn--danger:hover {
   background: var(--color-error);
   color: var(--canvas-bg);
 }
 
-html.dark .btn.btn--success {
+.btn.btn--success {
   color: var(--color-success);
   border-color: var(--color-success);
 }
 
-html.dark .btn.btn--success:hover {
+.btn.btn--success:hover {
   background: var(--color-success);
   color: var(--canvas-bg);
 }
 
-html.dark .btn.btn--warning {
+.btn.btn--warning {
   color: var(--color-warning-text);
   border-color: var(--color-warning);
 }
 
-html.dark .btn.btn--warning:hover {
+.btn.btn--warning:hover {
   background: var(--color-warning);
   color: var(--canvas-bg);
 }
 
-html.dark .btn.btn--info {
+.btn.btn--info {
   color: var(--color-info);
   border-color: var(--color-info);
 }
 
-html.dark .btn.btn--info:hover {
+.btn.btn--info:hover {
   background: var(--color-info);
   color: var(--canvas-bg);
 }
@@ -114,7 +113,7 @@ html.dark .btn.btn--info:hover {
  * BADGE (.badge)
  * ============================================================ */
 
-html.dark .badge {
+.badge {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -133,40 +132,40 @@ html.dark .badge {
 
 /* Badge semantic variants */
 
-html.dark .badge.badge--success {
+.badge.badge--success {
   border-color: var(--color-success);
   color: var(--color-success);
 }
 
-html.dark .badge.badge--error,
-html.dark .badge.badge--failure {
+.badge.badge--error,
+.badge.badge--failure {
   border-color: var(--color-error);
   color: var(--color-error);
 }
 
-html.dark .badge.badge--warning {
+.badge.badge--warning {
   border-color: var(--color-warning);
   color: var(--color-warning-text);
 }
 
-html.dark .badge.badge--info {
+.badge.badge--info {
   border-color: var(--color-info);
   color: var(--color-info);
 }
 
 /* Badge accent variants */
 
-html.dark .badge.badge--orange {
+.badge.badge--orange {
   border-color: var(--color-accent-orange);
   color: var(--color-accent-orange);
 }
 
-html.dark .badge.badge--purple {
+.badge.badge--purple {
   border-color: var(--color-accent-purple);
   color: var(--color-accent-purple);
 }
 
-html.dark .badge.badge--cyan {
+.badge.badge--cyan {
   border-color: var(--color-accent-cyan);
   color: var(--color-accent-cyan);
 }
@@ -175,7 +174,7 @@ html.dark .badge.badge--cyan {
  * ICON (.icon)
  * ============================================================ */
 
-html.dark .icon {
+.icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -186,31 +185,31 @@ html.dark .icon {
   stroke-width: 2;
 }
 
-html.dark .icon svg {
+.icon svg {
   stroke: currentColor;
   fill: none;
   stroke-width: 2;
 }
 
-html.dark .icon--xs {
+.icon--xs {
   width: 14px;
   height: 14px;
   stroke-width: 2.5;
 }
 
-html.dark .icon--sm {
+.icon--sm {
   width: 16px;
   height: 16px;
   stroke-width: 2.5;
 }
 
-html.dark .icon--md {
+.icon--md {
   width: 20px;
   height: 20px;
   stroke-width: 2;
 }
 
-html.dark .icon--lg {
+.icon--lg {
   width: 24px;
   height: 24px;
   stroke-width: 2;
@@ -220,7 +219,7 @@ html.dark .icon--lg {
  * CHIP (.chip)
  * ============================================================ */
 
-html.dark .chip {
+.chip {
   border: var(--border-width-default) solid var(--canvas-border);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -239,22 +238,22 @@ html.dark .chip {
   cursor: pointer;
 }
 
-html.dark .chip:hover {
+.chip:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .chip.chip--active {
+.chip.chip--active {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .chip:focus-visible {
+.chip:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .chip:disabled {
+.chip:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
@@ -263,7 +262,7 @@ html.dark .chip:disabled {
  * STATUS BADGE (.status-badge)
  * ============================================================ */
 
-html.dark .status-badge {
+.status-badge {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -282,27 +281,27 @@ html.dark .status-badge {
 
 /* Status-specific colors */
 
-html.dark .status-badge.status-badge--success {
+.status-badge.status-badge--success {
   border-color: var(--color-success);
   color: var(--color-success);
 }
 
-html.dark .status-badge.status-badge--error {
+.status-badge.status-badge--error {
   border-color: var(--color-error);
   color: var(--color-error);
 }
 
-html.dark .status-badge.status-badge--warning {
+.status-badge.status-badge--warning {
   border-color: var(--color-warning);
   color: var(--color-warning-text);
 }
 
-html.dark .status-badge.status-badge--info {
+.status-badge.status-badge--info {
   border-color: var(--color-info);
   color: var(--color-info);
 }
 
-html.dark .status-badge.status-badge--offline {
+.status-badge.status-badge--offline {
   border-color: var(--canvas-fg-2);
   color: var(--canvas-fg-2);
 }
@@ -311,7 +310,7 @@ html.dark .status-badge.status-badge--offline {
  * TEXT INPUT (.text-input)
  * ============================================================ */
 
-html.dark .text-input {
+.text-input {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -325,40 +324,40 @@ html.dark .text-input {
               background-color var(--transition-default) var(--timing-ease-out);
 }
 
-html.dark .text-input::placeholder {
+.text-input::placeholder {
   color: var(--canvas-fg-2);
 }
 
-html.dark .text-input:focus-visible {
+.text-input:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
   border-color: var(--canvas-fg-1);
 }
 
-html.dark .text-input:disabled {
+.text-input:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
 /* Text input variants */
 
-html.dark .text-input.text-input--error {
+.text-input.text-input--error {
   border-color: var(--color-error);
 }
 
-html.dark .text-input.text-input--success {
+.text-input.text-input--success {
   border-color: var(--color-success);
 }
 
-html.dark .text-input.text-input--warning {
+.text-input.text-input--warning {
   border-color: var(--color-warning);
 }
 
-html.dark .text-input.text-input--info {
+.text-input.text-input--info {
   border-color: var(--color-info);
 }
 
-html.dark .text-input.text-input--gray {
+.text-input.text-input--gray {
   border-color: var(--canvas-border);
   color: var(--canvas-fg-2);
 }
@@ -367,7 +366,7 @@ html.dark .text-input.text-input--gray {
  * TEXTAREA (.textarea)
  * ============================================================ */
 
-html.dark .textarea {
+.textarea {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -383,36 +382,36 @@ html.dark .textarea {
               background-color var(--transition-default) var(--timing-ease-out);
 }
 
-html.dark .textarea::placeholder {
+.textarea::placeholder {
   color: var(--canvas-fg-2);
 }
 
-html.dark .textarea:focus-visible {
+.textarea:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
   border-color: var(--canvas-fg-1);
 }
 
-html.dark .textarea:disabled {
+.textarea:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
 /* Textarea variants */
 
-html.dark .textarea.textarea--error {
+.textarea.textarea--error {
   border-color: var(--color-error);
 }
 
-html.dark .textarea.textarea--success {
+.textarea.textarea--success {
   border-color: var(--color-success);
 }
 
-html.dark .textarea.textarea--warning {
+.textarea.textarea--warning {
   border-color: var(--color-warning);
 }
 
-html.dark .textarea.textarea--info {
+.textarea.textarea--info {
   border-color: var(--color-info);
 }
 
@@ -420,12 +419,12 @@ html.dark .textarea.textarea--info {
  * SELECT (.select)
  * ============================================================ */
 
-html.dark .select {
+.select {
   position: relative;
   display: inline-block;
 }
 
-html.dark .select__input {
+.select__input {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -444,24 +443,24 @@ html.dark .select__input {
               background-color var(--transition-default) var(--timing-ease-out);
 }
 
-html.dark .select__input::placeholder {
+.select__input::placeholder {
   color: var(--canvas-fg-2);
 }
 
-html.dark .select__input:focus-visible {
+.select__input:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
   border-color: var(--canvas-fg-1);
 }
 
-html.dark .select__input:disabled {
+.select__input:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
 /* Select chevron indicator */
 
-html.dark .select::after {
+.select::after {
   content: '▾';
   position: absolute;
   right: 10px;
@@ -474,23 +473,23 @@ html.dark .select::after {
 
 /* Select variants */
 
-html.dark .select__input.select--error {
+.select__input.select--error {
   border-color: var(--color-error);
 }
 
-html.dark .select__input.select--success {
+.select__input.select--success {
   border-color: var(--color-success);
 }
 
-html.dark .select__input.select--warning {
+.select__input.select--warning {
   border-color: var(--color-warning);
 }
 
-html.dark .select__input.select--info {
+.select__input.select--info {
   border-color: var(--color-info);
 }
 
-html.dark .select__input.select--gray {
+.select__input.select--gray {
   border-color: var(--canvas-border);
   color: var(--canvas-fg-2);
 }
@@ -499,7 +498,7 @@ html.dark .select__input.select--gray {
  * NUMBER INPUT (.number-input)
  * ============================================================ */
 
-html.dark .number-input {
+.number-input {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -515,46 +514,46 @@ html.dark .number-input {
 
 /* Remove spinner in modern browsers */
 
-html.dark .number-input::-webkit-outer-spin-button,
-html.dark .number-input::-webkit-inner-spin-button {
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-html.dark .number-input[type="number"] {
+.number-input[type="number"] {
   -moz-appearance: textfield;
 }
 
-html.dark .number-input::placeholder {
+.number-input::placeholder {
   color: var(--canvas-fg-2);
 }
 
-html.dark .number-input:focus-visible {
+.number-input:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
   border-color: var(--canvas-fg-1);
 }
 
-html.dark .number-input:disabled {
+.number-input:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
 /* Number input variants */
 
-html.dark .number-input.number-input--error {
+.number-input.number-input--error {
   border-color: var(--color-error);
 }
 
-html.dark .number-input.number-input--success {
+.number-input.number-input--success {
   border-color: var(--color-success);
 }
 
-html.dark .number-input.number-input--warning {
+.number-input.number-input--warning {
   border-color: var(--color-warning);
 }
 
-html.dark .number-input.number-input--info {
+.number-input.number-input--info {
   border-color: var(--color-info);
 }
 
@@ -563,7 +562,7 @@ html.dark .number-input.number-input--info {
  * Checkbox and Radio combined three-state component
  * ============================================================ */
 
-html.dark .tri-state {
+.tri-state {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -582,37 +581,37 @@ html.dark .tri-state {
               color var(--transition-default) var(--timing-ease-out);
 }
 
-html.dark .tri-state:hover {
+.tri-state:hover {
   background: var(--hover-bg);
 }
 
-html.dark .tri-state.tri-state--checked {
+.tri-state.tri-state--checked {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .tri-state.tri-state--indeterminate {
+.tri-state.tri-state--indeterminate {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .tri-state:focus-visible {
+.tri-state:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .tri-state:disabled {
+.tri-state:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
 /* Radio variant (circular) */
 
-html.dark .tri-state.tri-state--radio {
+.tri-state.tri-state--radio {
   border-radius: 50%;
 }
 
-html.dark .tri-state.tri-state--radio.tri-state--checked::after {
+.tri-state.tri-state--radio.tri-state--checked::after {
   content: '';
   display: block;
   width: 6px;
@@ -623,13 +622,13 @@ html.dark .tri-state.tri-state--radio.tri-state--checked::after {
 
 /* Checkbox variant (square with checkmark) */
 
-html.dark .tri-state.tri-state--checkbox.tri-state--checked::after {
+.tri-state.tri-state--checkbox.tri-state--checked::after {
   content: '✓';
   font-size: 11px;
   font-weight: var(--weight-bold);
 }
 
-html.dark .tri-state.tri-state--checkbox.tri-state--indeterminate::after {
+.tri-state.tri-state--checkbox.tri-state--indeterminate::after {
   content: '−';
   font-size: 11px;
   font-weight: var(--weight-bold);
@@ -640,13 +639,13 @@ html.dark .tri-state.tri-state--checkbox.tri-state--indeterminate::after {
  * Container for form fields with label and helper text
  * ============================================================ */
 
-html.dark .field {
+.field {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-html.dark .field__label {
+.field__label {
   font-family: var(--font-mono);
   font-size: var(--text-10);
   font-weight: var(--weight-bold);
@@ -656,12 +655,12 @@ html.dark .field__label {
   margin-bottom: 4px;
 }
 
-html.dark .field__label--required::after {
+.field__label--required::after {
   content: ' *';
   color: var(--color-error);
 }
 
-html.dark .field__helper {
+.field__helper {
   font-family: var(--font-mono);
   font-size: var(--text-9);
   text-transform: uppercase;
@@ -670,49 +669,49 @@ html.dark .field__helper {
   margin-top: 2px;
 }
 
-html.dark .field__helper--error {
+.field__helper--error {
   color: var(--color-error);
 }
 
-html.dark .field__helper--success {
+.field__helper--success {
   color: var(--color-success);
 }
 
-html.dark .field__helper--warning {
+.field__helper--warning {
   color: var(--color-warning-text);
 }
 
-html.dark .field__helper--info {
+.field__helper--info {
   color: var(--color-info);
 }
 
 /* Field error state */
 
-html.dark .field.field--error .field__label {
+.field.field--error .field__label {
   color: var(--color-error);
 }
 
-html.dark .field.field--error .field__helper {
+.field.field--error .field__helper {
   color: var(--color-error);
 }
 
 /* Field success state */
 
-html.dark .field.field--success .field__label {
+.field.field--success .field__label {
   color: var(--color-success);
 }
 
-html.dark .field.field--success .field__helper {
+.field.field--success .field__helper {
   color: var(--color-success);
 }
 
 /* Field disabled state */
 
-html.dark .field.field--disabled .field__label {
+.field.field--disabled .field__label {
   opacity: var(--disabled-opacity);
 }
 
-html.dark .field.field--disabled .field__helper {
+.field.field--disabled .field__helper {
   opacity: var(--disabled-opacity);
 }
 
@@ -724,14 +723,14 @@ html.dark .field.field--disabled .field__helper {
  * TABLE (.table, th, td)
  * ============================================================ */
 
-html.dark .table {
+.table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-mono);
   font-size: var(--text-11);
 }
 
-html.dark .table th {
+.table th {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   border: var(--border-width-default) solid var(--canvas-fg-1);
@@ -743,13 +742,13 @@ html.dark .table th {
   text-align: left;
 }
 
-html.dark .table td {
+.table td {
   border: 1px solid var(--canvas-fg-1);
   padding: 9px 12px;
   color: var(--canvas-fg-1);
 }
 
-html.dark .table tbody tr:hover td {
+.table tbody tr:hover td {
   background: var(--hover-bg);
   transition: background-color var(--transition-default) var(--timing-ease-out);
 }
@@ -758,7 +757,7 @@ html.dark .table tbody tr:hover td {
  * STAT TILE / STAT GRID (.stat-tile, .stat-grid)
  * ============================================================ */
 
-html.dark .stat-tile {
+.stat-tile {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -770,7 +769,7 @@ html.dark .stat-tile {
   gap: 8px;
 }
 
-html.dark .stat-tile__label {
+.stat-tile__label {
   font-family: var(--font-mono);
   font-size: var(--text-10);
   font-weight: var(--weight-bold);
@@ -779,7 +778,7 @@ html.dark .stat-tile__label {
   color: var(--canvas-fg-2);
 }
 
-html.dark .stat-tile__value {
+.stat-tile__value {
   font-family: var(--font-mono);
   font-size: var(--text-20);
   font-weight: var(--weight-bold);
@@ -787,7 +786,7 @@ html.dark .stat-tile__value {
   line-height: 1;
 }
 
-html.dark .stat-tile__helper {
+.stat-tile__helper {
   font-family: var(--font-mono);
   font-size: var(--text-9);
   text-transform: var(--text-transform-heading);
@@ -795,26 +794,26 @@ html.dark .stat-tile__helper {
   color: var(--canvas-fg-2);
 }
 
-html.dark .stat-grid {
+.stat-grid {
   display: grid;
   gap: 12px;
 }
 
 /* Semantic color variants for stat values */
 
-html.dark .stat-tile.stat-tile--success .stat-tile__value {
+.stat-tile.stat-tile--success .stat-tile__value {
   color: var(--color-success);
 }
 
-html.dark .stat-tile.stat-tile--error .stat-tile__value {
+.stat-tile.stat-tile--error .stat-tile__value {
   color: var(--color-error);
 }
 
-html.dark .stat-tile.stat-tile--warning .stat-tile__value {
+.stat-tile.stat-tile--warning .stat-tile__value {
   color: var(--color-warning);
 }
 
-html.dark .stat-tile.stat-tile--info .stat-tile__value {
+.stat-tile.stat-tile--info .stat-tile__value {
   color: var(--color-info);
 }
 
@@ -822,7 +821,7 @@ html.dark .stat-tile.stat-tile--info .stat-tile__value {
  * SIDEBAR (.sidebar, .sidebar__group, .sidebar__item)
  * ============================================================ */
 
-html.dark .sidebar {
+.sidebar {
   background: var(--canvas-bg);
   border: var(--border-width-default) solid var(--canvas-fg-1);
   box-shadow: none;
@@ -830,18 +829,18 @@ html.dark .sidebar {
   font-family: var(--font-mono);
 }
 
-html.dark .sidebar__group {
+.sidebar__group {
   border-top: var(--border-width-default) solid var(--canvas-border);
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-html.dark .sidebar__group:first-child {
+.sidebar__group:first-child {
   border-top: none;
   padding-top: 10px;
 }
 
-html.dark .sidebar__group-label {
+.sidebar__group-label {
   font-size: var(--text-9);
   font-weight: var(--weight-bold);
   text-transform: var(--text-transform-heading);
@@ -850,7 +849,7 @@ html.dark .sidebar__group-label {
   padding: 0 10px 6px;
 }
 
-html.dark .sidebar__item {
+.sidebar__item {
   padding: 8px 10px;
   font-size: var(--text-11);
   font-weight: var(--weight-normal);
@@ -869,17 +868,17 @@ html.dark .sidebar__item {
   gap: 8px;
 }
 
-html.dark .sidebar__item:hover {
+.sidebar__item:hover {
   background: var(--hover-bg);
 }
 
-html.dark .sidebar__item.sidebar__item--active {
+.sidebar__item.sidebar__item--active {
   background: var(--hover-bg);
   border-left: 2px solid var(--canvas-fg-1);
   font-weight: var(--weight-bold);
 }
 
-html.dark .sidebar__item:focus-visible {
+.sidebar__item:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
@@ -888,7 +887,7 @@ html.dark .sidebar__item:focus-visible {
  * TOPBAR / NAVBAR (.topbar, .nav, .nav__item)
  * ============================================================ */
 
-html.dark .topbar {
+.topbar {
   background: var(--canvas-bg);
   border: none;
   border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
@@ -896,7 +895,7 @@ html.dark .topbar {
   padding: 0;
 }
 
-html.dark .nav {
+.nav {
   background: var(--canvas-bg);
   border: var(--border-width-default) solid var(--canvas-fg-1);
   box-shadow: none;
@@ -907,7 +906,7 @@ html.dark .nav {
   height: 44px;
 }
 
-html.dark .nav__brand {
+.nav__brand {
   padding: 0 14px;
   display: flex;
   align-items: center;
@@ -920,7 +919,7 @@ html.dark .nav__brand {
   color: var(--canvas-fg-1);
 }
 
-html.dark .nav__item {
+.nav__item {
   padding: 0 14px;
   display: flex;
   align-items: center;
@@ -940,25 +939,25 @@ html.dark .nav__item {
               color var(--transition-default) var(--timing-ease-out);
 }
 
-html.dark .nav__item:hover {
+.nav__item:hover {
   background: var(--hover-bg);
 }
 
-html.dark .nav__item.nav__item--active {
+.nav__item.nav__item--active {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .nav__item:focus-visible {
+.nav__item:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .nav__item:last-child {
+.nav__item:last-child {
   border-right: none;
 }
 
-html.dark .nav__spacer {
+.nav__spacer {
   flex: 1;
   border-right: var(--border-width-default) solid var(--canvas-fg-1);
 }
@@ -967,14 +966,14 @@ html.dark .nav__spacer {
  * TAB BAR (.tab-bar, .tab, .tab--active)
  * ============================================================ */
 
-html.dark .tab-bar {
+.tab-bar {
   display: flex;
   gap: 0;
   border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
   font-family: var(--font-mono);
 }
 
-html.dark .tab {
+.tab {
   padding: 8px 14px;
   font-size: var(--text-11);
   font-weight: var(--weight-bold);
@@ -990,35 +989,35 @@ html.dark .tab {
   margin-bottom: -2px;
 }
 
-html.dark .tab:hover {
+.tab:hover {
   color: var(--canvas-fg-2);
 }
 
-html.dark .tab.tab--active {
+.tab.tab--active {
   border-bottom-color: var(--color-accent-orange);
   color: var(--canvas-fg-1);
 }
 
-html.dark .tab:focus-visible {
+.tab:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .tab:disabled {
+.tab:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
 /* Tab variants */
 
-html.dark .tab-bar.tab-bar--segmented {
+.tab-bar.tab-bar--segmented {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   border-radius: var(--radius-md);
   gap: 0;
   padding: 0;
 }
 
-html.dark .tab-bar.tab-bar--segmented .tab {
+.tab-bar.tab-bar--segmented .tab {
   border-right: var(--border-width-default) solid var(--canvas-fg-1);
   border-bottom: none;
   border-radius: 0;
@@ -1027,11 +1026,11 @@ html.dark .tab-bar.tab-bar--segmented .tab {
   margin-bottom: 0;
 }
 
-html.dark .tab-bar.tab-bar--segmented .tab:last-child {
+.tab-bar.tab-bar--segmented .tab:last-child {
   border-right: none;
 }
 
-html.dark .tab-bar.tab-bar--segmented .tab.tab--active {
+.tab-bar.tab-bar--segmented .tab.tab--active {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   border-bottom-color: transparent;
@@ -1041,7 +1040,7 @@ html.dark .tab-bar.tab-bar--segmented .tab.tab--active {
  * NAV ITEM (.nav-item)
  * ============================================================ */
 
-html.dark .nav-item {
+.nav-item {
   padding: 8px 12px;
   font-size: var(--text-11);
   font-weight: var(--weight-normal);
@@ -1060,22 +1059,22 @@ html.dark .nav-item {
   gap: 8px;
 }
 
-html.dark .nav-item:hover {
+.nav-item:hover {
   background: var(--hover-bg);
 }
 
-html.dark .nav-item.nav-item--active {
+.nav-item.nav-item--active {
   background: var(--hover-bg);
   border-left: 2px solid var(--canvas-fg-1);
   font-weight: var(--weight-bold);
 }
 
-html.dark .nav-item:focus-visible {
+.nav-item:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .nav-item:disabled {
+.nav-item:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
@@ -1090,7 +1089,7 @@ html.dark .nav-item:disabled {
  * MODAL (.modal, .modal__header, .modal__body, .modal__footer)
  * ============================================================ */
 
-html.dark .modal {
+.modal {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   box-shadow: none;
@@ -1099,7 +1098,7 @@ html.dark .modal {
   animation: modal-enter var(--transition-slow) var(--timing-ease-out);
 }
 
-html.dark .modal__header {
+.modal__header {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   padding: 11px 16px;
@@ -1112,14 +1111,14 @@ html.dark .modal__header {
   justify-content: space-between;
 }
 
-html.dark .modal__body {
+.modal__body {
   padding: 16px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
   font-size: var(--text-11);
 }
 
-html.dark .modal__footer {
+.modal__footer {
   border-top: 1px solid var(--canvas-border);
   padding: 12px 16px;
   display: flex;
@@ -1144,7 +1143,7 @@ html.dark .modal__footer {
  * DRAWER (.drawer, .drawer__header, .drawer__body)
  * ============================================================ */
 
-html.dark .drawer {
+.drawer {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   box-shadow: none;
@@ -1152,7 +1151,7 @@ html.dark .drawer {
   overflow: hidden;
 }
 
-html.dark .drawer__header {
+.drawer__header {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   padding: 11px 16px;
@@ -1165,7 +1164,7 @@ html.dark .drawer__header {
   justify-content: space-between;
 }
 
-html.dark .drawer__body {
+.drawer__body {
   padding: 16px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -1181,7 +1180,7 @@ html.dark .drawer__body {
   }
 }
 
-html.dark .drawer[data-position="left"] {
+.drawer[data-position="left"] {
   animation: drawer-enter var(--transition-slow) var(--timing-ease-out);
 }
 
@@ -1189,7 +1188,7 @@ html.dark .drawer[data-position="left"] {
  * CONFIRM DIALOG (.confirm-dialog)
  * ============================================================ */
 
-html.dark .confirm-dialog {
+.confirm-dialog {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   box-shadow: none;
@@ -1198,7 +1197,7 @@ html.dark .confirm-dialog {
   animation: modal-enter var(--transition-slow) var(--timing-ease-out);
 }
 
-html.dark .confirm-dialog__header {
+.confirm-dialog__header {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   padding: 11px 16px;
@@ -1208,13 +1207,13 @@ html.dark .confirm-dialog__header {
   letter-spacing: var(--letter-spacing-default);
 }
 
-html.dark .confirm-dialog__body {
+.confirm-dialog__body {
   padding: 16px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
 }
 
-html.dark .confirm-dialog__footer {
+.confirm-dialog__footer {
   border-top: 1px solid var(--canvas-border);
   padding: 12px 16px;
   display: flex;
@@ -1227,18 +1226,17 @@ html.dark .confirm-dialog__footer {
  * TOAST (.toast, .toast__icon, .toast__body, .toast__progress)
  * ============================================================ */
 
-html.dark .toast {
+.toast {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
-  box-shadow: 3px 3px 0 var(--canvas-fg-1);
   border-radius: var(--radius-md);
   padding: 8px 10px;
 }
 
-html.dark .toast__icon {
+.toast__icon {
   width: 22px;
   height: 22px;
   flex-shrink: 0;
@@ -1252,13 +1250,13 @@ html.dark .toast__icon {
   background: var(--canvas-bg);
 }
 
-html.dark .toast__body {
+.toast__body {
   font-size: var(--text-11);
   flex: 1;
   color: var(--canvas-fg-1);
 }
 
-html.dark .toast__body b {
+.toast__body b {
   font-size: var(--text-10);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-default);
@@ -1266,7 +1264,7 @@ html.dark .toast__body b {
   font-weight: var(--weight-bold);
 }
 
-html.dark .toast__close {
+.toast__close {
   font-size: var(--text-11);
   color: var(--canvas-fg-2);
   cursor: pointer;
@@ -1276,7 +1274,7 @@ html.dark .toast__close {
   padding: 0;
 }
 
-html.dark .toast__progress {
+.toast__progress {
   height: 2px;
   background: var(--canvas-fg-1);
   margin-top: 6px;
@@ -1285,56 +1283,56 @@ html.dark .toast__progress {
 
 /* Toast status color variants */
 
-html.dark .toast.toast--error {
+.toast.toast--error {
   border-color: var(--color-error);
 }
 
-html.dark .toast.toast--error .toast__icon {
+.toast.toast--error .toast__icon {
   border-color: var(--color-error);
   color: var(--color-error);
   background-color: var(--canvas-bg);
 }
 
-html.dark .toast.toast--error .toast__progress {
+.toast.toast--error .toast__progress {
   background: var(--color-error);
 }
 
-html.dark .toast.toast--success {
+.toast.toast--success {
   border-color: var(--color-success);
 }
 
-html.dark .toast.toast--success .toast__icon {
+.toast.toast--success .toast__icon {
   border-color: var(--color-success);
   color: var(--color-success);
 }
 
-html.dark .toast.toast--success .toast__progress {
+.toast.toast--success .toast__progress {
   background: var(--color-success);
 }
 
-html.dark .toast.toast--warning {
+.toast.toast--warning {
   border-color: var(--color-warning);
 }
 
-html.dark .toast.toast--warning .toast__icon {
+.toast.toast--warning .toast__icon {
   border-color: var(--color-warning);
   color: var(--color-warning-text);
 }
 
-html.dark .toast.toast--warning .toast__progress {
+.toast.toast--warning .toast__progress {
   background: var(--color-warning);
 }
 
-html.dark .toast.toast--info {
+.toast.toast--info {
   border-color: var(--color-info);
 }
 
-html.dark .toast.toast--info .toast__icon {
+.toast.toast--info .toast__icon {
   border-color: var(--color-info);
   color: var(--color-info);
 }
 
-html.dark .toast.toast--info .toast__progress {
+.toast.toast--info .toast__progress {
   background: var(--color-info);
 }
 
@@ -1342,7 +1340,7 @@ html.dark .toast.toast--info .toast__progress {
  * TOOLTIP (.tooltip, .tooltip__content)
  * ============================================================ */
 
-html.dark .tooltip {
+.tooltip {
   position: absolute;
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
@@ -1351,12 +1349,11 @@ html.dark .tooltip {
   letter-spacing: var(--letter-spacing-default);
   padding: 5px 9px;
   border-radius: var(--radius-sm);
-  box-shadow: 2px 2px 0 var(--canvas-bg), 2px 2px 0 1px var(--canvas-fg-1);
   white-space: nowrap;
   z-index: 1000;
 }
 
-html.dark .tooltip::after {
+.tooltip::after {
   content: '';
   position: absolute;
   border: 5px solid transparent;
@@ -1364,52 +1361,52 @@ html.dark .tooltip::after {
 
 /* Tooltip positioning */
 
-html.dark .tooltip.tooltip--top {
+.tooltip.tooltip--top {
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
 }
 
-html.dark .tooltip.tooltip--top::after {
+.tooltip.tooltip--top::after {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
   border-top-color: var(--canvas-fg-1);
 }
 
-html.dark .tooltip.tooltip--bottom {
+.tooltip.tooltip--bottom {
   top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
 }
 
-html.dark .tooltip.tooltip--bottom::after {
+.tooltip.tooltip--bottom::after {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   border-bottom-color: var(--canvas-fg-1);
 }
 
-html.dark .tooltip.tooltip--left {
+.tooltip.tooltip--left {
   right: calc(100% + 8px);
   top: 50%;
   transform: translateY(-50%);
 }
 
-html.dark .tooltip.tooltip--left::after {
+.tooltip.tooltip--left::after {
   left: 100%;
   top: 50%;
   transform: translateY(-50%);
   border-left-color: var(--canvas-fg-1);
 }
 
-html.dark .tooltip.tooltip--right {
+.tooltip.tooltip--right {
   left: calc(100% + 8px);
   top: 50%;
   transform: translateY(-50%);
 }
 
-html.dark .tooltip.tooltip--right::after {
+.tooltip.tooltip--right::after {
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
@@ -1420,12 +1417,12 @@ html.dark .tooltip.tooltip--right::after {
  * DROPDOWN (.dropdown, .dropdown__trigger, .dropdown__menu, .dropdown__item)
  * ============================================================ */
 
-html.dark .dropdown {
+.dropdown {
   position: relative;
   display: inline-block;
 }
 
-html.dark .dropdown__trigger {
+.dropdown__trigger {
   font-family: var(--font-mono);
   font-weight: var(--weight-bold);
   font-size: var(--text-11);
@@ -1445,22 +1442,22 @@ html.dark .dropdown__trigger {
               color var(--transition-fast) var(--timing-ease-out);
 }
 
-html.dark .dropdown__trigger:hover {
+.dropdown__trigger:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .dropdown__trigger.dropdown__trigger--open {
+.dropdown__trigger.dropdown__trigger--open {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .dropdown__trigger:focus-visible {
+.dropdown__trigger:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .dropdown__menu {
+.dropdown__menu {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
@@ -1468,13 +1465,12 @@ html.dark .dropdown__menu {
   background: var(--canvas-bg);
   border-radius: var(--radius-md);
   min-width: 180px;
-  box-shadow: 3px 3px 0 var(--canvas-fg-1);
   font-size: var(--text-11);
   overflow: hidden;
   z-index: 999;
 }
 
-html.dark .dropdown__menu-header {
+.dropdown__menu-header {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   padding: 6px 10px;
@@ -1484,7 +1480,7 @@ html.dark .dropdown__menu-header {
   font-weight: var(--weight-bold);
 }
 
-html.dark .dropdown__item {
+.dropdown__item {
   padding: 7px 10px;
   display: flex;
   align-items: center;
@@ -1504,8 +1500,8 @@ html.dark .dropdown__item {
               color var(--transition-default) var(--timing-ease-out);
 }
 
-html.dark .dropdown__item + .dropdown__item::before,
-html.dark .dropdown__menu-header + .dropdown__item::before {
+.dropdown__item + .dropdown__item::before,
+.dropdown__menu-header + .dropdown__item::before {
   content: '';
   position: absolute;
   top: 0;
@@ -1515,36 +1511,36 @@ html.dark .dropdown__menu-header + .dropdown__item::before {
   background: var(--canvas-border);
 }
 
-html.dark .dropdown__item:hover {
+.dropdown__item:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .dropdown__item.dropdown__item--active {
+.dropdown__item.dropdown__item--active {
   background: var(--hover-bg);
   font-weight: var(--weight-bold);
 }
 
-html.dark .dropdown__item.dropdown__item--danger {
+.dropdown__item.dropdown__item--danger {
   color: var(--color-error);
 }
 
-html.dark .dropdown__item.dropdown__item--danger:hover {
+.dropdown__item.dropdown__item--danger:hover {
   background: var(--color-error);
   color: var(--canvas-bg);
 }
 
-html.dark .dropdown__item:focus-visible {
+.dropdown__item:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .dropdown__item:disabled {
+.dropdown__item:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
 }
 
-html.dark .dropdown__item-kbd {
+.dropdown__item-kbd {
   margin-left: auto;
   font-size: var(--text-9);
   color: var(--canvas-fg-2);
@@ -1554,7 +1550,7 @@ html.dark .dropdown__item-kbd {
  * COMMAND PALETTE (.command-palette, .command-palette__suggestion)
  * ============================================================ */
 
-html.dark .command-palette {
+.command-palette {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -1569,7 +1565,7 @@ html.dark .command-palette {
   overflow: hidden;
 }
 
-html.dark .command-palette__input {
+.command-palette__input {
   border: none;
   border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
@@ -1583,15 +1579,15 @@ html.dark .command-palette__input {
   outline: none;
 }
 
-html.dark .command-palette__input::placeholder {
+.command-palette__input::placeholder {
   color: var(--canvas-fg-2);
 }
 
-html.dark .command-palette__input:focus {
+.command-palette__input:focus {
   box-shadow: none;
 }
 
-html.dark .command-palette__list {
+.command-palette__list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1599,7 +1595,7 @@ html.dark .command-palette__list {
   overflow-y: auto;
 }
 
-html.dark .command-palette__suggestion {
+.command-palette__suggestion {
   padding: 8px 16px;
   display: flex;
   align-items: center;
@@ -1620,30 +1616,30 @@ html.dark .command-palette__suggestion {
               color var(--transition-default) var(--timing-ease-out);
 }
 
-html.dark .command-palette__suggestion:first-of-type {
+.command-palette__suggestion:first-of-type {
   border-top: none;
 }
 
-html.dark .command-palette__suggestion:hover {
+.command-palette__suggestion:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .command-palette__suggestion.command-palette__suggestion--active {
+.command-palette__suggestion.command-palette__suggestion--active {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .command-palette__suggestion:focus-visible {
+.command-palette__suggestion:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .command-palette__suggestion-label {
+.command-palette__suggestion-label {
   flex: 1;
 }
 
-html.dark .command-palette__suggestion-kbd {
+.command-palette__suggestion-kbd {
   font-size: var(--text-9);
   color: var(--canvas-fg-2);
   margin-left: auto;
@@ -1653,33 +1649,33 @@ html.dark .command-palette__suggestion-kbd {
  * SHELL LAYOUT (.shell-layout, .shell-header, .shell-sidebar, .shell-main)
  * ============================================================ */
 
-html.dark .shell-layout {
+.shell-layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background: var(--canvas-bg);
 }
 
-html.dark .shell-header {
+.shell-header {
   background: var(--canvas-bg);
   border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
   flex-shrink: 0;
 }
 
-html.dark .shell-content {
+.shell-content {
   display: flex;
   flex: 1;
   overflow: hidden;
 }
 
-html.dark .shell-sidebar {
+.shell-sidebar {
   background: var(--canvas-bg);
   border-right: var(--border-width-default) solid var(--canvas-fg-1);
   flex-shrink: 0;
   overflow-y: auto;
 }
 
-html.dark .shell-main {
+.shell-main {
   flex: 1;
   background: var(--canvas-bg);
   overflow: auto;
@@ -1689,38 +1685,38 @@ html.dark .shell-main {
  * SPLIT PANE (.split-pane, .split-pane__divider)
  * ============================================================ */
 
-html.dark .split-pane {
+.split-pane {
   display: flex;
   height: 100%;
   width: 100%;
 }
 
-html.dark .split-pane.split-pane--vertical {
+.split-pane.split-pane--vertical {
   flex-direction: row;
 }
 
-html.dark .split-pane.split-pane--horizontal {
+.split-pane.split-pane--horizontal {
   flex-direction: column;
 }
 
-html.dark .split-pane__pane {
+.split-pane__pane {
   flex: 1;
   overflow: auto;
   background: var(--canvas-bg);
 }
 
-html.dark .split-pane__divider {
+.split-pane__divider {
   background: var(--canvas-fg-1);
   cursor: col-resize;
   flex-shrink: 0;
 }
 
-html.dark .split-pane.split-pane--vertical .split-pane__divider {
+.split-pane.split-pane--vertical .split-pane__divider {
   width: var(--border-width-default);
   cursor: col-resize;
 }
 
-html.dark .split-pane.split-pane--horizontal .split-pane__divider {
+.split-pane.split-pane--horizontal .split-pane__divider {
   height: var(--border-width-default);
   cursor: row-resize;
 }
@@ -1729,7 +1725,7 @@ html.dark .split-pane.split-pane--horizontal .split-pane__divider {
  * PANEL (.panel, .panel__header, .panel__body, .panel__footer)
  * ============================================================ */
 
-html.dark .panel {
+.panel {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   box-shadow: none;
@@ -1739,7 +1735,7 @@ html.dark .panel {
   flex-direction: column;
 }
 
-html.dark .panel__header {
+.panel__header {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
   padding: 11px 16px;
@@ -1750,7 +1746,7 @@ html.dark .panel__header {
   flex-shrink: 0;
 }
 
-html.dark .panel__body {
+.panel__body {
   padding: 16px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -1758,7 +1754,7 @@ html.dark .panel__body {
   overflow: auto;
 }
 
-html.dark .panel__footer {
+.panel__footer {
   border-top: 1px solid var(--canvas-border);
   padding: 12px 16px;
   background: var(--canvas-bg);
@@ -1769,22 +1765,22 @@ html.dark .panel__footer {
  * ACCORDION (.accordion, .accordion__panel, .accordion__title, .accordion__content)
  * ============================================================ */
 
-html.dark .accordion {
+.accordion {
   border: var(--border-width-default) solid var(--canvas-fg-1);
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--canvas-bg);
 }
 
-html.dark .accordion__panel {
+.accordion__panel {
   border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
 }
 
-html.dark .accordion__panel:last-child {
+.accordion__panel:last-child {
   border-bottom: none;
 }
 
-html.dark .accordion__title {
+.accordion__title {
   width: 100%;
   padding: 12px 16px;
   background: var(--canvas-bg);
@@ -1799,17 +1795,17 @@ html.dark .accordion__title {
               color var(--transition-fast) var(--timing-ease-out);
 }
 
-html.dark .accordion__title:hover {
+.accordion__title:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .accordion__panel.accordion__panel--open .accordion__title {
+.accordion__panel.accordion__panel--open .accordion__title {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .accordion__content {
+.accordion__content {
   padding: 12px 16px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -1820,15 +1816,15 @@ html.dark .accordion__content {
  * PAGINATION (.pagination, .pagination__button, .pagination__page)
  * ============================================================ */
 
-html.dark .pagination {
+.pagination {
   display: flex;
   align-items: center;
   gap: 4px;
   font-family: var(--font-mono);
 }
 
-html.dark .pagination__button,
-html.dark .pagination__page {
+.pagination__button,
+.pagination__page {
   padding: 8px 12px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -1841,18 +1837,18 @@ html.dark .pagination__page {
   transition: background-color var(--transition-fast) var(--timing-ease-out);
 }
 
-html.dark .pagination__button:hover:not(:disabled),
-html.dark .pagination__page:hover {
+.pagination__button:hover:not(:disabled),
+.pagination__page:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .pagination__page.pagination__page--active {
+.pagination__page.pagination__page--active {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .pagination__button:disabled {
+.pagination__button:disabled {
   opacity: var(--disabled-opacity);
   cursor: not-allowed;
 }
@@ -1861,25 +1857,25 @@ html.dark .pagination__button:disabled {
  * SPINNER (.spinner, .spinner__segment, .spinner__dot)
  * ============================================================ */
 
-html.dark .spinner {
+.spinner {
   display: inline-block;
   border: var(--border-width-default) solid var(--canvas-fg-1);
   border-radius: 50%;
   animation: spin 1s var(--timing-ease-out) infinite;
 }
 
-html.dark .spinner--ring {
+.spinner--ring {
   border-top-color: transparent;
   border-right-color: transparent;
 }
 
-html.dark .spinner--block {
+.spinner--block {
   border-radius: var(--radius-sm);
   position: relative;
   overflow: hidden;
 }
 
-html.dark .spinner__segment {
+.spinner__segment {
   position: absolute;
   top: 0;
   left: 0;
@@ -1889,7 +1885,7 @@ html.dark .spinner__segment {
   animation: spin-block 1s steps(8) infinite;
 }
 
-html.dark .spinner--dots::after {
+.spinner--dots::after {
   content: '';
   display: inline-block;
   width: 100%;
@@ -1918,7 +1914,7 @@ html.dark .spinner--dots::after {
  * PROGRESS (.progress, .progress__bar)
  * ============================================================ */
 
-html.dark .progress {
+.progress {
   width: 100%;
   height: 8px;
   background: var(--canvas-bg);
@@ -1927,26 +1923,26 @@ html.dark .progress {
   overflow: hidden;
 }
 
-html.dark .progress__bar {
+.progress__bar {
   height: 100%;
   background: var(--color-warning);
   transition: width var(--transition-default) var(--timing-ease-out);
 }
 
-html.dark .progress.progress--indeterminate .progress__bar {
+.progress.progress--indeterminate .progress__bar {
   width: 35%;
   animation: progress-slide 1.2s var(--timing-ease-in-out) infinite;
 }
 
-html.dark .progress.progress--success .progress__bar {
+.progress.progress--success .progress__bar {
   background: var(--color-success);
 }
 
-html.dark .progress.progress--error .progress__bar {
+.progress.progress--error .progress__bar {
   background: var(--color-error);
 }
 
-html.dark .progress.progress--info .progress__bar {
+.progress.progress--info .progress__bar {
   background: var(--color-info);
 }
 
@@ -1959,7 +1955,7 @@ html.dark .progress.progress--info .progress__bar {
  * AVATAR (.avatar, .avatar__image, .avatar__initials, .avatar__status)
  * ============================================================ */
 
-html.dark .avatar {
+.avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1973,18 +1969,18 @@ html.dark .avatar {
   overflow: hidden;
 }
 
-html.dark .avatar__image {
+.avatar__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-html.dark .avatar__initials {
+.avatar__initials {
   font-size: 0.5em;
   text-transform: uppercase;
 }
 
-html.dark .avatar__status {
+.avatar__status {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -1995,15 +1991,15 @@ html.dark .avatar__status {
   background: var(--color-info);
 }
 
-html.dark .avatar__status--success {
+.avatar__status--success {
   background: var(--color-success);
 }
 
-html.dark .avatar__status--warning {
+.avatar__status--warning {
   background: var(--color-warning);
 }
 
-html.dark .avatar__status--offline {
+.avatar__status--offline {
   background: var(--canvas-fg-2);
 }
 
@@ -2011,21 +2007,21 @@ html.dark .avatar__status--offline {
  * AVATAR GROUP (.avatar-group, .avatar-group__counter)
  * ============================================================ */
 
-html.dark .avatar-group {
+.avatar-group {
   display: flex;
   align-items: center;
 }
 
-html.dark .avatar-group .avatar {
+.avatar-group .avatar {
   margin-left: -8px;
   border-color: var(--canvas-bg);
 }
 
-html.dark .avatar-group .avatar:first-child {
+.avatar-group .avatar:first-child {
   margin-left: 0;
 }
 
-html.dark .avatar-group__counter {
+.avatar-group__counter {
   margin-left: -8px;
   padding: 2px 6px;
   background: var(--canvas-fg-2);
@@ -2042,12 +2038,12 @@ html.dark .avatar-group__counter {
  * POPOVER (.popover, .popover__trigger, .popover__content)
  * ============================================================ */
 
-html.dark .popover {
+.popover {
   position: relative;
   display: inline-block;
 }
 
-html.dark .popover__trigger {
+.popover__trigger {
   padding: 8px 12px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -2061,13 +2057,13 @@ html.dark .popover__trigger {
   transition: background-color var(--transition-fast) var(--timing-ease-out);
 }
 
-html.dark .popover__trigger:hover,
-html.dark .popover.popover--open .popover__trigger {
+.popover__trigger:hover,
+.popover.popover--open .popover__trigger {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .popover__content {
+.popover__content {
   position: absolute;
   top: 100%;
   right: 0;
@@ -2080,12 +2076,12 @@ html.dark .popover__content {
   z-index: 1000;
 }
 
-html.dark .popover.popover--left .popover__content {
+.popover.popover--left .popover__content {
   right: auto;
   left: 0;
 }
 
-html.dark .popover.popover--top .popover__content {
+.popover.popover--top .popover__content {
   top: auto;
   bottom: 100%;
   margin-top: 0;
@@ -2096,12 +2092,12 @@ html.dark .popover.popover--top .popover__content {
  * RATING (.rating, .rating__star)
  * ============================================================ */
 
-html.dark .rating {
+.rating {
   display: inline-flex;
   gap: 4px;
 }
 
-html.dark .rating__star {
+.rating__star {
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
   border: var(--border-width-default) solid var(--canvas-fg-1);
@@ -2115,15 +2111,15 @@ html.dark .rating__star {
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
-html.dark .rating__star:hover {
+.rating__star:hover {
   background: var(--canvas-secondary);
 }
 
-html.dark .rating__star.rating__star--filled {
+.rating__star.rating__star--filled {
   color: var(--color-warning);
 }
 
-html.dark .rating__star:disabled {
+.rating__star:disabled {
   opacity: var(--disabled-opacity);
   cursor: not-allowed;
 }
@@ -2132,11 +2128,11 @@ html.dark .rating__star:disabled {
  * TIMELINE (.timeline, .timeline__item, .timeline__point, .timeline__content, .timeline__time, .timeline__title, .timeline__body)
  * ============================================================ */
 
-html.dark .timeline {
+.timeline {
   position: relative;
 }
 
-html.dark .timeline::before {
+.timeline::before {
   content: '';
   position: absolute;
   left: 16px;
@@ -2146,14 +2142,14 @@ html.dark .timeline::before {
   background: var(--canvas-fg-1);
 }
 
-html.dark .timeline__item {
+.timeline__item {
   display: flex;
   gap: 16px;
   margin-bottom: 24px;
   position: relative;
 }
 
-html.dark .timeline__point {
+.timeline__point {
   width: 33px;
   height: 33px;
   background: var(--canvas-bg);
@@ -2162,12 +2158,12 @@ html.dark .timeline__point {
   flex-shrink: 0;
 }
 
-html.dark .timeline__content {
+.timeline__content {
   flex: 1;
   padding-top: 4px;
 }
 
-html.dark .timeline__time {
+.timeline__time {
   display: block;
   font-size: var(--text-9);
   font-family: var(--font-mono);
@@ -2175,7 +2171,7 @@ html.dark .timeline__time {
   margin-bottom: 4px;
 }
 
-html.dark .timeline__title {
+.timeline__title {
   font-family: var(--font-mono);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
@@ -2183,7 +2179,7 @@ html.dark .timeline__title {
   margin: 0 0 4px 0;
 }
 
-html.dark .timeline__body {
+.timeline__body {
   font-size: var(--text-11);
   color: var(--canvas-fg-1);
   margin: 0;
@@ -2193,12 +2189,12 @@ html.dark .timeline__body {
  * DATEPICKER (.datepicker, .datepicker__input, .datepicker__popover, .datepicker__calendar)
  * ============================================================ */
 
-html.dark .datepicker {
+.datepicker {
   position: relative;
   display: inline-block;
 }
 
-html.dark .datepicker__input {
+.datepicker__input {
   padding: 8px 12px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -2209,21 +2205,21 @@ html.dark .datepicker__input {
   transition: background-color var(--transition-fast);
 }
 
-html.dark .datepicker__input:hover {
+.datepicker__input:hover {
   background: var(--canvas-secondary);
 }
 
-html.dark .datepicker__input:focus {
+.datepicker__input:focus {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-html.dark .datepicker__input:disabled {
+.datepicker__input:disabled {
   opacity: var(--disabled-opacity);
   cursor: not-allowed;
 }
 
-html.dark .datepicker__popover {
+.datepicker__popover {
   position: absolute;
   top: 100%;
   left: 0;
@@ -2236,7 +2232,7 @@ html.dark .datepicker__popover {
   min-width: 280px;
 }
 
-html.dark .datepicker__header {
+.datepicker__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2244,7 +2240,7 @@ html.dark .datepicker__header {
   gap: 8px;
 }
 
-html.dark .datepicker__header button {
+.datepicker__header button {
   padding: 4px 8px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -2255,12 +2251,12 @@ html.dark .datepicker__header button {
   font-size: 9px;
 }
 
-html.dark .datepicker__header button:hover {
+.datepicker__header button:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .datepicker__title {
+.datepicker__title {
   font-family: var(--font-mono);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
@@ -2268,13 +2264,13 @@ html.dark .datepicker__title {
   font-size: var(--text-10);
 }
 
-html.dark .datepicker__calendar {
+.datepicker__calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
 }
 
-html.dark .datepicker__weekday {
+.datepicker__weekday {
   padding: 4px;
   text-align: center;
   font-family: var(--font-mono);
@@ -2284,15 +2280,15 @@ html.dark .datepicker__weekday {
   color: var(--canvas-muted-fg);
 }
 
-html.dark .datepicker__day,
-html.dark .datepicker__day--empty {
+.datepicker__day,
+.datepicker__day--empty {
   padding: 6px 2px;
   text-align: center;
   font-family: var(--font-mono);
   font-size: var(--text-10);
 }
 
-html.dark .datepicker__day {
+.datepicker__day {
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
   border: var(--border-width-default) solid var(--canvas-fg-1);
@@ -2300,16 +2296,16 @@ html.dark .datepicker__day {
   transition: background-color var(--transition-fast);
 }
 
-html.dark .datepicker__day:hover {
+.datepicker__day:hover {
   background: var(--canvas-secondary);
 }
 
-html.dark .datepicker__day.datepicker__day--selected {
+.datepicker__day.datepicker__day--selected {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .datepicker__day--empty {
+.datepicker__day--empty {
   background: transparent;
   border: none;
 }
@@ -2318,13 +2314,13 @@ html.dark .datepicker__day--empty {
  * FILE INPUT (.file-input, .file-input__button, .file-input__name)
  * ============================================================ */
 
-html.dark .file-input {
+.file-input {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-html.dark .file-input__button {
+.file-input__button {
   padding: 8px 12px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
@@ -2338,17 +2334,17 @@ html.dark .file-input__button {
   transition: background-color var(--transition-fast);
 }
 
-html.dark .file-input__button:hover {
+.file-input__button:hover {
   background: var(--canvas-fg-1);
   color: var(--canvas-bg);
 }
 
-html.dark .file-input__button:disabled {
+.file-input__button:disabled {
   opacity: var(--disabled-opacity);
   cursor: not-allowed;
 }
 
-html.dark .file-input__name {
+.file-input__name {
   font-family: var(--font-mono);
   font-size: var(--text-11);
   color: var(--canvas-muted-fg);
@@ -2359,13 +2355,13 @@ html.dark .file-input__name {
  * BLOCKQUOTE (.blockquote, .blockquote__text, .blockquote__cite)
  * ============================================================ */
 
-html.dark .blockquote {
+.blockquote {
   border-left: var(--border-width-default) solid var(--canvas-fg-1);
   padding: 0 16px;
   margin: 16px 0;
 }
 
-html.dark .blockquote__text {
+.blockquote__text {
   font-family: var(--font-mono);
   font-size: var(--text-11);
   color: var(--canvas-fg-1);
@@ -2373,7 +2369,7 @@ html.dark .blockquote__text {
   font-style: italic;
 }
 
-html.dark .blockquote__cite {
+.blockquote__cite {
   font-family: var(--font-mono);
   font-size: var(--text-10);
   color: var(--canvas-muted-fg);
@@ -2384,7 +2380,7 @@ html.dark .blockquote__cite {
  * KBD (.kbd)
  * ============================================================ */
 
-html.dark .kbd {
+.kbd {
   display: inline-block;
   padding: 2px 6px;
   background: var(--canvas-bg);
@@ -2402,17 +2398,17 @@ html.dark .kbd {
  * HR (.hr)
  * ============================================================ */
 
-html.dark .hr {
+.hr {
   border: none;
   border-top: var(--border-width-default) solid var(--canvas-fg-1);
   margin: 16px 0;
 }
 
-html.dark .hr.hr--dashed {
+.hr.hr--dashed {
   border-top-style: dashed;
 }
 
-html.dark .hr.hr--dotted {
+.hr.hr--dotted {
   border-top-style: dotted;
 }
 
@@ -2420,7 +2416,7 @@ html.dark .hr.hr--dotted {
  * LIST (.list, .list__item)
  * ============================================================ */
 
-html.dark .list {
+.list {
   margin: 16px 0;
   padding-left: 24px;
   font-family: var(--font-mono);
@@ -2428,15 +2424,15 @@ html.dark .list {
   color: var(--canvas-fg-1);
 }
 
-html.dark .list.list--ordered {
+.list.list--ordered {
   list-style-type: decimal;
 }
 
-html.dark .list.list--unordered {
+.list.list--unordered {
   list-style-type: disc;
 }
 
-html.dark .list__item {
+.list__item {
   margin-bottom: 8px;
 }
 
@@ -2444,20 +2440,20 @@ html.dark .list__item {
  * FOOTER (.footer, .footer__link, .footer__link-group)
  * ============================================================ */
 
-html.dark .footer {
+.footer {
   border-top: var(--border-width-default) solid var(--canvas-fg-1);
   padding: 24px;
   background: var(--canvas-bg);
   color: var(--canvas-fg-1);
 }
 
-html.dark .footer__link-group {
+.footer__link-group {
   margin-bottom: 16px;
   display: inline-block;
   margin-right: 32px;
 }
 
-html.dark .footer__link-group-title {
+.footer__link-group-title {
   font-family: var(--font-mono);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
@@ -2466,7 +2462,7 @@ html.dark .footer__link-group-title {
   margin: 0 0 8px 0;
 }
 
-html.dark .footer__link {
+.footer__link {
   display: block;
   color: var(--canvas-muted-fg);
   text-decoration: none;
@@ -2476,7 +2472,7 @@ html.dark .footer__link {
   transition: color var(--transition-fast);
 }
 
-html.dark .footer__link:hover {
+.footer__link:hover {
   color: var(--canvas-fg-1);
 }
 
@@ -2484,7 +2480,7 @@ html.dark .footer__link:hover {
  * BANNER (.banner, .banner__content, .banner__close)
  * ============================================================ */
 
-html.dark .banner {
+.banner {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -2495,30 +2491,30 @@ html.dark .banner {
   color: var(--canvas-fg-1);
 }
 
-html.dark .banner.banner--info {
+.banner.banner--info {
   border-color: var(--color-info);
   background: var(--canvas-bg);
 }
 
-html.dark .banner.banner--success {
+.banner.banner--success {
   border-color: var(--color-success);
 }
 
-html.dark .banner.banner--warning {
+.banner.banner--warning {
   border-color: var(--color-warning);
 }
 
-html.dark .banner.banner--error {
+.banner.banner--error {
   border-color: var(--color-error);
 }
 
-html.dark .banner__content {
+.banner__content {
   flex: 1;
   font-family: var(--font-mono);
   font-size: var(--text-11);
 }
 
-html.dark .banner__close {
+.banner__close {
   background: transparent;
   border: none;
   color: var(--canvas-fg-1);
@@ -2528,6 +2524,6 @@ html.dark .banner__close {
   transition: color var(--transition-fast);
 }
 
-html.dark .banner__close:hover {
+.banner__close:hover {
   color: var(--canvas-secondary);
 }
