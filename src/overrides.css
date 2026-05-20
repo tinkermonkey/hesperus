@@ -128,6 +128,8 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  width: auto;
+  height: auto;
 }
 
 /* Badge semantic variants */
@@ -256,6 +258,62 @@
 .chip:disabled {
   opacity: var(--disabled-opacity);
   cursor: var(--disabled-cursor);
+}
+
+/* Chip color variants — override Heimdall's bright semantic tokens with
+   Hesperus muted accent palette. Canvas-bg fill + accent border/text. */
+.chip--cyan {
+  color: var(--color-accent-cyan);
+  background: var(--canvas-bg);
+  border-color: var(--color-accent-cyan);
+}
+.chip--cyan .chip__dot { background-color: var(--color-accent-cyan); }
+.chip--cyan:hover { background: var(--color-accent-cyan); color: var(--canvas-bg); }
+
+.chip--emerald {
+  color: var(--color-accent-green);
+  background: var(--canvas-bg);
+  border-color: var(--color-accent-green);
+}
+.chip--emerald .chip__dot { background-color: var(--color-accent-green); }
+.chip--emerald:hover { background: var(--color-accent-green); color: var(--canvas-bg); }
+
+.chip--amber {
+  color: var(--color-accent-yellow);
+  background: var(--canvas-bg);
+  border-color: var(--color-accent-yellow);
+}
+.chip--amber .chip__dot { background-color: var(--color-accent-yellow); }
+.chip--amber:hover { background: var(--color-accent-yellow); color: var(--canvas-bg); }
+
+.chip--violet {
+  color: var(--color-accent-purple);
+  background: var(--canvas-bg);
+  border-color: var(--color-accent-purple);
+}
+.chip--violet .chip__dot { background-color: var(--color-accent-purple); }
+.chip--violet:hover { background: var(--color-accent-purple); color: var(--canvas-bg); }
+
+.chip--rose {
+  color: var(--color-error);
+  background: var(--canvas-bg);
+  border-color: var(--color-error);
+}
+.chip--rose .chip__dot { background-color: var(--color-error); }
+.chip--rose:hover { background: var(--color-error); color: var(--canvas-bg); }
+
+.chip--neutral {
+  color: var(--canvas-fg-2);
+  background: var(--canvas-bg);
+  border-color: var(--canvas-border);
+}
+.chip--neutral .chip__dot { background-color: var(--canvas-fg-2); }
+.chip--neutral:hover { background: var(--canvas-fg-1); color: var(--canvas-bg); }
+
+.chip--id-tag {
+  color: var(--color-info);
+  background: var(--canvas-bg);
+  border-color: var(--color-info);
 }
 
 /* ============================================================
@@ -918,6 +976,10 @@
   transition: background-color var(--transition-default) var(--timing-ease-out);
 }
 
+.table__row:last-child .table__cell {
+  border-bottom: 1px solid var(--canvas-fg-1);
+}
+
 /* ============================================================
  * STAT TILE / STAT GRID (.stat-tile, .stat-grid)
  * ============================================================ */
@@ -928,10 +990,17 @@
   color: var(--canvas-fg-1);
   box-shadow: none;
   border-radius: var(--radius-md);
-  padding: 12px 14px;
+  padding: 12px 14px 12px 18px;  /* extra left padding makes room for the accent bar */
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Wider accent bar — the 2px Heimdall default is invisible against our 2px border */
+.stat-tile::before {
+  width: 4px;
 }
 
 .stat-tile__label {
@@ -1134,8 +1203,58 @@
 .tab-bar {
   display: flex;
   gap: 0;
+  background: var(--canvas-bg);
   border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
   font-family: var(--font-mono);
+}
+
+/* Heimdall uses .tab-bar__tabs + .tab-bar__tab (BEM), not .tab directly */
+.tab-bar__tabs {
+  display: flex;
+  gap: 0;
+}
+
+.tab-bar__tab {
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  font-weight: var(--weight-bold);
+  text-transform: var(--text-transform-heading);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-2);
+  background: transparent;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: color var(--transition-default) var(--timing-ease-out),
+              border-color var(--transition-default) var(--timing-ease-out);
+  margin-bottom: -2px;
+}
+
+.tab-bar__tab:hover {
+  color: var(--canvas-fg-1);
+  background: var(--hover-bg);
+}
+
+.tab-bar__tab--active {
+  color: var(--canvas-fg-1);
+  border-bottom-color: var(--color-accent-orange);
+}
+
+.tab-bar__tab:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Count chip inside tab */
+.tab-bar__tab .chip--id-tag {
+  color: var(--canvas-fg-2);
+  background: var(--canvas-bg);
+  border-color: var(--canvas-border);
+}
+
+.tab-bar__tab--active .chip--id-tag {
+  color: var(--color-accent-orange);
+  border-color: var(--color-accent-orange);
 }
 
 .tab {
@@ -1736,15 +1855,10 @@
  * ============================================================ */
 
 .command-palette {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border: var(--border-width-default) solid var(--canvas-fg-1);
   background: var(--canvas-bg);
   border-radius: var(--radius-md);
   box-shadow: none;
-  z-index: 1001;
   max-width: 500px;
   width: 90%;
   overflow: hidden;
@@ -1841,6 +1955,18 @@
   background: var(--canvas-bg);
 }
 
+/* Heimdall's actual internal class names for the shell layout */
+.shell-layout__main,
+.shell-layout__content,
+.shell-layout__canvas,
+.shell-layout__sidebar-col {
+  background: var(--canvas-bg);
+}
+
+.shell-layout__canvas {
+  border-top-left-radius: 0;
+}
+
 .shell-header {
   background: var(--canvas-bg);
   border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
@@ -1876,34 +2002,31 @@
   width: 100%;
 }
 
-.split-pane.split-pane--vertical {
-  flex-direction: row;
-}
-
-.split-pane.split-pane--horizontal {
-  flex-direction: column;
-}
-
-.split-pane__pane {
-  flex: 1;
+.split-pane__first,
+.split-pane__second {
   overflow: auto;
   background: var(--canvas-bg);
 }
 
 .split-pane__divider {
   background: var(--canvas-fg-1);
-  cursor: col-resize;
   flex-shrink: 0;
+  transition: background var(--transition-fast) var(--timing-linear);
 }
 
-.split-pane.split-pane--vertical .split-pane__divider {
-  width: var(--border-width-default);
+.split-pane__divider--horizontal {
+  width: 4px;
   cursor: col-resize;
 }
 
-.split-pane.split-pane--horizontal .split-pane__divider {
-  height: var(--border-width-default);
+.split-pane__divider--vertical {
+  height: 4px;
   cursor: row-resize;
+}
+
+.split-pane__divider--horizontal:hover,
+.split-pane__divider--vertical:hover {
+  background: var(--color-accent-orange);
 }
 
 /* ============================================================
@@ -4250,4 +4373,123 @@ html.dark .graph-canvas {
 
 .topology-node__status.topology-node__status--warning {
   background: var(--color-warning);
+}
+
+/* ============================================================
+ * HTML.DARK OVERRIDES
+ * Counteract Heimdall's body.dark-canvas compound rules.
+ * Same specificity; Hesperus loads later so these win.
+ * ============================================================ */
+
+/* Button — prevent amber primary fill in dark mode */
+html.dark .btn--primary {
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+}
+html.dark .btn--primary svg {
+  color: var(--canvas-fg-1);
+}
+html.dark .btn--primary:not(:disabled):hover {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+/* Shell layout content layer */
+html.dark .shell-layout__content {
+  background: var(--canvas-bg);
+}
+
+/* Table row hover */
+html.dark .table__row:hover {
+  background: var(--hover-bg);
+}
+
+/* Command palette interactive states */
+html.dark .command-palette__item:hover,
+html.dark .command-palette__item--selected {
+  background: var(--hover-bg);
+  color: var(--canvas-fg-1);
+}
+
+/* Chip — color variant dark mode (counter body.dark-canvas translucent tints) */
+html.dark .chip--cyan    { color: var(--color-accent-cyan);   background: var(--canvas-bg); border-color: var(--color-accent-cyan);   }
+html.dark .chip--emerald { color: var(--color-accent-green);  background: var(--canvas-bg); border-color: var(--color-accent-green);  }
+html.dark .chip--amber   { color: var(--color-accent-yellow); background: var(--canvas-bg); border-color: var(--color-accent-yellow); }
+html.dark .chip--violet  { color: var(--color-accent-purple); background: var(--canvas-bg); border-color: var(--color-accent-purple); }
+html.dark .chip--rose    { color: var(--color-error);         background: var(--canvas-bg); border-color: var(--color-error);         }
+html.dark .chip--neutral,
+html.dark .chip--id-tag {
+  color: var(--canvas-fg-2);
+  background-color: var(--canvas-bg);
+  border-color: var(--canvas-border);
+}
+
+/* Graph node */
+html.dark .graph-node {
+  background: var(--canvas-bg);
+  border-color: var(--canvas-fg-1);
+  color: var(--canvas-fg-1);
+}
+html.dark .graph-node.selected {
+  box-shadow: 0 0 0 2px var(--focus-ring-color);
+}
+html.dark .graph-node__kind {
+  background: var(--hover-bg);
+  border-color: var(--canvas-border);
+  color: var(--canvas-fg-2);
+}
+
+/* Graph edge labels */
+html.dark .graph-edge__label-bg {
+  fill: var(--canvas-bg);
+  stroke: var(--canvas-border);
+}
+html.dark .graph-edge__label-text {
+  fill: var(--canvas-fg-2);
+}
+html.dark .graph-edge--hot .graph-edge__label-bg {
+  fill: var(--color-accent-orange);
+  stroke: var(--color-accent-orange);
+}
+html.dark .graph-edge--hot .graph-edge__label-text {
+  fill: var(--canvas-bg);
+}
+
+/* Graph inspector */
+html.dark .graph-inspector {
+  background: var(--canvas-bg);
+  border-color: var(--canvas-border);
+  color: var(--canvas-fg-1);
+}
+html.dark .graph-inspector__title,
+html.dark .graph-inspector__kv dd {
+  color: var(--canvas-fg-1);
+}
+html.dark .graph-inspector__rel-target {
+  background: var(--canvas-bg);
+  border-color: var(--canvas-border);
+  color: var(--canvas-fg-1);
+}
+html.dark .graph-inspector__rel-target:hover {
+  border-color: var(--canvas-fg-1);
+  background: var(--hover-bg);
+}
+
+/* Topology node */
+html.dark .topology-node {
+  background: var(--canvas-bg);
+  border-color: var(--canvas-border);
+  color: var(--canvas-fg-1);
+}
+html.dark .topology-node__title {
+  color: var(--canvas-fg-1);
+}
+html.dark .topology-node__metric-bar {
+  background: var(--hover-bg);
+}
+
+/* Graph canvas edge colors */
+html.dark {
+  --graph-edge: var(--canvas-border);
+  --graph-edge-strong: var(--canvas-fg-2);
 }

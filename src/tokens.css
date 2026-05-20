@@ -157,13 +157,47 @@
                 0 0 0 calc(var(--focus-ring-width) * 2) var(--focus-ring-color);
 
   /* ────────────────────────────────────────────────────────────────────
-     SHELL ALIASES — Single-surface model enforcement
-     Heimdall's --shell-* tokens are aliased to --canvas-* for Hesperus
+     SHELL TOKENS — space-separated RGB format (Heimdall uses rgb(var(...)))
+     Hesperus is single-surface: shell = canvas, so these mirror --canvas-*
      ──────────────────────────────────────────────────────────────────── */
-  --shell-bg: var(--canvas-bg);
-  --shell-fg-1: var(--canvas-fg-1);
-  --shell-fg-2: var(--canvas-fg-2);
-  --shell-border: var(--canvas-border);
+  --shell-bg: 239 238 208;        /* #efeed0 */
+  --shell-bg-2: 242 236 218;      /* #f2ecda hover-bg */
+  --shell-surface: 235 230 210;
+  --shell-surface-2: 228 222 200;
+  --shell-border: 184 168 120;    /* #b8a878 */
+  --shell-border-2: 44 36 22;     /* #2c2416 */
+  --shell-fg-1: 44 36 22;         /* #2c2416 */
+  --shell-fg-2: 138 126 106;      /* #8a7e6a */
+  --shell-fg-3: 138 126 106;
+  --shell-fg-4: 138 126 106;
+
+  /* canvas-bg in RGB format for Heimdall's rgb(var(--canvas-bg)) usage */
+  --canvas-bg-rgb: 239 238 208;
+
+  /* ────────────────────────────────────────────────────────────────────
+     ADDITIONAL HEIMDALL TOKENS — consumed as rgb(var(...)) in Heimdall CSS
+     that Hesperus doesn't override by class name (e.g. tab-bar__tab)
+     ──────────────────────────────────────────────────────────────────── */
+  --canvas-card:      239 238 208;  /* #efeed0 — tab bars, card surfaces (= canvas-bg) */
+  --canvas-bg-2:      242 236 218;  /* #f2ecda — hover surface (= hover-bg) */
+  --accent-primary:   204 102 34;   /* #CC6622 — active state accent (= accent-orange) */
+  --accent-primary-hover: 196 162 50; /* #C4A232 — hover tint */
+  --canvas-border-rgb: 184 168 120; /* --canvas-border in RGB for rgb(var()) usage */
+  --canvas-fg-1-rgb:  44 36 22;     /* --canvas-fg-1 in RGB */
+  --canvas-fg-2-rgb:  138 126 106;  /* --canvas-fg-2 in RGB */
+  --canvas-fg-3:      138 126 106;  /* --canvas-fg-2 alias — Heimdall uses --canvas-fg-3 */
+
+  /* ────────────────────────────────────────────────────────────────────
+     STATUS / CHART TOKENS — Heimdall uses rgb(var(--status-*)) for
+     progress bars, chip dots, sparklines, and chart fills.
+     Override with Hesperus muted palette (space-separated RGB).
+     ──────────────────────────────────────────────────────────────────── */
+  --status-cyan:    46 139 139;     /* #2E8B8B muted teal */
+  --status-emerald: 92 122 40;      /* #5C7A28 olive green */
+  --status-amber:   196 162 50;     /* #C4A232 faded gold */
+  --status-rose:    170 51 34;      /* #AA3322 brick red */
+  --status-violet:  119 68 170;     /* #7744AA muted purple */
+  --status-neutral: 138 126 106;    /* #8a7e6a muted tan */
 
   /* ────────────────────────────────────────────────────────────────────
      CONSUMER-FACING --retro-* TOKENS
@@ -201,6 +235,14 @@ html.dark {
 
   --hover-bg: #3a3428;            /* darker hover surface */
 
+  /* Additional Heimdall tokens — dark mode values */
+  --canvas-card:      34 38 39;     /* #222627 charcoal (= canvas-bg dark) */
+  --canvas-bg-2:      58 52 40;     /* #3a3428 darker hover surface */
+  --canvas-border-rgb: 61 61 61;    /* #3d3d3d */
+  --canvas-fg-1-rgb:  212 204 170;  /* #d4ccaa */
+  --canvas-fg-2-rgb:  136 119 102;  /* #887766 */
+  --canvas-fg-3:      136 119 102;  /* #887766 */
+
   /* Lightened semantic text colors for contrast on dark bg */
   --color-error-text: #E0826F;    /* 5.52:1 on dark ✓ */
   --color-success-text: #A4C870;  /* 8.06:1 on dark ✓ */
@@ -211,9 +253,17 @@ html.dark {
   --focus-ring: 0 0 0 var(--focus-ring-width) #222627,
                 0 0 0 calc(var(--focus-ring-width) * 2) var(--focus-ring-color);
 
-  /* Shell aliases — Single-surface model enforcement */
-  --shell-bg: var(--canvas-bg);
-  --shell-fg-1: var(--canvas-fg-1);
-  --shell-fg-2: var(--canvas-fg-2);
-  --shell-border: var(--canvas-border);
+  /* Shell tokens in RGB format for dark mode */
+  --shell-bg: 34 38 39;           /* #222627 charcoal */
+  --shell-bg-2: 42 50 52;
+  --shell-surface: 50 58 60;
+  --shell-surface-2: 58 66 68;
+  --shell-border: 61 61 61;       /* #3d3d3d */
+  --shell-border-2: 212 204 170;  /* #d4ccaa */
+  --shell-fg-1: 212 204 170;      /* #d4ccaa */
+  --shell-fg-2: 136 119 102;      /* #887766 */
+  --shell-fg-3: 136 119 102;
+  --shell-fg-4: 136 119 102;
+
+  --canvas-bg-rgb: 34 38 39;
 }

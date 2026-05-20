@@ -15,10 +15,10 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "npm run dev --prefix docs",
+    "build": "npm run build --prefix docs",
     "build:package": "node scripts/build-package.js",
-    "preview": "vite preview",
+    "preview": "npm run preview --prefix docs",
     "type-check": "tsc --noEmit -p tsconfig.typecheck.json",
     "prepublishOnly": "npm run build:package"
   },
