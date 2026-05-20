@@ -257,6 +257,7 @@ export function classNames(...args: (string | false | undefined | null)[]): stri
     jsx: 'automatic',
     jsxImportSource: 'react',
     external: ['react', 'react/jsx-runtime'],
+    define: { 'process.env.NODE_ENV': 'process.env.NODE_ENV' },
   });
   console.log('✅ Transpiled components/index.js');
 
