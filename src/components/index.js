@@ -1,4 +1,8 @@
-// Hesperus-specific components (ADR-1: 9 exports)
+// Hesperus-specific components (ADR-1: CSS-only theme with Hesperus-specific React wrappers)
+// General-purpose components (Accordion, Avatar, Datepicker, Dropdown, Pagination, Popover, Progress, Spinner, Tooltip)
+// are provided by Heimdall UI and styled via the Hesperus CSS theme layer.
+// See: @tinkermonkey/heimdall-ui
+
 export { Rating } from './Rating';
 
 export {
@@ -24,37 +28,6 @@ export { Footer, FooterLink, FooterLinkGroup } from './Footer';
 export { Banner } from './Banner';
 
 export { FileInput } from './FileInput';
-
-export {
-  Accordion,
-  AccordionPanel,
-  AccordionTitle,
-  AccordionContent,
-} from './Accordion';
-
-export {
-  Avatar,
-  AvatarGroup,
-  AvatarGroupCounter,
-} from './Avatar';
-
-export { Datepicker } from './Datepicker';
-
-export {
-  Dropdown,
-  DropdownItem,
-  DropdownDivider,
-} from './Dropdown';
-
-export { Pagination } from './Pagination';
-
-export { Popover } from './Popover';
-
-export { Progress } from './Progress';
-
-export { Spinner } from './Spinner';
-
-export { Tooltip } from './Tooltip';
 
 // Utilities
 export { mergeClasses, classNames } from './utils';

@@ -1,18 +1,7 @@
 import { useState, useEffect } from "react";
 import {
-  Accordion,
-  AccordionPanel,
-  AccordionTitle,
-  AccordionContent,
-  Avatar,
-  AvatarGroup,
-  AvatarGroupCounter,
   Banner,
   Blockquote,
-  Datepicker,
-  Dropdown,
-  DropdownItem,
-  DropdownDivider,
   FileInput,
   Footer,
   FooterLink,
@@ -21,11 +10,7 @@ import {
   Kbd,
   List,
   ListItem,
-  Pagination,
-  Popover,
-  Progress,
   Rating,
-  Spinner,
   Timeline,
   TimelineItem,
   TimelinePoint,
@@ -33,8 +18,29 @@ import {
   TimelineTime,
   TimelineTitle,
   TimelineBody,
-  Tooltip,
 } from "./components";
+import {
+  Accordion,
+  AccordionPanel,
+  AccordionTitle,
+  AccordionContent,
+} from "./components/Accordion";
+import {
+  Avatar,
+  AvatarGroup,
+  AvatarGroupCounter,
+} from "./components/Avatar";
+import { Datepicker } from "./components/Datepicker";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownDivider,
+} from "./components/Dropdown";
+import { Pagination } from "./components/Pagination";
+import { Popover } from "./components/Popover";
+import { Progress } from "./components/Progress";
+import { Spinner } from "./components/Spinner";
+import { Tooltip } from "./components/Tooltip";
 import GraphNode from "./components/GraphNode";
 import ConnectionLabel from "./components/ConnectionLabel";
 import SpinnerBlock from "./components/SpinnerBlock";
