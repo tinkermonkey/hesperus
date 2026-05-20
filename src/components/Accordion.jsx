@@ -61,7 +61,12 @@ export const AccordionPanel = forwardRef(({ children, defaultOpen = false, class
       className={mergeClasses('accordion__panel', { open: isOpen }, className)}
       {...props}
     >
-      {titleChild && cloneElement(titleChild, { onClick: () => setIsOpen(!isOpen) })}
+      {titleChild && cloneElement(titleChild, {
+        onClick: (e) => {
+          titleChild.props?.onClick?.(e);
+          setIsOpen(!isOpen);
+        }
+      })}
       {isOpen && contentChild}
     </div>
   );
