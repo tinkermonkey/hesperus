@@ -182,13 +182,13 @@
   --retro-info: var(--color-info);
 
   /* Accent colors */
-  --retro-accent-orange: var(--color-accent-orange);
-  --retro-accent-purple: var(--color-accent-purple);
-  --retro-accent-cyan: var(--color-accent-cyan);
-  --retro-accent-red: var(--color-accent-red);
-  --retro-accent-green: var(--color-accent-green);
-  --retro-accent-yellow: var(--color-accent-yellow);
-  --retro-accent-blue: var(--color-accent-blue);
+  --retro-orange: var(--color-accent-orange);
+  --retro-purple: var(--color-accent-purple);
+  --retro-cyan: var(--color-accent-cyan);
+  --retro-red: var(--color-accent-red);
+  --retro-green: var(--color-accent-green);
+  --retro-yellow: var(--color-accent-yellow);
+  --retro-blue: var(--color-accent-blue);
 }
 
 /* Dark mode — charcoal terminal aesthetic */
