@@ -2039,7 +2039,7 @@
   margin-left: -8px;
   padding: 2px 6px;
   background: var(--canvas-fg-2);
-  color: var(--canvas-muted-fg);
+  color: var(--canvas-fg-1);
   font-size: var(--text-9);
   font-family: var(--font-mono);
   border: var(--border-width-default) solid var(--canvas-fg-2);
