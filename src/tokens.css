@@ -12,6 +12,8 @@
   --canvas-bg-rgb: 239 238 208;
   --canvas-fg-1: #2c2416;         /* dark brown ink */
   --canvas-fg-2: #8a7e6a;         /* muted/secondary text */
+  --canvas-muted-fg: #8a7e6a;     /* alias for secondary/muted text */
+  --canvas-secondary: #f2ecda;    /* secondary background for hover states */
   --canvas-border: #b8a878;       /* tan — soft divider */
 
   /* ────────────────────────────────────────────────────────────────────
@@ -37,6 +39,7 @@
   --transition-slow: 250ms;       /* modal/drawer enter */
   --timing-linear: linear;
   --timing-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --timing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-stepped: steps(8, end);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -152,6 +155,40 @@
   --focus-ring-offset: 2px;
   --focus-ring: 0 0 0 var(--focus-ring-width) #efeed0,
                 0 0 0 calc(var(--focus-ring-width) * 2) var(--focus-ring-color);
+
+  /* ────────────────────────────────────────────────────────────────────
+     SHELL ALIASES — Single-surface model enforcement
+     Heimdall's --shell-* tokens are aliased to --canvas-* for Hesperus
+     ──────────────────────────────────────────────────────────────────── */
+  --shell-bg: var(--canvas-bg);
+  --shell-fg-1: var(--canvas-fg-1);
+  --shell-fg-2: var(--canvas-fg-2);
+  --shell-border: var(--canvas-border);
+
+  /* ────────────────────────────────────────────────────────────────────
+     CONSUMER-FACING --retro-* TOKENS
+     Public API for Hesperus consumers (preserved for backwards compatibility)
+     ──────────────────────────────────────────────────────────────────── */
+  --retro-bg: var(--canvas-bg);
+  --retro-fg: var(--canvas-fg-1);
+  --retro-muted-fg: var(--canvas-muted-fg);
+  --retro-secondary: var(--canvas-secondary);
+  --retro-border: var(--canvas-border);
+
+  /* Semantic status tokens */
+  --retro-error: var(--color-error);
+  --retro-success: var(--color-success);
+  --retro-warning: var(--color-warning);
+  --retro-info: var(--color-info);
+
+  /* Accent colors */
+  --retro-accent-orange: var(--color-accent-orange);
+  --retro-accent-purple: var(--color-accent-purple);
+  --retro-accent-cyan: var(--color-accent-cyan);
+  --retro-accent-red: var(--color-accent-red);
+  --retro-accent-green: var(--color-accent-green);
+  --retro-accent-yellow: var(--color-accent-yellow);
+  --retro-accent-blue: var(--color-accent-blue);
 }
 
 /* Dark mode — charcoal terminal aesthetic */
@@ -160,6 +197,8 @@ html.dark {
   --canvas-bg-rgb: 34 38 39;
   --canvas-fg-1: #d4ccaa;         /* pale beige text */
   --canvas-fg-2: #887766;         /* muted text */
+  --canvas-muted-fg: #887766;     /* alias for secondary/muted text */
+  --canvas-secondary: #3a3428;    /* secondary background for hover states */
   --canvas-border: #3d3d3d;       /* darker dividers */
 
   --hover-bg: #3a3428;            /* darker hover surface */
@@ -173,4 +212,17 @@ html.dark {
   /* Focus ring adjusted for dark mode contrast */
   --focus-ring: 0 0 0 var(--focus-ring-width) #222627,
                 0 0 0 calc(var(--focus-ring-width) * 2) var(--focus-ring-color);
+
+  /* Shell aliases — Single-surface model enforcement */
+  --shell-bg: var(--canvas-bg);
+  --shell-fg-1: var(--canvas-fg-1);
+  --shell-fg-2: var(--canvas-fg-2);
+  --shell-border: var(--canvas-border);
+
+  /* Consumer-facing --retro-* tokens (dark mode) */
+  --retro-bg: var(--canvas-bg);
+  --retro-fg: var(--canvas-fg-1);
+  --retro-muted-fg: var(--canvas-muted-fg);
+  --retro-secondary: var(--canvas-secondary);
+  --retro-border: var(--canvas-border);
 }
