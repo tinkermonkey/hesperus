@@ -40,11 +40,14 @@
     "url": "https://github.com/tinkermonkey/hesperus/issues"
   },
   "homepage": "https://github.com/tinkermonkey/hesperus#readme",
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@vitejs/plugin-react": "^5.1.4",
     "esbuild": "^0.23.0",
-    "flowbite-react": "^0.12.3",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "vite": "^7.3.1"
