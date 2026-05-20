@@ -21,7 +21,7 @@ export const Tooltip = forwardRef(
         ref={ref}
         className={mergeClasses(
           'tooltip',
-          { [position]: true },
+          position,
           className
         )}
         onMouseEnter={() => setIsVisible(true)}
@@ -30,11 +30,9 @@ export const Tooltip = forwardRef(
       >
         {children}
 
-        {isVisible && (
-          <div className="tooltip__content">
-            {content}
-          </div>
-        )}
+        <div className="tooltip__content" data-visible={isVisible ? 'true' : 'false'}>
+          {content}
+        </div>
       </div>
     );
   }
