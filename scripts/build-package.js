@@ -21,8 +21,11 @@ async function getADR1Components(srcDir) {
 
   const componentFiles = new Set();
   for (const match of importMatches) {
-    const fileName = match.match(/from\s+['"]\.\/([^'"]+)['"]/)[1];
-    componentFiles.add(fileName);
+    const fileNameMatch = match.match(/from\s+['"]\.\/([^'"]+)['"]/);
+    if (!fileNameMatch) {
+      throw new Error(`Failed to parse import path from index.js: "${match}". Expected format: from './ComponentName'`);
+    }
+    componentFiles.add(fileNameMatch[1]);
   }
 
   return componentFiles;
@@ -160,12 +163,12 @@ function generateDTSContent(jsxContent, fileName) {
     const componentName = match.match(/export\s+const\s+(\w+)/)[1];
     const propsTypeName = componentName + 'Props';
 
-    // If we have a typedef for this component, use it; otherwise use a permissive type
+    // All components spread ...props onto their root element, so they accept all HTML attributes
     if (typedefMap.has(propsTypeName)) {
-      dts += `export const ${componentName}: React.ForwardRefExoticComponent<${propsTypeName} & React.RefAttributes<HTMLElement>>;\n`;
+      dts += `export const ${componentName}: React.ForwardRefExoticComponent<${propsTypeName} & React.HTMLAttributes<HTMLElement> & React.RefAttributes<HTMLElement>>;\n`;
     } else {
-      // Use a permissive type that doesn't reject valid component-specific props
-      dts += `export const ${componentName}: React.ForwardRefExoticComponent<Record<string, unknown> & React.RefAttributes<HTMLElement>>;\n`;
+      // Use a permissive type that doesn't reject valid component-specific props or HTML attributes
+      dts += `export const ${componentName}: React.ForwardRefExoticComponent<Record<string, unknown> & React.HTMLAttributes<HTMLElement> & React.RefAttributes<HTMLElement>>;\n`;
     }
   }
 
@@ -180,13 +183,15 @@ function generateDTSContent(jsxContent, fileName) {
     }
   }
 
-  // Add React import for proper typing
+  // Add React import for proper typing only if we have actual exports
   if (componentExports.length > 0 || interfaces.length > 0) {
     imports = `import * as React from 'react';\n\n`;
   }
 
   const interfaceDeclarations = interfaces.join('\n');
-  return imports + interfaceDeclarations + (interfaceDeclarations ? '\n' : '') + dts || 'export {};\n';
+  const exportContent = interfaceDeclarations + (interfaceDeclarations ? '\n' : '') + dts;
+  // Return export content with imports if present, or fallback to empty export
+  return exportContent ? (imports + exportContent) : 'export {};\n';
 }
 
 async function build() {
