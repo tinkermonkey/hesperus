@@ -1536,12 +1536,12 @@ export default function App() {
               <div className="key-value-editor" style={{maxWidth: '400px'}}>
                 <div className="key-value-editor__row">
                   <input type="text" className="key-value-editor__input" placeholder="Key" value="environment" readOnly />
-                  <input type="text" className="key-value-editor__input" placeholder="Value" value="production" />
+                  <input type="text" className="key-value-editor__input" placeholder="Value" value="production" readOnly />
                   <button className="key-value-editor__delete">✕</button>
                 </div>
                 <div className="key-value-editor__row">
                   <input type="text" className="key-value-editor__input" placeholder="Key" value="version" readOnly />
-                  <input type="text" className="key-value-editor__input" placeholder="Value" value="2.1.0" />
+                  <input type="text" className="key-value-editor__input" placeholder="Value" value="2.1.0" readOnly />
                   <button className="key-value-editor__delete">✕</button>
                 </div>
                 <button className="key-value-editor__add-row">+ Add row</button>
@@ -1552,7 +1552,7 @@ export default function App() {
                 <div className="relationship-builder__row">
                   <div className="relationship-builder__column">
                     <div className="relationship-builder__label">Entity A</div>
-                    <select style={{padding: '8px', border: '2px solid var(--canvas-fg-1)', borderRadius: '4px', background: 'var(--canvas-bg)', color: 'var(--canvas-fg-1)', fontFamily: 'monospace'}}>
+                    <select className="select">
                       <option>User</option>
                       <option>Team</option>
                     </select>
@@ -1560,7 +1560,7 @@ export default function App() {
                   <div className="relationship-builder__operator">→</div>
                   <div className="relationship-builder__column">
                     <div className="relationship-builder__label">Entity B</div>
-                    <select style={{padding: '8px', border: '2px solid var(--canvas-fg-1)', borderRadius: '4px', background: 'var(--canvas-bg)', color: 'var(--canvas-fg-1)', fontFamily: 'monospace'}}>
+                    <select className="select">
                       <option>Project</option>
                       <option>Task</option>
                     </select>
