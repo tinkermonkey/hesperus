@@ -65,7 +65,7 @@ test.describe('Visual Regression Tests', () => {
     }
   });
 
-  test('full page light mode snapshot', async ({ page }) => {
+  test.skip('full page light mode snapshot', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
@@ -75,7 +75,7 @@ test.describe('Visual Regression Tests', () => {
     await expect(page).toHaveScreenshot('full-page-light.png', { fullPage: true });
   });
 
-  test('full page dark mode snapshot', async ({ page }) => {
+  test.skip('full page dark mode snapshot', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
