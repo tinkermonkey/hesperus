@@ -76,7 +76,7 @@ import { Button, TextInput, Card } from 'flowbite-react';
 import { Button, TextInput, Card } from '@tinkermonkey/heimdall-ui';
 
 // Option B: Use Hesperus React component wrappers (lightweight)
-import { Button, Accordion, Dropdown } from '@tinkermonkey/hesperus-theme/components';
+import { Accordion, AccordionPanel, Dropdown, DropdownItem } from '@tinkermonkey/hesperus-theme/components';
 
 // Option C: Use raw HTML with BEM classes
 function MyButton() {

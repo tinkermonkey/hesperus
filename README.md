@@ -68,7 +68,7 @@ export function MyApp() {
       <Button>Click me</Button>
       <TextInput placeholder="Type here" />
       <Accordion>
-        <AccordionItem>Content</AccordionItem>
+        <AccordionPanel>Content</AccordionPanel>
       </Accordion>
     </>
   );
@@ -77,10 +77,17 @@ export function MyApp() {
 
 Option B: Use Hesperus React wrappers:
 ```jsx
-import { Button, TextInput, Accordion } from '@tinkermonkey/hesperus-theme/components';
+import { Accordion, AccordionPanel, AccordionTitle, AccordionContent } from '@tinkermonkey/hesperus-theme/components';
 
 export function MyApp() {
-  return <Button>Click me</Button>;
+  return (
+    <Accordion>
+      <AccordionPanel>
+        <AccordionTitle>Click to expand</AccordionTitle>
+        <AccordionContent>Content here</AccordionContent>
+      </AccordionPanel>
+    </Accordion>
+  );
 }
 ```
 
