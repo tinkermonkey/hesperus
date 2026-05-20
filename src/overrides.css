@@ -716,6 +716,171 @@
 }
 
 /* ============================================================
+ * CHECKBOX (.checkbox)
+ * Native checkbox input styled to Hesperus specs
+ * ============================================================ */
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--transition-default) var(--timing-ease-out),
+              border-color var(--transition-default) var(--timing-ease-out),
+              color var(--transition-default) var(--timing-ease-out);
+  box-shadow: none;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--canvas-bg);
+  font-weight: var(--weight-bold);
+  font-size: 11px;
+}
+
+.checkbox:hover {
+  background: var(--hover-bg);
+}
+
+.checkbox:checked {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+.checkbox:checked::after {
+  content: '✓';
+}
+
+.checkbox:indeterminate {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+.checkbox:indeterminate::after {
+  content: '−';
+}
+
+.checkbox:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.checkbox:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* ============================================================
+ * RADIO (.radio)
+ * Native radio input styled to Hesperus specs
+ * ============================================================ */
+
+.radio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--transition-default) var(--timing-ease-out),
+              border-color var(--transition-default) var(--timing-ease-out),
+              color var(--transition-default) var(--timing-ease-out);
+  box-shadow: none;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio:hover {
+  background: var(--hover-bg);
+}
+
+.radio:checked {
+  background: var(--canvas-fg-1);
+  border-color: var(--canvas-fg-1);
+}
+
+.radio:checked::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--canvas-bg);
+  border-radius: 50%;
+}
+
+.radio:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.radio:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+}
+
+/* ============================================================
+ * CARD (.card)
+ * Container component with border, optional header and footer
+ * ============================================================ */
+
+.card {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background-color var(--transition-default) var(--timing-ease-out);
+}
+
+.card:hover {
+  background: var(--hover-bg);
+}
+
+.card__header {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
+}
+
+.card__body {
+  padding: 14px;
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  line-height: var(--leading-normal);
+}
+
+.card__footer {
+  border-top: 1px solid var(--canvas-fg-1);
+  padding: 10px 14px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+}
+
+/* ============================================================
  * DATA DISPLAY & NAVIGATION
  * ============================================================ */
 
@@ -2206,6 +2371,66 @@
 }
 
 /* ============================================================
+ * ACTIVITY TIMELINE (.activity-timeline, .activity-timeline__item, .activity-timeline__point)
+ * Specialized timeline for activity feeds with timestamps
+ * ============================================================ */
+
+.activity-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.activity-timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 20px;
+  bottom: 0;
+  width: 1px;
+  background: var(--canvas-border);
+}
+
+.activity-timeline__item {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  margin-left: 16px;
+}
+
+.activity-timeline__point {
+  width: 14px;
+  height: 14px;
+  background: var(--canvas-bg);
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+  margin-left: -25px;
+}
+
+.activity-timeline__content {
+  flex: 1;
+}
+
+.activity-timeline__timestamp {
+  display: block;
+  font-size: var(--text-9);
+  font-family: var(--font-mono);
+  color: var(--canvas-muted-fg);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+}
+
+.activity-timeline__description {
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  color: var(--canvas-fg-1);
+}
+
+/* ============================================================
  * DATEPICKER (.datepicker, .datepicker__input, .datepicker__popover, .datepicker__calendar)
  * ============================================================ */
 
@@ -2457,6 +2682,24 @@
 }
 
 /* ============================================================
+ * ORDERED LIST (.ordered-list, .ordered-list__item)
+ * Styled ordered/numbered list component
+ * ============================================================ */
+
+.ordered-list {
+  margin: 16px 0;
+  padding-left: 24px;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  color: var(--canvas-fg-1);
+  list-style-type: decimal;
+}
+
+.ordered-list__item {
+  margin-bottom: 8px;
+}
+
+/* ============================================================
  * FOOTER (.footer, .footer__link, .footer__link-group)
  * ============================================================ */
 
@@ -2619,6 +2862,62 @@
 }
 
 .alert.alert--info {
+  border-color: var(--color-info);
+  color: var(--color-info);
+}
+
+/* ============================================================
+ * ALERT STRIP (.alert-strip)
+ * Horizontal alert/notification bar, often sticky
+ * ============================================================ */
+
+.alert-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--canvas-bg);
+  border-bottom: var(--border-width-default) solid var(--canvas-fg-1);
+  color: var(--canvas-fg-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  width: 100%;
+}
+
+.alert-strip__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+
+.alert-strip__content {
+  flex: 1;
+}
+
+.alert-strip__action {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Alert strip semantic variants */
+
+.alert-strip.alert-strip--success {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.alert-strip.alert-strip--error {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.alert-strip.alert-strip--warning {
+  border-color: var(--color-warning);
+  color: var(--color-warning-text);
+}
+
+.alert-strip.alert-strip--info {
   border-color: var(--color-info);
   color: var(--color-info);
 }
@@ -3231,6 +3530,81 @@
 }
 
 /* ============================================================
+ * TOOL BLOCK (.tool-block, .tool-block__header, .tool-block__body, .tool-block__footer)
+ * Container for tool execution results in chat context
+ * ============================================================ */
+
+.tool-block {
+  border: var(--border-width-default) solid var(--canvas-border);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 8px 0;
+  font-family: var(--font-mono);
+}
+
+.tool-block__header {
+  background: var(--canvas-border);
+  padding: 8px 12px;
+  font-size: var(--text-10);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-1);
+  border-bottom: var(--border-width-default) solid var(--canvas-border);
+}
+
+.tool-block__body {
+  padding: 12px;
+  font-size: var(--text-11);
+  color: var(--canvas-fg-1);
+  line-height: var(--leading-normal);
+  overflow-x: auto;
+}
+
+.tool-block__footer {
+  border-top: 1px solid var(--canvas-border);
+  padding: 8px 12px;
+  font-size: var(--text-9);
+  color: var(--canvas-fg-2);
+  background: var(--hover-bg);
+}
+
+/* ============================================================
+ * THINKING BLOCK (.thinking-block, .thinking-block__header, .thinking-block__body)
+ * Container for thinking/reasoning content in chat context
+ * ============================================================ */
+
+.thinking-block {
+  border: var(--border-width-default) solid var(--canvas-border);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 8px 0;
+  font-family: var(--font-mono);
+}
+
+.thinking-block__header {
+  background: var(--canvas-border);
+  padding: 8px 12px;
+  font-size: var(--text-10);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-1);
+  border-bottom: var(--border-width-default) solid var(--canvas-border);
+}
+
+.thinking-block__body {
+  padding: 12px;
+  font-size: var(--text-11);
+  color: var(--canvas-fg-2);
+  line-height: var(--leading-normal);
+  overflow-x: auto;
+  background: var(--hover-bg);
+}
+
+/* ============================================================
  * CHAT MESSAGE (.chat-message)
  * ============================================================ */
 
@@ -3477,4 +3851,399 @@
 
 .chat-container__footer {
   border-top: var(--border-width-default) solid var(--canvas-border);
+}
+
+/* ============================================================
+ * CHART COMPONENTS (Sparkline, LineChart, BarChart, PieChart)
+ * Inline and standalone data visualization components
+ * ============================================================ */
+
+/* SPARKLINE (.sparkline, .sparkline__svg, .sparkline__value) */
+
+.sparkline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+}
+
+.sparkline__svg {
+  display: inline-block;
+  width: auto;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.sparkline__svg line,
+.sparkline__svg polyline,
+.sparkline__svg path {
+  stroke: var(--canvas-fg-1);
+  fill: none;
+  stroke-width: 1px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sparkline__value {
+  font-size: var(--text-11);
+  font-weight: var(--weight-bold);
+  color: var(--canvas-fg-1);
+}
+
+/* LINE CHART (.line-chart, .line-chart__svg, .line-chart__legend, .line-chart__legend-item) */
+
+.line-chart {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  font-family: var(--font-mono);
+}
+
+.line-chart__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+
+.line-chart__svg line,
+.line-chart__svg polyline,
+.line-chart__svg path {
+  stroke: var(--canvas-fg-1);
+  fill: none;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.line-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--canvas-border);
+}
+
+.line-chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-10);
+  color: var(--canvas-fg-1);
+}
+
+.line-chart__legend-item::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 2px;
+  background: var(--canvas-fg-1);
+}
+
+/* BAR CHART (.bar-chart, .bar-chart__svg, .bar-chart__legend, .bar-chart__legend-item) */
+
+.bar-chart {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  font-family: var(--font-mono);
+}
+
+.bar-chart__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+
+.bar-chart__svg rect {
+  stroke: var(--canvas-fg-1);
+  fill: var(--canvas-fg-1);
+  stroke-width: 1px;
+}
+
+.bar-chart__svg line {
+  stroke: var(--canvas-border);
+  stroke-width: 1px;
+}
+
+.bar-chart__svg text {
+  fill: var(--canvas-fg-1);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.bar-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--canvas-border);
+}
+
+.bar-chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-10);
+  color: var(--canvas-fg-1);
+}
+
+.bar-chart__legend-item::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--canvas-fg-1);
+  border: 1px solid var(--canvas-fg-1);
+}
+
+/* PIE CHART (.pie-chart, .pie-chart__svg, .pie-chart__legend, .pie-chart__legend-item) */
+
+.pie-chart {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  font-family: var(--font-mono);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.pie-chart__svg {
+  display: block;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.pie-chart__svg circle,
+.pie-chart__svg path {
+  stroke: var(--canvas-fg-1);
+  stroke-width: 2px;
+}
+
+.pie-chart__legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.pie-chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-10);
+  color: var(--canvas-fg-1);
+}
+
+.pie-chart__legend-item::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--canvas-border);
+  border: 1px solid var(--canvas-fg-1);
+}
+
+/* ============================================================
+ * GRAPH COMPONENTS (GraphCanvas, GraphEdge, GraphInspector, TopologyNode)
+ * Network and topology visualization components
+ * ============================================================ */
+
+/* GRAPH CANVAS (.graph-canvas, .graph-canvas__svg) */
+
+.graph-canvas {
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L40 20 M20 0 L20 40' stroke='%23b8a878' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  font-family: var(--font-mono);
+}
+
+.graph-canvas__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.graph-canvas__controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10;
+}
+
+.graph-canvas__control-button {
+  padding: 6px 10px;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  color: var(--canvas-fg-1);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--text-10);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast);
+}
+
+.graph-canvas__control-button:hover {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+/* GRAPH EDGE (.graph-edge) */
+
+.graph-edge {
+  stroke: var(--canvas-fg-1);
+  stroke-width: 2px;
+  fill: none;
+  pointer-events: none;
+}
+
+.graph-edge.graph-edge--active {
+  stroke: var(--focus-ring-color);
+  stroke-width: 2px;
+}
+
+.graph-edge.graph-edge--inactive {
+  opacity: 0.3;
+}
+
+.graph-edge__arrow {
+  fill: var(--canvas-fg-1);
+}
+
+/* GRAPH INSPECTOR (.graph-inspector, .graph-inspector__panel, .graph-inspector__property) */
+
+.graph-inspector {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 280px;
+  max-height: 200px;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  background: var(--canvas-bg);
+  border-radius: var(--radius-md);
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.graph-inspector__panel {
+  padding: 12px;
+  border-bottom: 1px solid var(--canvas-border);
+}
+
+.graph-inspector__panel:last-child {
+  border-bottom: none;
+}
+
+.graph-inspector__property {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: var(--text-10);
+}
+
+.graph-inspector__property-label {
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-2);
+  min-width: 60px;
+}
+
+.graph-inspector__property-value {
+  color: var(--canvas-fg-1);
+  font-family: var(--font-mono);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* TOPOLOGY NODE (.topology-node, .topology-node__icon, .topology-node__label) */
+
+.topology-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: move;
+  user-select: none;
+  transition: transform var(--transition-default);
+}
+
+.topology-node__icon {
+  width: 40px;
+  height: 40px;
+  border: var(--border-width-default) solid var(--canvas-fg-1);
+  border-radius: var(--radius-md);
+  background: var(--canvas-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--canvas-fg-1);
+  font-weight: var(--weight-bold);
+}
+
+.topology-node:hover .topology-node__icon {
+  background: var(--hover-bg);
+  border-color: var(--canvas-fg-1);
+}
+
+.topology-node.topology-node--active .topology-node__icon {
+  background: var(--canvas-fg-1);
+  color: var(--canvas-bg);
+}
+
+.topology-node__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-10);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--canvas-fg-1);
+  text-align: center;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topology-node__status {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 11px;
+  height: 11px;
+  border: var(--border-width-default) solid var(--canvas-bg);
+  border-radius: 50%;
+  background: var(--canvas-fg-1);
+}
+
+.topology-node__status.topology-node__status--success {
+  background: var(--color-success);
+}
+
+.topology-node__status.topology-node__status--error {
+  background: var(--color-error);
+}
+
+.topology-node__status.topology-node__status--warning {
+  background: var(--color-warning);
 }
