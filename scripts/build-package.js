@@ -48,12 +48,14 @@ async function transpileJSXFiles(srcDir, outDir) {
     await mkdir(dirname(outPath), { recursive: true });
 
     // No bundle: true or external — esbuild will naturally leave React imports as-is
+    // Preserve process.env.NODE_ENV so consumers' bundlers can tree-shake dev warnings
     await esbuild.build({
       entryPoints: [srcPath],
       format: 'esm',
       outfile: outPath,
       jsx: 'automatic',
       jsxImportSource: 'react',
+      define: { 'process.env.NODE_ENV': 'process.env.NODE_ENV' },
     });
   }
 }
