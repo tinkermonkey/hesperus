@@ -365,7 +365,7 @@ const NAV_SECTIONS = [
 export default function App() {
   const [dark, setDark] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [ratings, setRatings] = useState({ default: 3, hover: 4 });
+  const [ratings, setRatings] = useState(3);
 
   useEffect(() => {
     if (dark) {
@@ -486,12 +486,32 @@ export default function App() {
             </Group>
             <Group label="Dropdown component">
               <Variant label="Default">
-                <Dropdown label="Menu">
+                <Dropdown trigger="Menu">
                   <DropdownItem>Item 1</DropdownItem>
                   <DropdownItem>Item 2</DropdownItem>
                   <DropdownDivider />
                   <DropdownItem>Item 3</DropdownItem>
                 </Dropdown>
+              </Variant>
+              <Variant label="Disabled">
+                <div className="opacity-40 pointer-events-none">
+                  <Dropdown trigger="Menu">
+                    <DropdownItem>Item 1</DropdownItem>
+                    <DropdownItem>Item 2</DropdownItem>
+                    <DropdownDivider />
+                    <DropdownItem>Item 3</DropdownItem>
+                  </Dropdown>
+                </div>
+              </Variant>
+              <Variant label="Focus">
+                <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md p-2 inline-block">
+                  <Dropdown trigger="Menu">
+                    <DropdownItem>Item 1</DropdownItem>
+                    <DropdownItem>Item 2</DropdownItem>
+                    <DropdownDivider />
+                    <DropdownItem>Item 3</DropdownItem>
+                  </Dropdown>
+                </div>
               </Variant>
             </Group>
           </Section>
@@ -1092,7 +1112,7 @@ export default function App() {
                 <Rating value={5} readonly />
               </Variant>
               <Variant label="Interactive">
-                <Rating value={ratings.default} onChange={(v) => setRatings({ ...ratings, default: v })} />
+                <Rating value={ratings} onChange={(v) => setRatings(v)} />
               </Variant>
             </Group>
             <Group label="States">

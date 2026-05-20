@@ -164,3 +164,6 @@ vite.config.ts.timestamp-*
 playwright-report/
 test-results/
 .playwright/
+
+# Build environment artifacts
+hesperus/
