@@ -3,7 +3,7 @@ import { mergeClasses } from './utils';
 
 /**
  * @typedef {Object} FileInputProps
- * @property {Function} [onChange]
+ * @property {(files: FileList) => void} [onChange]
  * @property {string} [accept]
  * @property {boolean} [multiple]
  * @property {boolean} [disabled]

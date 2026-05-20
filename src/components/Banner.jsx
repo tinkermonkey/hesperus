@@ -5,7 +5,7 @@ import { mergeClasses } from './utils';
  * @typedef {Object} BannerProps
  * @property {React.ReactNode} children
  * @property {'default' | 'info' | 'success' | 'warning' | 'error'} [variant]
- * @property {Function} [onDismiss]
+ * @property {() => void} [onDismiss]
  * @property {string} [className]
  */
 

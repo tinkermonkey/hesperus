@@ -42,6 +42,19 @@ export const AccordionPanel = forwardRef(({ children, defaultOpen = false, class
   const titleChild = childArray.find(child => child?.type?.displayName === 'AccordionTitle');
   const contentChild = childArray.find(child => child?.type?.displayName === 'AccordionContent');
 
+  if (process.env.NODE_ENV === 'development') {
+    const unmatchedChildren = childArray.filter(
+      child => child?.type?.displayName !== 'AccordionTitle' && child?.type?.displayName !== 'AccordionContent'
+    );
+    if (unmatchedChildren.length > 0) {
+      console.warn(
+        'AccordionPanel: Children that are not AccordionTitle or AccordionContent will be ignored. ' +
+        'Make sure components have displayName set correctly.',
+        unmatchedChildren
+      );
+    }
+  }
+
   return (
     <div
       ref={ref}
@@ -59,7 +72,7 @@ AccordionPanel.displayName = 'AccordionPanel';
 /**
  * @typedef {Object} AccordionTitleProps
  * @property {React.ReactNode} children
- * @property {Function} [onClick]
+ * @property {(e: React.MouseEvent<HTMLButtonElement>) => void} [onClick]
  * @property {string} [className]
  */
 

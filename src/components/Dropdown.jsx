@@ -63,7 +63,7 @@ Dropdown.displayName = 'Dropdown';
 /**
  * @typedef {Object} DropdownItemProps
  * @property {React.ReactNode} children
- * @property {Function} [onClick]
+ * @property {(e: React.MouseEvent<HTMLButtonElement>) => void} [onClick]
  * @property {boolean} [disabled]
  * @property {string} [className]
  */

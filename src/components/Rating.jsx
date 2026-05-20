@@ -4,7 +4,7 @@ import { mergeClasses } from './utils';
 /**
  * @typedef {Object} RatingProps
  * @property {number} [value]
- * @property {Function} [onChange]
+ * @property {(value: number) => void} [onChange]
  * @property {boolean} [readonly]
  * @property {'xs' | 'sm' | 'md' | 'lg'} [size]
  * @property {string} [className]

@@ -5,7 +5,7 @@ import { mergeClasses } from './utils';
  * @typedef {Object} PaginationProps
  * @property {number} currentPage
  * @property {number} totalPages
- * @property {Function} onPageChange
+ * @property {(page: number) => void} onPageChange
  * @property {string} [className]
  */
 

@@ -4,7 +4,7 @@ import { mergeClasses } from './utils';
 /**
  * @typedef {Object} DatepickerProps
  * @property {Date} [value]
- * @property {Function} [onChange]
+ * @property {(date: Date) => void} [onChange]
  * @property {string} [placeholder]
  * @property {boolean} [disabled]
  * @property {string} [className]
