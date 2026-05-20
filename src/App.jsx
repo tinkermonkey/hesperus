@@ -365,6 +365,7 @@ export default function App() {
   const [dark, setDark] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [ratings, setRatings] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (dark) {
@@ -1030,18 +1031,18 @@ export default function App() {
           <Section id="pagination" title="Pagination">
             <Group label="Default">
               <Variant label="Pagination">
-                <Pagination />
+                <Pagination currentPage={currentPage} totalPages={5} onPageChange={setCurrentPage} />
               </Variant>
             </Group>
             <Group label="States">
               <Variant label="Disabled">
                 <div className="opacity-40">
-                  <Pagination />
+                  <Pagination currentPage={currentPage} totalPages={5} onPageChange={setCurrentPage} />
                 </div>
               </Variant>
               <Variant label="Focus">
                 <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md inline-block p-2">
-                  <Pagination />
+                  <Pagination currentPage={currentPage} totalPages={5} onPageChange={setCurrentPage} />
                 </div>
               </Variant>
             </Group>
@@ -1051,7 +1052,7 @@ export default function App() {
           <Section id="popover" title="Popover">
             <Group label="Default">
               <Variant label="Popover">
-                <Popover title="Popover">
+                <Popover trigger="Popover">
                   This is a popover with content
                 </Popover>
               </Variant>
@@ -1059,14 +1060,14 @@ export default function App() {
             <Group label="States">
               <Variant label="Disabled">
                 <div className="opacity-40">
-                  <Popover title="Popover">
+                  <Popover trigger="Popover">
                     Disabled popover
                   </Popover>
                 </div>
               </Variant>
               <Variant label="Focus">
                 <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md inline-block">
-                  <Popover title="Popover">
+                  <Popover trigger="Popover">
                     Focused popover
                   </Popover>
                 </div>
@@ -1078,24 +1079,24 @@ export default function App() {
           <Section id="progress" title="Progress">
             <Group label="Progress states">
               <Variant label="0%">
-                <Progress progress={0} />
+                <Progress value={0} />
               </Variant>
               <Variant label="50%">
-                <Progress progress={50} />
+                <Progress value={50} />
               </Variant>
               <Variant label="100%">
-                <Progress progress={100} />
+                <Progress value={100} />
               </Variant>
             </Group>
             <Group label="States">
               <Variant label="Disabled">
                 <div className="opacity-40">
-                  <Progress progress={50} />
+                  <Progress value={50} />
                 </div>
               </Variant>
               <Variant label="Focus">
                 <div className="ring-2 ring-retro-orange ring-offset-2 rounded-md p-2">
-                  <Progress progress={50} />
+                  <Progress value={50} />
                 </div>
               </Variant>
             </Group>
@@ -1289,21 +1290,21 @@ export default function App() {
               <Variant label="Default">
                 <div className="flex items-center gap-4">
                   <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
-                  <ConnectionLabel>connection</ConnectionLabel>
+                  <ConnectionLabel label="connection" colorKey="orange" />
                   <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
                 </div>
               </Variant>
               <Variant label="Disabled">
                 <div className="opacity-40 flex items-center gap-4">
                   <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
-                  <ConnectionLabel>connection</ConnectionLabel>
+                  <ConnectionLabel label="connection" colorKey="cyan" />
                   <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
                 </div>
               </Variant>
               <Variant label="Focus">
                 <div className="flex items-center gap-4 ring-2 ring-retro-orange ring-offset-2 rounded-md p-2">
                   <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
-                  <ConnectionLabel>connection</ConnectionLabel>
+                  <ConnectionLabel label="connection" colorKey="purple" />
                   <div className="w-32 h-12 border-2 border-retro-fg rounded-md" />
                 </div>
               </Variant>
