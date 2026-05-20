@@ -100,11 +100,56 @@ async function generateTypeDeclarations(srcDir, outDir) {
 function generateDTSContent(jsxContent, fileName) {
   let dts = '';
   let imports = '';
+  const interfaces = [];
 
-  // Extract @typedef JSDoc blocks
-  const typedefBlockRegex = /\/\*\*[\s\S]*?@typedef\s+\{Object\}\s+(\w+)[\s\S]*?\*\//g;
+  // Extract @typedef JSDoc blocks with their @property lines
+  const typedefBlockRegex = /\/\*\*[\s\S]*?@typedef\s+\{Object\}\s+(\w+)([\s\S]*?)\*\//g;
   const typedefMatches = [...jsxContent.matchAll(typedefBlockRegex)];
-  const typedefNames = new Set(typedefMatches.map(m => m[1]));
+
+  const typedefMap = new Map(); // Map typedef name to @property lines
+  for (const match of typedefMatches) {
+    const typedefName = match[1];
+    const typedefBody = match[2];
+    typedefMap.set(typedefName, typedefBody);
+  }
+
+  // Parse @property lines from JSDoc body
+  function parseProperties(jsDocBody) {
+    const properties = [];
+    // Split by lines and parse @property declarations
+    const propRegex = /@property\s+\{([^}]+)\}\s+(\[?)(\w+)\]?\s*(.*)/;
+    const lines = jsDocBody.split('\n').filter(line => line.includes('@property'));
+
+    for (const line of lines) {
+      const match = propRegex.exec(line);
+      if (match) {
+        const type = match[1].trim();
+        const isOptional = match[2] === '[';
+        const propName = match[3];
+        const description = match[4]?.trim() || '';
+        properties.push({ name: propName, type, isOptional, description });
+      }
+    }
+    return properties;
+  }
+
+  // Generate interface declarations
+  for (const [typedefName, body] of typedefMap) {
+    const properties = parseProperties(body);
+    if (properties.length > 0) {
+      let interfaceDef = `interface ${typedefName} {\n`;
+      for (const prop of properties) {
+        const optional = prop.isOptional ? '?' : '';
+        // Convert JSDoc types to TypeScript types
+        let tsType = prop.type;
+        if (tsType === 'Function') tsType = '(...args: any[]) => any';
+        if (tsType.includes('React.ReactNode')) tsType = 'React.ReactNode';
+        interfaceDef += `  ${prop.name}${optional}: ${tsType};\n`;
+      }
+      interfaceDef += '}\n';
+      interfaces.push(interfaceDef);
+    }
+  }
 
   // Extract React.forwardRef component exports
   const componentExports = jsxContent.match(/export\s+const\s+(\w+)\s*=\s*forwardRef/g) || [];
@@ -114,7 +159,7 @@ function generateDTSContent(jsxContent, fileName) {
     const propsTypeName = componentName + 'Props';
 
     // If we have a typedef for this component, use it; otherwise use a permissive type
-    if (typedefNames.has(propsTypeName)) {
+    if (typedefMap.has(propsTypeName)) {
       dts += `export const ${componentName}: React.ForwardRefExoticComponent<${propsTypeName} & React.RefAttributes<HTMLElement>>;\n`;
     } else {
       // Use a permissive type that doesn't reject valid component-specific props
@@ -134,11 +179,12 @@ function generateDTSContent(jsxContent, fileName) {
   }
 
   // Add React import for proper typing
-  if (componentExports.length > 0) {
+  if (componentExports.length > 0 || interfaces.length > 0) {
     imports = `import * as React from 'react';\n\n`;
   }
 
-  return imports + dts || 'export {};\n';
+  const interfaceDeclarations = interfaces.join('\n');
+  return imports + interfaceDeclarations + (interfaceDeclarations ? '\n' : '') + dts || 'export {};\n';
 }
 
 async function build() {
@@ -186,6 +232,19 @@ async function build() {
   await mkdir(distComponentsDir, { recursive: true });
   await transpileJSXFiles(srcComponentsDir, distComponentsDir);
   console.log('✅ Transpiled React components to dist/components');
+
+  // Copy utils.js to dist/components/ (needed by component imports)
+  const utilsSrcPath = join(srcComponentsDir, 'utils.js');
+  const utilsDistPath = join(distComponentsDir, 'utils.js');
+  await copyFile(utilsSrcPath, utilsDistPath);
+  console.log('✅ Copied utils.js to dist/components/');
+
+  // Generate utils.d.ts
+  const utilsDtsContent = `export function mergeClasses(baseClass: string, variants?: Record<string, boolean>, className?: string): string;
+export function classNames(...args: (string | false | undefined | null)[]): string;
+`;
+  await writeFile(join(distComponentsDir, 'utils.d.ts'), utilsDtsContent);
+  console.log('✅ Generated utils.d.ts');
 
   // Transpile index.js
   await esbuild.build({
